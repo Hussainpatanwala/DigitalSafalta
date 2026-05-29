@@ -1,4 +1,5 @@
 import { useState, useEffect, FormEvent, useRef } from 'react';
+import { supabase } from './supabaseClient';
 import type { ChangeEvent } from 'react';
 import {
   Menu,
@@ -125,14 +126,41 @@ function App() {
     e.preventDefault();
     setFormStatus('submitting');
 
-    // Simulate API call (replace with real implementation)
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      // Step 1: Save to Supabase database
+      const { error: dbError } = await supabase
+        .from('contact_submissions')
+        .insert([{
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          message: formData.message,
+        }]);
+
+      if (dbError) throw new Error(dbError.message);
+
+      // Step 2: Trigger Edge Function to send email notification
+      const { error: fnError } = await supabase.functions.invoke(
+        'notify-form-submission',
+        {
+          body: {
+            name: formData.name,
+            email: formData.email,
+            company: formData.company,
+            message: formData.message,
+          },
+        }
+      );
+
+      if (fnError) throw new Error(fnError.message);
+
+      // Success
       setFormStatus('success');
       setFormData({ name: '', email: '', company: '', message: '' });
-      // Reset success message after 5 seconds
       setTimeout(() => setFormStatus('idle'), 5000);
-    } catch {
+
+    } catch (err) {
+      console.error('Form submission error:', err);
       setFormStatus('error');
     }
   };
