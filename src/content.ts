@@ -298,7 +298,7 @@ export const footerContact = {
   email: "hello@digitalsafalta.in",
   location: "Remote · India + Global"
 };
-export const footerCopyright = "© 2024 Digital Safalta. All rights reserved.";
+export const footerCopyright = "© 2026 Digital Safalta. All rights reserved.";
 
 // ============================================
 // IMAGE URLs
