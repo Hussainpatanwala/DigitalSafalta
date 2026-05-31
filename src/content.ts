@@ -72,6 +72,12 @@ export const servicesTitle = "What We Do";
 export const servicesDescription = "End-to-end digital marketing services built for growing businesses.";
 
 export const services = [
+  
+  {
+    title: "Website Design",
+    description: "Fast, mobile-friendly websites that represent your business 24/7.",
+    icon: "Globe"
+  },
   {
     title: "Performance Ads",
     description: "Facebook, Instagram, and Google ads crafted to get you real leads and sales — not just clicks.",
@@ -96,11 +102,6 @@ export const services = [
     title: "Brand Identity",
     description: "Logo, colors, and visual identity that makes your business look professional and trustworthy.",
     icon: "Palette"
-  },
-  {
-    title: "Website Design",
-    description: "Fast, mobile-friendly websites that represent your business 24/7.",
-    icon: "Globe"
   },
   {
     title: "Email Marketing",
