@@ -29,7 +29,7 @@ export const navLinks = [
 // ============================================
 
 export const heroHeadline = "Grow Your Business Digitally — The Right Way.";
-export const heroSubheading = "Digital Safalta partners with small and growing businesses to build their online presence, run effective ad campaigns, and turn visitors into customers. Let's grow together.";
+export const heroSubheading = "Digital Safalta is a digital marketing agency in Pune helping small and growing businesses build their online presence, run effective ad campaigns, and turn visitors into paying customers. Let's grow together.";
 export const heroCtaText = "Start the Conversation";
 export const heroSecondaryCtaText = "See What We Offer";
 
@@ -50,17 +50,17 @@ export const philosophyPrinciples = [
   {
     number: "01",
     title: "Honesty First",
-    description: "We tell you what will work and what won't — even if it's not what you want to hear. No overselling, no false promises."
+    description: "We tell you what will work and what won't — even if it's not what you want to hear. No overselling, no false promises. Just honest digital marketing advice for your business."
   },
   {
     number: "02",
     title: "Results Over Vanity",
-    description: "Likes and impressions don't pay bills. We focus on leads, conversions, and revenue — metrics that actually matter to your business."
+    description: "Likes and impressions don't pay bills. We focus on leads, conversions, and revenue — metrics that actually matter to your business growth in Pune and beyond."
   },
   {
     number: "03",
     title: "Long-Term Partnership",
-    description: "We're not here for a quick project. We aim to be your go-to digital partner as your business grows month after month."
+    description: "We're not here for a quick project. We aim to be your go-to digital marketing partner as your business grows month after month."
   },
 ];
 
@@ -68,14 +68,13 @@ export const philosophyPrinciples = [
 // SERVICES SECTION
 // ============================================
 
-export const servicesTitle = "What We Do";
-export const servicesDescription = "End-to-end digital marketing services built for growing businesses.";
+export const servicesTitle = "Digital Marketing Services in Pune";
+export const servicesDescription = "End-to-end digital marketing services built for small and growing businesses across Pune, Maharashtra and India.";
 
 export const services = [
-  
   {
     title: "Website Design",
-    description: "Fast, mobile-friendly websites that represent your business 24/7.",
+    description: "Fast, mobile-friendly websites that represent your business 24/7 and rank well on Google.",
     icon: "Globe"
   },
   {
@@ -85,7 +84,7 @@ export const services = [
   },
   {
     title: "SEO",
-    description: "Get found on Google by people actively searching for what you offer.",
+    description: "Get found on Google by people in Pune and across India actively searching for what you offer.",
     icon: "BarChart3"
   },
   {
@@ -95,7 +94,7 @@ export const services = [
   },
   {
     title: "Landing Pages & Funnels",
-    description: "High-converting pages designed to turn your traffic into paying customers.",
+    description: "High-converting landing pages designed to turn your traffic into paying customers.",
     icon: "MousePointer"
   },
   {
@@ -105,7 +104,7 @@ export const services = [
   },
   {
     title: "Email Marketing",
-    description: "Stay top of mind with your customers through smart, automated email campaigns.",
+    description: "Stay top of mind with your customers through smart, automated email marketing campaigns.",
     icon: "Mail"
   },
   {
@@ -120,25 +119,25 @@ export const services = [
 // ============================================
 
 export const resultsTitle = "What You Can Expect";
-export const resultsDescription = "We are a new agency — so instead of fabricated case studies, here is what we commit to delivering.";
+export const resultsDescription = "We are a new digital marketing agency in Pune — so instead of fabricated case studies, here is what we commit to delivering.";
 
 export const caseStudies = [
   {
     category: "Transparency",
     result: "No Hidden Fees",
-    description: "Every rupee you spend is tracked and reported. You will always know what is working, what is not, and why.",
+    description: "Every rupee you spend is tracked and reported. You will always know what is working, what is not, and why. Full transparency guaranteed.",
     metrics: ["Monthly reports", "Clear dashboards", "Open communication"]
   },
   {
     category: "Speed",
     result: "Live in 14 Days",
-    description: "From kickoff to live campaigns — we move fast without cutting corners. Your growth should not wait.",
+    description: "From kickoff to live campaigns — we move fast without cutting corners. Your business growth in Pune should not wait.",
     metrics: ["Quick onboarding", "14-day launch", "Weekly check-ins"]
   },
   {
     category: "Commitment",
     result: "Your Growth = Our Goal",
-    description: "We work with a limited number of clients so every business gets dedicated time and attention.",
+    description: "We work with a limited number of clients so every Pune business gets dedicated time, attention and a personalised strategy.",
     metrics: ["Limited clients", "Dedicated manager", "24hr response time"]
   },
 ];
@@ -148,7 +147,7 @@ export const caseStudies = [
 // ============================================
 
 export const processTitle = "How We Work";
-export const processDescription = "A simple, proven process to get your business growing online.";
+export const processDescription = "A simple, proven digital marketing process to get your Pune business growing online.";
 
 export const processSteps = [
   {
@@ -159,12 +158,12 @@ export const processSteps = [
   {
     number: "02",
     title: "Custom Strategy",
-    description: "We build a tailored digital marketing plan specific to your business, budget, and goals."
+    description: "We build a tailored digital marketing plan specific to your business, budget, and goals in the Pune market and beyond."
   },
   {
     number: "03",
     title: "Execute & Launch",
-    description: "We set everything up and go live — ads, content, tracking, and reporting all in one place."
+    description: "We set everything up and go live — ads, SEO, content, tracking, and reporting all in one place."
   },
   {
     number: "04",
@@ -189,7 +188,7 @@ export const platformMetrics = [
 // ============================================
 
 export const pricingTitle = "Simple, Transparent Pricing";
-export const pricingDescription = "No surprise charges. No long-term lock-ins. Just honest pricing for real work.";
+export const pricingDescription = "No surprise charges. No long-term lock-ins. Honest digital marketing pricing for small businesses in Pune and across India.";
 
 export const pricingPlans = [
   {
@@ -197,7 +196,7 @@ export const pricingPlans = [
     price: "15,000",
     currency: "₹",
     period: "month",
-    description: "Perfect for small businesses getting started online",
+    description: "Perfect for small businesses in Pune getting started online",
     features: [
       "1 ad channel (Meta or Google)",
       "Basic monthly reporting",
@@ -211,7 +210,7 @@ export const pricingPlans = [
     price: "35,000",
     currency: "₹",
     period: "month",
-    description: "For businesses ready to scale their digital presence",
+    description: "For Pune businesses ready to scale their digital presence",
     features: [
       "2 ad channels (Meta + Google)",
       "SEO basics included",
@@ -225,7 +224,7 @@ export const pricingPlans = [
     price: "Let's Talk",
     currency: "",
     period: "",
-    description: "Tailored plan for your specific business needs",
+    description: "Tailored digital marketing plan for your specific business needs",
     features: [
       "Everything in Growth",
       "Website design or redesign",
@@ -242,7 +241,7 @@ export const pricingPlans = [
 
 export const testimonialQuote = "We just launched Digital Safalta to help businesses like yours grow online. We would love for you to be one of our first success stories — reach out and let us build something great together.";
 export const testimonialAuthor = "Hussain Patanwala";
-export const testimonialRole = "Founder, Digital Safalta";
+export const testimonialRole = "Founder, Digital Safalta — Digital Marketing Agency, Pune";
 export const testimonialInitials = "HP";
 
 // ============================================
@@ -251,16 +250,16 @@ export const testimonialInitials = "HP";
 
 export const faqItems = [
   {
-    question: "Are you a new agency? Why should I trust you?",
-    answer: "Yes, we are new — and we think that is actually a strength. You get a founder who is personally invested in your results, not a junior executive managing 50 clients. We have 8+ years of marketing experience and we are building our reputation one client at a time."
+    question: "Are you a new digital marketing agency in Pune? Why should I trust you?",
+    answer: "Yes, we are new — and we think that is actually a strength. You get a founder who is personally invested in your results, not a junior executive managing 50 clients. We have 8+ years of marketing experience and we are building our reputation one Pune business at a time."
   },
   {
-    question: "How long before we see results?",
-    answer: "Paid ads can show results within the first 2-4 weeks. SEO typically takes 3-6 months. We set honest expectations upfront and give you weekly updates so you always know what is happening."
+    question: "How long before we see results from digital marketing?",
+    answer: "Paid ads can show results within the first 2-4 weeks. SEO typically takes 3-6 months to show results on Google. We set honest expectations upfront and give you weekly updates so you always know what is happening."
   },
   {
-    question: "What kind of businesses do you work with?",
-    answer: "We work with small and growing businesses across all industries — local services, e-commerce, coaching, real estate, hospitality, and more. If you have a product or service and want more customers online, we can help."
+    question: "What kind of businesses do you work with in Pune?",
+    answer: "We work with small and growing businesses across Pune and Maharashtra — local services, e-commerce, coaching, real estate, hospitality, restaurants, and more. If you have a product or service and want more customers online, we can help."
   },
   {
     question: "Is there a minimum contract period?",
@@ -268,7 +267,7 @@ export const faqItems = [
   },
   {
     question: "What if I am not happy with the results?",
-    answer: "We have an open communication policy. If something is not working, we tell you and we fix it. You will never be left wondering what is happening with your money."
+    answer: "We have an open communication policy. If something is not working, we tell you and we fix it. You will never be left wondering what is happening with your digital marketing budget."
   },
 ];
 
@@ -291,12 +290,12 @@ export const contactResponseTime = "We respond within 24 hours — usually much 
 // FOOTER SECTION
 // ============================================
 
-export const footerDescription = "Helping growing businesses succeed online — honestly and effectively.";
+export const footerDescription = "Digital marketing agency in Pune helping growing businesses succeed online — honestly and effectively.";
 export const footerServices = ["Performance Ads", "SEO", "Social Media", "Website Design"];
 export const footerCompany = ["About", "Our Process", "Pricing", "Contact"];
 export const footerContact = {
   email: "hello@digitalsafalta.in",
-  location: "Pune, India · Serving clients globally"
+  location: "Pune, Maharashtra · Serving clients across India"
 };
 export const footerCopyright = "© 2026 Digital Safalta. All rights reserved.";
 
