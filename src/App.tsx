@@ -79,8 +79,11 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
 // Type definitions for form state
 interface FormData {
   name: string;
+  phone: string;
   email: string;
   company: string;
+  business_type: string;
+  existing_website: string;
   message: string;
 }
 
@@ -92,8 +95,11 @@ function App() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [formData, setFormData] = useState<FormData>({
     name: '',
+    phone: '',
     email: '',
     company: '',
+    business_type: '',
+    existing_website: '',
     message: '',
   });
   const [formStatus, setFormStatus] = useState<FormStatus>('idle');
@@ -132,9 +138,13 @@ function App() {
         .from('contact_submissions')
         .insert([{
           name: formData.name,
+          phone: formData.phone,
           email: formData.email,
           company: formData.company,
+          business_type: formData.business_type,
+          existing_website: formData.existing_website,
           message: formData.message,
+          source: 'website',
         }]);
 
       if (dbError) throw new Error(dbError.message);
@@ -145,9 +155,13 @@ function App() {
         {
           body: {
             name: formData.name,
+            phone: formData.phone,
             email: formData.email,
             company: formData.company,
+            business_type: formData.business_type,
+            existing_website: formData.existing_website,
             message: formData.message,
+            source: 'website',
           },
         }
       );
@@ -156,7 +170,7 @@ function App() {
 
       // Success
       setFormStatus('success');
-      setFormData({ name: '', email: '', company: '', message: '' });
+      setFormData({ name: '', phone: '', email: '', company: '', business_type: '', existing_website: '', message: '' });
       setTimeout(() => setFormStatus('idle'), 5000);
 
     } catch (err) {
@@ -736,16 +750,14 @@ function Contact({
         <div className="bg-white rounded-2xl p-8 lg:p-10 max-w-xl mx-auto">
           <form onSubmit={onSubmit} className="space-y-4">
             <div>
-              <label htmlFor="contact-name" className="sr-only">
-                {contactFormPlaceholder.name}
-              </label>
+              <label htmlFor="contact-name" className="sr-only">Your Name</label>
               <input
                 id="contact-name"
                 type="text"
                 name="name"
                 value={formData.name}
                 onChange={onInputChange}
-                placeholder={contactFormPlaceholder.name}
+                placeholder="Your Name"
                 required
                 disabled={formStatus === 'submitting'}
                 className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed"
@@ -753,16 +765,29 @@ function Contact({
             </div>
 
             <div>
-              <label htmlFor="contact-email" className="sr-only">
-                {contactFormPlaceholder.email}
-              </label>
+              <label htmlFor="contact-phone" className="sr-only">Phone Number</label>
+              <input
+                id="contact-phone"
+                type="tel"
+                name="phone"
+                value={formData.phone}
+                onChange={onInputChange}
+                placeholder="Phone Number (e.g. +91 98765 43210)"
+                required
+                disabled={formStatus === 'submitting'}
+                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="contact-email" className="sr-only">Email Address</label>
               <input
                 id="contact-email"
                 type="email"
                 name="email"
                 value={formData.email}
                 onChange={onInputChange}
-                placeholder={contactFormPlaceholder.email}
+                placeholder="Your Email Address"
                 required
                 disabled={formStatus === 'submitting'}
                 className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed"
@@ -770,31 +795,66 @@ function Contact({
             </div>
 
             <div>
-              <label htmlFor="contact-company" className="sr-only">
-                {contactFormPlaceholder.company}
-              </label>
+              <label htmlFor="contact-company" className="sr-only">Business Name</label>
               <input
                 id="contact-company"
                 type="text"
                 name="company"
                 value={formData.company}
                 onChange={onInputChange}
-                placeholder={contactFormPlaceholder.company}
+                placeholder="Your Business Name"
                 disabled={formStatus === 'submitting'}
                 className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed"
               />
             </div>
 
             <div>
-              <label htmlFor="contact-message" className="sr-only">
-                {contactFormPlaceholder.message}
-              </label>
+              <label htmlFor="contact-business-type" className="sr-only">Type of Business</label>
+              <select
+                id="contact-business-type"
+                name="business_type"
+                value={formData.business_type}
+                onChange={onInputChange as any}
+                disabled={formStatus === 'submitting'}
+                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed text-gray-500 bg-white"
+              >
+                <option value="">Type of Business (optional)</option>
+                <option>Restaurant / Food Business</option>
+                <option>Retail / Shop</option>
+                <option>Professional Services (CA, Doctor, Lawyer)</option>
+                <option>Real Estate</option>
+                <option>Education / Coaching</option>
+                <option>E-commerce</option>
+                <option>Manufacturing / B2B</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            <div>
+              <label htmlFor="contact-existing-website" className="sr-only">Existing Website</label>
+              <select
+                id="contact-existing-website"
+                name="existing_website"
+                value={formData.existing_website}
+                onChange={onInputChange as any}
+                disabled={formStatus === 'submitting'}
+                className="w-full px-4 py-3 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-emerald-500 focus:border-transparent disabled:opacity-50 disabled:cursor-not-allowed text-gray-500 bg-white"
+              >
+                <option value="">Do you have a website? (optional)</option>
+                <option>No, I need everything from scratch</option>
+                <option>I have a domain but no website</option>
+                <option>I have a website but want to redesign it</option>
+              </select>
+            </div>
+
+            <div>
+              <label htmlFor="contact-message" className="sr-only">Message</label>
               <textarea
                 id="contact-message"
                 name="message"
                 value={formData.message}
                 onChange={onInputChange}
-                placeholder={contactFormPlaceholder.message}
+                placeholder="Tell us about your business and what you are looking to achieve..."
                 rows={4}
                 required
                 disabled={formStatus === 'submitting'}
