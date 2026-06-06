@@ -170,7 +170,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white antialiased overflow-x-hidden">
+    <div className="min-h-screen bg-slate-950 text-white antialiased overflow-x-hidden pb-[72px] lg:pb-0">
       {/* Skip link */}
       <a
         href="#main-content"
