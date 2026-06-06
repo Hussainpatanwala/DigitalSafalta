@@ -35,7 +35,7 @@ export const heroSecondaryCtaText = "See What We Offer";
 
 export const heroMetrics = [
   { value: "8+", label: "Years of Industry Experience" },
-  { value: "3", label: "Service Specialisations" },
+  { value: "₹5k", label: "Agency Fee to Get Started" },
   { value: "24hr", label: "Response Guarantee" },
   { value: "100%", label: "Transparency Promise" },
 ];
@@ -50,7 +50,7 @@ export const philosophyPrinciples = [
   {
     number: "01",
     title: "Honesty First",
-    description: "We tell you what will work and what won't — even if it's not what you want to hear. No overselling, no false promises. Just honest digital marketing advice for your business."
+    description: "We tell you what will work and what won't — even if it's not what you want to hear. No overselling, no false promises. Just honest digital marketing advice for your Pune business."
   },
   {
     number: "02",
@@ -59,8 +59,8 @@ export const philosophyPrinciples = [
   },
   {
     number: "03",
-    title: "Long-Term Partnership",
-    description: "We're not here for a quick project. We aim to be your go-to digital marketing partner as your business grows month after month."
+    title: "Founder-Led Service",
+    description: "You work directly with the founder — not a junior executive juggling 50 accounts. Your business gets real attention, real strategy, and someone personally invested in your growth."
   },
 ];
 
@@ -74,12 +74,12 @@ export const servicesDescription = "End-to-end digital marketing services built 
 export const services = [
   {
     title: "Website Design",
-    description: "Fast, mobile-friendly websites that represent your business 24/7 and rank well on Google.",
+    description: "Fast, mobile-friendly websites that represent your business 24/7. Includes custom email, SSL, Google Analytics, leads database, and Google Maps — live in 7 working days.",
     icon: "Globe"
   },
   {
     title: "Performance Ads",
-    description: "Facebook, Instagram, and Google ads crafted to get you real leads and sales — not just clicks.",
+    description: "Facebook, Instagram, and Google Ads managed to get you real leads and sales. You control the ad budget — we make every rupee work harder.",
     icon: "Zap"
   },
   {
@@ -89,12 +89,12 @@ export const services = [
   },
   {
     title: "Social Media Management",
-    description: "Consistent, engaging content that builds your brand and attracts your ideal customers.",
+    description: "Consistent, engaging content that builds your brand and keeps your audience coming back.",
     icon: "Users"
   },
   {
     title: "Landing Pages & Funnels",
-    description: "High-converting landing pages designed to turn your traffic into paying customers.",
+    description: "High-converting landing pages designed to turn your ad traffic into paying customers.",
     icon: "MousePointer"
   },
   {
@@ -125,20 +125,20 @@ export const caseStudies = [
   {
     category: "Transparency",
     result: "No Hidden Fees",
-    description: "Every rupee you spend is tracked and reported. You will always know what is working, what is not, and why. Full transparency guaranteed.",
-    metrics: ["Monthly reports", "Clear dashboards", "Open communication"]
+    description: "Ad budget and agency fee are always shown separately. You know exactly what goes to the platform and what comes to us. No blended billing, no surprises.",
+    metrics: ["Split billing", "Clear dashboards", "Open communication"]
   },
   {
     category: "Speed",
-    result: "Live in 14 Days",
-    description: "From kickoff to live campaigns — we move fast without cutting corners. Your business growth in Pune should not wait.",
-    metrics: ["Quick onboarding", "14-day launch", "Weekly check-ins"]
+    result: "Live in 7 Days",
+    description: "Your website goes live in 7 working days. Ad campaigns are set up and running within days of onboarding. Your business growth should not wait.",
+    metrics: ["7-day website launch", "Fast ad setup", "Weekly check-ins"]
   },
   {
     category: "Commitment",
-    result: "Your Growth = Our Goal",
-    description: "We work with a limited number of clients so every Pune business gets dedicated time, attention and a personalised strategy.",
-    metrics: ["Limited clients", "Dedicated manager", "24hr response time"]
+    result: "Founder-Led, Always",
+    description: "You deal directly with the founder — someone who treats your business like their own. No account managers, no hand-offs, no information lost in translation.",
+    metrics: ["Direct founder access", "Personal strategy", "24hr response time"]
   },
 ];
 
@@ -163,7 +163,7 @@ export const processSteps = [
   {
     number: "03",
     title: "Execute & Launch",
-    description: "We set everything up and go live — ads, SEO, content, tracking, and reporting all in one place."
+    description: "We set everything up and go live — website, ads, SEO, content, tracking, and reporting all in one place."
   },
   {
     number: "04",
@@ -178,7 +178,7 @@ export const processSteps = [
 
 export const platformMetrics = [
   { value: "8+", label: "Years of Marketing Experience" },
-  { value: "3", label: "Core Specialisations" },
+  { value: "₹5k", label: "Agency Fee to Start Ads" },
   { value: "Zero", label: "Hidden Fees — Ever" },
   { value: "24hr", label: "Support Response Time" },
 ];
@@ -188,22 +188,16 @@ export const platformMetrics = [
 // ============================================
 
 export const pricingTitle = "Simple, Transparent Pricing";
-export const pricingDescription = "No surprise charges. No long-term lock-ins. Honest digital marketing pricing for small businesses in Pune and across India.";
+export const pricingDescription = "Ad budget and agency fee are always shown separately. You decide what to spend on ads — we charge only for our work.";
 
 export const pricingPlans = [
   {
-    name: "Starter",
+    name: "Website Package",
     price: "15,000",
     currency: "₹",
-    period: "month",
-    description: "Perfect for small businesses in Pune getting started online",
+    period: "one-time",
+    description: "Everything your business needs to go live professionally — in 7 working days",
     features: [
-      "1 ad channel (Meta or Google)",
-      "Basic monthly reporting",
-      "Social media management (12 posts)",
-      "Email support"
-    ],
-    details: [
       "Up to 5 pages (Home, About, Services, Contact + 1 more)",
       "Mobile responsive design",
       "Contact form connected to your email",
@@ -215,56 +209,43 @@ export const pricingPlans = [
       "Leads database — every enquiry stored with date & details",
       "Live in 7 working days",
     ],
+    note: "Need something beyond this? Custom builds are tailored to your requirements.",
     highlighted: false
+  },
+  {
+    name: "Starter Ads",
+    price: "15,000",
+    currency: "₹",
+    period: "month",
+    description: "Start running real ads on Meta or Google with full management — no guesswork",
+    features: [
+      "₹10,000 goes directly to your ad platform (Meta or Google)",
+      "₹5,000 agency fee — our management & strategy",
+      "1 active ad channel of your choice",
+      "Ad creative + copywriting included",
+      "Audience research & targeting setup",
+      "Monthly performance report",
+      "Direct WhatsApp access to your account manager",
+    ],
+    note: "💡 New to Google Ads? Spend ₹20,000 on Google and get ₹20,000 free ad credit — effectively doubling your reach from day one. Ask us how.",
+    highlighted: true
   },
   {
     name: "Growth",
     price: "35,000",
     currency: "₹",
     period: "month",
-    description: "For Pune businesses ready to scale their digital presence",
+    description: "A tailored multi-channel plan for businesses ready to scale seriously",
     features: [
-      "2 ad channels (Meta + Google)",
-      "SEO basics included",
-      "Social media management (20 posts)",
-      "Weekly reporting + strategy call"
-    ],
-    details: [
-      "Everything in Starter",
-      "2 ad channels running simultaneously (Meta + Google)",
-      "Keyword research & competitor analysis",
-      "20 social media posts/month with custom graphics",
-      "Weekly performance report",
-      "Monthly 1-on-1 strategy call",
+      "Custom ad budget split across Meta + Google",
+      "SEO — on-page optimisation + keyword targeting",
+      "Social media management (up to 20 posts/month)",
       "Landing page creation for campaigns",
-      "Retargeting ads setup",
-      "WhatsApp Business integration",
+      "Weekly reporting + monthly strategy call",
+      "Retargeting campaigns setup",
+      "Priority support — faster turnaround",
     ],
-    highlighted: true
-  },
-  {
-    name: "Custom",
-    price: "Let's Talk",
-    currency: "",
-    period: "",
-    description: "Tailored digital marketing plan for your specific business needs",
-    features: [
-      "Everything in Growth",
-      "Website design or redesign",
-      "Email marketing automation",
-      "Dedicated account manager"
-    ],
-    details: [
-      "Everything in Growth",
-      "Custom website design or full redesign",
-      "Email marketing sequences & automation",
-      "Dedicated account manager — direct access",
-      "Multi-channel ad strategy",
-      "Custom reporting dashboard",
-      "Competitor tracking & monthly insights",
-      "Priority support (response within 2 hours)",
-      "Quarterly business review meetings",
-    ],
+    note: "Every Growth plan is scoped to your business. Final breakdown shared on the discovery call.",
     highlighted: false
   },
 ];
@@ -284,24 +265,36 @@ export const testimonialInitials = "HP";
 
 export const faqItems = [
   {
+    question: "Is the ₹15,000/month ad plan an all-in price or does ad budget come on top?",
+    answer: "The ₹15,000/month Starter plan already includes your ad budget. ₹10,000 goes directly to your chosen ad platform (Meta or Google) and ₹5,000 is our agency fee for managing your campaigns. You will always see both numbers separately — we never blend them."
+  },
+  {
+    question: "What is the Google Ads free credit offer you mentioned?",
+    answer: "Google offers ₹20,000 in free ad credit when you spend your first ₹20,000 on Google Ads. That means you effectively get ₹40,000 worth of ad reach for ₹20,000 in spend — doubling your visibility from day one. This is a limited Google promotion. Reach out and we will walk you through how to claim it."
+  },
+  {
+    question: "Is the ₹15,000 website package really one-time? What about maintenance?",
+    answer: "Yes, ₹15,000 is a one-time fee for the first year — which covers everything in the package including your custom email, SSL, leads database, and Google setup. After the first year, hosting and maintenance costs are minimal and we will discuss them transparently before renewal."
+  },
+  {
+    question: "Who will I be working with — will I always reach you directly?",
+    answer: "Right now you work directly with the founder. No account managers, no hand-offs. As we grow, any team member handling your account will be personally trained and supervised to maintain the same standard. You will always have a direct line to someone who knows your business."
+  },
+  {
     question: "Are you a new digital marketing agency in Pune? Why should I trust you?",
-    answer: "Yes, we are new — and we think that is actually a strength. You get a founder who is personally invested in your results, not a junior executive managing 50 clients. We have 8+ years of marketing experience and we are building our reputation one Pune business at a time."
+    answer: "Yes, we are new — and that is actually a strength. You get a founder with 8+ years of marketing experience who is personally invested in your results, not a junior executive managing 50 clients. We are building our reputation one Pune business at a time, and your success is our best marketing."
   },
   {
     question: "How long before we see results from digital marketing?",
-    answer: "Paid ads can show results within the first 2-4 weeks. SEO typically takes 3-6 months to show results on Google. We set honest expectations upfront and give you weekly updates so you always know what is happening."
-  },
-  {
-    question: "What kind of businesses do you work with in Pune?",
-    answer: "We work with small and growing businesses across Pune and Maharashtra — local services, e-commerce, coaching, real estate, hospitality, restaurants, and more. If you have a product or service and want more customers online, we can help."
+    answer: "Paid ads can show results within the first 2-4 weeks. SEO typically takes 3-6 months to show results on Google. We set honest expectations upfront and give you regular updates so you always know what is happening with your budget."
   },
   {
     question: "Is there a minimum contract period?",
     answer: "We start with a 3-month minimum so we have enough time to show real results. After that, it is month-to-month. We believe in earning your business every month, not locking you in."
   },
   {
-    question: "What if I am not happy with the results?",
-    answer: "We have an open communication policy. If something is not working, we tell you and we fix it. You will never be left wondering what is happening with your digital marketing budget."
+    question: "What kind of businesses do you work with in Pune?",
+    answer: "We work with small and growing businesses across Pune and Maharashtra — local services, e-commerce, coaching, real estate, hospitality, restaurants, and more. If you have a product or service and want more customers online, we can help."
   },
 ];
 
