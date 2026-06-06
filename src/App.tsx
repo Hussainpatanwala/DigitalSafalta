@@ -1037,7 +1037,8 @@ function MobileActionBar() {
       >
         <Phone className="w-5 h-5" aria-hidden="true" />
       </a>
-      
+
+      <a
         href={`https://wa.me/${WHATSAPP_NUMBER}`}
         target="_blank"
         rel="noopener noreferrer"
