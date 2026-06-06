@@ -562,7 +562,6 @@ function PlatformMetrics() {
 // PRICING
 // ════════════════════════════════════════════════════════════════════════════
 function Pricing() {
-  const [flipped, setFlipped] = useState<number | null>(null);
   return (
     <section id="pricing" className="py-16 lg:py-24" aria-labelledby="pricing-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -573,118 +572,61 @@ function Pricing() {
           <p className="text-slate-400 text-base leading-relaxed">{pricingDescription}</p>
         </div>
 
-        <div className="grid lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        <div className="grid lg:grid-cols-3 gap-6 max-w-5xl mx-auto items-start">
           {pricingPlans.map((plan, idx) => (
-            <div
+            <article
               key={idx}
-              className={plan.highlighted ? 'scale-[1.02]' : ''}
-              style={{ perspective: '1000px', minHeight: '480px' }}
+              className={`rounded-2xl p-7 relative overflow-hidden transition-all duration-300 flex flex-col ${
+                plan.highlighted
+                  ? 'bg-gradient-to-b from-teal-500/20 to-cyan-500/10 border border-teal-500/40 shadow-xl shadow-teal-500/10 scale-[1.02]'
+                  : `${glass} ${glassHover}`
+              }`}
             >
-              <div
-                className="relative w-full h-full transition-transform duration-500"
-                style={{
-                  transformStyle: 'preserve-3d',
-                  transform: flipped === idx ? 'rotateY(180deg)' : 'rotateY(0deg)',
-                  minHeight: '480px',
-                }}
-              >
-                {/* FRONT */}
-                <article
-                  className={`absolute inset-0 rounded-2xl p-7 overflow-hidden ${
-                    plan.highlighted
-                      ? 'bg-gradient-to-b from-teal-500/20 to-cyan-500/10 border border-teal-500/40 shadow-xl shadow-teal-500/10'
-                      : glass
-                  }`}
-                  style={{ backfaceVisibility: 'hidden' }}
-                >
-                  {plan.highlighted && (
-                    <>
-                      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-teal-400/60 to-transparent" aria-hidden="true" />
-                      <div className="inline-flex items-center gap-1.5 bg-teal-500/20 border border-teal-500/30 text-teal-300 px-3 py-1 rounded-full text-xs font-bold mb-5">
-                        <Star className="w-3 h-3" aria-hidden="true" /> Most Popular
-                      </div>
-                    </>
-                  )}
-
-                  <h3 className="text-lg font-black text-white mb-1">{plan.name}</h3>
-                  <p className="text-slate-400 text-sm mb-6">{plan.description}</p>
-
-                  <div className="mb-7">
-                    <span className="text-4xl font-black text-white">{plan.currency}{plan.price}</span>
-                    {plan.period && (
-                      <span className="text-slate-400 text-sm ml-1">/{plan.period}</span>
-                    )}
+              {plan.highlighted && (
+                <>
+                  <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-teal-400/60 to-transparent" aria-hidden="true" />
+                  <div className="inline-flex items-center gap-1.5 bg-teal-500/20 border border-teal-500/30 text-teal-300 px-3 py-1 rounded-full text-xs font-bold mb-5">
+                    <Star className="w-3 h-3" aria-hidden="true" /> Most Popular
                   </div>
+                </>
+              )}
 
-                  <ul className="space-y-3 mb-6" aria-label="Plan features">
-                    {plan.features.map((feature, fidx) => (
-                      <li key={fidx} className="flex items-start gap-3">
-                        <Check className="w-4 h-4 text-teal-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
-                        <span className="text-slate-300 text-sm">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
+              <h3 className="text-lg font-black text-white mb-1">{plan.name}</h3>
+              <p className="text-slate-400 text-sm mb-6">{plan.description}</p>
 
-                  <button
-                    onClick={() => setFlipped(idx)}
-                    className="w-full text-center py-2 rounded-xl text-xs font-semibold text-teal-400 border border-teal-500/20 hover:bg-teal-500/10 transition-all duration-200 mb-3"
-                  >
-                    See what's included →
-                  </button>
-
-                  <a
-                    href="#contact"
-                    className={`block w-full text-center py-3 rounded-xl text-sm font-bold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 focus:ring-offset-slate-950 ${
-                      plan.highlighted
-                        ? tealBtn
-                        : 'border border-white/15 text-white hover:bg-white/8 hover:border-white/25'
-                    }`}
-                  >
-                    Get Started
-                  </a>
-                </article>
-
-                {/* BACK */}
-                <article
-                  className={`absolute inset-0 rounded-2xl p-7 overflow-hidden flex flex-col ${
-                    plan.highlighted
-                      ? 'bg-gradient-to-b from-teal-500/20 to-cyan-500/10 border border-teal-500/40 shadow-xl shadow-teal-500/10'
-                      : glass
-                  }`}
-                  style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}
-                >
-                  <div className="flex items-center justify-between mb-5">
-                    <h3 className="text-base font-black text-white">{plan.name} — Includes</h3>
-                    <button
-                      onClick={() => setFlipped(null)}
-                      className="text-xs text-slate-400 hover:text-teal-400 transition-colors border border-white/10 rounded-lg px-2 py-1"
-                    >
-                      ← Back
-                    </button>
-                  </div>
-
-                  <ul className="space-y-2.5 flex-1">
-                    {(plan.details ?? plan.features).map((detail, didx) => (
-                      <li key={didx} className="flex items-start gap-2.5">
-                        <Check className="w-3.5 h-3.5 text-teal-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
-                        <span className="text-slate-300 text-xs leading-relaxed">{detail}</span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  <a
-                    href="#contact"
-                    className={`block w-full text-center py-3 rounded-xl text-sm font-bold transition-all duration-200 mt-6 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 focus:ring-offset-slate-950 ${
-                      plan.highlighted
-                        ? tealBtn
-                        : 'border border-white/15 text-white hover:bg-white/8 hover:border-white/25'
-                    }`}
-                  >
-                    Get Started
-                  </a>
-                </article>
+              <div className="mb-7">
+                <span className="text-4xl font-black text-white">{plan.currency}{plan.price}</span>
+                {plan.period && (
+                  <span className="text-slate-400 text-sm ml-1">/{plan.period}</span>
+                )}
               </div>
-            </div>
+
+              <ul className="space-y-3 mb-6 flex-1" aria-label="Plan features">
+                {plan.features.map((feature, fidx) => (
+                  <li key={fidx} className="flex items-start gap-3">
+                    <Check className="w-4 h-4 text-teal-400 flex-shrink-0 mt-0.5" aria-hidden="true" />
+                    <span className="text-slate-300 text-sm">{feature}</span>
+                  </li>
+                ))}
+              </ul>
+
+              {plan.note && (
+                <p className="text-xs text-slate-400 leading-relaxed bg-white/5 border border-white/10 rounded-xl px-4 py-3 mb-6">
+                  {plan.note}
+                </p>
+              )}
+
+              <a
+                href="#contact"
+                className={`block w-full text-center py-3 rounded-xl text-sm font-bold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 focus:ring-offset-slate-950 ${
+                  plan.highlighted
+                    ? tealBtn
+                    : 'border border-white/15 text-white hover:bg-white/8 hover:border-white/25'
+                }`}
+              >
+                Get Started
+              </a>
+            </article>
           ))}
         </div>
       </div>
