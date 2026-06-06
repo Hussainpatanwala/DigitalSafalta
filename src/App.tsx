@@ -1030,7 +1030,7 @@ function MobileActionBar() {
       role="toolbar"
       aria-label="Quick contact"
     >
-      
+      <a
         href={`tel:${PHONE_NUMBER}`}
         aria-label="Call us"
         className="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/15 border border-teal-500/30 text-teal-400 hover:bg-teal-500/25 hover:scale-110 active:scale-95 transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-teal-400 focus:ring-offset-2 focus:ring-offset-slate-950"
