@@ -22,7 +22,12 @@ import {
   Send,
   Loader2,
   Star,
+  Phone,
 } from 'lucide-react';
+
+// ── Contact constants — update these with your real numbers ──
+const PHONE_NUMBER = '+919029467352';    // ← your number here
+const WHATSAPP_NUMBER = '919029467352'; // ← same number, no + sign
 
 import {
   brandName,
