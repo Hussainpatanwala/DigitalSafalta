@@ -1017,6 +1017,8 @@ function Footer() {
           </div>
         </div>
       </div>
+      <MobileActionBar />
+      
     </footer>
   );
 }
