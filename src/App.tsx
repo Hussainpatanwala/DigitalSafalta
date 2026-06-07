@@ -48,37 +48,31 @@ const LANG_STRINGS = {
     chatSub:     'Tell me what you\'re looking for and I\'ll point you in the right direction.',
     chatStart:   'What can we help you with?',
     services:    ['Website Design', 'Google / Meta Ads', 'SEO', 'Social Media Management', 'I need multiple services'],
-    // Website journey
     ws1q: 'Do you already have a website?',
     ws1a: ['Yes, I want to redesign it', 'I have a domain but no website', 'Starting completely from scratch'],
     ws2q: 'What\'s your timeline?',
     ws2a: ['As soon as possible', 'Within 1 month', 'I\'m just exploring'],
     ws3q: 'What\'s your budget for the website?',
     ws3a: ['Under ₹15,000', '₹15,000 (standard package)', '₹15,000–₹30,000', '₹30,000+'],
-    // Ads journey
     ad1q: 'Which platform are you interested in?',
     ad1a: ['Google Ads', 'Meta Ads (Facebook/Instagram)', 'Both'],
     ad2q: 'What\'s your monthly ad budget (total spend)?',
     ad2a: ['Under ₹10,000/month', '₹10,000–₹25,000/month', '₹25,000+/month', 'Not sure yet'],
     ad3q: 'Are you currently running any ads?',
     ad3a: ['Yes, but not getting results', 'Never run ads before', 'Ran before, stopped'],
-    // SEO journey
     seo1q: 'Do you have a website we can optimise?',
     seo1a: ['Yes', 'No — I need one first'],
     seo2q: 'Are you ranking for any keywords currently?',
     seo2a: ['Yes, but want to improve', 'No ranking at all', 'I don\'t know'],
     seo3q: 'What\'s your SEO timeline?',
     seo3a: ['Want results in 3–6 months', 'Long-term investment (6–12 months)', 'Just exploring'],
-    // Social journey
     sm1q: 'Which platforms do you want managed?',
     sm1a: ['Instagram', 'Facebook', 'Both Instagram & Facebook', 'LinkedIn'],
     sm2q: 'Do you have photos or content ready?',
     sm2a: ['Yes, I have plenty', 'Partially ready', 'No, need help with content too'],
     sm3q: 'How many posts per month are you thinking?',
     sm3a: ['12 posts/month', '20 posts/month', 'Custom — let\'s discuss'],
-    // Multi
     multiMsg: 'Great! Combining services is the best way to grow. Let\'s talk and build a plan tailored to your business.',
-    // End
     endMsg:  'Thanks! Here\'s how you can reach us — choose what works best for you:',
     form:    'Fill the Contact Form',
     wa:      'Chat on WhatsApp',
@@ -173,13 +167,13 @@ const LANG_STRINGS = {
 // ─────────────────────────────────────────────────────────────────
 function LanguagePicker({ onSelect }: { onSelect: (l: Lang) => void }) {
   const langs: { code: Lang; label: string; sub: string }[] = [
-    { code: 'en', label: 'English',          sub: 'Continue in English'      },
-    { code: 'hi', label: 'हिंदी',            sub: 'हिंदी में जारी रखें'      },
-    { code: 'mr', label: 'मराठी',            sub: 'मराठीत पुढे चला'          },
+    { code: 'en', label: 'English', sub: 'Continue in English'    },
+    { code: 'hi', label: 'हिंदी',  sub: 'हिंदी में जारी रखें'    },
+    { code: 'mr', label: 'मराठी',  sub: 'मराठीत पुढे चला'        },
   ];
   return (
     <div className="fixed inset-0 z-[9999] flex items-center justify-center bg-slate-950/95 backdrop-blur-lg px-4">
-      <div className={`w-full max-w-sm rounded-3xl p-8 ${glass} shadow-2xl shadow-black/60`}>
+      <div className={`w-full max-w-sm rounded-3xl p-8 ${glass} shadow-2xl shadow-black/60 relative`}>
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-teal-400/40 to-transparent rounded-t-3xl" />
         <div className="text-center mb-8">
           <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-teal-500 to-cyan-400 flex items-center justify-center mx-auto mb-5 shadow-lg shadow-teal-500/30">
@@ -193,7 +187,7 @@ function LanguagePicker({ onSelect }: { onSelect: (l: Lang) => void }) {
             <button
               key={l.code}
               onClick={() => onSelect(l.code)}
-              className={`w-full flex items-center justify-between px-5 py-4 rounded-2xl border border-white/10 bg-white/5 hover:bg-teal-500/10 hover:border-teal-500/40 transition-all duration-200 group focus:outline-none focus:ring-2 focus:ring-teal-500`}
+              className="w-full flex items-center justify-between px-5 py-4 rounded-2xl border border-white/10 bg-white/5 hover:bg-teal-500/10 hover:border-teal-500/40 transition-all duration-200 group focus:outline-none focus:ring-2 focus:ring-teal-500"
             >
               <div className="text-left">
                 <div className="text-white font-bold text-base">{l.label}</div>
@@ -227,9 +221,9 @@ interface ChatMessage {
 
 function Chatbot({ lang }: { lang: Lang }) {
   const t = LANG_STRINGS[lang];
-  const [open, setOpen]       = useState(false);
-  const [step, setStep]       = useState<ChatStep>('start');
-  const [msgs, setMsgs]       = useState<ChatMessage[]>([
+  const [open, setOpen]   = useState(false);
+  const [step, setStep]   = useState<ChatStep>('start');
+  const [msgs, setMsgs]   = useState<ChatMessage[]>([
     { from: 'bot', text: t.chatGreet },
     { from: 'bot', text: t.chatSub  },
     { from: 'bot', text: t.chatStart },
@@ -240,7 +234,6 @@ function Chatbot({ lang }: { lang: Lang }) {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [msgs]);
 
-  // Reset when language changes
   useEffect(() => {
     setStep('start');
     setMsgs([
@@ -260,7 +253,7 @@ function Chatbot({ lang }: { lang: Lang }) {
   };
 
   const handleService = (svc: string, idx: number) => {
-    if (idx === 4) { // multiple
+    if (idx === 4) {
       addMsgs(svc, [t.multiMsg], 'multi');
       setTimeout(() => setStep('end'), 600);
       setTimeout(() => setMsgs(prev => [...prev, { from: 'bot', text: t.endMsg }]), 700);
@@ -272,23 +265,20 @@ function Chatbot({ lang }: { lang: Lang }) {
 
   const getOptions = (): { texts: string[]; next: (i: number, txt: string) => void } | null => {
     switch (step) {
-      case 'start': return {
-        texts: t.services,
-        next: (i, txt) => handleService(txt, i),
-      };
-      case 'ws1': return { texts: t.ws1a, next: (_, txt) => addMsgs(txt, [t.ws2q], 'ws2') };
-      case 'ws2': return { texts: t.ws2a, next: (_, txt) => addMsgs(txt, [t.ws3q], 'ws3') };
-      case 'ws3': return { texts: t.ws3a, next: (_, txt) => { addMsgs(txt, [t.endMsg], 'end'); } };
-      case 'ad1': return { texts: t.ad1a, next: (_, txt) => addMsgs(txt, [t.ad2q], 'ad2') };
-      case 'ad2': return { texts: t.ad2a, next: (_, txt) => addMsgs(txt, [t.ad3q], 'ad3') };
-      case 'ad3': return { texts: t.ad3a, next: (_, txt) => addMsgs(txt, [t.endMsg], 'end') };
-      case 'seo1': return { texts: t.seo1a, next: (_, txt) => addMsgs(txt, [t.seo2q], 'seo2') };
-      case 'seo2': return { texts: t.seo2a, next: (_, txt) => addMsgs(txt, [t.seo3q], 'seo3') };
-      case 'seo3': return { texts: t.seo3a, next: (_, txt) => addMsgs(txt, [t.endMsg], 'end') };
-      case 'sm1': return { texts: t.sm1a, next: (_, txt) => addMsgs(txt, [t.sm2q], 'sm2') };
-      case 'sm2': return { texts: t.sm2a, next: (_, txt) => addMsgs(txt, [t.sm3q], 'sm3') };
-      case 'sm3': return { texts: t.sm3a, next: (_, txt) => addMsgs(txt, [t.endMsg], 'end') };
-      default: return null;
+      case 'start': return { texts: t.services, next: (i, txt) => handleService(txt, i) };
+      case 'ws1':   return { texts: t.ws1a, next: (_, txt) => addMsgs(txt, [t.ws2q], 'ws2') };
+      case 'ws2':   return { texts: t.ws2a, next: (_, txt) => addMsgs(txt, [t.ws3q], 'ws3') };
+      case 'ws3':   return { texts: t.ws3a, next: (_, txt) => addMsgs(txt, [t.endMsg], 'end') };
+      case 'ad1':   return { texts: t.ad1a, next: (_, txt) => addMsgs(txt, [t.ad2q], 'ad2') };
+      case 'ad2':   return { texts: t.ad2a, next: (_, txt) => addMsgs(txt, [t.ad3q], 'ad3') };
+      case 'ad3':   return { texts: t.ad3a, next: (_, txt) => addMsgs(txt, [t.endMsg], 'end') };
+      case 'seo1':  return { texts: t.seo1a, next: (_, txt) => addMsgs(txt, [t.seo2q], 'seo2') };
+      case 'seo2':  return { texts: t.seo2a, next: (_, txt) => addMsgs(txt, [t.seo3q], 'seo3') };
+      case 'seo3':  return { texts: t.seo3a, next: (_, txt) => addMsgs(txt, [t.endMsg], 'end') };
+      case 'sm1':   return { texts: t.sm1a, next: (_, txt) => addMsgs(txt, [t.sm2q], 'sm2') };
+      case 'sm2':   return { texts: t.sm2a, next: (_, txt) => addMsgs(txt, [t.sm3q], 'sm3') };
+      case 'sm3':   return { texts: t.sm3a, next: (_, txt) => addMsgs(txt, [t.endMsg], 'end') };
+      default:      return null;
     }
   };
 
@@ -305,7 +295,6 @@ function Chatbot({ lang }: { lang: Lang }) {
 
   return (
     <>
-      {/* Floating button */}
       <button
         onClick={() => setOpen(o => !o)}
         className="fixed bottom-20 right-4 lg:bottom-6 z-[9997] w-14 h-14 rounded-full flex items-center justify-center shadow-xl shadow-teal-500/30 focus:outline-none focus:ring-2 focus:ring-teal-400 transition-all duration-200 hover:scale-110 active:scale-95"
@@ -317,13 +306,11 @@ function Chatbot({ lang }: { lang: Lang }) {
           : <MessageCircle className="w-6 h-6 text-slate-950" />}
       </button>
 
-      {/* Chat window */}
       {open && (
         <div
           className="fixed bottom-36 right-4 lg:bottom-24 z-[9996] w-[340px] max-w-[calc(100vw-2rem)] rounded-2xl shadow-2xl shadow-black/50 flex flex-col overflow-hidden"
           style={{ height: '480px', background: '#0f172a', border: '1px solid rgba(255,255,255,0.1)' }}
         >
-          {/* Header */}
           <div className="flex items-center gap-3 px-4 py-3 border-b border-white/10" style={{ background: 'rgba(20,184,166,0.15)' }}>
             <div className="w-8 h-8 rounded-full bg-gradient-to-br from-teal-500 to-cyan-400 flex items-center justify-center flex-shrink-0">
               <TrendingUp className="w-4 h-4 text-slate-950" />
@@ -337,23 +324,19 @@ function Chatbot({ lang }: { lang: Lang }) {
             </div>
           </div>
 
-          {/* Messages */}
           <div className="flex-1 overflow-y-auto px-4 py-4 space-y-3">
             {msgs.map((msg, i) => (
               <div key={i} className={`flex ${msg.from === 'user' ? 'justify-end' : 'justify-start'}`}>
-                <div
-                  className={`max-w-[80%] px-3.5 py-2.5 rounded-2xl text-sm leading-relaxed ${
-                    msg.from === 'user'
-                      ? 'bg-teal-500 text-slate-950 font-medium rounded-br-sm'
-                      : 'bg-white/8 text-slate-200 rounded-bl-sm border border-white/10'
-                  }`}
-                >
+                <div className={`max-w-[80%] px-3.5 py-2.5 rounded-2xl text-sm leading-relaxed ${
+                  msg.from === 'user'
+                    ? 'bg-teal-500 text-slate-950 font-medium rounded-br-sm'
+                    : 'bg-white/8 text-slate-200 rounded-bl-sm border border-white/10'
+                }`}>
                   {msg.text}
                 </div>
               </div>
             ))}
 
-            {/* Option buttons */}
             {opts && (
               <div className="flex flex-col gap-2 mt-2">
                 {opts.texts.map((txt, i) => (
@@ -368,7 +351,6 @@ function Chatbot({ lang }: { lang: Lang }) {
               </div>
             )}
 
-            {/* End CTA */}
             {step === 'end' && (
               <div className="flex flex-col gap-2 mt-2">
                 <a
@@ -425,8 +407,7 @@ function App() {
   const [openFaq, setOpenFaq]       = useState<number | null>(null);
   const faqRefs                     = useRef<(HTMLDivElement | null)[]>([]);
 
-  // Language
-  const [lang, setLang]           = useState<Lang | null>(null);
+  const [lang, setLang]             = useState<Lang | null>(null);
   const [showPicker, setShowPicker] = useState(false);
 
   useEffect(() => {
@@ -503,8 +484,6 @@ function App() {
         setIsMenuOpen={setIsMenuOpen}
         scrolled={scrolled}
         onNavClick={handleNavClick}
-        lang={activeLang}
-        onLangChange={handleLangSelect}
       />
 
       <main id="main-content">
@@ -530,16 +509,11 @@ function App() {
 // NAVIGATION
 // ════════════════════════════════════════════════════════════════════════════
 function Navigation({
-  isMenuOpen, setIsMenuOpen, scrolled, onNavClick, lang, onLangChange,
+  isMenuOpen, setIsMenuOpen, scrolled, onNavClick,
 }: {
-  isMenuOpen: boolean; setIsMenuOpen: (v: boolean) => void; scrolled: boolean;
-  onNavClick: () => void; lang: Lang; onLangChange: (l: Lang) => void;
+  isMenuOpen: boolean; setIsMenuOpen: (v: boolean) => void;
+  scrolled: boolean; onNavClick: () => void;
 }) {
-  const flags: { code: Lang; label: string }[] = [
-    { code: 'en', label: 'EN' },
-    { code: 'hi', label: 'हि' },
-    { code: 'mr', label: 'म' },
-  ];
   return (
     <nav
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${scrolled ? 'bg-slate-950/90 backdrop-blur-lg border-b border-white/8 shadow-lg shadow-black/30' : 'bg-transparent'}`}
@@ -549,7 +523,7 @@ function Navigation({
         <div className="flex items-center justify-between h-16 lg:h-20">
           <a href="#" className="flex items-center gap-2.5" aria-label={`${brandName} - Home`}>
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-teal-500 to-cyan-400 flex items-center justify-center shadow-lg shadow-teal-500/30" aria-hidden="true">
-              <TrendingUp className="w-4.5 h-4.5 text-slate-950" />
+              <TrendingUp className="w-4 h-4 text-slate-950" />
             </div>
             <span className="text-xl font-black tracking-tight">
               <span className="bg-gradient-to-r from-teal-400 to-cyan-300 bg-clip-text text-transparent">Digital</span>
@@ -563,18 +537,6 @@ function Navigation({
                 {link.label}
               </a>
             ))}
-            {/* Language switcher — top right desktop */}
-            <div className="flex items-center gap-1 bg-white/5 border border-white/10 rounded-full px-1 py-1">
-              {flags.map(f => (
-                <button
-                  key={f.code}
-                  onClick={() => onLangChange(f.code)}
-                  className={`px-2.5 py-1 rounded-full text-xs font-bold transition-all duration-200 focus:outline-none ${lang === f.code ? 'bg-teal-500 text-slate-950' : 'text-slate-400 hover:text-white'}`}
-                >
-                  {f.label}
-                </button>
-              ))}
-            </div>
             <a href="#contact" className={`px-5 py-2.5 rounded-full text-sm font-bold flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 focus:ring-offset-slate-950 ${tealBtn}`}>
               Start a Project <ArrowRight className="w-4 h-4" aria-hidden="true" />
             </a>
@@ -598,18 +560,6 @@ function Navigation({
               {link.label}
             </a>
           ))}
-          {/* Language switcher — mobile menu */}
-          <div className="flex items-center gap-2 pt-1">
-            {flags.map(f => (
-              <button
-                key={f.code}
-                onClick={() => { onLangChange(f.code); onNavClick(); }}
-                className={`px-3 py-1.5 rounded-full text-xs font-bold border transition-all ${lang === f.code ? 'bg-teal-500 text-slate-950 border-teal-500' : 'border-white/15 text-slate-400 hover:text-white'}`}
-              >
-                {f.label}
-              </button>
-            ))}
-          </div>
           <a href="#contact" onClick={onNavClick} className={`block text-center px-5 py-3 rounded-xl text-sm font-bold mt-2 focus:outline-none focus:ring-2 focus:ring-teal-500 ${tealBtn}`}>
             Start a Project
           </a>
