@@ -11,6 +11,12 @@ import { AboutPage } from './pages/AboutPage';
 import { ContactPage } from './pages/ContactPage';
 import { BlogIndexPage } from './pages/blog/index';
 import { WhatIsDigitalMarketing } from './pages/blog/what-is-digital-marketing';
+import { WebsiteDesignPage } from './pages/services/WebsiteDesignPage';
+import { GoogleAdsPage } from './pages/services/GoogleAdsPage';
+import { MetaAdsPage } from './pages/services/MetaAdsPage';
+import { SEOPage } from './pages/services/SEOPage';
+import { SocialMediaPage } from './pages/services/SocialMediaPage';
+import { GoogleBusinessProfilePage } from './pages/services/GoogleBusinessProfilePage';
 import { WebsiteCostPune } from './pages/blog/website-cost-pune';
 import { WhatIsSEO } from './pages/blog/what-is-seo';
 import { GoogleAdsVsMetaAds } from './pages/blog/google-ads-vs-meta-ads';
@@ -90,6 +96,12 @@ function AppShell() {
           <Route path="/blog/google-ads-vs-meta-ads" element={<GoogleAdsVsMetaAds />} />
           <Route path="/blog/google-free-ad-credit" element={<GoogleFreeAdCredit />} />
           <Route path="/blog/what-is-a-website" element={<WhatIsAWebsite />} />
+          <Route path="/services/website-design" element={<WebsiteDesignPage />} />
+          <Route path="/services/google-ads" element={<GoogleAdsPage />} />
+          <Route path="/services/meta-ads" element={<MetaAdsPage />} />
+          <Route path="/services/seo" element={<SEOPage />} />
+          <Route path="/services/social-media" element={<SocialMediaPage />} />
+          <Route path="/services/google-business-profile" element={<GoogleBusinessProfilePage />} />
         </Routes>
       </main>
 
