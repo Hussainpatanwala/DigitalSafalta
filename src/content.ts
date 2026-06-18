@@ -75,22 +75,26 @@ export const services = [
   {
     title: "Website Design",
     description: "Fast, mobile-friendly websites that represent your business 24/7. Includes custom email, SSL, Google Analytics, leads database, and Google Maps — live in 7 working days.",
-    icon: "Globe"
+    icon: "Globe",
+    href: "/services/website-design"
   },
   {
     title: "Performance Ads",
     description: "Facebook, Instagram, and Google Ads managed to get you real leads and sales. You control the ad budget — we make every rupee work harder.",
-    icon: "Zap"
+    icon: "Zap",
+    href: "/services/google-ads"
   },
   {
     title: "SEO",
     description: "Get found on Google by people in Pune and across India actively searching for what you offer.",
-    icon: "BarChart3"
+    icon: "BarChart3",
+    href: "/services/seo"
   },
   {
     title: "Social Media Management",
     description: "Consistent, engaging content that builds your brand and keeps your audience coming back.",
-    icon: "Users"
+    icon: "Users",
+    href: "/services/social-media"
   },
   {
     title: "Landing Pages & Funnels",
