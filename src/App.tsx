@@ -17,6 +17,7 @@ import { MetaAdsPage } from './pages/services/MetaAdsPage';
 import { SEOPage } from './pages/services/SEOPage';
 import { SocialMediaPage } from './pages/services/SocialMediaPage';
 import { GoogleBusinessProfilePage } from './pages/services/GoogleBusinessProfilePage';
+import { MarketingAuditPage } from './pages/MarketingAuditPage';
 import { WebsiteCostPune } from './pages/blog/website-cost-pune';
 import { WhatIsSEO } from './pages/blog/what-is-seo';
 import { GoogleAdsVsMetaAds } from './pages/blog/google-ads-vs-meta-ads';
@@ -102,6 +103,7 @@ function AppShell() {
           <Route path="/services/seo" element={<SEOPage />} />
           <Route path="/services/social-media" element={<SocialMediaPage />} />
           <Route path="/services/google-business-profile" element={<GoogleBusinessProfilePage />} />
+          <Route path="/tools/marketing-audit" element={<MarketingAuditPage />} />
         </Routes>
       </main>
 
