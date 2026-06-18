@@ -9,21 +9,24 @@ import { ServicesPage } from './pages/ServicesPage';
 import { PricingPage } from './pages/PricingPage';
 import { AboutPage } from './pages/AboutPage';
 import { ContactPage } from './pages/ContactPage';
+import { BlogIndexPage } from './pages/blog/index';
+import { WhatIsDigitalMarketing } from './pages/blog/what-is-digital-marketing';
+import { WebsiteCostPune } from './pages/blog/website-cost-pune';
+import { WhatIsSEO } from './pages/blog/what-is-seo';
+import { GoogleAdsVsMetaAds } from './pages/blog/google-ads-vs-meta-ads';
+import { GoogleFreeAdCredit } from './pages/blog/google-free-ad-credit';
+import { WhatIsAWebsite } from './pages/blog/what-is-a-website';
 import type { Lang } from './lib/constants';
 
-/** Scrolls to top whenever the route changes. */
 function ScrollToTop() {
   const { pathname } = useLocation();
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, [pathname]);
+  useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
   return null;
 }
 
 function AppShell() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled]     = useState(false);
-
   const [lang, setLang]             = useState<Lang | null>(null);
   const [showPicker, setShowPicker] = useState(false);
 
@@ -48,8 +51,6 @@ function AppShell() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleNavClick = () => setIsMenuOpen(false);
-
   const activeLang = lang ?? 'en';
 
   return (
@@ -70,7 +71,7 @@ function AppShell() {
         isMenuOpen={isMenuOpen}
         setIsMenuOpen={setIsMenuOpen}
         scrolled={scrolled}
-        onNavClick={handleNavClick}
+        onNavClick={() => setIsMenuOpen(false)}
       />
 
       <ScrollToTop />
@@ -82,6 +83,13 @@ function AppShell() {
           <Route path="/pricing" element={<PricingPage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/blog" element={<BlogIndexPage />} />
+          <Route path="/blog/what-is-digital-marketing" element={<WhatIsDigitalMarketing />} />
+          <Route path="/blog/website-cost-pune" element={<WebsiteCostPune />} />
+          <Route path="/blog/what-is-seo" element={<WhatIsSEO />} />
+          <Route path="/blog/google-ads-vs-meta-ads" element={<GoogleAdsVsMetaAds />} />
+          <Route path="/blog/google-free-ad-credit" element={<GoogleFreeAdCredit />} />
+          <Route path="/blog/what-is-a-website" element={<WhatIsAWebsite />} />
         </Routes>
       </main>
 
