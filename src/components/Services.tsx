@@ -1,6 +1,7 @@
 import {
-  Zap, BarChart3, Users, MousePointer, Palette, Globe, Mail, Settings,
+  Zap, BarChart3, Users, MousePointer, Palette, Globe, Mail, Settings, ArrowRight,
 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { glass } from '../lib/constants';
 import { servicesTitle, servicesDescription, services } from '../content';
 
@@ -19,13 +20,30 @@ export function Services() {
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
           {services.map((service, idx) => {
             const IconComponent = iconMap[service.icon] || Zap;
-            return (
-              <article key={idx} className={`group rounded-2xl p-6 ${glass} hover:border-teal-500/30 hover:bg-teal-500/5 transition-all duration-300`}>
+            const cardClass = `group rounded-2xl p-6 ${glass} hover:border-teal-500/30 hover:bg-teal-500/5 transition-all duration-300 flex flex-col`;
+
+            const inner = (
+              <>
                 <div className="w-11 h-11 rounded-xl bg-teal-500/10 border border-teal-500/20 flex items-center justify-center mb-4 group-hover:bg-teal-500/20 transition-colors">
                   <IconComponent className="w-5 h-5 text-teal-400" aria-hidden="true" />
                 </div>
                 <h3 className="text-base font-bold text-white mb-2">{service.title}</h3>
-                <p className="text-slate-400 text-sm leading-relaxed">{service.description}</p>
+                <p className="text-slate-400 text-sm leading-relaxed flex-1">{service.description}</p>
+                {service.href && (
+                  <div className="mt-4 flex items-center gap-1 text-teal-400 text-xs font-bold group-hover:gap-2 transition-all">
+                    Learn More <ArrowRight className="w-3 h-3" />
+                  </div>
+                )}
+              </>
+            );
+
+            return service.href ? (
+              <Link key={idx} to={service.href} className={cardClass}>
+                {inner}
+              </Link>
+            ) : (
+              <article key={idx} className={cardClass}>
+                {inner}
               </article>
             );
           })}
