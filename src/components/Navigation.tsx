@@ -9,6 +9,7 @@ const NAV_ITEMS = [
   { label: 'Pricing', to: '/pricing' },
   { label: 'About', to: '/about' },
   { label: 'Contact', to: '/contact' },
+  { label: 'Blog', to: '/blog' },
 ];
 
 export function Navigation({
