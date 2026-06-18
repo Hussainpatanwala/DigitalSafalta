@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight, Search } from 'lucide-react';
 import { glass, glassHover, tealBtn } from '../lib/constants';
 import { heroMetrics } from '../content';
 
@@ -22,7 +22,7 @@ export function Hero() {
             Digital Safalta helps small and growing businesses in Pune build their online presence,
             run effective ad campaigns, and turn visitors into paying customers.
           </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-6">
             <Link to="/contact" className={`px-8 py-4 rounded-2xl text-base font-bold flex items-center justify-center gap-2 group focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 focus:ring-offset-slate-950 ${tealBtn}`}>
               Start the Conversation
               <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" aria-hidden="true" />
@@ -31,7 +31,23 @@ export function Hero() {
               See What We Offer
             </Link>
           </div>
+
+          {/* Free Audit Tool CTA */}
+          <Link
+            to="/tools/marketing-audit"
+            className="group inline-flex items-center gap-3 px-6 py-3.5 rounded-2xl border border-teal-500/30 bg-teal-500/8 hover:bg-teal-500/15 hover:border-teal-500/50 transition-all duration-200"
+          >
+            <div className="w-7 h-7 rounded-lg bg-teal-500/20 flex items-center justify-center shrink-0">
+              <Search className="w-3.5 h-3.5 text-teal-400" />
+            </div>
+            <div className="text-left">
+              <span className="block text-sm font-bold text-white">Free Marketing Audit</span>
+              <span className="block text-xs text-slate-400">Paste your URL → get a full audit in 30 seconds</span>
+            </div>
+            <ArrowRight className="w-4 h-4 text-teal-400 group-hover:translate-x-1 transition-transform ml-1" />
+          </Link>
         </div>
+
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5" role="list" aria-label="Key metrics">
           {heroMetrics.map((metric, idx) => (
             <article key={idx} role="listitem" className={`relative rounded-2xl p-6 overflow-hidden ${glass} ${glassHover}`}>
