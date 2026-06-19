@@ -1,12 +1,12 @@
 interface Env {
-  GEMINI_API_KEY: string;
+  OPENROUTER_API_KEY: string;
 }
 
 export const onRequestPost: PagesFunction<Env> = async (context) => {
-  const apiKey = context.env.GEMINI_API_KEY;
+  const apiKey = context.env.OPENROUTER_API_KEY;
 
   if (!apiKey) {
-    return new Response(JSON.stringify({ error: 'GEMINI_API_KEY not set in environment variables' }), {
+    return new Response(JSON.stringify({ error: 'OPENROUTER_API_KEY not set in environment variables' }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },
     });
@@ -22,56 +22,56 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
     });
   }
 
-  const geminiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-lite:generateContent?key=${apiKey}`;
-
-  let geminiResponse: Response;
+  let apiResponse: Response;
   try {
-    geminiResponse = await fetch(geminiUrl, {
+    apiResponse = await fetch('https://openrouter.ai/api/v1/chat/completions', {
       method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`,
+        'HTTP-Referer': 'https://digitalsafalta.in',
+        'X-Title': 'Digital Safalta Marketing Audit',
+      },
       body: JSON.stringify({
-        contents: [
-          {
-            role: 'user',
-            parts: [{ text: body.system + '\n\n' + body.prompt }],
-          },
+        model: 'meta-llama/llama-3.3-70b-instruct:free',
+        messages: [
+          { role: 'system', content: body.system },
+          { role: 'user', content: body.prompt },
         ],
-        generationConfig: {
-          temperature: 0.7,
-          maxOutputTokens: 2048,
-        },
+        temperature: 0.7,
+        max_tokens: 2048,
       }),
     });
   } catch (err) {
-    return new Response(JSON.stringify({ error: 'Failed to reach Gemini API', detail: String(err) }), {
+    return new Response(JSON.stringify({ error: 'Failed to reach OpenRouter', detail: String(err) }), {
       status: 502,
       headers: { 'Content-Type': 'application/json' },
     });
   }
 
-  const raw = await geminiResponse.text();
+  const raw = await apiResponse.text();
 
-  if (!geminiResponse.ok) {
-    return new Response(JSON.stringify({ error: `Gemini API error ${geminiResponse.status}`, detail: raw }), {
-      status: geminiResponse.status,
+  if (!apiResponse.ok) {
+    return new Response(JSON.stringify({ error: `OpenRouter error ${apiResponse.status}`, detail: raw }), {
+      status: apiResponse.status,
       headers: { 'Content-Type': 'application/json' },
     });
   }
 
-  let data: { candidates?: { content?: { parts?: { text?: string }[] } }[] };
+  let data: { choices?: { message?: { content?: string } }[] };
   try {
     data = JSON.parse(raw);
   } catch {
-    return new Response(JSON.stringify({ error: 'Could not parse Gemini response', detail: raw }), {
+    return new Response(JSON.stringify({ error: 'Could not parse response', detail: raw }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },
     });
   }
 
-  const text = data.candidates?.[0]?.content?.parts?.[0]?.text ?? '';
+  const text = data.choices?.[0]?.message?.content ?? '';
 
   if (!text) {
-    return new Response(JSON.stringify({ error: 'Empty response from Gemini', detail: raw }), {
+    return new Response(JSON.stringify({ error: 'Empty response', detail: raw }), {
       status: 500,
       headers: { 'Content-Type': 'application/json' },
     });
