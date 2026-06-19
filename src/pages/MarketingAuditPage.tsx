@@ -141,7 +141,7 @@ export function MarketingAuditPage() {
       setResult(parsed);
       setTimeout(() => resultRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
     } catch {
-      setError('Something went wrong. Please check your URL and try again.');
+      setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
     } finally {
       setLoading(false);
     }
