@@ -33,7 +33,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
         'X-Title': 'Digital Safalta Marketing Audit',
       },
       body: JSON.stringify({
-        model: 'google/gemma-3-27b-it:free',
+        model: 'deepseek/deepseek-r1-0528:free',
         messages: [
           { role: 'system', content: body.system },
           { role: 'user', content: body.prompt },
