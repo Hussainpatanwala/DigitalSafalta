@@ -14,8 +14,9 @@ IMPORTANT RULES:
 - Focus on business impact: money, leads, growth
 - Avoid generic advice — be specific to this business type and market
 - Sound like an expert consultant, not a teacher
+- Use Indian Rupee (₹) for all monetary estimates
 
-You MUST respond ONLY with valid JSON in this exact format (no markdown, no preamble, no explanation outside the JSON):
+You MUST respond ONLY with valid JSON, no markdown, no backticks, no explanation outside the JSON:
 
 {
   "score": <number 0-100>,
@@ -122,28 +123,25 @@ export function MarketingAuditPage() {
     setLoading(true);
     setResult(null);
 
-    const userMessage = `Audit this business: ${url.trim()}${businessContext.trim() ? `\n\nAdditional context: ${businessContext.trim()}` : ''}`;
+    const prompt = `Audit this business: ${url.trim()}${businessContext.trim() ? `\n\nAdditional context: ${businessContext.trim()}` : ''}`;
 
     try {
-      const response = await fetch('https://api.anthropic.com/v1/messages', {
+      const response = await fetch('/api/audit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          model: 'claude-sonnet-4-6',
-          max_tokens: 1000,
-          system: SYSTEM_PROMPT,
-          messages: [{ role: 'user', content: userMessage }],
-        }),
+        body: JSON.stringify({ system: SYSTEM_PROMPT, prompt }),
       });
 
-      const data = await response.json();
-      const text = data.content?.find((b: { type: string }) => b.type === 'text')?.text || '';
-      const clean = text.replace(/```json|```/g, '').trim();
-      const parsed: AuditResult = JSON.parse(clean);
+      const data = await response.json() as { text?: string; error?: string };
+
+      if (data.error) throw new Error(data.error);
+
+      const raw = (data.text ?? '').replace(/```json|```/g, '').trim();
+      const parsed: AuditResult = JSON.parse(raw);
       setResult(parsed);
       setTimeout(() => resultRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
     } catch {
-      setError('Something went wrong. Please try again.');
+      setError('Something went wrong. Please check your URL and try again.');
     } finally {
       setLoading(false);
     }
@@ -166,20 +164,21 @@ export function MarketingAuditPage() {
       <div className="pt-28 lg:pt-36 pb-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
 
-          {/* Header */}
           <div className="text-center mb-10">
             <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-teal-500/15 border border-teal-500/25 text-teal-300 mb-5">
               Free Tool
             </span>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight mb-4">
-              Marketing Audit in <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-400">30 Seconds</span>
+              Marketing Audit in{' '}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-400">
+                30 Seconds
+              </span>
             </h1>
             <p className="text-slate-400 text-lg leading-relaxed max-w-xl mx-auto">
               Paste your website or social media link. Get a senior strategist-level audit — score, issues, revenue leaks, and a growth plan — instantly.
             </p>
           </div>
 
-          {/* Input Card */}
           <div className={`rounded-2xl p-6 mb-4 ${glass}`}>
             <label className="block text-sm font-bold text-white mb-2">
               Your Website or Social Media URL
@@ -191,20 +190,19 @@ export function MarketingAuditPage() {
                 onChange={e => setUrl(e.target.value)}
                 onKeyDown={e => e.key === 'Enter' && !loading && handleAudit()}
                 placeholder="https://yourbusiness.com  or  instagram.com/yourbusiness"
-                className="flex-1 px-4 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-teal-500/50 focus:bg-white/8 transition-all"
+                className="flex-1 px-4 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-teal-500/50 transition-all"
                 disabled={loading}
               />
               <button
                 onClick={handleAudit}
                 disabled={loading}
-                className={`px-5 py-3.5 rounded-xl text-sm font-bold flex items-center gap-2 shrink-0 ${tealBtn} disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none`}
+                className={`px-5 py-3.5 rounded-xl text-sm font-bold flex items-center gap-2 shrink-0 ${tealBtn} disabled:opacity-50 disabled:cursor-not-allowed`}
               >
                 <Search className="w-4 h-4" />
                 {loading ? 'Analysing...' : 'Audit'}
               </button>
             </div>
 
-            {/* Optional context toggle */}
             <button
               onClick={() => setShowContext(v => !v)}
               className="mt-3 flex items-center gap-1.5 text-xs text-slate-500 hover:text-slate-300 transition-colors"
@@ -226,12 +224,10 @@ export function MarketingAuditPage() {
             {error && <p className="mt-3 text-red-400 text-sm">{error}</p>}
           </div>
 
-          {/* Trust line */}
           <p className="text-center text-xs text-slate-500 mb-10">
-            Powered by AI · No sign-up required · 100% free · Built by Digital Safalta, Pune
+            Powered by Gemini AI · No sign-up required · 100% free · Built by Digital Safalta, Pune
           </p>
 
-          {/* Loading */}
           {loading && (
             <div className={`rounded-2xl p-10 ${glass} text-center`}>
               <div className="w-10 h-10 border-2 border-teal-500/30 border-t-teal-400 rounded-full animate-spin mx-auto mb-4" />
@@ -240,11 +236,9 @@ export function MarketingAuditPage() {
             </div>
           )}
 
-          {/* Results */}
           {result && (
             <div ref={resultRef} className="space-y-5">
 
-              {/* Score */}
               <div className={`rounded-2xl p-6 ${glass} text-center`}>
                 <p className="text-xs font-black uppercase tracking-wider text-slate-400 mb-4">Overall Marketing Score</p>
                 <ScoreRing score={result.score} />
@@ -252,7 +246,6 @@ export function MarketingAuditPage() {
                 <p className="text-slate-400 text-sm mt-1 max-w-sm mx-auto">{result.scoreExplanation}</p>
               </div>
 
-              {/* Critical Issues */}
               <Section icon={AlertTriangle} label="Critical Issues — Top 3" color="bg-red-500/15 text-red-400">
                 <div className="space-y-4">
                   {result.criticalIssues.map((issue, i) => (
@@ -267,13 +260,11 @@ export function MarketingAuditPage() {
                 </div>
               </Section>
 
-              {/* Lost Revenue */}
               <Section icon={TrendingUp} label="Lost Revenue Estimate" color="bg-amber-500/15 text-amber-400">
                 <p className="text-2xl font-black text-amber-400 mb-2">{result.lostRevenue.range}</p>
                 <p className="text-slate-400 text-sm leading-relaxed">{result.lostRevenue.reasoning}</p>
               </Section>
 
-              {/* Quick Wins */}
               <Section icon={Zap} label="Quick Wins — Low Effort, High Impact" color="bg-teal-500/15 text-teal-400">
                 <div className="space-y-4">
                   {result.quickWins.map((win, i) => (
@@ -288,7 +279,6 @@ export function MarketingAuditPage() {
                 </div>
               </Section>
 
-              {/* Growth Opportunities */}
               <Section icon={Target} label="Growth Opportunities — Strategic" color="bg-violet-500/15 text-violet-400">
                 <div className="space-y-4">
                   {[
@@ -305,17 +295,14 @@ export function MarketingAuditPage() {
                 </div>
               </Section>
 
-              {/* Competitive Gap */}
               <Section icon={Users} label="Competitive Gap" color="bg-cyan-500/15 text-cyan-400">
                 <p className="text-slate-300 text-sm leading-relaxed">{result.competitiveGap}</p>
               </Section>
 
-              {/* Final Verdict */}
               <Section icon={Award} label="Final Verdict" color="bg-teal-500/15 text-teal-400">
                 <p className="text-white text-base leading-relaxed font-medium">{result.finalVerdict}</p>
               </Section>
 
-              {/* CTA */}
               <div className="rounded-2xl p-6 bg-gradient-to-br from-teal-500/15 to-cyan-500/10 border border-teal-500/25 text-center">
                 <h3 className="text-lg font-black text-white mb-2">Want help fixing these issues?</h3>
                 <p className="text-slate-400 text-sm mb-5">Digital Safalta helps Pune businesses fix exactly these problems. Free consultation, no obligation.</p>
