@@ -106,13 +106,27 @@ export function MarketingAuditPage() {
   const [showContext, setShowContext] = useState(false);
   const resultRef = useRef<HTMLDivElement>(null);
 
+  // Normalise Instagram handles: "safalta" or "@safalta" → "instagram.com/safalta"
+  const normaliseInput = (raw: string): string => {
+    const trimmed = raw.trim();
+    if (!trimmed) return trimmed;
+    // Already a full URL — leave it alone
+    if (/^https?:\/\//i.test(trimmed)) return trimmed;
+    // Contains a dot → treat as domain/URL (e.g. digitalsafalta.in)
+    if (trimmed.includes('.')) return trimmed;
+    // Bare handle: strip leading @
+    const handle = trimmed.replace(/^@/, '');
+    return `instagram.com/${handle}`;
+  };
+
   const handleAudit = async () => {
-    if (!url.trim()) { setError('Please enter a website or social media URL.'); return; }
+    if (!url.trim()) { setError('Please enter your website URL or Instagram username.'); return; }
     setError('');
     setLoading(true);
     setResult(null);
 
-    const prompt = `Audit this business: ${url.trim()}${businessContext.trim() ? '\n\nAdditional context: ' + businessContext.trim() : ''}`;
+    const resolved = normaliseInput(url);
+    const prompt = `Audit this business: ${resolved}${businessContext.trim() ? '\n\nAdditional context: ' + businessContext.trim() : ''}`;
 
     try {
       const response = await fetch('/api/audit', {
@@ -313,13 +327,13 @@ export function MarketingAuditPage() {
           </div>
 
           <div className={`rounded-2xl p-6 mb-4 ${glass}`}>
-            <label className="block text-sm font-bold text-white mb-2">Your Website or Social Media URL</label>
+            <label className="block text-sm font-bold text-white mb-2">Website URL or Instagram Username</label>
             <div className="flex gap-3">
               <input
-                type="url" value={url}
+                type="text" value={url}
                 onChange={e => setUrl(e.target.value)}
                 onKeyDown={e => e.key === 'Enter' && !loading && handleAudit()}
-                placeholder="https://yourbusiness.com  or  instagram.com/yourbusiness"
+                placeholder="yourpage  or  @yourpage  or  https://yourbusiness.com"
                 className="flex-1 px-4 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-teal-500/50 transition-all"
                 disabled={loading}
               />
