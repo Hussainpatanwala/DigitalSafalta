@@ -14,34 +14,34 @@ IMPORTANT RULES:
 - Focus on business impact: money, leads, growth
 - Avoid generic advice — be specific to this business type and market
 - Sound like an expert consultant, not a teacher
-- Use Indian Rupee (₹) for all monetary estimates
+- Use Indian Rupee for all monetary estimates
 
-You MUST respond ONLY with valid JSON, no markdown, no backticks, no explanation outside the JSON:
+You MUST respond ONLY with valid JSON. No markdown. No backticks. No text before or after. Just the raw JSON object:
 
 {
-  "score": <number 0-100>,
-  "scoreExplanation": "<1-line explanation of the score>",
+  "score": 42,
+  "scoreExplanation": "one line explanation here",
   "criticalIssues": [
-    { "title": "<issue title>", "detail": "<specific, direct explanation>" },
-    { "title": "<issue title>", "detail": "<specific, direct explanation>" },
-    { "title": "<issue title>", "detail": "<specific, direct explanation>" }
+    { "title": "Issue title", "detail": "Specific explanation" },
+    { "title": "Issue title", "detail": "Specific explanation" },
+    { "title": "Issue title", "detail": "Specific explanation" }
   ],
   "lostRevenue": {
-    "range": "<e.g. ₹40,000–₹1,20,000/month>",
-    "reasoning": "<brief reasoning for the estimate>"
+    "range": "₹40,000–₹1,20,000/month",
+    "reasoning": "Brief reasoning here"
   },
   "quickWins": [
-    { "title": "<win title>", "detail": "<actionable improvement>" },
-    { "title": "<win title>", "detail": "<actionable improvement>" },
-    { "title": "<win title>", "detail": "<actionable improvement>" }
+    { "title": "Win title", "detail": "Actionable improvement" },
+    { "title": "Win title", "detail": "Actionable improvement" },
+    { "title": "Win title", "detail": "Actionable improvement" }
   ],
   "growthOpportunities": {
-    "paidAds": { "title": "<title>", "detail": "<why it matters + what to do>" },
-    "seo": { "title": "<title>", "detail": "<why it matters + what to do>" },
-    "social": { "title": "<title>", "detail": "<why it matters + what to do>" }
+    "paidAds": { "title": "Title here", "detail": "Why it matters and what to do" },
+    "seo": { "title": "Title here", "detail": "Why it matters and what to do" },
+    "social": { "title": "Title here", "detail": "Why it matters and what to do" }
   },
-  "competitiveGap": "<2-3 sentences describing what competitors are likely doing better>",
-  "finalVerdict": "<2-3 lines: how serious, underperforming/average/strong, what needs to happen>"
+  "competitiveGap": "2-3 sentences about what competitors do better",
+  "finalVerdict": "2-3 lines verdict here"
 }`;
 
 type AuditResult = {
@@ -64,19 +64,13 @@ function ScoreRing({ score }: { score: number }) {
   const circumference = 2 * Math.PI * radius;
   const offset = circumference - (score / 100) * circumference;
   const color = score >= 70 ? '#14b8a6' : score >= 45 ? '#f59e0b' : '#ef4444';
-
   return (
     <div className="relative w-36 h-36 mx-auto">
       <svg className="w-full h-full -rotate-90" viewBox="0 0 128 128">
         <circle cx="64" cy="64" r={radius} fill="none" stroke="rgba(255,255,255,0.07)" strokeWidth="10" />
-        <circle
-          cx="64" cy="64" r={radius} fill="none"
-          stroke={color} strokeWidth="10"
-          strokeDasharray={circumference}
-          strokeDashoffset={offset}
-          strokeLinecap="round"
-          style={{ transition: 'stroke-dashoffset 1.2s ease' }}
-        />
+        <circle cx="64" cy="64" r={radius} fill="none" stroke={color} strokeWidth="10"
+          strokeDasharray={circumference} strokeDashoffset={offset} strokeLinecap="round"
+          style={{ transition: 'stroke-dashoffset 1.2s ease' }} />
       </svg>
       <div className="absolute inset-0 flex flex-col items-center justify-center">
         <span className="text-3xl font-black text-white">{score}</span>
@@ -88,9 +82,7 @@ function ScoreRing({ score }: { score: number }) {
 
 function Section({ icon: Icon, label, color, children }: {
   icon: React.ComponentType<{ className?: string }>;
-  label: string;
-  color: string;
-  children: React.ReactNode;
+  label: string; color: string; children: React.ReactNode;
 }) {
   return (
     <div className={`rounded-2xl p-6 ${glass}`}>
@@ -115,15 +107,12 @@ export function MarketingAuditPage() {
   const resultRef = useRef<HTMLDivElement>(null);
 
   const handleAudit = async () => {
-    if (!url.trim()) {
-      setError('Please enter a website or social media URL.');
-      return;
-    }
+    if (!url.trim()) { setError('Please enter a website or social media URL.'); return; }
     setError('');
     setLoading(true);
     setResult(null);
 
-    const prompt = `Audit this business: ${url.trim()}${businessContext.trim() ? `\n\nAdditional context: ${businessContext.trim()}` : ''}`;
+    const prompt = `Audit this business: ${url.trim()}${businessContext.trim() ? '\n\nAdditional context: ' + businessContext.trim() : ''}`;
 
     try {
       const response = await fetch('/api/audit', {
@@ -132,27 +121,56 @@ export function MarketingAuditPage() {
         body: JSON.stringify({ system: SYSTEM_PROMPT, prompt }),
       });
 
-      const data = await response.json() as { text?: string; error?: string };
+      const data = await response.json() as { text?: string; error?: string; detail?: string };
 
-      if (data.error) throw new Error(data.error);
+      if (!response.ok || data.error) {
+        setError('API error: ' + (data.error ?? 'unknown') + (data.detail ? ' — ' + String(data.detail).slice(0, 200) : ''));
+        setLoading(false);
+        return;
+      }
 
-      const raw = (data.text ?? '').replace(/```json|```/g, '').trim();
-      const parsed: AuditResult = JSON.parse(raw);
+      const rawText = data.text ?? '';
+
+      // Strip any markdown fences Gemini might wrap around the JSON
+      const clean = rawText
+        .replace(/^\s*```json\s*/i, '')
+        .replace(/^\s*```\s*/i, '')
+        .replace(/\s*```\s*$/i, '')
+        .trim();
+
+      // Find the JSON object in case there's any stray text
+      const jsonStart = clean.indexOf('{');
+      const jsonEnd = clean.lastIndexOf('}');
+
+      if (jsonStart === -1 || jsonEnd === -1) {
+        setError('Gemini did not return valid JSON. Raw response: ' + clean.slice(0, 300));
+        setLoading(false);
+        return;
+      }
+
+      const jsonStr = clean.slice(jsonStart, jsonEnd + 1);
+
+      let parsed: AuditResult;
+      try {
+        parsed = JSON.parse(jsonStr);
+      } catch (parseErr) {
+        setError('JSON parse failed: ' + String(parseErr) + ' | Raw: ' + jsonStr.slice(0, 200));
+        setLoading(false);
+        return;
+      }
+
       setResult(parsed);
       setTimeout(() => resultRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' }), 100);
-    } catch {
-      setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.');
+
+    } catch (err) {
+      setError('Network error: ' + String(err));
     } finally {
       setLoading(false);
     }
   };
 
-  const scoreLabel = result
-    ? result.score >= 70 ? 'Strong' : result.score >= 45 ? 'Average' : 'Underperforming'
-    : '';
-  const scoreLabelColor = result
-    ? result.score >= 70 ? 'text-teal-400' : result.score >= 45 ? 'text-amber-400' : 'text-red-400'
-    : '';
+  const scoreLabel = result ? result.score >= 70 ? 'Strong' : result.score >= 45 ? 'Average' : 'Underperforming' : '';
+  const scoreLabelColor = result ? result.score >= 70 ? 'text-teal-400' : result.score >= 45 ? 'text-amber-400' : 'text-red-400' : '';
 
   return (
     <>
@@ -160,19 +178,14 @@ export function MarketingAuditPage() {
         title="Free Digital Marketing Audit Tool | Digital Safalta"
         description="Get a brutally honest AI-powered digital marketing audit for your business in seconds. Score, critical issues, lost revenue estimate, quick wins, and growth strategy — free."
       />
-
       <div className="pt-28 lg:pt-36 pb-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
 
           <div className="text-center mb-10">
-            <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-teal-500/15 border border-teal-500/25 text-teal-300 mb-5">
-              Free Tool
-            </span>
+            <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-teal-500/15 border border-teal-500/25 text-teal-300 mb-5">Free Tool</span>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl font-black text-white leading-tight mb-4">
               Marketing Audit in{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-400">
-                30 Seconds
-              </span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-teal-400 to-cyan-400">30 Seconds</span>
             </h1>
             <p className="text-slate-400 text-lg leading-relaxed max-w-xl mx-auto">
               Paste your website or social media link. Get a senior strategist-level audit — score, issues, revenue leaks, and a growth plan — instantly.
@@ -180,48 +193,41 @@ export function MarketingAuditPage() {
           </div>
 
           <div className={`rounded-2xl p-6 mb-4 ${glass}`}>
-            <label className="block text-sm font-bold text-white mb-2">
-              Your Website or Social Media URL
-            </label>
+            <label className="block text-sm font-bold text-white mb-2">Your Website or Social Media URL</label>
             <div className="flex gap-3">
               <input
-                type="url"
-                value={url}
+                type="url" value={url}
                 onChange={e => setUrl(e.target.value)}
                 onKeyDown={e => e.key === 'Enter' && !loading && handleAudit()}
                 placeholder="https://yourbusiness.com  or  instagram.com/yourbusiness"
                 className="flex-1 px-4 py-3.5 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-teal-500/50 transition-all"
                 disabled={loading}
               />
-              <button
-                onClick={handleAudit}
-                disabled={loading}
-                className={`px-5 py-3.5 rounded-xl text-sm font-bold flex items-center gap-2 shrink-0 ${tealBtn} disabled:opacity-50 disabled:cursor-not-allowed`}
-              >
+              <button onClick={handleAudit} disabled={loading}
+                className={`px-5 py-3.5 rounded-xl text-sm font-bold flex items-center gap-2 shrink-0 ${tealBtn} disabled:opacity-50 disabled:cursor-not-allowed`}>
                 <Search className="w-4 h-4" />
                 {loading ? 'Analysing...' : 'Audit'}
               </button>
             </div>
 
-            <button
-              onClick={() => setShowContext(v => !v)}
-              className="mt-3 flex items-center gap-1.5 text-xs text-slate-500 hover:text-slate-300 transition-colors"
-            >
+            <button onClick={() => setShowContext(v => !v)}
+              className="mt-3 flex items-center gap-1.5 text-xs text-slate-500 hover:text-slate-300 transition-colors">
               {showContext ? <ChevronUp className="w-3 h-3" /> : <ChevronDown className="w-3 h-3" />}
               Add business context (optional — improves accuracy)
             </button>
             {showContext && (
-              <textarea
-                value={businessContext}
-                onChange={e => setBusinessContext(e.target.value)}
+              <textarea value={businessContext} onChange={e => setBusinessContext(e.target.value)}
                 placeholder="e.g. We're a Pune-based dental clinic, 5 years old, mainly walk-in patients, no ads running currently..."
                 rows={3}
                 className="mt-2 w-full px-4 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-slate-500 text-sm focus:outline-none focus:border-teal-500/50 transition-all resize-none"
-                disabled={loading}
-              />
+                disabled={loading} />
             )}
 
-            {error && <p className="mt-3 text-red-400 text-sm">{error}</p>}
+            {error && (
+              <div className="mt-3 p-3 rounded-xl bg-red-500/10 border border-red-500/20">
+                <p className="text-red-400 text-xs leading-relaxed break-all">{error}</p>
+              </div>
+            )}
           </div>
 
           <p className="text-center text-xs text-slate-500 mb-10">
@@ -238,7 +244,6 @@ export function MarketingAuditPage() {
 
           {result && (
             <div ref={resultRef} className="space-y-5">
-
               <div className={`rounded-2xl p-6 ${glass} text-center`}>
                 <p className="text-xs font-black uppercase tracking-wider text-slate-400 mb-4">Overall Marketing Score</p>
                 <ScoreRing score={result.score} />
@@ -312,13 +317,11 @@ export function MarketingAuditPage() {
                   </a>
                   <button
                     onClick={() => { setResult(null); setUrl(''); setBusinessContext(''); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
-                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold bg-white/5 border border-white/10 text-white hover:bg-white/10 transition-all"
-                  >
+                    className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold bg-white/5 border border-white/10 text-white hover:bg-white/10 transition-all">
                     <RotateCcw className="w-3.5 h-3.5" /> Audit Another
                   </button>
                 </div>
               </div>
-
             </div>
           )}
 
