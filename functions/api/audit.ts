@@ -33,13 +33,13 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
         'X-Title': 'Digital Safalta Marketing Audit',
       },
       body: JSON.stringify({
-        model: 'openrouter/auto',
+        model: 'google/gemini-flash-1.5',
         messages: [
           { role: 'system', content: body.system },
           { role: 'user', content: body.prompt },
         ],
         temperature: 0.7,
-        max_tokens: 2048,
+        max_tokens: 4096,
       }),
     });
   } catch (err) {
