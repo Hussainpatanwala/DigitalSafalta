@@ -1,0 +1,320 @@
+/**
+ * ===================================================================
+ * DIGITAL SAFALTA — मराठी कंटेंट (MARATHI CONTENT)
+ * ===================================================================
+ * This file MUST have the exact same shape as content.en.ts.
+ * Edit the values below to update MARATHI site content only.
+ * ===================================================================
+ */
+import type { SiteContent } from './content.en';
+
+export const content: SiteContent = {
+  brand: {
+    name: "Digital Safalta",
+    tagline: "यशाचे शास्त्र.",
+  },
+
+  ui: {
+    navHome: "होम",
+    navServices: "सेवा",
+    navPricing: "किंमत",
+    navAbout: "आमच्याबद्दल",
+    navContact: "संपर्क करा",
+    navBlog: "ब्लॉग",
+    navCtaButton: "प्रोजेक्ट सुरू करा",
+    learnMore: "अधिक जाणून घ्या",
+    mostPopular: "सर्वाधिक लोकप्रिय",
+    getStarted: "सुरुवात करा",
+    openMenu: "मेनू उघडा",
+    closeMenu: "मेनू बंद करा",
+    skipToContent: "मुख्य मजकुराकडे जा",
+  },
+
+  hero: {
+    eyebrow: "पुणे · महाराष्ट्र · डिजिटल मार्केटिंग एजन्सी",
+    headlineLine1: "तुमचा व्यवसाय डिजिटली वाढवा",
+    headlineLine2: "योग्य पद्धतीने.",
+    subheading: "Digital Safalta पुण्यातील लहान आणि वाढत्या व्यवसायांना ऑनलाइन उपस्थिती निर्माण करण्यासाठी, प्रभावी ad campaigns चालवण्यासाठी आणि visitors ला paying customers मध्ये बदलण्यासाठी मदत करते.",
+    ctaText: "संभाषण सुरू करा",
+    secondaryCtaText: "आमच्या सेवा पहा",
+    auditCtaTitle: "मोफत मार्केटिंग ऑडिट",
+    auditCtaSubtitle: "तुमचा URL टाका → 30 सेकंदात संपूर्ण ऑडिट मिळवा",
+    metrics: [
+      { value: "8+", label: "वर्षांचा इंडस्ट्री अनुभव" },
+      { value: "₹5k", label: "सुरुवातीसाठी एजन्सी फी" },
+      { value: "24hr", label: "प्रतिसाद हमी" },
+      { value: "100%", label: "पारदर्शकतेचे वचन" },
+    ],
+    techBadges: ["✦ Cloudflare Pages वर होस्ट केलेले", "✦ Supabase बॅकएंड", "✦ Brevo ईमेल ऑटोमेशन", "✦ Edge functions चलित"],
+  },
+
+  philosophy: {
+    title: "आमची तत्त्वे",
+    principles: [
+      {
+        number: "01",
+        title: "प्रामाणिकपणा प्रथम",
+        description: "काय काम करेल आणि काय नाही हे आम्ही तुम्हाला सांगतो — जरी ते तुम्हाला ऐकायला आवडत नसले तरी. कोणतेही overselling नाही, खोटी आश्वासने नाहीत. फक्त तुमच्या पुणे व्यवसायासाठी प्रामाणिक डिजिटल मार्केटिंग सल्ला."
+      },
+      {
+        number: "02",
+        title: "Vanity पेक्षा निकाल महत्त्वाचे",
+        description: "Likes आणि impressions बिल भरत नाहीत. आम्ही leads, conversions आणि revenue वर लक्ष केंद्रित करतो — हे metrics खरोखर तुमच्या पुणे आणि त्यापलीकडील व्यवसाय वाढीसाठी महत्त्वाचे आहेत."
+      },
+      {
+        number: "03",
+        title: "फाउंडर-लेड सेवा",
+        description: "तुम्ही थेट फाउंडरसोबत काम करता — 50 accounts सांभाळणाऱ्या ज्युनियर एक्झिक्युटिव्हसोबत नाही. तुमच्या व्यवसायाला खरे लक्ष, खरी रणनीती आणि तुमच्या वाढीत वैयक्तिकरित्या गुंतवणूक केलेली व्यक्ती मिळते."
+      },
+    ],
+  },
+
+  services: {
+    title: "पुण्यातील डिजिटल मार्केटिंग सेवा",
+    description: "पुणे, महाराष्ट्र आणि संपूर्ण भारतातील लहान आणि वाढत्या व्यवसायांसाठी end-to-end डिजिटल मार्केटिंग सेवा.",
+    items: [
+      {
+        title: "वेबसाइट डिझाइन",
+        description: "जलद, mobile-friendly वेबसाइट्स ज्या तुमच्या व्यवसायाचे 24/7 प्रतिनिधित्व करतात. Custom email, SSL, Google Analytics, leads database आणि Google Maps समाविष्ट — 7 working days मध्ये लाइव्ह.",
+        icon: "Globe",
+        href: "/services/website-design"
+      },
+      {
+        title: "परफॉर्मन्स ऍड्स",
+        description: "Facebook, Instagram आणि Google Ads व्यवस्थापित केले जातात जेणेकरून तुम्हाला खरे leads आणि sales मिळतील. Ad budget तुम्ही नियंत्रित करता — आम्ही प्रत्येक रुपया अधिक चांगल्या प्रकारे काम करायला लावतो.",
+        icon: "Zap",
+        href: "/services/google-ads"
+      },
+      {
+        title: "SEO",
+        description: "पुण्यातील आणि संपूर्ण भारतातील जे लोक तुम्ही जे ऑफर करता ते सक्रियपणे शोधत आहेत त्यांच्यापर्यंत Google वर पोहोचा.",
+        icon: "BarChart3",
+        href: "/services/seo"
+      },
+      {
+        title: "सोशल मीडिया मॅनेजमेंट",
+        description: "सातत्यपूर्ण, आकर्षक कंटेंट जो तुमचा brand तयार करतो आणि audience ला परत आणत राहतो.",
+        icon: "Users",
+        href: "/services/social-media"
+      },
+      {
+        title: "लँडिंग पेजेस आणि फनेल्स",
+        description: "High-converting landing pages जे तुमच्या ad traffic ला paying customers मध्ये बदलण्यासाठी डिझाइन केलेले आहेत.",
+        icon: "MousePointer"
+      },
+      {
+        title: "ब्रँड आयडेंटिटी",
+        description: "Logo, colors आणि visual identity जे तुमचा व्यवसाय professional आणि trustworthy दाखवते.",
+        icon: "Palette"
+      },
+      {
+        title: "ईमेल मार्केटिंग",
+        description: "स्मार्ट, automated email marketing campaigns द्वारे तुमच्या customers च्या मनात राहा.",
+        icon: "Mail"
+      },
+      {
+        title: "अॅनालिटिक्स आणि रिपोर्टिंग",
+        description: "स्पष्ट, सोप्या रिपोर्ट्स जेणेकरून तुम्हाला नेहमी कळेल की तुमचे पैसे कुठे जात आहेत आणि काय परतावा मिळत आहे.",
+        icon: "Settings"
+      },
+    ],
+  },
+
+  results: {
+    title: "तुम्ही काय अपेक्षा करू शकता",
+    description: "आम्ही पुण्यातील एक नवीन डिजिटल मार्केटिंग एजन्सी आहोत — म्हणून बनावट case studies ऐवजी, आम्ही काय देण्याचे वचन देतो ते इथे आहे.",
+    caseStudies: [
+      {
+        category: "पारदर्शकता",
+        result: "कोणतेही लपलेले शुल्क नाही",
+        description: "Ad budget आणि agency fee नेहमी वेगळी दाखवली जाते. प्लॅटफॉर्मला काय जाते आणि आम्हाला काय मिळते हे तुम्हाला नक्की माहीत असते. कोणतेही blended billing नाही, कोणतेही surprises नाहीत.",
+        metrics: ["वेगळी बिलिंग", "स्पष्ट डॅशबोर्ड्स", "खुला संवाद"]
+      },
+      {
+        category: "वेग",
+        result: "7 दिवसांत लाइव्ह",
+        description: "तुमची वेबसाइट 7 working days मध्ये लाइव्ह होते. Onboarding नंतर काही दिवसांतच ad campaigns सेट होऊन सुरू होतात. तुमच्या व्यवसायाच्या वाढीला थांबायला नको.",
+        metrics: ["7-दिवस वेबसाइट लाँच", "जलद ad सेटअप", "साप्ताहिक चेक-इन"]
+      },
+      {
+        category: "बांधिलकी",
+        result: "नेहमी फाउंडर-लेड",
+        description: "तुम्ही थेट फाउंडरशी व्यवहार करता — जो तुमचा व्यवसाय स्वतःचा समजतो. कोणतेही account managers नाहीत, कोणतेही hand-offs नाहीत, भाषांतरात कोणतीही माहिती हरवत नाही.",
+        metrics: ["थेट फाउंडर ऍक्सेस", "वैयक्तिक रणनीती", "24hr प्रतिसाद वेळ"]
+      },
+    ],
+  },
+
+  process: {
+    title: "आम्ही कसे काम करतो",
+    description: "तुमचा पुणे व्यवसाय ऑनलाइन वाढवण्यासाठी एक सोपी, सिद्ध डिजिटल मार्केटिंग प्रक्रिया.",
+    steps: [
+      {
+        number: "01",
+        title: "डिस्कव्हरी कॉल",
+        description: "आम्ही तुमचा व्यवसाय, उद्दिष्टे, target customers आणि सध्याची आव्हाने समजून घेतो — पूर्णपणे मोफत, कोणतीही बांधिलकी नाही."
+      },
+      {
+        number: "02",
+        title: "कस्टम रणनीती",
+        description: "आम्ही पुणे मार्केट आणि त्यापलीकडे तुमच्या व्यवसाय, बजेट आणि उद्दिष्टांनुसार खास डिजिटल मार्केटिंग प्लॅन तयार करतो."
+      },
+      {
+        number: "03",
+        title: "एक्झिक्यूट आणि लाँच",
+        description: "आम्ही सर्वकाही सेट करतो आणि लाइव्ह करतो — वेबसाइट, ads, SEO, content, tracking आणि reporting सर्व एकाच ठिकाणी."
+      },
+      {
+        number: "04",
+        title: "ऑप्टिमाइझ आणि वाढ",
+        description: "आम्ही दर आठवड्याला monitor, test आणि improve करतो जेणेकरून तुमचे निकाल कालांतराने अधिक चांगले होत राहतील."
+      },
+    ],
+  },
+
+  platformMetrics: [
+    { value: "8+", label: "वर्षांचा मार्केटिंग अनुभव" },
+    { value: "₹5k", label: "Ads सुरू करण्यासाठी एजन्सी फी" },
+    { value: "Zero", label: "लपलेले शुल्क — कधीही नाही" },
+    { value: "24hr", label: "सपोर्ट प्रतिसाद वेळ" },
+  ],
+
+  pricing: {
+    title: "सोपी, पारदर्शी किंमत रचना",
+    description: "Ad budget आणि agency fee नेहमी वेगळी दाखवली जाते. Ads वर किती खर्च करायचा हे तुम्ही ठरवता — आम्ही फक्त आमच्या कामासाठी शुल्क आकारतो.",
+    plans: [
+      {
+        name: "वेबसाइट पॅकेज",
+        price: "15,000",
+        currency: "₹",
+        period: "one-time",
+        description: "तुमच्या व्यवसायाला professionally लाइव्ह होण्यासाठी जे काही आवश्यक आहे ते — 7 working days मध्ये",
+        features: [
+          "5 पानांपर्यंत (Home, About, Services, Contact + आणखी 1)",
+          "Mobile responsive डिझाइन",
+          "तुमच्या email शी जोडलेला contact form",
+          "Professional custom email (hello@yourbusiness.in)",
+          "Google Business Profile सेटअप + Google Maps",
+          "SSL certificate (HTTPS) — कायमचे मोफत",
+          "बेसिक SEO सेटअप",
+          "Google Analytics जोडलेले",
+          "Leads database — प्रत्येक enquiry तारीख व तपशीलांसह साठवली जाते",
+          "7 working days मध्ये लाइव्ह",
+        ],
+        note: "यापलीकडे काही हवे आहे? Custom builds तुमच्या गरजेनुसार बनवले जातात.",
+        highlighted: false
+      },
+      {
+        name: "स्टार्टर ऍड्स",
+        price: "15,000",
+        currency: "₹",
+        period: "month",
+        description: "Meta किंवा Google वर पूर्ण व्यवस्थापनासह खरे ads चालवायला सुरुवात करा — कोणताही अंदाज नाही",
+        features: [
+          "₹10,000 थेट तुमच्या ad platform (Meta किंवा Google) ला जातात",
+          "₹5,000 एजन्सी फी — आमचे व्यवस्थापन व रणनीती",
+          "तुमच्या निवडीचा 1 active ad channel",
+          "Ad creative + copywriting समाविष्ट",
+          "Audience research व targeting सेटअप",
+          "मासिक performance अहवाल",
+          "तुमच्या account manager शी थेट WhatsApp ऍक्सेस",
+        ],
+        note: "💡 Google Ads मध्ये नवीन आहात? Google वर ₹20,000 खर्च करा आणि ₹20,000 चे मोफत ad credit मिळवा — पहिल्या दिवसापासून तुमची reach दुप्पट करा. कसे ते आम्हाला विचारा.",
+        highlighted: true
+      },
+      {
+        name: "ग्रोथ",
+        price: "35,000",
+        currency: "₹",
+        period: "month",
+        description: "गांभीर्याने scale करण्यासाठी तयार असलेल्या व्यवसायांसाठी एक सानुकूल multi-channel प्लॅन",
+        features: [
+          "Meta + Google मध्ये विभागलेला custom ad budget",
+          "SEO — on-page ऑप्टिमायझेशन + keyword targeting",
+          "सोशल मीडिया मॅनेजमेंट (20 posts/month पर्यंत)",
+          "Campaigns साठी landing page निर्मिती",
+          "साप्ताहिक रिपोर्टिंग + मासिक रणनीती कॉल",
+          "Retargeting campaigns सेटअप",
+          "प्राधान्य सपोर्ट — जलद turnaround",
+        ],
+        note: "प्रत्येक Growth प्लॅन तुमच्या व्यवसायानुसार scope केला जातो. अंतिम breakdown discovery call वर शेअर केला जातो.",
+        highlighted: false
+      },
+    ],
+  },
+
+  testimonial: {
+    quote: "आम्ही नुकतेच Digital Safalta लाँच केले आहे जेणेकरून तुमच्यासारख्या व्यवसायांना ऑनलाइन वाढण्यास मदत होईल. तुम्ही आमच्या पहिल्या success stories पैकी एक व्हावे अशी आमची इच्छा आहे — संपर्क करा आणि एकत्र काहीतरी उत्तम बनवूया.",
+    author: "Hussain Patanwala",
+    role: "फाउंडर, Digital Safalta — डिजिटल मार्केटिंग एजन्सी, पुणे",
+    initials: "HP",
+  },
+
+  faqItems: [
+    {
+      question: "₹15,000/महिना ad प्लॅन ही all-in किंमत आहे की ad budget वेगळा येतो?",
+      answer: "₹15,000/महिना Starter प्लॅनमध्ये तुमचा ad budget आधीच समाविष्ट आहे. ₹10,000 थेट तुमच्या निवडलेल्या ad platform (Meta किंवा Google) ला जातात आणि ₹5,000 तुमच्या campaigns व्यवस्थापित करण्यासाठी आमची agency fee आहे. तुम्हाला दोन्ही आकडे नेहमी वेगळे दिसतील — आम्ही ते कधीच मिसळत नाही."
+    },
+    {
+      question: "तुम्ही नमूद केलेला Google Ads free credit ऑफर काय आहे?",
+      answer: "जेव्हा तुम्ही Google Ads वर तुमचे पहिले ₹20,000 खर्च करता तेव्हा Google ₹20,000 चे मोफत ad credit देते. म्हणजे तुम्हाला ₹20,000 खर्चात ₹40,000 ची ad reach मिळते — पहिल्या दिवसापासून तुमची visibility दुप्पट होते. ही एक मर्यादित Google प्रमोशन आहे. संपर्क करा आणि आम्ही तुम्हाला ते कसे claim करायचे ते दाखवू."
+    },
+    {
+      question: "₹15,000 वेबसाइट पॅकेज खरंच one-time आहे का? Maintenance चे काय?",
+      answer: "होय, ₹15,000 ही पहिल्या वर्षासाठी one-time फी आहे — जी पॅकेजमधील सर्वकाही कव्हर करते जसे की custom email, SSL, leads database आणि Google सेटअप. पहिल्या वर्षानंतर, hosting आणि maintenance खर्च किमान असतात आणि आम्ही renewal आधी पारदर्शकपणे चर्चा करू."
+    },
+    {
+      question: "मी कोणासोबत काम करेन — मी नेहमी थेट तुमच्यापर्यंत पोहोचू शकेन का?",
+      answer: "सध्या तुम्ही थेट फाउंडरसोबत काम करता. कोणतेही account managers नाहीत, कोणतेही hand-offs नाहीत. आम्ही जसे वाढू, तुमचे account सांभाळणाऱ्या कोणत्याही team member ला तेच standard राखण्यासाठी वैयक्तिकरित्या प्रशिक्षित आणि supervised केले जाईल. तुमच्याकडे नेहमी तुमचा व्यवसाय ओळखणाऱ्या व्यक्तीशी थेट संपर्क असेल."
+    },
+    {
+      question: "तुम्ही पुण्यातील नवीन डिजिटल मार्केटिंग एजन्सी आहात का? मी तुमच्यावर विश्वास का ठेवावा?",
+      answer: "होय, आम्ही नवीन आहोत — आणि ही खरं तर एक ताकद आहे. तुम्हाला 8+ वर्षांचा मार्केटिंग अनुभव असलेला फाउंडर मिळतो जो तुमच्या निकालांमध्ये वैयक्तिकरित्या गुंतवणूक करतो, 50 clients सांभाळणारा ज्युनियर एक्झिक्युटिव्ह नाही. आम्ही एका वेळी एक पुणे व्यवसाय याप्रमाणे आमची प्रतिष्ठा तयार करत आहोत, आणि तुमचे यश हीच आमची सर्वोत्तम मार्केटिंग आहे."
+    },
+    {
+      question: "डिजिटल मार्केटिंगचे निकाल दिसायला किती वेळ लागतो?",
+      answer: "Paid ads पहिल्या 2-4 आठवड्यांत निकाल दाखवू शकतात. SEO साधारणपणे Google वर निकाल दाखवण्यासाठी 3-6 महिने घेते. आम्ही सुरुवातीपासूनच प्रामाणिक अपेक्षा ठेवतो आणि तुम्हाला नियमित updates देतो जेणेकरून तुमच्या बजेटसह काय होत आहे हे तुम्हाला नेहमी कळेल."
+    },
+    {
+      question: "किमान contract कालावधी आहे का?",
+      answer: "आम्ही 3-महिन्यांच्या किमान कालावधीने सुरुवात करतो जेणेकरून खरे निकाल दाखवण्यासाठी आमच्याकडे पुरेसा वेळ असेल. त्यानंतर, हे month-to-month आहे. आम्हाला विश्वास आहे की दर महिन्याला तुमचा व्यवसाय मिळवायला हवा, तुम्हाला बांधून ठेवायला नको."
+    },
+    {
+      question: "तुम्ही पुण्यात कोणत्या प्रकारच्या व्यवसायांसोबत काम करता?",
+      answer: "आम्ही पुणे आणि महाराष्ट्रभरातील लहान आणि वाढत्या व्यवसायांसोबत काम करतो — local services, e-commerce, coaching, real estate, hospitality, restaurants आणि बरेच काही. तुमच्याकडे एखादे product किंवा service असेल आणि तुम्हाला ऑनलाइन अधिक customers हवे असतील, तर आम्ही मदत करू शकतो."
+    },
+  ],
+
+  contact: {
+    title: "चला तुमच्या व्यवसायाबद्दल बोलूया",
+    description: "तुमच्या व्यवसायाबद्दल आणि उद्दिष्टांबद्दल आम्हाला सांगा. आम्ही 24 तासांच्या आत प्रामाणिक सल्ल्यासह तुमच्याशी संपर्क साधू — आम्ही एकत्र काम करू किंवा नाही.",
+    formPlaceholder: {
+      name: "तुमचे नाव",
+      email: "तुमचा ईमेल",
+      company: "व्यवसायाचे नाव",
+      message: "तुमच्या व्यवसायाबद्दल सांगा आणि तुम्हाला काय साध्य करायचे आहे..."
+    },
+    buttonText: "संभाषण सुरू करा",
+    responseTime: "आम्ही 24 तासांच्या आत प्रतिसाद देतो — सहसा खूप लवकर.",
+  },
+
+  footer: {
+    description: "पुण्यातील डिजिटल मार्केटिंग एजन्सी जी वाढत्या व्यवसायांना ऑनलाइन यशस्वी होण्यासाठी मदत करते — प्रामाणिकपणे आणि प्रभावीपणे.",
+    servicesList: ["परफॉर्मन्स ऍड्स", "SEO", "सोशल मीडिया", "वेबसाइट डिझाइन"],
+    companyList: ["आमच्याबद्दल", "आमची प्रक्रिया", "किंमत", "संपर्क करा"],
+    contact: {
+      email: "hello@digitalsafalta.in",
+      location: "पुणे, महाराष्ट्र · संपूर्ण भारतात क्लायंट्सना सेवा"
+    },
+    copyright: "© 2026 Digital Safalta. सर्व हक्क राखीव.",
+  },
+
+  heroImageId: "3184291",
+
+  seo: {
+    home: {
+      title: "Digital Safalta - पुण्यातील डिजिटल मार्केटिंग एजन्सी",
+      description: "Digital Safalta पुण्यातील लहान आणि वाढत्या व्यवसायांना ऑनलाइन उपस्थिती निर्माण करण्यासाठी, प्रभावी ad campaigns चालवण्यासाठी आणि visitors ला paying customers मध्ये बदलण्यासाठी मदत करते. वेबसाइट डिझाइन, SEO, Google व Meta Ads.",
+    },
+  },
+};
