@@ -123,17 +123,52 @@ export function MarketingAuditPage() {
         .replace(/\s*```\s*$/i, '')
         .trim();
 
-      // Find the JSON object in case there's any stray text
-      const jsonStart = clean.indexOf('{');
-      const jsonEnd = clean.lastIndexOf('}');
+      // Extract exactly the first balanced JSON object, ignoring anything
+// (extra prose, a duplicated second JSON blob, stray braces, etc.)
+// that the model appends afterwards. A naive first-'{' to last-'}'
+// slice breaks whenever trailing content contains its own '}'.
+const extractFirstJsonObject = (text: string): string | null => {
+  const start = text.indexOf('{');
+  if (start === -1) return null;
 
-      if (jsonStart === -1 || jsonEnd === -1) {
-        setError('Gemini did not return valid JSON. Raw response: ' + clean.slice(0, 300));
-        setLoading(false);
-        return;
+  let depth = 0;
+  let inString = false;
+  let escaped = false;
+
+  for (let i = start; i < text.length; i++) {
+    const ch = text[i];
+
+    if (inString) {
+      if (escaped) {
+        escaped = false;
+      } else if (ch === '\\') {
+        escaped = true;
+      } else if (ch === '"') {
+        inString = false;
       }
+      continue;
+    }
 
-      const jsonStr = clean.slice(jsonStart, jsonEnd + 1);
+    if (ch === '"') {
+      inString = true;
+    } else if (ch === '{') {
+      depth++;
+    } else if (ch === '}') {
+      depth--;
+      if (depth === 0) return text.slice(start, i + 1);
+    }
+  }
+
+  return null; // never closed — likely truncated response
+};
+
+const jsonStr = extractFirstJsonObject(clean);
+
+if (!jsonStr) {
+  setError('Gemini did not return valid JSON. Raw response: ' + clean.slice(0, 300));
+  setLoading(false);
+  return;
+}
 
       let parsed: AuditResult;
       try {
