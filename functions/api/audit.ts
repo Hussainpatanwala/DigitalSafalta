@@ -33,7 +33,7 @@ export const onRequestPost: PagesFunction<Env> = async (context) => {
         'X-Title': 'Digital Safalta Marketing Audit',
       },
       body: JSON.stringify({
-        model: 'google/gemini-2.5-flash',
+        model: 'openrouter/free',
         messages: [
           { role: 'system', content: body.system },
           { role: 'user', content: body.prompt },
