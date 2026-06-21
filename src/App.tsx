@@ -79,13 +79,14 @@ function AppShell() {
         setIsMenuOpen={setIsMenuOpen}
         scrolled={scrolled}
         onNavClick={() => setIsMenuOpen(false)}
+        lang={activeLang}
       />
 
       <ScrollToTop />
 
       <main id="main-content">
         <Routes>
-          <Route path="/" element={<HomePage />} />
+          <Route path="/" element={<HomePage lang={activeLang} />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/pricing" element={<PricingPage />} />
           <Route path="/about" element={<AboutPage />} />
@@ -107,7 +108,7 @@ function AppShell() {
         </Routes>
       </main>
 
-      <Footer />
+      <Footer lang={activeLang} />
       <Chatbot lang={activeLang} />
     </div>
   );
