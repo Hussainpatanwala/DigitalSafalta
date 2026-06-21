@@ -2,18 +2,18 @@ import { SEO } from '../components/SEO';
 import { Pricing } from '../components/Pricing';
 import { PlatformMetrics } from '../components/PlatformMetrics';
 import { FAQ } from '../components/FAQ';
+import type { Lang } from '../lib/constants';
+import { getContent } from '../getContent';
 
-export function PricingPage() {
+export function PricingPage({ lang = 'en' }: { lang?: Lang }) {
+  const t = getContent(lang).seo.pricing;
   return (
     <>
-      <SEO
-        title="Pricing - Website & Digital Marketing Plans | Digital Safalta"
-        description="Transparent pricing for website design and digital marketing in Pune. One-time website package at ₹15,000, ad management plans starting at ₹15,000/month with no hidden fees."
-      />
+      <SEO title={t.title} description={t.description} lang={lang} />
       <div className="pt-28 lg:pt-36">
-        <Pricing />
-        <PlatformMetrics />
-        <FAQ />
+        <Pricing lang={lang} />
+        <PlatformMetrics lang={lang} />
+        <FAQ lang={lang} />
       </div>
     </>
   );
