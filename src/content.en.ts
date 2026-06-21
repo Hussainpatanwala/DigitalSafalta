@@ -358,6 +358,22 @@ export const content = {
       title: "Digital Safalta - Digital Marketing Agency in Pune",
       description: "Digital Safalta helps small and growing businesses in Pune build their online presence, run effective ad campaigns, and turn visitors into paying customers. Website design, SEO, Google & Meta Ads.",
     },
+    about: {
+      title: "About Us - Our Philosophy & Process | Digital Safalta",
+      description: "Learn how Digital Safalta works with Pune businesses — honest, founder-led digital marketing focused on real results, not vanity metrics. Our philosophy and process explained.",
+    },
+    services: {
+      title: "Our Services - Website Design, SEO & Ads | Digital Safalta",
+      description: "Explore Digital Safalta's digital marketing services for Pune businesses: website design, Google & Meta ads, SEO, social media management, landing pages, branding and more.",
+    },
+    pricing: {
+      title: "Pricing - Website & Digital Marketing Plans | Digital Safalta",
+      description: "Transparent pricing for website design and digital marketing in Pune. One-time website package at ₹15,000, ad management plans starting at ₹15,000/month with no hidden fees.",
+    },
+    contact: {
+      title: "Contact Us - Get a Free Consultation | Digital Safalta",
+      description: "Get in touch with Digital Safalta for a free, no-obligation digital marketing consultation. We respond within 24 hours. Pune, Maharashtra — serving clients across India.",
+    },
   },
 };
 
