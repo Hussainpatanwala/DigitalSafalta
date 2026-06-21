@@ -1,15 +1,29 @@
 import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
-import { faqItems } from '../content';
+import type { Lang } from '../lib/constants';
+import { getContent } from '../getContent';
 
-export function FAQ() {
+const FAQ_HEADING: Record<Lang, string> = {
+  en: 'Frequently Asked Questions',
+  hi: 'अक्सर पूछे जाने वाले सवाल',
+  mr: 'वारंवार विचारले जाणारे प्रश्न',
+};
+
+const FAQ_SUBHEADING: Record<Lang, string> = {
+  en: 'Everything you need to know about partnering with us.',
+  hi: 'हमारे साथ साझेदारी के बारे में जो कुछ भी आपको जानना चाहिए।',
+  mr: 'आमच्यासोबत भागीदारी करण्याबद्दल तुम्हाला जे काही माहित असणे आवश्यक आहे.',
+};
+
+export function FAQ({ lang = 'en' }: { lang?: Lang }) {
+  const faqItems = getContent(lang).faqItems;
   const [openFaq, setOpenFaq] = useState<number | null>(null);
 
   return (
     <section id="faq" className="py-16 lg:py-24" aria-labelledby="faq-heading">
       <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 id="faq-heading" className="text-3xl lg:text-4xl font-black text-center tracking-tight mb-3">Frequently Asked Questions</h2>
-        <p className="text-slate-400 text-center mb-12 text-base">Everything you need to know about partnering with us.</p>
+        <h2 id="faq-heading" className="text-3xl lg:text-4xl font-black text-center tracking-tight mb-3">{FAQ_HEADING[lang]}</h2>
+        <p className="text-slate-400 text-center mb-12 text-base">{FAQ_SUBHEADING[lang]}</p>
         <div className="space-y-3">
           {faqItems.map((faq, idx) => (
             <div
