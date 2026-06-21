@@ -87,10 +87,10 @@ function AppShell() {
       <main id="main-content">
         <Routes>
           <Route path="/" element={<HomePage lang={activeLang} />} />
-          <Route path="/services" element={<ServicesPage />} />
-          <Route path="/pricing" element={<PricingPage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/services" element={<ServicesPage lang={activeLang} />} />
+          <Route path="/pricing" element={<PricingPage lang={activeLang} />} />
+          <Route path="/about" element={<AboutPage lang={activeLang} />} />
+          <Route path="/contact" element={<ContactPage lang={activeLang} />} />
           <Route path="/blog" element={<BlogIndexPage />} />
           <Route path="/blog/what-is-digital-marketing" element={<WhatIsDigitalMarketing />} />
           <Route path="/blog/website-cost-pune" element={<WebsiteCostPune />} />
