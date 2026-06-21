@@ -2,18 +2,18 @@ import { SEO } from '../components/SEO';
 import { Philosophy } from '../components/Philosophy';
 import { Process } from '../components/Process';
 import { Testimonial } from '../components/Testimonial';
+import type { Lang } from '../lib/constants';
+import { getContent } from '../getContent';
 
-export function AboutPage() {
+export function AboutPage({ lang = 'en' }: { lang?: Lang }) {
+  const t = getContent(lang).seo.about;
   return (
     <>
-      <SEO
-        title="About Us - Our Philosophy & Process | Digital Safalta"
-        description="Learn how Digital Safalta works with Pune businesses — honest, founder-led digital marketing focused on real results, not vanity metrics. Our philosophy and process explained."
-      />
+      <SEO title={t.title} description={t.description} lang={lang} />
       <div className="pt-28 lg:pt-36">
-        <Philosophy />
-        <Process />
-        <Testimonial />
+        <Philosophy lang={lang} />
+        <Process lang={lang} />
+        <Testimonial lang={lang} />
       </div>
     </>
   );
