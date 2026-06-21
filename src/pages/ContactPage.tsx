@@ -1,17 +1,17 @@
 import { SEO } from '../components/SEO';
 import { Contact } from '../components/Contact';
 import { FAQ } from '../components/FAQ';
+import type { Lang } from '../lib/constants';
+import { getContent } from '../getContent';
 
-export function ContactPage() {
+export function ContactPage({ lang = 'en' }: { lang?: Lang }) {
+  const t = getContent(lang).seo.contact;
   return (
     <>
-      <SEO
-        title="Contact Us - Get a Free Consultation | Digital Safalta"
-        description="Get in touch with Digital Safalta for a free, no-obligation digital marketing consultation. We respond within 24 hours. Pune, Maharashtra — serving clients across India."
-      />
+      <SEO title={t.title} description={t.description} lang={lang} />
       <div className="pt-28 lg:pt-36">
-        <Contact />
-        <FAQ />
+        <Contact lang={lang} />
+        <FAQ lang={lang} />
       </div>
     </>
   );
