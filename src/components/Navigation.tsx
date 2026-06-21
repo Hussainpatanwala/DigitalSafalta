@@ -1,23 +1,26 @@
 import { Link, NavLink } from 'react-router-dom';
 import { Menu, X, ArrowRight, TrendingUp } from 'lucide-react';
 import { tealBtn } from '../lib/constants';
-import { brandName } from '../content';
-
-const NAV_ITEMS = [
-  { label: 'Home', to: '/' },
-  { label: 'Services', to: '/services' },
-  { label: 'Pricing', to: '/pricing' },
-  { label: 'About', to: '/about' },
-  { label: 'Contact', to: '/contact' },
-  { label: 'Blog', to: '/blog' },
-];
+import type { Lang } from '../lib/constants';
+import { getContent } from '../getContent';
 
 export function Navigation({
-  isMenuOpen, setIsMenuOpen, scrolled, onNavClick,
+  isMenuOpen, setIsMenuOpen, scrolled, onNavClick, lang = 'en',
 }: {
   isMenuOpen: boolean; setIsMenuOpen: (v: boolean) => void;
-  scrolled: boolean; onNavClick: () => void;
+  scrolled: boolean; onNavClick: () => void; lang?: Lang;
 }) {
+  const t = getContent(lang);
+
+  const NAV_ITEMS = [
+    { label: t.ui.navHome, to: '/' },
+    { label: t.ui.navServices, to: '/services' },
+    { label: t.ui.navPricing, to: '/pricing' },
+    { label: t.ui.navAbout, to: '/about' },
+    { label: t.ui.navContact, to: '/contact' },
+    { label: t.ui.navBlog, to: '/blog' },
+  ];
+
   const linkClass = ({ isActive }: { isActive: boolean }) =>
     `text-sm font-medium tracking-wide transition-colors ${isActive ? 'text-teal-400' : 'text-slate-400 hover:text-white'}`;
 
@@ -31,7 +34,7 @@ export function Navigation({
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 lg:h-20">
-          <Link to="/" className="flex items-center gap-2.5" aria-label={`${brandName} - Home`}>
+          <Link to="/" className="flex items-center gap-2.5" aria-label={`${t.brand.name} - Home`}>
             <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-teal-500 to-cyan-400 flex items-center justify-center shadow-lg shadow-teal-500/30" aria-hidden="true">
               <TrendingUp className="w-4 h-4 text-slate-950" />
             </div>
@@ -48,7 +51,7 @@ export function Navigation({
               </NavLink>
             ))}
             <Link to="/contact" className={`px-5 py-2.5 rounded-full text-sm font-bold flex items-center gap-2 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 focus:ring-offset-slate-950 ${tealBtn}`}>
-              Start a Project <ArrowRight className="w-4 h-4" aria-hidden="true" />
+              {t.ui.navCtaButton} <ArrowRight className="w-4 h-4" aria-hidden="true" />
             </Link>
           </div>
 
@@ -56,7 +59,7 @@ export function Navigation({
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             className="lg:hidden p-2 rounded-lg border border-white/10 text-slate-400 hover:text-white hover:border-white/20 transition-all focus:outline-none focus:ring-2 focus:ring-teal-500"
             aria-expanded={isMenuOpen} aria-controls="mobile-menu"
-            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+            aria-label={isMenuOpen ? t.ui.closeMenu : t.ui.openMenu}
           >
             {isMenuOpen ? <X className="w-5 h-5" aria-hidden="true" /> : <Menu className="w-5 h-5" aria-hidden="true" />}
           </button>
@@ -71,7 +74,7 @@ export function Navigation({
             </NavLink>
           ))}
           <Link to="/contact" onClick={onNavClick} className={`block text-center px-5 py-3 rounded-xl text-sm font-bold mt-2 focus:outline-none focus:ring-2 focus:ring-teal-500 ${tealBtn}`}>
-            Start a Project
+            {t.ui.navCtaButton}
           </Link>
         </div>
       </div>
