@@ -18,12 +18,12 @@ export function HomePage({ lang = 'en' }: { lang?: Lang }) {
         description={t.seo.home.description}
         lang={lang}
       />
-      <Hero />
-      <Philosophy />
-      <Services />
-      <Results />
-      <Pricing />
-      <Testimonial />
+      <Hero lang={lang} />
+      <Philosophy lang={lang} />
+      <Services lang={lang} />
+      <Results lang={lang} />
+      <Pricing lang={lang} />
+      <Testimonial lang={lang} />
     </>
   );
 }
