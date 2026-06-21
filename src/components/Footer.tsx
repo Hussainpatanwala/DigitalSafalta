@@ -1,22 +1,15 @@
 import { Link } from 'react-router-dom';
 import { TrendingUp } from 'lucide-react';
-import { footerDescription, footerContact, footerCopyright } from '../content';
+import type { Lang } from '../lib/constants';
+import { getContent } from '../getContent';
 import { MobileActionBar } from './MobileActionBar';
 
-const FOOTER_SERVICES = [
-  { label: 'Performance Ads', to: '/services' },
-  { label: 'SEO', to: '/services' },
-  { label: 'Social Media', to: '/services' },
-  { label: 'Website Design', to: '/services' },
-];
+const FOOTER_LINKS = ['/services', '/services', '/services', '/services'];
+const COMPANY_LINKS = ['/about', '/pricing', '/contact'];
 
-const FOOTER_COMPANY = [
-  { label: 'About', to: '/about' },
-  { label: 'Pricing', to: '/pricing' },
-  { label: 'Contact', to: '/contact' },
-];
+export function Footer({ lang = 'en' }: { lang?: Lang }) {
+  const t = getContent(lang);
 
-export function Footer() {
   return (
     <footer className="border-t border-white/8 py-12 lg:py-16" role="contentinfo">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -31,34 +24,34 @@ export function Footer() {
                 <span className="text-white"> Safalta</span>
               </span>
             </Link>
-            <p className="text-slate-500 text-sm leading-relaxed">{footerDescription}</p>
+            <p className="text-slate-500 text-sm leading-relaxed">{t.footer.description}</p>
           </div>
           <div>
-            <h4 className="text-white font-bold text-sm mb-4 tracking-wide">Services</h4>
+            <h4 className="text-white font-bold text-sm mb-4 tracking-wide">{t.ui.navServices}</h4>
             <ul className="space-y-2">
-              {FOOTER_SERVICES.map((item, idx) => (
-                <li key={idx}><Link to={item.to} className="text-slate-500 hover:text-teal-400 transition-colors text-sm">{item.label}</Link></li>
+              {t.footer.servicesList.map((label, idx) => (
+                <li key={idx}><Link to={FOOTER_LINKS[idx]} className="text-slate-500 hover:text-teal-400 transition-colors text-sm">{label}</Link></li>
               ))}
             </ul>
           </div>
           <div>
-            <h4 className="text-white font-bold text-sm mb-4 tracking-wide">Company</h4>
+            <h4 className="text-white font-bold text-sm mb-4 tracking-wide">{lang === 'hi' ? 'कंपनी' : lang === 'mr' ? 'कंपनी' : 'Company'}</h4>
             <ul className="space-y-2">
-              {FOOTER_COMPANY.map((item, idx) => (
-                <li key={idx}><Link to={item.to} className="text-slate-500 hover:text-teal-400 transition-colors text-sm">{item.label}</Link></li>
+              {t.footer.companyList.map((label, idx) => (
+                <li key={idx}><Link to={COMPANY_LINKS[idx]} className="text-slate-500 hover:text-teal-400 transition-colors text-sm">{label}</Link></li>
               ))}
             </ul>
           </div>
           <div>
-            <h4 className="text-white font-bold text-sm mb-4 tracking-wide">Contact</h4>
+            <h4 className="text-white font-bold text-sm mb-4 tracking-wide">{t.ui.navContact}</h4>
             <ul className="space-y-2 text-slate-500 text-sm">
-              <li><a href={`mailto:${footerContact.email}`} className="hover:text-teal-400 transition-colors">{footerContact.email}</a></li>
-              <li>{footerContact.location}</li>
+              <li><a href={`mailto:${t.footer.contact.email}`} className="hover:text-teal-400 transition-colors">{t.footer.contact.email}</a></li>
+              <li>{t.footer.contact.location}</li>
             </ul>
           </div>
         </div>
         <div className="border-t border-white/6 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-slate-600 text-xs">{footerCopyright}</p>
+          <p className="text-slate-600 text-xs">{t.footer.copyright}</p>
           <div className="flex gap-6">
             <a href="#" className="text-slate-600 hover:text-slate-400 text-xs transition-colors">Privacy Policy</a>
             <a href="#" className="text-slate-600 hover:text-slate-400 text-xs transition-colors">Terms of Service</a>
