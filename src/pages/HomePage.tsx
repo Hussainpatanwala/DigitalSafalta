@@ -5,13 +5,18 @@ import { Services } from '../components/Services';
 import { Results } from '../components/Results';
 import { Testimonial } from '../components/Testimonial';
 import { Pricing } from '../components/Pricing';
+import type { Lang } from '../lib/constants';
+import { getContent } from '../getContent';
 
-export function HomePage() {
+export function HomePage({ lang = 'en' }: { lang?: Lang }) {
+  const t = getContent(lang);
+
   return (
     <>
       <SEO
-        title="Digital Safalta - Digital Marketing Agency in Pune"
-        description="Digital Safalta helps small and growing businesses in Pune build their online presence, run effective ad campaigns, and turn visitors into paying customers. Website design, SEO, Google & Meta Ads."
+        title={t.seo.home.title}
+        description={t.seo.home.description}
+        lang={lang}
       />
       <Hero />
       <Philosophy />
