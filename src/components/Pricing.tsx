@@ -1,18 +1,23 @@
 import { Link } from 'react-router-dom';
 import { Check, Star } from 'lucide-react';
 import { glass, glassHover, tealBtn } from '../lib/constants';
-import { pricingTitle, pricingDescription, pricingPlans } from '../content';
+import type { Lang } from '../lib/constants';
+import { getContent } from '../getContent';
 
-export function Pricing() {
+export function Pricing({ lang = 'en' }: { lang?: Lang }) {
+  const content = getContent(lang);
+  const t = content.pricing;
+  const { mostPopular, getStarted } = content.ui;
+
   return (
     <section id="pricing" className="py-16 lg:py-24" aria-labelledby="pricing-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <h2 id="pricing-heading" className="text-3xl lg:text-4xl font-black tracking-tight mb-4">{pricingTitle}</h2>
-          <p className="text-slate-400 text-base leading-relaxed">{pricingDescription}</p>
+          <h2 id="pricing-heading" className="text-3xl lg:text-4xl font-black tracking-tight mb-4">{t.title}</h2>
+          <p className="text-slate-400 text-base leading-relaxed">{t.description}</p>
         </div>
         <div className="grid lg:grid-cols-3 gap-6 max-w-5xl mx-auto items-start">
-          {pricingPlans.map((plan, idx) => (
+          {t.plans.map((plan, idx) => (
             <article
               key={idx}
               className={`rounded-2xl p-7 relative overflow-hidden transition-all duration-300 flex flex-col ${
@@ -25,7 +30,7 @@ export function Pricing() {
                 <>
                   <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-teal-400/60 to-transparent" aria-hidden="true" />
                   <div className="inline-flex items-center gap-1.5 bg-teal-500/20 border border-teal-500/30 text-teal-300 px-3 py-1 rounded-full text-xs font-bold mb-5">
-                    <Star className="w-3 h-3" aria-hidden="true" /> Most Popular
+                    <Star className="w-3 h-3" aria-hidden="true" /> {mostPopular}
                   </div>
                 </>
               )}
@@ -54,7 +59,7 @@ export function Pricing() {
                   plan.highlighted ? tealBtn : 'border border-white/15 text-white hover:bg-white/8 hover:border-white/25'
                 }`}
               >
-                Get Started
+                {getStarted}
               </Link>
             </article>
           ))}
