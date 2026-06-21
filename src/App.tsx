@@ -98,7 +98,7 @@ function AppShell() {
           <Route path="/blog/google-ads-vs-meta-ads" element={<GoogleAdsVsMetaAds />} />
           <Route path="/blog/google-free-ad-credit" element={<GoogleFreeAdCredit />} />
           <Route path="/blog/what-is-a-website" element={<WhatIsAWebsite />} />
-          <Route path="/services/website-design" element={<WebsiteDesignPage />} />
+          <Route path="/services/website-design" element={<WebsiteDesignPage lang={activeLang} />} />
           <Route path="/services/google-ads" element={<GoogleAdsPage />} />
           <Route path="/services/meta-ads" element={<MetaAdsPage />} />
           <Route path="/services/seo" element={<SEOPage />} />
