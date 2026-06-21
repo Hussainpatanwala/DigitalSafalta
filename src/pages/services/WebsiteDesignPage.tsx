@@ -1,73 +1,130 @@
 import { ServicePage } from '../../components/ServicePage';
+import type { Lang } from '../../lib/constants';
 
-export function WebsiteDesignPage() {
-  return (
-    <ServicePage
-      title="Professional Website Design in Pune"
-      metaTitle="Professional Website Design in Pune | Digital Safalta"
-      metaDescription="Get a fast, mobile-friendly, professionally designed website for your Pune business. Live in 7 working days. Includes custom email, SSL, Google Analytics, and leads database. Starting ₹15,000."
-      category="Website Design"
-      heroHeadline="Professional Website Design in Pune"
-      heroSubheading="Your website is your most important salesperson — it works 24/7, never takes a day off, and is often the first impression a customer gets of your business. We build fast, mobile-friendly websites that actually convert visitors into enquiries."
-      whatItIs="Website design is the process of planning, creating, and launching a professional online presence for your business. A good website is more than pretty — it loads fast, works perfectly on mobile, and is built to appear on Google."
-      whyItMatters="Over 70% of people search online before making a purchase or visiting a business. If you don't have a professional website — or if yours is slow, outdated, or hard to navigate — you're handing customers to your competitors every single day."
-      includes={[
-        "Up to 5 pages (Home, About, Services, Contact + 1 more)",
-        "Mobile-responsive design",
-        "Contact form connected to your email",
-        "Professional custom email (hello@yourbusiness.in)",
-        "Google Business Profile setup + Google Maps integration",
-        "SSL certificate (HTTPS) — free forever",
-        "Basic SEO setup (meta titles, descriptions, schema)",
-        "Google Analytics connected",
-        "Leads database — every enquiry stored with date & details",
-        "Live in 7 working days",
-        "Speed-optimised for Core Web Vitals",
-        "1 round of revisions included",
-      ]}
-      benefits={[
-        {
-          title: "Live in 7 Working Days",
-          description: "We don't drag projects out for months. Your business needs an online presence now, and we deliver it in 7 working days — without cutting corners on quality.",
-        },
-        {
-          title: "Built to Be Found on Google",
-          description: "Every website we build includes basic on-page SEO — proper meta tags, fast load times, mobile optimisation, and Google Search Console setup so Google knows you exist.",
-        },
-        {
-          title: "Captures Every Lead",
-          description: "Enquiries from your contact form are stored in a leads database — not just emailed to you where they can get lost. You'll always have a record of every potential customer who reached out.",
-        },
-        {
-          title: "Honest, Transparent Pricing",
-          description: "₹15,000 one-time. No hidden hosting charges sprung on you later. After the first year, renewal costs are minimal and always discussed upfront.",
-        },
-      ]}
-      faqs={[
-        {
-          question: "Is ₹15,000 really all-inclusive or are there hidden costs?",
-          answer: "The ₹15,000 covers everything listed — design, development, custom email, SSL, Google Analytics, leads database, and Google Maps setup. After the first year, hosting and maintenance is minimal and always discussed before renewal. No surprises.",
-        },
-        {
-          question: "What if I need more than 5 pages?",
-          answer: "5 pages covers most small businesses. If you need more — an e-commerce store, a booking system, or a larger brochure site — we'll give you a custom quote based on what you actually need.",
-        },
-        {
-          question: "Do I need to provide content or will you write it?",
-          answer: "We can work with content you provide, or help you structure what to say. Copywriting can be included as an add-on — just let us know on the discovery call.",
-        },
-        {
-          question: "Will the website work well on mobile?",
-          answer: "Absolutely — mobile-first design is non-negotiable. Over 60% of web traffic in India is from mobile. Every website we build is tested on multiple screen sizes.",
-        },
-        {
-          question: "What happens if I want to make changes later?",
-          answer: "Small changes (text, images, adding a page) are easy to arrange. Larger redesigns are priced separately. We'll always give you a clear quote before doing any work.",
-        },
-      ]}
-      ctaHeadline="Ready to get a website your business deserves?"
-      price="₹15,000"
-      priceNote="One-time fee. Live in 7 working days."
-    />
-  );
+const COPY = {
+  en: {
+    title: "Professional Website Design in Pune",
+    metaTitle: "Professional Website Design in Pune | Digital Safalta",
+    metaDescription: "Get a fast, mobile-friendly, professionally designed website for your Pune business. Live in 7 working days. Includes custom email, SSL, Google Analytics, and leads database. Starting ₹15,000.",
+    category: "Website Design",
+    heroHeadline: "Professional Website Design in Pune",
+    heroSubheading: "Your website is your most important salesperson — it works 24/7, never takes a day off, and is often the first impression a customer gets of your business. We build fast, mobile-friendly websites that actually convert visitors into enquiries.",
+    whatItIs: "Website design is the process of planning, creating, and launching a professional online presence for your business. A good website is more than pretty — it loads fast, works perfectly on mobile, and is built to appear on Google.",
+    whyItMatters: "Over 70% of people search online before making a purchase or visiting a business. If you don't have a professional website — or if yours is slow, outdated, or hard to navigate — you're handing customers to your competitors every single day.",
+    includes: [
+      "Up to 5 pages (Home, About, Services, Contact + 1 more)",
+      "Mobile-responsive design",
+      "Contact form connected to your email",
+      "Professional custom email (hello@yourbusiness.in)",
+      "Google Business Profile setup + Google Maps integration",
+      "SSL certificate (HTTPS) — free forever",
+      "Basic SEO setup (meta titles, descriptions, schema)",
+      "Google Analytics connected",
+      "Leads database — every enquiry stored with date & details",
+      "Live in 7 working days",
+      "Speed-optimised for Core Web Vitals",
+      "1 round of revisions included",
+    ],
+    benefits: [
+      { title: "Live in 7 Working Days", description: "We don't drag projects out for months. Your business needs an online presence now, and we deliver it in 7 working days — without cutting corners on quality." },
+      { title: "Built to Be Found on Google", description: "Every website we build includes basic on-page SEO — proper meta tags, fast load times, mobile optimisation, and Google Search Console setup so Google knows you exist." },
+      { title: "Captures Every Lead", description: "Enquiries from your contact form are stored in a leads database — not just emailed to you where they can get lost. You'll always have a record of every potential customer who reached out." },
+      { title: "Honest, Transparent Pricing", description: "₹15,000 one-time. No hidden hosting charges sprung on you later. After the first year, renewal costs are minimal and always discussed upfront." },
+    ],
+    faqs: [
+      { question: "Is ₹15,000 really all-inclusive or are there hidden costs?", answer: "The ₹15,000 covers everything listed — design, development, custom email, SSL, Google Analytics, leads database, and Google Maps setup. After the first year, hosting and maintenance is minimal and always discussed before renewal. No surprises." },
+      { question: "What if I need more than 5 pages?", answer: "5 pages covers most small businesses. If you need more — an e-commerce store, a booking system, or a larger brochure site — we'll give you a custom quote based on what you actually need." },
+      { question: "Do I need to provide content or will you write it?", answer: "We can work with content you provide, or help you structure what to say. Copywriting can be included as an add-on — just let us know on the discovery call." },
+      { question: "Will the website work well on mobile?", answer: "Absolutely — mobile-first design is non-negotiable. Over 60% of web traffic in India is from mobile. Every website we build is tested on multiple screen sizes." },
+      { question: "What happens if I want to make changes later?", answer: "Small changes (text, images, adding a page) are easy to arrange. Larger redesigns are priced separately. We'll always give you a clear quote before doing any work." },
+    ],
+    ctaHeadline: "Ready to get a website your business deserves?",
+    price: "₹15,000",
+    priceNote: "One-time fee. Live in 7 working days.",
+  },
+  hi: {
+    title: "पुणे में प्रोफेशनल वेबसाइट डिज़ाइन",
+    metaTitle: "पुणे में प्रोफेशनल वेबसाइट डिज़ाइन | Digital Safalta",
+    metaDescription: "अपने पुणे बिज़नेस के लिए तेज़, mobile-friendly, professionally designed वेबसाइट पाएं। 7 working days में लाइव। Custom email, SSL, Google Analytics, और leads database शामिल। ₹15,000 से शुरू।",
+    category: "वेबसाइट डिज़ाइन",
+    heroHeadline: "पुणे में प्रोफेशनल वेबसाइट डिज़ाइन",
+    heroSubheading: "आपकी वेबसाइट आपका सबसे महत्वपूर्ण salesperson है — यह 24/7 काम करती है, कभी छुट्टी नहीं लेती, और अक्सर आपके बिज़नेस की पहली छाप होती है जो customer को मिलती है। हम तेज़, mobile-friendly वेबसाइटें बनाते हैं जो वाकई visitors को enquiries में बदलती हैं।",
+    whatItIs: "वेबसाइट डिज़ाइन आपके बिज़नेस के लिए एक professional ऑनलाइन उपस्थिति को plan, create, और launch करने की प्रक्रिया है। एक अच्छी वेबसाइट सिर्फ खूबसूरत नहीं होती — यह तेज़ी से load होती है, mobile पर पूरी तरह काम करती है, और Google पर दिखने के लिए बनाई जाती है।",
+    whyItMatters: "70% से ज़्यादा लोग खरीदारी करने या किसी बिज़नेस से मिलने से पहले ऑनलाइन सर्च करते हैं। अगर आपके पास professional वेबसाइट नहीं है — या आपकी वेबसाइट slow, outdated, या navigate करना मुश्किल है — तो आप हर दिन customers को अपने competitors को सौंप रहे हैं।",
+    includes: [
+      "5 पेज तक (Home, About, Services, Contact + 1 और)",
+      "Mobile-responsive डिज़ाइन",
+      "आपके email से जुड़ा contact form",
+      "Professional custom email (hello@yourbusiness.in)",
+      "Google Business Profile सेटअप + Google Maps integration",
+      "SSL certificate (HTTPS) — हमेशा के लिए मुफ़्त",
+      "बेसिक SEO सेटअप (meta titles, descriptions, schema)",
+      "Google Analytics जुड़ा हुआ",
+      "Leads database — हर enquiry date व details के साथ stored",
+      "7 working days में लाइव",
+      "Core Web Vitals के लिए speed-optimised",
+      "1 round revisions शामिल",
+    ],
+    benefits: [
+      { title: "7 Working Days में लाइव", description: "हम projects को महीनों तक नहीं खींचते। आपके बिज़नेस को अभी ऑनलाइन उपस्थिति चाहिए, और हम इसे 7 working days में deliver करते हैं — quality में कोई कटौती किए बिना।" },
+      { title: "Google पर मिलने के लिए बनाया गया", description: "हमारी हर वेबसाइट में basic on-page SEO शामिल है — सही meta tags, तेज़ load times, mobile optimisation, और Google Search Console सेटअप ताकि Google को आपके बारे में पता चले।" },
+      { title: "हर Lead को capture करता है", description: "आपके contact form से enquiries एक leads database में stored होती हैं — सिर्फ आपको email नहीं की जातीं जहां वे खो सकती हैं। आपके पास हमेशा हर संभावित customer का record रहेगा।" },
+      { title: "ईमानदार, पारदर्शी मूल्य निर्धारण", description: "₹15,000 one-time। बाद में कोई छिपा hosting charge नहीं। पहले साल के बाद, renewal costs कम होती हैं और हमेशा पहले से चर्चा की जाती है।" },
+    ],
+    faqs: [
+      { question: "क्या ₹15,000 वाकई all-inclusive है या कोई छिपी costs हैं?", answer: "₹15,000 में सब कुछ शामिल है — design, development, custom email, SSL, Google Analytics, leads database, और Google Maps सेटअप। पहले साल के बाद, hosting और maintenance कम होती है और renewal से पहले हमेशा चर्चा की जाती है। कोई surprises नहीं।" },
+      { question: "अगर मुझे 5 पेज से ज़्यादा चाहिए तो?", answer: "5 पेज ज़्यादातर छोटे बिज़नेस के लिए काफ़ी हैं। अगर आपको ज़्यादा चाहिए — एक e-commerce store, booking system, या बड़ी brochure site — हम आपकी ज़रूरत के अनुसार custom quote देंगे।" },
+      { question: "क्या मुझे content देना होगा या आप लिखेंगे?", answer: "हम आपके दिए हुए content के साथ काम कर सकते हैं, या आपको structure करने में मदद कर सकते हैं। Copywriting को add-on के रूप में शामिल किया जा सकता है — बस discovery call पर बता दें।" },
+      { question: "क्या वेबसाइट mobile पर अच्छी तरह काम करेगी?", answer: "बिल्कुल — mobile-first डिज़ाइन गैर-समझौता योग्य है। भारत में 60% से ज़्यादा web traffic mobile से आता है। हमारी हर वेबसाइट कई screen sizes पर test की जाती है।" },
+      { question: "अगर मुझे बाद में बदलाव करने हों तो क्या होगा?", answer: "छोटे बदलाव (text, images, पेज जोड़ना) आसानी से किए जा सकते हैं। बड़े redesigns अलग से price किए जाते हैं। कोई भी काम करने से पहले हम हमेशा clear quote देंगे।" },
+    ],
+    ctaHeadline: "अपने बिज़नेस के लायक वेबसाइट पाने के लिए तैयार हैं?",
+    price: "₹15,000",
+    priceNote: "One-time फीस। 7 working days में लाइव।",
+  },
+  mr: {
+    title: "पुण्यात प्रोफेशनल वेबसाइट डिझाइन",
+    metaTitle: "पुण्यात प्रोफेशनल वेबसाइट डिझाइन | Digital Safalta",
+    metaDescription: "तुमच्या पुणे व्यवसायासाठी जलद, mobile-friendly, professionally designed वेबसाइट मिळवा. 7 working days मध्ये लाइव्ह. Custom email, SSL, Google Analytics आणि leads database समाविष्ट. ₹15,000 पासून सुरू.",
+    category: "वेबसाइट डिझाइन",
+    heroHeadline: "पुण्यात प्रोफेशनल वेबसाइट डिझाइन",
+    heroSubheading: "तुमची वेबसाइट तुमची सर्वात महत्त्वाची salesperson आहे — ती 24/7 काम करते, कधीही सुट्टी घेत नाही, आणि अनेकदा तुमच्या व्यवसायाची पहिली छाप असते जी customer ला मिळते. आम्ही जलद, mobile-friendly वेबसाइट्स तयार करतो ज्या खरोखर visitors ला enquiries मध्ये बदलतात.",
+    whatItIs: "वेबसाइट डिझाइन ही तुमच्या व्यवसायासाठी professional ऑनलाइन उपस्थिती plan, create आणि launch करण्याची प्रक्रिया आहे. एक चांगली वेबसाइट फक्त सुंदर नसते — ती जलद load होते, mobile वर उत्तम काम करते आणि Google वर दिसण्यासाठी तयार केली जाते.",
+    whyItMatters: "70% पेक्षा जास्त लोक खरेदी करण्यापूर्वी किंवा एखाद्या व्यवसायाला भेट देण्यापूर्वी ऑनलाइन शोध घेतात. जर तुमच्याकडे professional वेबसाइट नसेल — किंवा तुमची वेबसाइट संथ, जुनी किंवा navigate करायला कठीण असेल — तर तुम्ही दररोज customers तुमच्या competitors ला देत आहात.",
+    includes: [
+      "5 पानांपर्यंत (Home, About, Services, Contact + आणखी 1)",
+      "Mobile-responsive डिझाइन",
+      "तुमच्या email शी जोडलेला contact form",
+      "Professional custom email (hello@yourbusiness.in)",
+      "Google Business Profile सेटअप + Google Maps integration",
+      "SSL certificate (HTTPS) — कायमचे मोफत",
+      "बेसिक SEO सेटअप (meta titles, descriptions, schema)",
+      "Google Analytics जोडलेले",
+      "Leads database — प्रत्येक enquiry तारीख व तपशीलांसह साठवली जाते",
+      "7 working days मध्ये लाइव्ह",
+      "Core Web Vitals साठी speed-optimised",
+      "1 फेरी revisions समाविष्ट",
+    ],
+    benefits: [
+      { title: "7 Working Days मध्ये लाइव्ह", description: "आम्ही projects महिने लांबवत नाही. तुमच्या व्यवसायाला आत्ता ऑनलाइन उपस्थिती हवी आहे, आणि आम्ही ती 7 working days मध्ये deliver करतो — quality मध्ये कोणतीही तडजोड न करता." },
+      { title: "Google वर सापडण्यासाठी तयार", description: "आम्ही तयार करत असलेल्या प्रत्येक वेबसाइटमध्ये basic on-page SEO समाविष्ट आहे — योग्य meta tags, जलद load times, mobile optimisation आणि Google Search Console सेटअप जेणेकरून Google ला तुमच्याबद्दल माहीत असेल." },
+      { title: "प्रत्येक Lead capture करते", description: "तुमच्या contact form मधील enquiries leads database मध्ये साठवल्या जातात — फक्त तुम्हाला email केल्या जात नाहीत जिथे त्या हरवू शकतात. तुमच्याकडे संपर्क साधलेल्या प्रत्येक संभाव्य customer चा record नेहमी असेल." },
+      { title: "प्रामाणिक, पारदर्शी किंमत", description: "₹15,000 one-time. नंतर कोणतेही लपलेले hosting charges नाहीत. पहिल्या वर्षानंतर, renewal खर्च किमान असतात आणि नेहमी आधी चर्चा केली जाते." },
+    ],
+    faqs: [
+      { question: "₹15,000 खरंच all-inclusive आहे की काही लपलेले खर्च आहेत?", answer: "₹15,000 मध्ये यादीतील सर्वकाही समाविष्ट आहे — design, development, custom email, SSL, Google Analytics, leads database आणि Google Maps सेटअप. पहिल्या वर्षानंतर, hosting आणि maintenance किमान असते आणि renewal आधी नेहमी चर्चा केली जाते. कोणतेही surprises नाहीत." },
+      { question: "मला 5 पानांपेक्षा जास्त हवे असल्यास?", answer: "5 पाने बहुतेक लहान व्यवसायांसाठी पुरेशी असतात. तुम्हाला जास्त हवे असल्यास — e-commerce store, booking system किंवा मोठी brochure site — आम्ही तुमच्या गरजेनुसार custom quote देऊ." },
+      { question: "मला content द्यावे लागेल की तुम्ही लिहाल?", answer: "आम्ही तुम्ही दिलेल्या content सोबत काम करू शकतो, किंवा काय बोलायचे ते structure करण्यात मदत करू शकतो. Copywriting add-on म्हणून समाविष्ट केले जाऊ शकते — फक्त discovery call वर सांगा." },
+      { question: "वेबसाइट mobile वर व्यवस्थित काम करेल का?", answer: "नक्कीच — mobile-first डिझाइन गैर-निगोशिएबल आहे. भारतातील 60% पेक्षा जास्त web traffic mobile वरून येतो. आम्ही तयार करत असलेली प्रत्येक वेबसाइट अनेक screen sizes वर test केली जाते." },
+      { question: "मला नंतर बदल करायचे असल्यास काय होते?", answer: "लहान बदल (text, images, पान जोडणे) सहज करता येतात. मोठे redesigns वेगळे price केले जातात. कोणतेही काम करण्यापूर्वी आम्ही नेहमी स्पष्ट quote देऊ." },
+    ],
+    ctaHeadline: "तुमच्या व्यवसायाला साजेशी वेबसाइट मिळवण्यासाठी तयार आहात?",
+    price: "₹15,000",
+    priceNote: "One-time फी. 7 working days मध्ये लाइव्ह.",
+  },
+};
+
+export function WebsiteDesignPage({ lang = 'en' }: { lang?: Lang }) {
+  const c = COPY[lang];
+  return <ServicePage lang={lang} {...c} />;
 }
