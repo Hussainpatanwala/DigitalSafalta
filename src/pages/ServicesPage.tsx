@@ -2,18 +2,18 @@ import { SEO } from '../components/SEO';
 import { Services } from '../components/Services';
 import { Process } from '../components/Process';
 import { Results } from '../components/Results';
+import type { Lang } from '../lib/constants';
+import { getContent } from '../getContent';
 
-export function ServicesPage() {
+export function ServicesPage({ lang = 'en' }: { lang?: Lang }) {
+  const t = getContent(lang).seo.services;
   return (
     <>
-      <SEO
-        title="Our Services - Website Design, SEO & Ads | Digital Safalta"
-        description="Explore Digital Safalta's digital marketing services for Pune businesses: website design, Google & Meta ads, SEO, social media management, landing pages, branding and more."
-      />
+      <SEO title={t.title} description={t.description} lang={lang} />
       <div className="pt-28 lg:pt-36">
-        <Services />
-        <Process />
-        <Results />
+        <Services lang={lang} />
+        <Process lang={lang} />
+        <Results lang={lang} />
       </div>
     </>
   );
