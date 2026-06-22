@@ -1,71 +1,121 @@
 import { ServicePage } from '../../components/ServicePage';
+import type { Lang } from '../../lib/constants';
 
-export function SocialMediaPage() {
-  return (
-    <ServicePage
-      title="Social Media Management in Pune"
-      metaTitle="Social Media Management in Pune | Digital Safalta"
-      metaDescription="Professional social media management for Pune businesses. Consistent, engaging content on Instagram, Facebook, and LinkedIn that builds your brand and keeps your audience coming back. Included in Growth plan."
-      category="Social Media"
-      heroHeadline="Social Media Management in Pune"
-      heroSubheading="Consistent social media presence builds trust, keeps your business top-of-mind, and turns followers into customers over time. But most business owners don't have time to post regularly — or don't know what to post. We handle it for you."
-      whatItIs="Social media management is the ongoing process of creating, scheduling, and posting content on your business's social media accounts — Instagram, Facebook, LinkedIn, and others. It includes strategy, content creation, caption writing, and engagement."
-      whyItMatters="Your social media profile is often the first place potential customers look after hearing about your business. An active, professional-looking feed builds credibility. A dormant one raises doubt. Consistency is the difference."
-      includes={[
-        "Up to 20 posts per month (reels, carousels, static posts)",
-        "Content calendar planned in advance",
-        "Graphic design for each post",
-        "Caption writing with relevant hashtags",
-        "Platform management (Instagram, Facebook, LinkedIn)",
-        "Story content",
-        "Monthly strategy review",
-        "Content aligned to your brand colours and tone",
-        "Competitor benchmarking",
-        "Basic community management (comments, DMs)",
-      ]}
-      benefits={[
-        {
-          title: "Never Go Dark Again",
-          description: "The biggest mistake businesses make on social media is inconsistency. We post regularly on your behalf so your profile always looks active and professional.",
-        },
-        {
-          title: "Content That Reflects Your Brand",
-          description: "Everything we post is aligned with your brand identity — colours, tone of voice, and the story you want to tell. You'll be presented professionally every time.",
-        },
-        {
-          title: "Frees Up Your Time",
-          description: "You run the business. We handle the content. No more stressing about what to post, scrambling for ideas, or feeling guilty about the last time you posted.",
-        },
-        {
-          title: "Long-term Trust Building",
-          description: "Social media is a marathon, not a sprint. Regular, valuable content builds a loyal audience that's more likely to choose you over an unfamiliar competitor.",
-        },
-      ]}
-      faqs={[
-        {
-          question: "Which platforms do you manage?",
-          answer: "We primarily manage Instagram and Facebook. LinkedIn is available as an add-on. We'll recommend the right platforms based on where your target customers actually spend time.",
-        },
-        {
-          question: "Do I need to provide photos or content?",
-          answer: "We can work with photos you provide, stock imagery, or help you plan a content shoot. For businesses in food, hospitality, or retail, original photography makes a big difference — we'll advise on this.",
-        },
-        {
-          question: "Will you respond to comments and messages too?",
-          answer: "Basic community management (replying to comments, flagging important DMs) is included. For high-volume accounts that need full-time community management, that's a separate conversation.",
-        },
-        {
-          question: "How do I know what's going to be posted?",
-          answer: "We prepare a content calendar every month for your review before anything is published. You'll always know what's going up and can request changes.",
-        },
-        {
-          question: "Can social media alone bring me new customers?",
-          answer: "Organic social media builds brand awareness and trust — it works best alongside paid ads. Social media management alone rarely generates a flood of leads overnight, but it creates the credibility that makes your ads convert better and turns enquiries into sales.",
-        },
-      ]}
-      ctaHeadline="Let's build a social media presence worth following."
-      price="Included in Growth plan"
-      priceNote="₹35,000/month with Ads + SEO + Social Media. Or ask about standalone social media packages."
-    />
-  );
+const COPY = {
+  en: {
+    metaTitle: "Social Media Management in Pune | Digital Safalta",
+    metaDescription: "Professional social media management for Pune businesses. Consistent, engaging content on Instagram, Facebook, and LinkedIn that builds your brand and keeps your audience coming back. Included in Growth plan.",
+    category: "Social Media",
+    heroHeadline: "Social Media Management in Pune",
+    heroSubheading: "Consistent social media presence builds trust, keeps your business top-of-mind, and turns followers into customers over time. But most business owners don't have time to post regularly — or don't know what to post. We handle it for you.",
+    whatItIs: "Social media management is the ongoing process of creating, scheduling, and posting content on your business's social media accounts — Instagram, Facebook, LinkedIn, and others. It includes strategy, content creation, caption writing, and engagement.",
+    whyItMatters: "Your social media profile is often the first place potential customers look after hearing about your business. An active, professional-looking feed builds credibility. A dormant one raises doubt. Consistency is the difference.",
+    includes: [
+      "Up to 20 posts per month (reels, carousels, static posts)",
+      "Content calendar planned in advance",
+      "Graphic design for each post",
+      "Caption writing with relevant hashtags",
+      "Platform management (Instagram, Facebook, LinkedIn)",
+      "Story content",
+      "Monthly strategy review",
+      "Content aligned to your brand colours and tone",
+      "Competitor benchmarking",
+      "Basic community management (comments, DMs)",
+    ],
+    benefits: [
+      { title: "Never Go Dark Again", description: "The biggest mistake businesses make on social media is inconsistency. We post regularly on your behalf so your profile always looks active and professional." },
+      { title: "Content That Reflects Your Brand", description: "Everything we post is aligned with your brand identity — colours, tone of voice, and the story you want to tell. You'll be presented professionally every time." },
+      { title: "Frees Up Your Time", description: "You run the business. We handle the content. No more stressing about what to post, scrambling for ideas, or feeling guilty about the last time you posted." },
+      { title: "Long-term Trust Building", description: "Social media is a marathon, not a sprint. Regular, valuable content builds a loyal audience that's more likely to choose you over an unfamiliar competitor." },
+    ],
+    faqs: [
+      { question: "Which platforms do you manage?", answer: "We primarily manage Instagram and Facebook. LinkedIn is available as an add-on. We'll recommend the right platforms based on where your target customers actually spend time." },
+      { question: "Do I need to provide photos or content?", answer: "We can work with photos you provide, stock imagery, or help you plan a content shoot. For businesses in food, hospitality, or retail, original photography makes a big difference — we'll advise on this." },
+      { question: "Will you respond to comments and messages too?", answer: "Basic community management (replying to comments, flagging important DMs) is included. For high-volume accounts that need full-time community management, that's a separate conversation." },
+      { question: "How do I know what's going to be posted?", answer: "We prepare a content calendar every month for your review before anything is published. You'll always know what's going up and can request changes." },
+      { question: "Can social media alone bring me new customers?", answer: "Organic social media builds brand awareness and trust — it works best alongside paid ads. Social media management alone rarely generates a flood of leads overnight, but it creates the credibility that makes your ads convert better and turns enquiries into sales." },
+    ],
+    ctaHeadline: "Let's build a social media presence worth following.",
+    price: "Included in Growth plan",
+    priceNote: "₹35,000/month with Ads + SEO + Social Media. Or ask about standalone social media packages.",
+  },
+  hi: {
+    metaTitle: "पुणे में सोशल मीडिया मैनेजमेंट | Digital Safalta",
+    metaDescription: "पुणे के बिज़नेस के लिए professional सोशल मीडिया मैनेजमेंट। Instagram, Facebook, और LinkedIn पर लगातार, आकर्षक content जो आपके brand को बनाता है और audience को वापस लाता है। Growth प्लान में शामिल।",
+    category: "सोशल मीडिया",
+    heroHeadline: "पुणे में सोशल मीडिया मैनेजमेंट",
+    heroSubheading: "लगातार सोशल मीडिया उपस्थिति भरोसा बनाती है, आपके बिज़नेस को top-of-mind रखती है, और समय के साथ followers को customers में बदलती है। लेकिन ज़्यादातर बिज़नेस owners के पास नियमित रूप से post करने का समय नहीं है — या उन्हें नहीं पता क्या post करें। हम इसे आपके लिए संभालते हैं।",
+    whatItIs: "सोशल मीडिया मैनेजमेंट आपके बिज़नेस के सोशल मीडिया accounts — Instagram, Facebook, LinkedIn, और अन्य — पर content बनाने, schedule करने, और post करने की एक ongoing प्रक्रिया है। इसमें रणनीति, content निर्माण, caption लेखन, और engagement शामिल है।",
+    whyItMatters: "आपकी सोशल मीडिया profile अक्सर वह पहली जगह होती है जहां potential customers आपके बिज़नेस के बारे में सुनने के बाद देखते हैं। एक active, professional दिखने वाला feed credibility बनाता है। एक dormant feed संदेह पैदा करता है। निरंतरता ही फ़र्क़ है।",
+    includes: [
+      "20 posts प्रति महीना तक (reels, carousels, static posts)",
+      "पहले से planned content calendar",
+      "हर post के लिए graphic design",
+      "relevant hashtags के साथ caption लेखन",
+      "Platform मैनेजमेंट (Instagram, Facebook, LinkedIn)",
+      "Story content",
+      "मासिक रणनीति समीक्षा",
+      "आपके brand colours और tone के अनुसार content",
+      "Competitor benchmarking",
+      "बेसिक community मैनेजमेंट (comments, DMs)",
+    ],
+    benefits: [
+      { title: "फिर कभी Dark न जाएं", description: "सोशल मीडिया पर बिज़नेस की सबसे बड़ी गलती असंगति है। हम आपकी ओर से नियमित रूप से post करते हैं ताकि आपकी profile हमेशा active और professional दिखे।" },
+      { title: "Content जो आपके Brand को दर्शाता है", description: "हम जो भी post करते हैं वह आपकी brand identity — colours, tone of voice, और जो story आप बताना चाहते हैं — के अनुरूप होता है। आप हर बार professionally प्रस्तुत होंगे।" },
+      { title: "आपका समय बचाता है", description: "आप बिज़नेस चलाते हैं। हम content संभालते हैं। अब क्या post करें इसकी चिंता नहीं, ideas के लिए scramble नहीं, या आखिरी बार कब post किया था इसके लिए guilty महसूस नहीं करना।" },
+      { title: "Long-term Trust Building", description: "सोशल मीडिया एक marathon है, sprint नहीं। नियमित, valuable content एक loyal audience बनाता है जो आपको किसी अनजान competitor की तुलना में चुनने की ज़्यादा संभावना रखता है।" },
+    ],
+    faqs: [
+      { question: "आप कौन से platforms मैनेज करते हैं?", answer: "हम मुख्य रूप से Instagram और Facebook मैनेज करते हैं। LinkedIn add-on के रूप में उपलब्ध है। हम आपके target customers जहां वाकई समय बिताते हैं उसके आधार पर सही platforms सुझाएंगे।" },
+      { question: "क्या मुझे photos या content देना होगा?", answer: "हम आपके दिए हुए photos, stock imagery के साथ काम कर सकते हैं, या आपको content shoot plan करने में मदद कर सकते हैं। Food, hospitality, या retail बिज़नेस के लिए, original photography बड़ा फ़र्क़ डालती है — हम इस पर सलाह देंगे।" },
+      { question: "क्या आप comments और messages का जवाब भी देंगे?", answer: "बेसिक community मैनेजमेंट (comments का जवाब देना, important DMs को flag करना) शामिल है। High-volume accounts के लिए जिन्हें full-time community मैनेजमेंट चाहिए, वह एक अलग बातचीत है।" },
+      { question: "मुझे कैसे पता चलेगा कि क्या post होने वाला है?", answer: "हम हर महीने आपकी समीक्षा के लिए एक content calendar तैयार करते हैं इससे पहले कि कुछ publish हो। आपको हमेशा पता रहेगा कि क्या जा रहा है और आप बदलाव का अनुरोध कर सकते हैं।" },
+      { question: "क्या अकेले सोशल मीडिया मुझे नए customers ला सकता है?", answer: "Organic सोशल मीडिया brand awareness और trust बनाता है — यह paid ads के साथ सबसे अच्छा काम करता है। अकेले सोशल मीडिया मैनेजमेंट शायद ही रातोंरात leads की बाढ़ generate करता है, लेकिन यह वह credibility बनाता है जो आपके ads को बेहतर convert कराती है और enquiries को sales में बदलती है।" },
+    ],
+    ctaHeadline: "चलिए एक सोशल मीडिया उपस्थिति बनाते हैं जो follow करने लायक हो।",
+    price: "Growth प्लान में शामिल",
+    priceNote: "Ads + SEO + सोशल मीडिया के साथ ₹35,000/महीना। या standalone सोशल मीडिया पैकेज के बारे में पूछें।",
+  },
+  mr: {
+    metaTitle: "पुण्यात सोशल मीडिया व्यवस्थापन | Digital Safalta",
+    metaDescription: "पुण्यातील व्यवसायांसाठी professional सोशल मीडिया व्यवस्थापन. Instagram, Facebook आणि LinkedIn वर सातत्यपूर्ण, आकर्षक content जे तुमचा brand तयार करते आणि audience ला परत आणते. Growth प्लॅनमध्ये समाविष्ट.",
+    category: "सोशल मीडिया",
+    heroHeadline: "पुण्यात सोशल मीडिया व्यवस्थापन",
+    heroSubheading: "सातत्यपूर्ण सोशल मीडिया उपस्थिती विश्वास निर्माण करते, तुमचा व्यवसाय top-of-mind ठेवते आणि कालांतराने followers ला customers मध्ये बदलते. पण बहुतेक व्यवसाय मालकांकडे नियमितपणे post करायला वेळ नसतो — किंवा त्यांना काय post करावे हे माहीत नसते. आम्ही ते तुमच्यासाठी हाताळतो.",
+    whatItIs: "सोशल मीडिया व्यवस्थापन ही तुमच्या व्यवसायाच्या सोशल मीडिया accounts — Instagram, Facebook, LinkedIn आणि इतर — वर content तयार करणे, schedule करणे आणि post करण्याची सतत चालणारी प्रक्रिया आहे. यामध्ये रणनीती, content निर्मिती, caption लेखन आणि engagement समाविष्ट आहे.",
+    whyItMatters: "तुमची सोशल मीडिया profile अनेकदा ती पहिली जागा असते जिथे संभाव्य customers तुमच्या व्यवसायाबद्दल ऐकल्यानंतर पाहतात. एक active, professional दिसणारा feed विश्वासार्हता निर्माण करतो. एक निष्क्रिय feed शंका निर्माण करतो. सातत्य हाच फरक आहे.",
+    includes: [
+      "20 posts प्रति महिना पर्यंत (reels, carousels, static posts)",
+      "आधीच planned content calendar",
+      "प्रत्येक post साठी graphic design",
+      "relevant hashtags सह caption लेखन",
+      "Platform व्यवस्थापन (Instagram, Facebook, LinkedIn)",
+      "Story content",
+      "मासिक रणनीती आढावा",
+      "तुमच्या brand colours आणि tone नुसार content",
+      "Competitor benchmarking",
+      "बेसिक community व्यवस्थापन (comments, DMs)",
+    ],
+    benefits: [
+      { title: "पुन्हा कधीही Dark जाऊ नका", description: "सोशल मीडियावर व्यवसायांची सर्वात मोठी चूक म्हणजे विसंगती. आम्ही तुमच्या वतीने नियमितपणे post करतो जेणेकरून तुमची profile नेहमी active आणि professional दिसेल." },
+      { title: "तुमचा Brand प्रतिबिंबित करणारे Content", description: "आम्ही जे काही post करतो ते तुमच्या brand identity — colours, tone of voice आणि तुम्हाला सांगायची असलेली story — यांच्याशी सुसंगत असते. तुम्ही प्रत्येक वेळी professionally सादर व्हाल." },
+      { title: "तुमचा वेळ मोकळा करते", description: "तुम्ही व्यवसाय चालवता. आम्ही content हाताळतो. आता काय post करावे याची चिंता नाही, ideas साठी धडपड नाही, किंवा शेवटचे कधी post केले याबद्दल अपराधी वाटणे नाही." },
+      { title: "दीर्घकालीन Trust Building", description: "सोशल मीडिया एक marathon आहे, sprint नाही. नियमित, मौल्यवान content एक loyal audience तयार करते जे तुम्हाला अनोळखी competitor पेक्षा निवडण्याची जास्त शक्यता असते." },
+    ],
+    faqs: [
+      { question: "तुम्ही कोणते platforms व्यवस्थापित करता?", answer: "आम्ही प्रामुख्याने Instagram आणि Facebook व्यवस्थापित करतो. LinkedIn add-on म्हणून उपलब्ध आहे. तुमचे target customers खरोखर कुठे वेळ घालवतात यावर आधारित आम्ही योग्य platforms सुचवू." },
+      { question: "मला photos किंवा content द्यावे लागेल का?", answer: "आम्ही तुम्ही दिलेल्या photos, stock imagery सोबत काम करू शकतो, किंवा तुम्हाला content shoot plan करण्यात मदत करू शकतो. Food, hospitality किंवा retail व्यवसायांसाठी, original photography मोठा फरक करते — आम्ही यावर सल्ला देऊ." },
+      { question: "तुम्ही comments आणि messages ला उत्तर देखील द्याल का?", answer: "बेसिक community व्यवस्थापन (comments ला उत्तर देणे, महत्त्वाचे DMs flag करणे) समाविष्ट आहे. Full-time community व्यवस्थापन हवे असलेल्या high-volume accounts साठी, ती वेगळी चर्चा आहे." },
+      { question: "काय post होणार आहे हे मला कसे कळेल?", answer: "काहीही publish होण्यापूर्वी आम्ही दर महिन्याला तुमच्या आढाव्यासाठी content calendar तयार करतो. काय जात आहे हे तुम्हाला नेहमी कळेल आणि तुम्ही बदल मागू शकता." },
+      { question: "फक्त सोशल मीडिया मला नवीन customers आणू शकते का?", answer: "Organic सोशल मीडिया brand जागरूकता आणि विश्वास निर्माण करते — ते paid ads सोबत सर्वोत्तम काम करते. एकट्या सोशल मीडिया व्यवस्थापनामुळे क्वचितच रातोरात leads चा पूर येतो, पण ते अशी विश्वासार्हता निर्माण करते जी तुमच्या ads ला अधिक चांगले convert करते आणि enquiries ला sales मध्ये बदलते." },
+    ],
+    ctaHeadline: "चला फॉलो करण्यासारखी सोशल मीडिया उपस्थिती तयार करूया.",
+    price: "Growth प्लॅनमध्ये समाविष्ट",
+    priceNote: "Ads + SEO + सोशल मीडिया सोबत ₹35,000/महिना. किंवा standalone सोशल मीडिया पॅकेजेसबद्दल विचारा.",
+  },
+};
+
+export function SocialMediaPage({ lang = 'en' }: { lang?: Lang }) {
+  const c = COPY[lang];
+  return <ServicePage lang={lang} {...c} />;
 }
