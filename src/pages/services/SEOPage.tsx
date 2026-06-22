@@ -1,71 +1,121 @@
 import { ServicePage } from '../../components/ServicePage';
+import type { Lang } from '../../lib/constants';
 
-export function SEOPage() {
-  return (
-    <ServicePage
-      title="SEO Services in Pune"
-      metaTitle="SEO Services in Pune | Digital Safalta"
-      metaDescription="Professional SEO services for Pune businesses. Get found on Google by customers actively searching for what you offer. Local SEO, on-page optimisation, content strategy, and technical SEO. Honest timelines, real results."
-      category="SEO"
-      heroHeadline="SEO Services in Pune"
-      heroSubheading="When someone in Pune searches for what your business offers, do they find you — or your competitor? SEO is the long-term strategy that puts your business in front of the right people without paying for every click. We build it properly, with honest expectations."
-      whatItIs="SEO (Search Engine Optimisation) is the process of improving your website so that Google ranks it higher for searches related to your business. Better rankings mean more people see your website, more visits, and more customers — without paying for ads."
-      whyItMatters="Over 90% of clicks on Google go to the first page. If you're not there, you're invisible to most of your potential customers. And unlike paid ads, good SEO compounds over time — the rankings you build this year keep bringing customers next year."
-      includes={[
-        "Keyword research (local Pune terms + broader India keywords)",
-        "On-page SEO (meta titles, descriptions, headings, content)",
-        "Technical SEO audit and fixes (speed, mobile, crawlability)",
-        "Google Search Console setup and monitoring",
-        "Google Business Profile optimisation",
-        "Local citation building (NAP consistency)",
-        "Content strategy recommendations",
-        "Backlink analysis",
-        "Monthly ranking and traffic report",
-        "Competitor analysis",
-      ]}
-      benefits={[
-        {
-          title: "Compounding Returns Over Time",
-          description: "Unlike ads that stop the moment you stop paying, SEO builds an asset. Rankings you earn this month keep driving traffic next year and the year after.",
-        },
-        {
-          title: "Capture High-Intent Local Traffic",
-          description: "Local SEO puts your business in front of people searching 'near me' and Pune-specific terms — customers who are ready to buy, not just browsing.",
-        },
-        {
-          title: "Honest Timelines, No Nonsense",
-          description: "SEO takes 3-6 months to show meaningful results. We'll tell you this upfront. Anyone promising page 1 in 2 weeks is using tactics that will eventually harm your site.",
-        },
-        {
-          title: "Outrank Competitors Who Ignore It",
-          description: "Most small Pune businesses underinvest in SEO. That's your opportunity. Even modest, consistent effort can put you ahead of competitors who rely only on word-of-mouth.",
-        },
-      ]}
-      faqs={[
-        {
-          question: "How long does SEO take to show results?",
-          answer: "Honest answer: 3-6 months for meaningful results, sometimes longer for competitive keywords. Month 1-2 is foundation work. Month 3-4 you start seeing movement. Month 5-6 is when results become significant. We track and report progress every month.",
-        },
-        {
-          question: "Is local SEO different from regular SEO?",
-          answer: "Yes. Local SEO focuses on 'near me' searches and location-specific queries like 'digital marketing agency Pune'. It involves your Google Business Profile, local citations, and locally-relevant content. For a Pune business, local SEO is often more valuable than ranking nationally.",
-        },
-        {
-          question: "What's the difference between SEO and Google Ads?",
-          answer: "Google Ads puts you at the top immediately but you pay for every click. SEO takes time but is 'free' once you rank — you get clicks without paying per visit. Most businesses benefit from both: ads for immediate results, SEO for long-term compounding.",
-        },
-        {
-          question: "Can you guarantee first page rankings?",
-          answer: "No — and anyone who does is misleading you. Google's algorithm is complex and competitive. What we can guarantee is that we do the right things consistently: technical fixes, strong content, proper local signals, and honest monthly reporting on progress.",
-        },
-        {
-          question: "Do I need a blog for SEO?",
-          answer: "Not necessarily — but content helps. Blog articles that answer questions your customers search for can bring in significant organic traffic over time. We'll advise on whether content is the right investment for your specific business.",
-        },
-      ]}
-      ctaHeadline="Ready to start showing up on Google?"
-      price="Included in Growth plan"
-      priceNote="₹35,000/month with SEO + Ads + Social Media. Or ask about standalone SEO packages."
-    />
-  );
+const COPY = {
+  en: {
+    metaTitle: "SEO Services in Pune | Digital Safalta",
+    metaDescription: "Professional SEO services for Pune businesses. Get found on Google by customers actively searching for what you offer. Local SEO, on-page optimisation, content strategy, and technical SEO. Honest timelines, real results.",
+    category: "SEO",
+    heroHeadline: "SEO Services in Pune",
+    heroSubheading: "When someone in Pune searches for what your business offers, do they find you — or your competitor? SEO is the long-term strategy that puts your business in front of the right people without paying for every click. We build it properly, with honest expectations.",
+    whatItIs: "SEO (Search Engine Optimisation) is the process of improving your website so that Google ranks it higher for searches related to your business. Better rankings mean more people see your website, more visits, and more customers — without paying for ads.",
+    whyItMatters: "Over 90% of clicks on Google go to the first page. If you're not there, you're invisible to most of your potential customers. And unlike paid ads, good SEO compounds over time — the rankings you build this year keep bringing customers next year.",
+    includes: [
+      "Keyword research (local Pune terms + broader India keywords)",
+      "On-page SEO (meta titles, descriptions, headings, content)",
+      "Technical SEO audit and fixes (speed, mobile, crawlability)",
+      "Google Search Console setup and monitoring",
+      "Google Business Profile optimisation",
+      "Local citation building (NAP consistency)",
+      "Content strategy recommendations",
+      "Backlink analysis",
+      "Monthly ranking and traffic report",
+      "Competitor analysis",
+    ],
+    benefits: [
+      { title: "Compounding Returns Over Time", description: "Unlike ads that stop the moment you stop paying, SEO builds an asset. Rankings you earn this month keep driving traffic next year and the year after." },
+      { title: "Capture High-Intent Local Traffic", description: "Local SEO puts your business in front of people searching 'near me' and Pune-specific terms — customers who are ready to buy, not just browsing." },
+      { title: "Honest Timelines, No Nonsense", description: "SEO takes 3-6 months to show meaningful results. We'll tell you this upfront. Anyone promising page 1 in 2 weeks is using tactics that will eventually harm your site." },
+      { title: "Outrank Competitors Who Ignore It", description: "Most small Pune businesses underinvest in SEO. That's your opportunity. Even modest, consistent effort can put you ahead of competitors who rely only on word-of-mouth." },
+    ],
+    faqs: [
+      { question: "How long does SEO take to show results?", answer: "Honest answer: 3-6 months for meaningful results, sometimes longer for competitive keywords. Month 1-2 is foundation work. Month 3-4 you start seeing movement. Month 5-6 is when results become significant. We track and report progress every month." },
+      { question: "Is local SEO different from regular SEO?", answer: "Yes. Local SEO focuses on 'near me' searches and location-specific queries like 'digital marketing agency Pune'. It involves your Google Business Profile, local citations, and locally-relevant content. For a Pune business, local SEO is often more valuable than ranking nationally." },
+      { question: "What's the difference between SEO and Google Ads?", answer: "Google Ads puts you at the top immediately but you pay for every click. SEO takes time but is 'free' once you rank — you get clicks without paying per visit. Most businesses benefit from both: ads for immediate results, SEO for long-term compounding." },
+      { question: "Can you guarantee first page rankings?", answer: "No — and anyone who does is misleading you. Google's algorithm is complex and competitive. What we can guarantee is that we do the right things consistently: technical fixes, strong content, proper local signals, and honest monthly reporting on progress." },
+      { question: "Do I need a blog for SEO?", answer: "Not necessarily — but content helps. Blog articles that answer questions your customers search for can bring in significant organic traffic over time. We'll advise on whether content is the right investment for your specific business." },
+    ],
+    ctaHeadline: "Ready to start showing up on Google?",
+    price: "Included in Growth plan",
+    priceNote: "₹35,000/month with SEO + Ads + Social Media. Or ask about standalone SEO packages.",
+  },
+  hi: {
+    metaTitle: "पुणे में SEO सेवाएं | Digital Safalta",
+    metaDescription: "पुणे के बिज़नेस के लिए professional SEO सेवाएं। उन customers द्वारा Google पर पाए जाएं जो सक्रिय रूप से वही खोज रहे हैं जो आप ऑफर करते हैं। Local SEO, on-page ऑप्टिमाइज़ेशन, content रणनीति, और technical SEO। ईमानदार timelines, असली परिणाम।",
+    category: "SEO",
+    heroHeadline: "पुणे में SEO सेवाएं",
+    heroSubheading: "जब पुणे में कोई वह खोजता है जो आपका बिज़नेस ऑफर करता है, क्या वे आपको पाते हैं — या आपके competitor को? SEO वह long-term रणनीति है जो आपके बिज़नेस को हर click के लिए pay किए बिना सही लोगों के सामने लाती है। हम इसे सही तरीके से बनाते हैं, ईमानदार उम्मीदों के साथ।",
+    whatItIs: "SEO (Search Engine Optimisation) आपकी वेबसाइट को बेहतर बनाने की प्रक्रिया है ताकि Google आपके बिज़नेस से जुड़ी खोजों के लिए इसे ऊंची रैंक दे। बेहतर rankings का मतलब है ज़्यादा लोग आपकी वेबसाइट देखें, ज़्यादा visits, और ज़्यादा customers — बिना ads के लिए pay किए।",
+    whyItMatters: "Google पर 90% से ज़्यादा clicks पहले पेज पर जाते हैं। अगर आप वहां नहीं हैं, तो आप अपने ज़्यादातर potential customers के लिए invisible हैं। और paid ads के विपरीत, अच्छा SEO समय के साथ compound होता है — इस साल आप जो rankings बनाते हैं वे अगले साल भी customers लाती रहती हैं।",
+    includes: [
+      "Keyword research (local पुणे terms + व्यापक India keywords)",
+      "On-page SEO (meta titles, descriptions, headings, content)",
+      "Technical SEO audit और fixes (speed, mobile, crawlability)",
+      "Google Search Console सेटअप और निगरानी",
+      "Google Business Profile ऑप्टिमाइज़ेशन",
+      "Local citation building (NAP consistency)",
+      "Content रणनीति सुझाव",
+      "Backlink विश्लेषण",
+      "मासिक ranking और traffic रिपोर्ट",
+      "Competitor विश्लेषण",
+    ],
+    benefits: [
+      { title: "समय के साथ Compounding Returns", description: "Ads के विपरीत जो आपके pay करना बंद करते ही रुक जाती हैं, SEO एक asset बनाता है। इस महीने आप जो rankings कमाते हैं वे अगले साल और उसके बाद भी traffic लाती रहती हैं।" },
+      { title: "High-Intent Local Traffic Capture करें", description: "Local SEO आपके बिज़नेस को 'near me' और पुणे-specific terms खोजने वाले लोगों के सामने लाता है — customers जो खरीदने के लिए तैयार हैं, सिर्फ browse नहीं कर रहे।" },
+      { title: "ईमानदार Timelines, कोई बकवास नहीं", description: "SEO को meaningful परिणाम दिखाने में 3-6 महीने लगते हैं। हम आपको यह पहले से बता देंगे। जो कोई 2 हफ्तों में page 1 का वादा करता है वह ऐसी tactics इस्तेमाल कर रहा है जो अंततः आपकी साइट को नुकसान पहुंचाएगी।" },
+      { title: "उन Competitors से आगे निकलें जो इसे नज़रअंदाज़ करते हैं", description: "ज़्यादातर छोटे पुणे बिज़नेस SEO में कम निवेश करते हैं। यही आपका मौका है। मामूली, लगातार प्रयास भी आपको उन competitors से आगे रख सकता है जो सिर्फ word-of-mouth पर निर्भर हैं।" },
+    ],
+    faqs: [
+      { question: "SEO को परिणाम दिखाने में कितना समय लगता है?", answer: "ईमानदार जवाब: meaningful परिणामों के लिए 3-6 महीने, competitive keywords के लिए कभी-कभी ज़्यादा। महीना 1-2 foundation का काम है। महीना 3-4 में आप movement देखना शुरू करते हैं। महीना 5-6 में परिणाम महत्वपूर्ण होने लगते हैं। हम हर महीने progress को track और report करते हैं।" },
+      { question: "क्या local SEO regular SEO से अलग है?", answer: "हां। Local SEO 'near me' खोजों और location-specific queries जैसे 'digital marketing agency Pune' पर केंद्रित होता है। इसमें आपका Google Business Profile, local citations, और locally-relevant content शामिल है। पुणे के बिज़नेस के लिए, local SEO अक्सर nationally rank करने से ज़्यादा valuable होता है।" },
+      { question: "SEO और Google Ads में क्या फ़र्क़ है?", answer: "Google Ads आपको तुरंत सबसे ऊपर रखता है लेकिन आप हर click के लिए pay करते हैं। SEO में समय लगता है लेकिन rank होने के बाद यह 'मुफ़्त' है — आप per visit pay किए बिना clicks पाते हैं। ज़्यादातर बिज़नेस दोनों से फ़ायदा पाते हैं: तुरंत परिणामों के लिए ads, long-term compounding के लिए SEO।" },
+      { question: "क्या आप first page rankings की गारंटी दे सकते हैं?", answer: "नहीं — और जो कोई देता है वह आपको गुमराह कर रहा है। Google का algorithm जटिल और competitive है। हम जिस बात की गारंटी दे सकते हैं वह यह है कि हम लगातार सही चीज़ें करते हैं: technical fixes, मजबूत content, सही local signals, और progress पर ईमानदार मासिक रिपोर्टिंग।" },
+      { question: "क्या मुझे SEO के लिए blog चाहिए?", answer: "ज़रूरी नहीं — लेकिन content मदद करता है। Blog articles जो आपके customers द्वारा खोजे जाने वाले सवालों का जवाब देते हैं, समय के साथ काफ़ी organic traffic ला सकते हैं। हम सलाह देंगे कि क्या content आपके specific बिज़नेस के लिए सही निवेश है।" },
+    ],
+    ctaHeadline: "Google पर दिखना शुरू करने के लिए तैयार हैं?",
+    price: "Growth प्लान में शामिल",
+    priceNote: "SEO + Ads + सोशल मीडिया के साथ ₹35,000/महीना। या standalone SEO पैकेज के बारे में पूछें।",
+  },
+  mr: {
+    metaTitle: "पुण्यात SEO सेवा | Digital Safalta",
+    metaDescription: "पुण्यातील व्यवसायांसाठी professional SEO सेवा. तुम्ही जे ऑफर करता तेच सक्रियपणे शोधणाऱ्या customers द्वारे Google वर सापडा. Local SEO, on-page ऑप्टिमायझेशन, content रणनीती आणि technical SEO. प्रामाणिक timelines, खरे निकाल.",
+    category: "SEO",
+    heroHeadline: "पुण्यात SEO सेवा",
+    heroSubheading: "जेव्हा पुण्यातील कोणीतरी तुमचा व्यवसाय जे ऑफर करतो ते शोधते, ते तुम्हाला सापडतात — की तुमच्या competitor ला? SEO ही दीर्घकालीन रणनीती आहे जी प्रत्येक click साठी pay न करता तुमचा व्यवसाय योग्य लोकांसमोर आणते. आम्ही ते योग्य पद्धतीने तयार करतो, प्रामाणिक अपेक्षांसह.",
+    whatItIs: "SEO (Search Engine Optimisation) ही तुमची वेबसाइट सुधारण्याची प्रक्रिया आहे जेणेकरून Google तुमच्या व्यवसायाशी संबंधित शोधांसाठी तिला उच्च रँक देईल. चांगल्या rankings म्हणजे जास्त लोक तुमची वेबसाइट पाहतात, जास्त visits आणि जास्त customers — ads साठी pay न करता.",
+    whyItMatters: "Google वरील 90% पेक्षा जास्त clicks पहिल्या पानावर जातात. जर तुम्ही तिथे नसाल, तर तुम्ही तुमच्या बहुतेक संभाव्य customers साठी अदृश्य आहात. आणि paid ads च्या विपरीत, चांगले SEO कालांतराने compound होते — या वर्षी तुम्ही कमावलेल्या rankings पुढच्या वर्षीही customers आणत राहतात.",
+    includes: [
+      "Keyword research (local पुणे terms + व्यापक India keywords)",
+      "On-page SEO (meta titles, descriptions, headings, content)",
+      "Technical SEO audit आणि fixes (speed, mobile, crawlability)",
+      "Google Search Console सेटअप आणि निरीक्षण",
+      "Google Business Profile ऑप्टिमायझेशन",
+      "Local citation building (NAP consistency)",
+      "Content रणनीती शिफारसी",
+      "Backlink विश्लेषण",
+      "मासिक ranking आणि traffic अहवाल",
+      "Competitor विश्लेषण",
+    ],
+    benefits: [
+      { title: "कालांतराने Compounding Returns", description: "Ads च्या विपरीत जे तुम्ही pay करणे थांबवताच थांबतात, SEO एक asset तयार करते. या महिन्यात तुम्ही कमावलेल्या rankings पुढच्या वर्षी आणि त्यानंतरही traffic आणत राहतात." },
+      { title: "High-Intent Local Traffic Capture करा", description: "Local SEO तुमचा व्यवसाय 'near me' आणि पुणे-specific terms शोधणाऱ्या लोकांसमोर आणते — खरेदी करण्यास तयार असलेले customers, फक्त browse करणारे नाही." },
+      { title: "प्रामाणिक Timelines, काही फालतू नाही", description: "SEO ला अर्थपूर्ण निकाल दाखवण्यासाठी 3-6 महिने लागतात. आम्ही तुम्हाला हे आधीच सांगू. जो कोणी 2 आठवड्यांत page 1 चे वचन देतो तो अशा tactics वापरत आहे ज्या शेवटी तुमच्या साइटला हानी पोहोचवतील." },
+      { title: "दुर्लक्ष करणाऱ्या Competitors ला मागे टाका", description: "बहुतेक लहान पुणे व्यवसाय SEO मध्ये कमी गुंतवणूक करतात. ही तुमची संधी आहे. माफक, सातत्यपूर्ण प्रयत्न देखील तुम्हाला फक्त word-of-mouth वर अवलंबून असलेल्या competitors पेक्षा पुढे ठेवू शकतात." },
+    ],
+    faqs: [
+      { question: "SEO ला निकाल दाखवायला किती वेळ लागतो?", answer: "प्रामाणिक उत्तर: अर्थपूर्ण निकालांसाठी 3-6 महिने, competitive keywords साठी कधीकधी जास्त. महिना 1-2 हे पायाभूत काम आहे. महिना 3-4 मध्ये तुम्हाला हालचाल दिसू लागते. महिना 5-6 मध्ये निकाल लक्षणीय होतात. आम्ही दर महिन्याला प्रगती track आणि report करतो." },
+      { question: "Local SEO नियमित SEO पेक्षा वेगळे आहे का?", answer: "होय. Local SEO 'near me' शोध आणि 'digital marketing agency Pune' सारख्या location-specific queries वर केंद्रित आहे. यामध्ये तुमचे Google Business Profile, local citations आणि locally-relevant content समाविष्ट आहे. पुणे व्यवसायासाठी, local SEO अनेकदा nationally rank करण्यापेक्षा अधिक मौल्यवान असते." },
+      { question: "SEO आणि Google Ads मध्ये काय फरक आहे?", answer: "Google Ads तुम्हाला लगेच वर ठेवते पण तुम्ही प्रत्येक click साठी pay करता. SEO ला वेळ लागतो पण rank झाल्यावर ते 'मोफत' असते — तुम्हाला per visit pay न करता clicks मिळतात. बहुतेक व्यवसायांना दोन्हीचा फायदा होतो: तात्काळ निकालांसाठी ads, दीर्घकालीन compounding साठी SEO." },
+      { question: "तुम्ही first page rankings ची हमी देऊ शकता का?", answer: "नाही — आणि जो कोणी देतो तो तुम्हाला दिशाभूल करत आहे. Google चे algorithm गुंतागुंतीचे आणि स्पर्धात्मक आहे. आम्ही याची हमी देऊ शकतो की आम्ही सातत्याने योग्य गोष्टी करतो: technical fixes, मजबूत content, योग्य local signals आणि प्रगतीबद्दल प्रामाणिक मासिक reporting." },
+      { question: "मला SEO साठी blog हवा का?", answer: "गरजेचे नाही — पण content मदत करते. तुमच्या customers शोधत असलेल्या प्रश्नांची उत्तरे देणारे Blog लेख कालांतराने लक्षणीय organic traffic आणू शकतात. आम्ही सल्ला देऊ की content तुमच्या विशिष्ट व्यवसायासाठी योग्य गुंतवणूक आहे का." },
+    ],
+    ctaHeadline: "Google वर दिसायला सुरुवात करण्यासाठी तयार आहात?",
+    price: "Growth प्लॅनमध्ये समाविष्ट",
+    priceNote: "SEO + Ads + सोशल मीडिया सोबत ₹35,000/महिना. किंवा standalone SEO पॅकेजेसबद्दल विचारा.",
+  },
+};
+
+export function SEOPage({ lang = 'en' }: { lang?: Lang }) {
+  const c = COPY[lang];
+  return <ServicePage lang={lang} {...c} />;
 }
