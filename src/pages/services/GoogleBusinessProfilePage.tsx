@@ -1,71 +1,121 @@
 import { ServicePage } from '../../components/ServicePage';
+import type { Lang } from '../../lib/constants';
 
-export function GoogleBusinessProfilePage() {
-  return (
-    <ServicePage
-      title="Google Business Profile Setup Pune"
-      metaTitle="Google Business Profile Setup Pune | Digital Safalta"
-      metaDescription="Get your Google Business Profile set up and optimised properly in Pune. Appear in local map searches, get more calls and walk-ins, and build credibility with Google reviews. Fast setup, big impact."
-      category="Google Business Profile"
-      heroHeadline="Google Business Profile Setup in Pune"
-      heroSubheading="When someone searches 'digital marketing near me' or 'best [your service] in Pune', Google shows a map with 3 highlighted local businesses. This is the Google Local Pack — and appearing here can be the single biggest win for a local Pune business. It starts with a properly set up Google Business Profile."
-      whatItIs="Google Business Profile (formerly Google My Business) is a free listing that lets your business appear on Google Maps and in local search results. It shows your address, phone number, hours, photos, and customer reviews — directly on Google, before anyone even visits your website."
-      whyItMatters="Most people who search 'near me' don't scroll past the map. If your Google Business Profile is missing, incomplete, or unoptimised, you're invisible to a massive pool of ready-to-buy local customers in Pune. A properly set up GBP is often the fastest way to start getting more calls and walk-ins."
-      includes={[
-        "Google Business Profile creation or claim and verification",
-        "Complete profile setup (categories, description, hours, attributes)",
-        "Business photos uploaded (up to 10)",
-        "Google Maps pin placement verification",
-        "Q&A section setup",
-        "Services and products listing",
-        "Google Posts setup (introductory posts)",
-        "Review response strategy guide",
-        "Google Search Console link (if website exists)",
-        "Guidance on ongoing review generation",
-      ]}
-      benefits={[
-        {
-          title: "Appear in the Google Local Pack",
-          description: "The map results that appear for 'near me' searches are driven by your Google Business Profile. A complete, optimised profile dramatically increases your chances of appearing here — above most regular search results.",
-        },
-        {
-          title: "More Calls and Walk-ins — For Free",
-          description: "Once your profile is set up, customers can call you, get directions, or visit your website directly from Google — without you spending a rupee on ads.",
-        },
-        {
-          title: "Build Trust Through Reviews",
-          description: "Google reviews are the first thing potential customers look at. A profile with strong reviews converts searchers into customers far better than one with none. We'll set you up with a system to collect reviews naturally.",
-        },
-        {
-          title: "Fast Setup, Lasting Impact",
-          description: "Unlike SEO which takes months, a Google Business Profile can start driving results within days of going live. It's the highest-ROI single action most local Pune businesses can take.",
-        },
-      ]}
-      faqs={[
-        {
-          question: "Is Google Business Profile free?",
-          answer: "The listing itself is completely free. Our setup and optimisation service ensures it's done properly — correct categories, compelling description, photos, and everything Google needs to show your business confidently in local results.",
-        },
-        {
-          question: "What if someone else has already claimed my business?",
-          answer: "This happens occasionally. We can guide you through Google's verification process to reclaim ownership of your listing. It takes time but is completely solvable.",
-        },
-        {
-          question: "Do I need a physical address to get a Google Business Profile?",
-          answer: "You do need a real business address for verification — but you can choose to hide your address from public view if you work from home or operate a service-area business. Google allows this for businesses that visit customers rather than having them come to you.",
-        },
-        {
-          question: "How do I get Google reviews?",
-          answer: "The most effective way is simply asking happy customers — in person, over WhatsApp, or via a direct link to your review page. We'll give you a shareable link and a simple message template you can use.",
-        },
-        {
-          question: "Does Google Business Profile help with regular Google search too?",
-          answer: "Yes. A well-optimised GBP improves your visibility in regular (non-map) local searches as well. It's a signal to Google that your business is legitimate, active, and locally relevant.",
-        },
-      ]}
-      ctaHeadline="Ready to show up on Google Maps and get more local customers?"
-      price="Included in Website Package"
-      priceNote="GBP setup included with every website. Or get standalone setup — ask us for details."
-    />
-  );
+const COPY = {
+  en: {
+    metaTitle: "Google Business Profile Setup Pune | Digital Safalta",
+    metaDescription: "Get your Google Business Profile set up and optimised properly in Pune. Appear in local map searches, get more calls and walk-ins, and build credibility with Google reviews. Fast setup, big impact.",
+    category: "Google Business Profile",
+    heroHeadline: "Google Business Profile Setup in Pune",
+    heroSubheading: "When someone searches 'digital marketing near me' or 'best [your service] in Pune', Google shows a map with 3 highlighted local businesses. This is the Google Local Pack — and appearing here can be the single biggest win for a local Pune business. It starts with a properly set up Google Business Profile.",
+    whatItIs: "Google Business Profile (formerly Google My Business) is a free listing that lets your business appear on Google Maps and in local search results. It shows your address, phone number, hours, photos, and customer reviews — directly on Google, before anyone even visits your website.",
+    whyItMatters: "Most people who search 'near me' don't scroll past the map. If your Google Business Profile is missing, incomplete, or unoptimised, you're invisible to a massive pool of ready-to-buy local customers in Pune. A properly set up GBP is often the fastest way to start getting more calls and walk-ins.",
+    includes: [
+      "Google Business Profile creation or claim and verification",
+      "Complete profile setup (categories, description, hours, attributes)",
+      "Business photos uploaded (up to 10)",
+      "Google Maps pin placement verification",
+      "Q&A section setup",
+      "Services and products listing",
+      "Google Posts setup (introductory posts)",
+      "Review response strategy guide",
+      "Google Search Console link (if website exists)",
+      "Guidance on ongoing review generation",
+    ],
+    benefits: [
+      { title: "Appear in the Google Local Pack", description: "The map results that appear for 'near me' searches are driven by your Google Business Profile. A complete, optimised profile dramatically increases your chances of appearing here — above most regular search results." },
+      { title: "More Calls and Walk-ins — For Free", description: "Once your profile is set up, customers can call you, get directions, or visit your website directly from Google — without you spending a rupee on ads." },
+      { title: "Build Trust Through Reviews", description: "Google reviews are the first thing potential customers look at. A profile with strong reviews converts searchers into customers far better than one with none. We'll set you up with a system to collect reviews naturally." },
+      { title: "Fast Setup, Lasting Impact", description: "Unlike SEO which takes months, a Google Business Profile can start driving results within days of going live. It's the highest-ROI single action most local Pune businesses can take." },
+    ],
+    faqs: [
+      { question: "Is Google Business Profile free?", answer: "The listing itself is completely free. Our setup and optimisation service ensures it's done properly — correct categories, compelling description, photos, and everything Google needs to show your business confidently in local results." },
+      { question: "What if someone else has already claimed my business?", answer: "This happens occasionally. We can guide you through Google's verification process to reclaim ownership of your listing. It takes time but is completely solvable." },
+      { question: "Do I need a physical address to get a Google Business Profile?", answer: "You do need a real business address for verification — but you can choose to hide your address from public view if you work from home or operate a service-area business. Google allows this for businesses that visit customers rather than having them come to you." },
+      { question: "How do I get Google reviews?", answer: "The most effective way is simply asking happy customers — in person, over WhatsApp, or via a direct link to your review page. We'll give you a shareable link and a simple message template you can use." },
+      { question: "Does Google Business Profile help with regular Google search too?", answer: "Yes. A well-optimised GBP improves your visibility in regular (non-map) local searches as well. It's a signal to Google that your business is legitimate, active, and locally relevant." },
+    ],
+    ctaHeadline: "Ready to show up on Google Maps and get more local customers?",
+    price: "Included in Website Package",
+    priceNote: "GBP setup included with every website. Or get standalone setup — ask us for details.",
+  },
+  hi: {
+    metaTitle: "पुणे में Google Business Profile सेटअप | Digital Safalta",
+    metaDescription: "पुणे में अपना Google Business Profile सही तरीके से सेटअप और ऑप्टिमाइज़ करवाएं। Local map searches में दिखें, ज़्यादा calls और walk-ins पाएं, और Google reviews के साथ credibility बनाएं। तेज़ सेटअप, बड़ा असर।",
+    category: "Google Business Profile",
+    heroHeadline: "पुणे में Google Business Profile सेटअप",
+    heroSubheading: "जब कोई 'digital marketing near me' या 'best [आपकी service] in Pune' खोजता है, Google 3 highlighted local businesses के साथ एक map दिखाता है। यह Google Local Pack है — और यहां दिखना एक local पुणे बिज़नेस के लिए सबसे बड़ी जीत हो सकती है। यह सही तरीके से सेटअप किए गए Google Business Profile से शुरू होता है।",
+    whatItIs: "Google Business Profile (पहले Google My Business) एक मुफ़्त listing है जो आपके बिज़नेस को Google Maps और local search results में दिखने देती है। यह आपका पता, फ़ोन नंबर, घंटे, photos, और customer reviews दिखाती है — सीधे Google पर, किसी के आपकी वेबसाइट पर जाने से पहले ही।",
+    whyItMatters: "ज़्यादातर लोग जो 'near me' खोजते हैं वे map से आगे scroll नहीं करते। अगर आपकी Google Business Profile गायब, अधूरी, या unoptimised है, तो आप पुणे में ready-to-buy local customers के एक बड़े समूह के लिए invisible हैं। सही तरीके से सेटअप किया गया GBP अक्सर ज़्यादा calls और walk-ins पाने का सबसे तेज़ तरीका है।",
+    includes: [
+      "Google Business Profile निर्माण या claim और verification",
+      "पूरा profile सेटअप (categories, description, hours, attributes)",
+      "बिज़नेस photos upload (10 तक)",
+      "Google Maps pin placement verification",
+      "Q&A सेक्शन सेटअप",
+      "Services और products listing",
+      "Google Posts सेटअप (introductory posts)",
+      "Review response रणनीति गाइड",
+      "Google Search Console link (अगर वेबसाइट मौजूद है)",
+      "Ongoing review generation पर मार्गदर्शन",
+    ],
+    benefits: [
+      { title: "Google Local Pack में दिखें", description: "'near me' खोजों के लिए दिखने वाले map results आपके Google Business Profile से चलते हैं। एक पूरी, optimised profile यहां दिखने की आपकी संभावनाओं को काफ़ी बढ़ा देती है — ज़्यादातर regular search results से ऊपर।" },
+      { title: "ज़्यादा Calls और Walk-ins — मुफ़्त में", description: "एक बार आपकी profile सेटअप हो जाने पर, customers आपको call कर सकते हैं, directions पा सकते हैं, या सीधे Google से आपकी वेबसाइट पर जा सकते हैं — बिना आपके ads पर एक रुपया खर्च किए।" },
+      { title: "Reviews के ज़रिए Trust बनाएं", description: "Google reviews वह पहली चीज़ है जो potential customers देखते हैं। मज़बूत reviews वाली profile बिना reviews वाली profile की तुलना में searchers को customers में कहीं बेहतर तरीके से convert करती है। हम आपको naturally reviews collect करने का system देंगे।" },
+      { title: "तेज़ सेटअप, स्थायी असर", description: "SEO के विपरीत जिसमें महीने लगते हैं, एक Google Business Profile लाइव होने के कुछ दिनों के भीतर परिणाम देना शुरू कर सकती है। यह वह सबसे ज़्यादा ROI वाला single action है जो ज़्यादातर local पुणे बिज़नेस ले सकते हैं।" },
+    ],
+    faqs: [
+      { question: "क्या Google Business Profile मुफ़्त है?", answer: "Listing खुद पूरी तरह मुफ़्त है। हमारी सेटअप और ऑप्टिमाइज़ेशन सेवा सुनिश्चित करती है कि यह सही तरीके से किया जाए — सही categories, आकर्षक description, photos, और Google को आपके बिज़नेस को confidently local results में दिखाने के लिए जो भी चाहिए वह सब।" },
+      { question: "अगर किसी और ने पहले से मेरा बिज़नेस claim कर लिया हो तो?", answer: "यह कभी-कभी होता है। हम आपको आपकी listing का ownership वापस पाने के लिए Google की verification प्रक्रिया से गुज़रने में मार्गदर्शन कर सकते हैं। इसमें समय लगता है लेकिन यह पूरी तरह solvable है।" },
+      { question: "क्या मुझे Google Business Profile पाने के लिए physical address चाहिए?", answer: "Verification के लिए आपको एक असली बिज़नेस address चाहिए — लेकिन अगर आप घर से काम करते हैं या service-area बिज़नेस चलाते हैं तो आप अपना address public view से छिपा सकते हैं। Google इसे उन बिज़नेस के लिए अनुमति देता है जो customers के पास जाते हैं बजाय उनके आपके पास आने के।" },
+      { question: "मुझे Google reviews कैसे मिलेंगे?", answer: "सबसे असरदार तरीका है खुश customers से बस पूछना — व्यक्तिगत रूप से, WhatsApp पर, या आपके review पेज के direct link के ज़रिए। हम आपको एक shareable link और एक सरल message template देंगे जो आप इस्तेमाल कर सकते हैं।" },
+      { question: "क्या Google Business Profile regular Google search में भी मदद करती है?", answer: "हां। एक अच्छी तरह optimised GBP regular (non-map) local searches में भी आपकी visibility को बेहतर बनाती है। यह Google के लिए एक signal है कि आपका बिज़नेस legitimate, active, और locally relevant है।" },
+    ],
+    ctaHeadline: "Google Maps पर दिखने और ज़्यादा local customers पाने के लिए तैयार हैं?",
+    price: "वेबसाइट पैकेज में शामिल",
+    priceNote: "हर वेबसाइट के साथ GBP सेटअप शामिल। या standalone सेटअप पाएं — हमसे details पूछें।",
+  },
+  mr: {
+    metaTitle: "पुण्यात Google Business Profile सेटअप | Digital Safalta",
+    metaDescription: "पुण्यात तुमचे Google Business Profile योग्यरित्या सेटअप आणि ऑप्टिमाइझ करा. Local map searches मध्ये दिसा, अधिक calls आणि walk-ins मिळवा आणि Google reviews सह विश्वासार्हता तयार करा. जलद सेटअप, मोठा प्रभाव.",
+    category: "Google Business Profile",
+    heroHeadline: "पुण्यात Google Business Profile सेटअप",
+    heroSubheading: "जेव्हा कोणी 'digital marketing near me' किंवा 'best [तुमची service] in Pune' शोधते, Google 3 highlighted local व्यवसायांसह एक map दाखवते. हे Google Local Pack आहे — आणि इथे दिसणे local पुणे व्यवसायासाठी सर्वात मोठा विजय असू शकतो. हे योग्यरित्या सेटअप केलेल्या Google Business Profile पासून सुरू होते.",
+    whatItIs: "Google Business Profile (पूर्वी Google My Business) ही एक मोफत listing आहे जी तुमचा व्यवसाय Google Maps आणि local search results मध्ये दिसू देते. ती तुमचा पत्ता, फोन नंबर, वेळा, photos आणि customer reviews दाखवते — थेट Google वर, कोणी तुमच्या वेबसाइटला भेट देण्यापूर्वीच.",
+    whyItMatters: "बहुतेक लोक जे 'near me' शोधतात ते map च्या पुढे scroll करत नाहीत. जर तुमचे Google Business Profile गहाळ, अपूर्ण किंवा unoptimised असेल, तर तुम्ही पुण्यातील खरेदी करण्यास तयार असलेल्या local customers च्या मोठ्या समूहासाठी अदृश्य आहात. योग्यरित्या सेटअप केलेले GBP अनेकदा अधिक calls आणि walk-ins मिळवण्याचा सर्वात जलद मार्ग आहे.",
+    includes: [
+      "Google Business Profile निर्मिती किंवा claim आणि verification",
+      "संपूर्ण profile सेटअप (categories, description, hours, attributes)",
+      "व्यवसाय photos अपलोड (10 पर्यंत)",
+      "Google Maps pin placement verification",
+      "Q&A विभाग सेटअप",
+      "Services आणि products listing",
+      "Google Posts सेटअप (introductory posts)",
+      "Review response रणनीती मार्गदर्शक",
+      "Google Search Console link (वेबसाइट अस्तित्वात असल्यास)",
+      "सतत review generation वर मार्गदर्शन",
+    ],
+    benefits: [
+      { title: "Google Local Pack मध्ये दिसा", description: "'near me' शोधांसाठी दिसणारे map results तुमच्या Google Business Profile द्वारे चालवले जातात. एक संपूर्ण, ऑप्टिमाइझ केलेली profile इथे दिसण्याची तुमची शक्यता मोठ्या प्रमाणात वाढवते — बहुतेक नियमित search results च्या वर." },
+      { title: "अधिक Calls आणि Walk-ins — मोफत", description: "एकदा तुमची profile सेटअप झाली की, customers तुम्हाला call करू शकतात, directions मिळवू शकतात किंवा थेट Google वरून तुमच्या वेबसाइटला भेट देऊ शकतात — तुम्ही ads वर एक रुपयाही खर्च न करता." },
+      { title: "Reviews द्वारे Trust तयार करा", description: "Google reviews ही पहिली गोष्ट आहे जी संभाव्य customers पाहतात. मजबूत reviews असलेली profile कोणतीही reviews नसलेल्या profile पेक्षा searchers ला customers मध्ये खूप चांगल्या प्रकारे convert करते. आम्ही तुम्हाला नैसर्गिकरित्या reviews गोळा करण्याची system देऊ." },
+      { title: "जलद सेटअप, टिकणारा प्रभाव", description: "SEO च्या विपरीत ज्याला महिने लागतात, Google Business Profile लाइव्ह झाल्यानंतर काही दिवसांतच निकाल देणे सुरू करू शकते. बहुतेक local पुणे व्यवसाय करू शकतील अशी ही सर्वाधिक ROI असलेली एकमेव कृती आहे." },
+    ],
+    faqs: [
+      { question: "Google Business Profile मोफत आहे का?", answer: "Listing स्वतः पूर्णपणे मोफत आहे. आमची सेटअप आणि ऑप्टिमायझेशन सेवा खात्री करते की ते योग्यरित्या केले जाते — योग्य categories, आकर्षक description, photos आणि Google ला तुमचा व्यवसाय आत्मविश्वासाने local results मध्ये दाखवण्यासाठी जे काही हवे ते सर्व." },
+      { question: "जर कोणीतरी आधीच माझा व्यवसाय claim केला असेल तर?", answer: "हे कधीकधी घडते. आम्ही तुम्हाला तुमच्या listing चे ownership परत मिळवण्यासाठी Google च्या verification प्रक्रियेतून मार्गदर्शन करू शकतो. यासाठी वेळ लागतो पण ते पूर्णपणे सोडवण्यायोग्य आहे." },
+      { question: "मला Google Business Profile मिळवण्यासाठी physical address हवा का?", answer: "Verification साठी तुम्हाला खरा व्यवसाय पत्ता हवा — पण तुम्ही घरून काम करत असाल किंवा service-area व्यवसाय चालवत असाल तर तुम्ही तुमचा पत्ता सार्वजनिक दृश्यापासून लपवू शकता. Google हे customers कडे जाणाऱ्या व्यवसायांना त्यांच्याकडे customers येण्याऐवजी परवानगी देते." },
+      { question: "मला Google reviews कशा मिळतील?", answer: "सर्वात प्रभावी मार्ग म्हणजे आनंदी customers ला फक्त विचारणे — प्रत्यक्ष, WhatsApp वर किंवा तुमच्या review पानाच्या थेट link द्वारे. आम्ही तुम्हाला एक shareable link आणि तुम्ही वापरू शकता असे एक साधे message template देऊ." },
+      { question: "Google Business Profile नियमित Google search मध्येही मदत करते का?", answer: "होय. एक चांगले ऑप्टिमाइझ केलेले GBP नियमित (non-map) local searches मध्येही तुमची दृश्यता सुधारते. हे Google साठी एक संकेत आहे की तुमचा व्यवसाय legitimate, active आणि locally relevant आहे." },
+    ],
+    ctaHeadline: "Google Maps वर दिसण्यासाठी आणि अधिक local customers मिळवण्यासाठी तयार आहात?",
+    price: "वेबसाइट पॅकेजमध्ये समाविष्ट",
+    priceNote: "प्रत्येक वेबसाइटसोबत GBP सेटअप समाविष्ट. किंवा standalone सेटअप मिळवा — आम्हाला details विचारा.",
+  },
+};
+
+export function GoogleBusinessProfilePage({ lang = 'en' }: { lang?: Lang }) {
+  const c = COPY[lang];
+  return <ServicePage lang={lang} {...c} />;
 }
