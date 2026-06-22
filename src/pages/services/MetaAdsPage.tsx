@@ -1,71 +1,121 @@
 import { ServicePage } from '../../components/ServicePage';
+import type { Lang } from '../../lib/constants';
 
-export function MetaAdsPage() {
-  return (
-    <ServicePage
-      title="Facebook & Instagram Ads for Pune Businesses"
-      metaTitle="Facebook & Instagram Ads for Pune Businesses | Digital Safalta"
-      metaDescription="Run effective Facebook and Instagram ad campaigns for your Pune business. We create, manage, and optimise Meta Ads that generate real leads and sales — not just likes. Transparent pricing from ₹15,000/month."
-      category="Meta Ads"
-      heroHeadline="Facebook & Instagram Ads for Pune Businesses"
-      heroSubheading="Facebook and Instagram have over 500 million users in India. With the right targeting and creative, Meta Ads let you reach exactly the customers you want — by location, interest, age, income, and behaviour. We make every rupee of your ad budget count."
-      whatItIs="Meta Ads are paid advertisements that appear on Facebook, Instagram, and across Meta's network (including Messenger and WhatsApp). Unlike organic social media posts, Meta Ads put your business in front of people who don't already follow you — the people who don't know you exist yet."
-      whyItMatters="Most Pune businesses post on social media and wonder why they don't get customers. Organic reach on Facebook and Instagram is under 5% — most of your followers never see your posts. Ads bypass this entirely and put your business in front of thousands of targeted potential customers."
-      includes={[
-        "Campaign strategy and audience research",
-        "Ad creative design (images/graphics)",
-        "Copywriting (headlines, body text, CTAs)",
-        "Audience targeting setup (interests, location, lookalikes)",
-        "Facebook Pixel setup for conversion tracking",
-        "Retargeting campaigns for website visitors",
-        "A/B testing of ad variations",
-        "Monthly performance report",
-        "Direct WhatsApp access to your account manager",
-        "WhatsApp lead integration (where applicable)",
-      ]}
-      benefits={[
-        {
-          title: "Reach People Who Don't Know You Yet",
-          description: "Meta's targeting lets you reach people by location (Pune neighbourhoods, specific pin codes), interests, demographics, and even behaviours like 'recently moved' or 'small business owner'.",
-        },
-        {
-          title: "Retarget People Who Showed Interest",
-          description: "Someone visited your website but didn't enquire? We can show them your ads again on Facebook and Instagram — reminding them about your business until they're ready to act.",
-        },
-        {
-          title: "Visual Brand Building That Compounds",
-          description: "Unlike Google Ads which capture existing demand, Meta Ads build awareness and desire. Over time, people in Pune begin to recognise and trust your brand — driving long-term results beyond ad clicks.",
-        },
-        {
-          title: "Transparent Budget Split",
-          description: "Your ad spend goes directly to Meta. Our agency fee covers creative, strategy, management, and reporting. Always shown separately — you always know exactly what you're paying for.",
-        },
-      ]}
-      faqs={[
-        {
-          question: "Should I choose Facebook, Instagram, or both?",
-          answer: "It depends on your target audience and business type. Instagram tends to work better for visual businesses (food, fashion, fitness, interiors). Facebook often reaches an older, more B2B audience. We'll recommend the right mix based on your specific customers.",
-        },
-        {
-          question: "How is Meta Ads different from just boosting a post?",
-          answer: "Boosting is the lazy shortcut Meta pushes because it's easy — but it's also wasteful. Proper Meta Ads campaigns use the full Ads Manager with detailed targeting, conversion tracking, A/B testing, and audience segmentation. The results are incomparably better.",
-        },
-        {
-          question: "What kind of results should I expect?",
-          answer: "For most Pune local businesses, well-run Meta Ads campaigns can generate leads at ₹200–₹800 per lead depending on industry and competition. We'll give you an honest estimate based on your specific business on the discovery call.",
-        },
-        {
-          question: "Do I need a Facebook page or Instagram account first?",
-          answer: "Yes — you need a Facebook Business Page to run Meta Ads. We can help you set one up if you don't have one. A polished, complete profile also improves ad performance.",
-        },
-        {
-          question: "Can Meta Ads work for a B2B business?",
-          answer: "Yes, though Google Ads often performs better for B2B intent. Meta Ads can work extremely well for B2B awareness, event promotion, and retargeting. We'll advise on the right mix for your business.",
-        },
-      ]}
-      ctaHeadline="Ready to turn Facebook & Instagram into a lead machine?"
-      price="₹15,000/month"
-      priceNote="Includes ₹10,000 ad budget + ₹5,000 agency fee. Ad budget goes directly to Meta."
-    />
-  );
+const COPY = {
+  en: {
+    metaTitle: "Facebook & Instagram Ads for Pune Businesses | Digital Safalta",
+    metaDescription: "Run effective Facebook and Instagram ad campaigns for your Pune business. We create, manage, and optimise Meta Ads that generate real leads and sales — not just likes. Transparent pricing from ₹15,000/month.",
+    category: "Meta Ads",
+    heroHeadline: "Facebook & Instagram Ads for Pune Businesses",
+    heroSubheading: "Facebook and Instagram have over 500 million users in India. With the right targeting and creative, Meta Ads let you reach exactly the customers you want — by location, interest, age, income, and behaviour. We make every rupee of your ad budget count.",
+    whatItIs: "Meta Ads are paid advertisements that appear on Facebook, Instagram, and across Meta's network (including Messenger and WhatsApp). Unlike organic social media posts, Meta Ads put your business in front of people who don't already follow you — the people who don't know you exist yet.",
+    whyItMatters: "Most Pune businesses post on social media and wonder why they don't get customers. Organic reach on Facebook and Instagram is under 5% — most of your followers never see your posts. Ads bypass this entirely and put your business in front of thousands of targeted potential customers.",
+    includes: [
+      "Campaign strategy and audience research",
+      "Ad creative design (images/graphics)",
+      "Copywriting (headlines, body text, CTAs)",
+      "Audience targeting setup (interests, location, lookalikes)",
+      "Facebook Pixel setup for conversion tracking",
+      "Retargeting campaigns for website visitors",
+      "A/B testing of ad variations",
+      "Monthly performance report",
+      "Direct WhatsApp access to your account manager",
+      "WhatsApp lead integration (where applicable)",
+    ],
+    benefits: [
+      { title: "Reach People Who Don't Know You Yet", description: "Meta's targeting lets you reach people by location (Pune neighbourhoods, specific pin codes), interests, demographics, and even behaviours like 'recently moved' or 'small business owner'." },
+      { title: "Retarget People Who Showed Interest", description: "Someone visited your website but didn't enquire? We can show them your ads again on Facebook and Instagram — reminding them about your business until they're ready to act." },
+      { title: "Visual Brand Building That Compounds", description: "Unlike Google Ads which capture existing demand, Meta Ads build awareness and desire. Over time, people in Pune begin to recognise and trust your brand — driving long-term results beyond ad clicks." },
+      { title: "Transparent Budget Split", description: "Your ad spend goes directly to Meta. Our agency fee covers creative, strategy, management, and reporting. Always shown separately — you always know exactly what you're paying for." },
+    ],
+    faqs: [
+      { question: "Should I choose Facebook, Instagram, or both?", answer: "It depends on your target audience and business type. Instagram tends to work better for visual businesses (food, fashion, fitness, interiors). Facebook often reaches an older, more B2B audience. We'll recommend the right mix based on your specific customers." },
+      { question: "How is Meta Ads different from just boosting a post?", answer: "Boosting is the lazy shortcut Meta pushes because it's easy — but it's also wasteful. Proper Meta Ads campaigns use the full Ads Manager with detailed targeting, conversion tracking, A/B testing, and audience segmentation. The results are incomparably better." },
+      { question: "What kind of results should I expect?", answer: "For most Pune local businesses, well-run Meta Ads campaigns can generate leads at ₹200–₹800 per lead depending on industry and competition. We'll give you an honest estimate based on your specific business on the discovery call." },
+      { question: "Do I need a Facebook page or Instagram account first?", answer: "Yes — you need a Facebook Business Page to run Meta Ads. We can help you set one up if you don't have one. A polished, complete profile also improves ad performance." },
+      { question: "Can Meta Ads work for a B2B business?", answer: "Yes, though Google Ads often performs better for B2B intent. Meta Ads can work extremely well for B2B awareness, event promotion, and retargeting. We'll advise on the right mix for your business." },
+    ],
+    ctaHeadline: "Ready to turn Facebook & Instagram into a lead machine?",
+    price: "₹15,000/month",
+    priceNote: "Includes ₹10,000 ad budget + ₹5,000 agency fee. Ad budget goes directly to Meta.",
+  },
+  hi: {
+    metaTitle: "पुणे के बिज़नेस के लिए Facebook व Instagram Ads | Digital Safalta",
+    metaDescription: "अपने पुणे बिज़नेस के लिए असरदार Facebook और Instagram ad campaigns चलाएं। हम Meta Ads बनाते, मैनेज करते और optimise करते हैं जो असली leads और sales generate करते हैं — सिर्फ likes नहीं। ₹15,000/महीना से पारदर्शी मूल्य।",
+    category: "Meta Ads",
+    heroHeadline: "पुणे के बिज़नेस के लिए Facebook व Instagram Ads",
+    heroSubheading: "भारत में Facebook और Instagram के 500 मिलियन से ज़्यादा users हैं। सही targeting और creative के साथ, Meta Ads आपको ठीक उन्हीं customers तक पहुंचने देते हैं जो आप चाहते हैं — location, interest, age, income, और behaviour के आधार पर। हम आपके ad budget के हर रुपये को count कराते हैं।",
+    whatItIs: "Meta Ads paid advertisements हैं जो Facebook, Instagram, और Meta के पूरे network (Messenger और WhatsApp सहित) पर दिखाई देती हैं। Organic social media posts के विपरीत, Meta Ads आपके बिज़नेस को उन लोगों के सामने लाती हैं जो अभी आपको follow नहीं करते — वे लोग जिन्हें अभी पता नहीं कि आप मौजूद हैं।",
+    whyItMatters: "ज़्यादातर पुणे के बिज़नेस social media पर post करते हैं और सोचते हैं कि उन्हें customers क्यों नहीं मिलते। Facebook और Instagram पर organic reach 5% से कम है — ज़्यादातर आपके followers आपकी posts कभी देखते ही नहीं। Ads इसे पूरी तरह bypass करती हैं और आपके बिज़नेस को हज़ारों targeted potential customers के सामने लाती हैं।",
+    includes: [
+      "Campaign रणनीति और audience research",
+      "Ad creative डिज़ाइन (images/graphics)",
+      "Copywriting (headlines, body text, CTAs)",
+      "Audience targeting सेटअप (interests, location, lookalikes)",
+      "Conversion tracking के लिए Facebook Pixel सेटअप",
+      "वेबसाइट visitors के लिए retargeting campaigns",
+      "Ad variations का A/B testing",
+      "मासिक performance रिपोर्ट",
+      "आपके account manager से सीधा WhatsApp एक्सेस",
+      "WhatsApp lead integration (जहां लागू हो)",
+    ],
+    benefits: [
+      { title: "उन लोगों तक पहुंचें जो अभी आपको नहीं जानते", description: "Meta की targeting आपको location (पुणे के इलाके, specific pin codes), interests, demographics, और यहां तक कि 'recently moved' या 'small business owner' जैसे behaviours के आधार पर लोगों तक पहुंचने देती है।" },
+      { title: "रुचि दिखाने वाले लोगों को Retarget करें", description: "किसी ने आपकी वेबसाइट देखी पर enquire नहीं किया? हम उन्हें Facebook और Instagram पर फिर से आपके ads दिखा सकते हैं — उन्हें आपके बिज़नेस के बारे में याद दिलाते हुए जब तक वे action लेने के लिए तैयार न हों।" },
+      { title: "Visual Brand Building जो compound होती है", description: "Google Ads के विपरीत जो मौजूदा demand को capture करती है, Meta Ads awareness और इच्छा बनाती है। समय के साथ, पुणे के लोग आपके brand को पहचानना और भरोसा करना शुरू करते हैं — ad clicks से परे long-term परिणाम।" },
+      { title: "पारदर्शी Budget Split", description: "आपका ad spend सीधे Meta को जाता है। हमारी agency fee creative, रणनीति, मैनेजमेंट, और reporting को कवर करती है। हमेशा अलग दिखाई जाती है — आपको हमेशा पता रहता है कि आप किसके लिए pay कर रहे हैं।" },
+    ],
+    faqs: [
+      { question: "मुझे Facebook, Instagram, या दोनों चुनने चाहिए?", answer: "यह आपके target audience और बिज़नेस के प्रकार पर निर्भर करता है। Instagram visual बिज़नेस (food, fashion, fitness, interiors) के लिए बेहतर काम करता है। Facebook अक्सर थोड़े बड़े, ज़्यादा B2B audience तक पहुंचता है। हम आपके specific customers के आधार पर सही mix सुझाएंगे।" },
+      { question: "सिर्फ एक post को boost करने से Meta Ads कैसे अलग है?", answer: "Boosting वह आसान shortcut है जिसे Meta push करता है क्योंकि यह आसान है — लेकिन यह wasteful भी है। सही Meta Ads campaigns पूरे Ads Manager का उपयोग करती हैं detailed targeting, conversion tracking, A/B testing, और audience segmentation के साथ। परिणाम बेजोड़ बेहतर होते हैं।" },
+      { question: "मुझे किस तरह के परिणाम की उम्मीद करनी चाहिए?", answer: "ज़्यादातर पुणे के local बिज़नेस के लिए, अच्छी तरह चलाए गए Meta Ads campaigns ₹200–₹800 प्रति lead generate कर सकते हैं, industry और competition के आधार पर। हम discovery call पर आपके specific बिज़नेस के आधार पर ईमानदार अनुमान देंगे।" },
+      { question: "क्या मुझे पहले Facebook page या Instagram account चाहिए?", answer: "हां — Meta Ads चलाने के लिए आपको Facebook Business Page चाहिए। अगर आपके पास नहीं है तो हम एक सेट करने में मदद कर सकते हैं। एक polished, complete profile ad performance को भी बेहतर बनाती है।" },
+      { question: "क्या Meta Ads एक B2B बिज़नेस के लिए काम कर सकता है?", answer: "हां, हालांकि Google Ads अक्सर B2B intent के लिए बेहतर perform करता है। Meta Ads B2B awareness, event promotion, और retargeting के लिए बेहद अच्छा काम कर सकता है। हम आपके बिज़नेस के लिए सही mix पर सलाह देंगे।" },
+    ],
+    ctaHeadline: "Facebook व Instagram को lead machine में बदलने के लिए तैयार हैं?",
+    price: "₹15,000/महीना",
+    priceNote: "₹10,000 ad budget + ₹5,000 agency fee शामिल। Ad budget सीधे Meta को जाता है।",
+  },
+  mr: {
+    metaTitle: "पुणे व्यवसायांसाठी Facebook व Instagram Ads | Digital Safalta",
+    metaDescription: "तुमच्या पुणे व्यवसायासाठी प्रभावी Facebook आणि Instagram ad campaigns चालवा. आम्ही Meta Ads तयार करतो, व्यवस्थापित करतो आणि optimise करतो जे खरे leads आणि sales generate करतात — फक्त likes नाही. ₹15,000/महिना पासून पारदर्शी किंमत.",
+    category: "Meta Ads",
+    heroHeadline: "पुणे व्यवसायांसाठी Facebook व Instagram Ads",
+    heroSubheading: "भारतात Facebook आणि Instagram चे 500 दशलक्षाहून अधिक users आहेत. योग्य targeting आणि creative सोबत, Meta Ads तुम्हाला बरोबर तेच customers गाठू देतात जे तुम्हाला हवे आहेत — location, interest, age, income आणि behaviour नुसार. आम्ही तुमच्या ad budget च्या प्रत्येक रुपयाला count करायला लावतो.",
+    whatItIs: "Meta Ads ही paid advertisements आहेत जी Facebook, Instagram आणि Meta च्या संपूर्ण network वर (Messenger आणि WhatsApp सह) दिसतात. Organic social media posts च्या विपरीत, Meta Ads तुमचा व्यवसाय अशा लोकांसमोर आणतात जे अजून तुम्हाला follow करत नाहीत — जे लोक तुम्ही अस्तित्वात आहात हे अजून जाणत नाहीत.",
+    whyItMatters: "बहुतेक पुणे व्यवसाय social media वर post करतात आणि त्यांना customers का मिळत नाहीत याचा विचार करतात. Facebook आणि Instagram वर organic reach 5% पेक्षा कमी आहे — बहुतेक तुमचे followers तुमच्या posts कधीच पाहत नाहीत. Ads हे पूर्णपणे bypass करतात आणि तुमचा व्यवसाय हजारो targeted संभाव्य customers समोर आणतात.",
+    includes: [
+      "Campaign रणनीती आणि audience research",
+      "Ad creative डिझाइन (images/graphics)",
+      "Copywriting (headlines, body text, CTAs)",
+      "Audience targeting सेटअप (interests, location, lookalikes)",
+      "Conversion tracking साठी Facebook Pixel सेटअप",
+      "वेबसाइट visitors साठी retargeting campaigns",
+      "Ad variations चे A/B testing",
+      "मासिक performance अहवाल",
+      "तुमच्या account manager शी थेट WhatsApp ऍक्सेस",
+      "WhatsApp lead integration (जिथे लागू असेल)",
+    ],
+    benefits: [
+      { title: "जे लोक तुम्हाला अजून ओळखत नाहीत त्यांच्यापर्यंत पोहोचा", description: "Meta ची targeting तुम्हाला location (पुण्यातील भाग, विशिष्ट pin codes), interests, demographics आणि अगदी 'recently moved' किंवा 'small business owner' सारख्या behaviours नुसार लोकांपर्यंत पोहोचू देते." },
+      { title: "रस दाखवलेल्या लोकांना Retarget करा", description: "कोणीतरी तुमची वेबसाइट भेट दिली पण enquire केले नाही? आम्ही त्यांना Facebook आणि Instagram वर पुन्हा तुमच्या ads दाखवू शकतो — ते कृती करण्यास तयार होईपर्यंत त्यांना तुमच्या व्यवसायाची आठवण करून देत." },
+      { title: "Visual Brand Building जे compound होते", description: "Google Ads च्या विपरीत जे विद्यमान demand capture करते, Meta Ads जागरूकता आणि इच्छा निर्माण करते. कालांतराने, पुण्यातील लोक तुमचा brand ओळखू लागतात आणि विश्वास ठेवू लागतात — ad clicks पलीकडे दीर्घकालीन निकाल." },
+      { title: "पारदर्शी Budget Split", description: "तुमचा ad खर्च थेट Meta ला जातो. आमची agency fee creative, रणनीती, व्यवस्थापन आणि reporting कव्हर करते. नेहमी वेगळी दाखवली जाते — तुम्हाला नेहमी कळते की तुम्ही कशासाठी pay करत आहात." },
+    ],
+    faqs: [
+      { question: "मी Facebook, Instagram, की दोन्ही निवडावे?", answer: "हे तुमच्या target audience आणि व्यवसायाच्या प्रकारावर अवलंबून असते. Instagram visual व्यवसायांसाठी (food, fashion, fitness, interiors) चांगले काम करते. Facebook अनेकदा थोडे मोठे, अधिक B2B audience गाठते. आम्ही तुमच्या विशिष्ट customers नुसार योग्य mix सुचवू." },
+      { question: "फक्त एक post boost करण्यापेक्षा Meta Ads कसे वेगळे आहे?", answer: "Boosting हा आळशी shortcut आहे जो Meta पुढे करते कारण तो सोपा आहे — पण तो wasteful देखील आहे. योग्य Meta Ads campaigns संपूर्ण Ads Manager वापरतात detailed targeting, conversion tracking, A/B testing आणि audience segmentation सह. निकाल अतुलनीयरीत्या चांगले असतात." },
+      { question: "मी कोणत्या प्रकारच्या निकालांची अपेक्षा करावी?", answer: "बहुतेक पुणे local व्यवसायांसाठी, चांगल्या प्रकारे चालवलेल्या Meta Ads campaigns ₹200–₹800 प्रति lead generate करू शकतात, industry आणि competition नुसार. आम्ही discovery call वर तुमच्या विशिष्ट व्यवसायावर आधारित प्रामाणिक अंदाज देऊ." },
+      { question: "मला आधी Facebook page किंवा Instagram account हवे का?", answer: "होय — Meta Ads चालवण्यासाठी तुम्हाला Facebook Business Page हवे. तुमच्याकडे नसल्यास आम्ही एक सेट करण्यात मदत करू शकतो. एक नीटनेटके, संपूर्ण profile ad performance देखील सुधारते." },
+      { question: "Meta Ads B2B व्यवसायासाठी काम करू शकते का?", answer: "होय, जरी Google Ads अनेकदा B2B intent साठी चांगले perform करते. Meta Ads B2B जागरूकता, event promotion आणि retargeting साठी अत्यंत चांगले काम करू शकते. आम्ही तुमच्या व्यवसायासाठी योग्य mix वर सल्ला देऊ." },
+    ],
+    ctaHeadline: "Facebook व Instagram ला lead machine बनवण्यासाठी तयार आहात?",
+    price: "₹15,000/महिना",
+    priceNote: "₹10,000 ad budget + ₹5,000 agency fee समाविष्ट. Ad budget थेट Meta ला जातो.",
+  },
+};
+
+export function MetaAdsPage({ lang = 'en' }: { lang?: Lang }) {
+  const c = COPY[lang];
+  return <ServicePage lang={lang} {...c} />;
 }
