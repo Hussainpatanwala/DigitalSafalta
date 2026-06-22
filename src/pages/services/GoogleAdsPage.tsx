@@ -1,71 +1,121 @@
 import { ServicePage } from '../../components/ServicePage';
+import type { Lang } from '../../lib/constants';
 
-export function GoogleAdsPage() {
-  return (
-    <ServicePage
-      title="Google Ads Management in Pune"
-      metaTitle="Google Ads Management in Pune | Digital Safalta"
-      metaDescription="Expert Google Ads management for Pune businesses. We set up, run, and optimise your campaigns so every rupee works harder. Transparent billing — ad budget and agency fee always shown separately."
-      category="Google Ads"
-      heroHeadline="Google Ads Management in Pune"
-      heroSubheading="When someone in Pune searches for your product or service on Google, your ad should be right there at the top. We set up, manage, and continuously optimise your Google Ads campaigns so you get real leads — not just clicks."
-      whatItIs="Google Ads (formerly Google AdWords) lets you place your business at the top of Google search results for keywords your customers are actively searching. You pay only when someone clicks — and we make sure the right people are clicking."
-      whyItMatters="Google Ads puts you in front of people at the exact moment they're looking for what you offer. Unlike social media ads where you interrupt people who aren't looking, Google Ads captures active demand — people who are ready to buy right now."
-      includes={[
-        "Campaign strategy and keyword research",
-        "Ad copywriting (headlines, descriptions, extensions)",
-        "Audience targeting and bid strategy setup",
-        "Conversion tracking setup (calls, form fills)",
-        "Negative keyword management",
-        "A/B testing of ad creatives",
-        "Monthly performance report",
-        "Direct WhatsApp access to your account manager",
-        "Landing page recommendations",
-        "Google Ad credit claim support (up to ₹20,000 free credit for new accounts)",
-      ]}
-      benefits={[
-        {
-          title: "Appear on Page 1 Immediately",
-          description: "Unlike SEO which takes months, Google Ads puts you at the top of search results from day one. Perfect for new businesses or for capturing demand right now.",
-        },
-        {
-          title: "Pay Only for Clicks",
-          description: "You only spend money when someone actually clicks on your ad. Combined with precise targeting, your budget goes towards people most likely to become customers.",
-        },
-        {
-          title: "Double Your Reach with Google's Free Credit",
-          description: "New to Google Ads? Google offers ₹20,000 in free ad credit when you spend your first ₹20,000. That's effectively ₹40,000 of advertising for ₹20,000 — we'll help you claim it.",
-        },
-        {
-          title: "Full Transparency, Always",
-          description: "Your ad budget and our agency fee are always shown separately. You know exactly how much goes to Google and how much comes to us. No blended billing.",
-        },
-      ]}
-      faqs={[
-        {
-          question: "How much should I spend on Google Ads?",
-          answer: "For Pune-based local businesses, ₹10,000–₹20,000/month in ad spend is a solid starting point. It depends on your industry and competition. We'll give you honest expectations on the discovery call based on your specific keywords.",
-        },
-        {
-          question: "What's the difference between the ad budget and your agency fee?",
-          answer: "The ad budget goes directly to Google — we never touch it. Our agency fee covers strategy, setup, management, and reporting. In our Starter plan, ₹10,000 goes to Google and ₹5,000 is our fee. Always shown separately.",
-        },
-        {
-          question: "How long before I start seeing results?",
-          answer: "Google Ads can show results within the first 2-4 weeks. The first month is partly about learning — which keywords, ads, and audiences perform best. Campaigns typically improve significantly from month 2 onwards.",
-        },
-        {
-          question: "Do I need a website to run Google Ads?",
-          answer: "Yes — people who click your ad need somewhere to land. A fast, relevant landing page dramatically improves conversion rates. We can build you one, or optimise your existing site.",
-        },
-        {
-          question: "What if the ads aren't performing well?",
-          answer: "We monitor and optimise continuously. If something isn't working, we test different ad copies, adjust bidding, refine targeting, and add negative keywords. Underperforming campaigns are a problem to solve, not ignore.",
-        },
-      ]}
-      ctaHeadline="Ready to appear at the top of Google?"
-      price="₹15,000/month"
-      priceNote="Includes ₹10,000 ad budget + ₹5,000 agency fee. Ad budget goes directly to Google."
-    />
-  );
+const COPY = {
+  en: {
+    metaTitle: "Google Ads Management in Pune | Digital Safalta",
+    metaDescription: "Expert Google Ads management for Pune businesses. We set up, run, and optimise your campaigns so every rupee works harder. Transparent billing — ad budget and agency fee always shown separately.",
+    category: "Google Ads",
+    heroHeadline: "Google Ads Management in Pune",
+    heroSubheading: "When someone in Pune searches for your product or service on Google, your ad should be right there at the top. We set up, manage, and continuously optimise your Google Ads campaigns so you get real leads — not just clicks.",
+    whatItIs: "Google Ads (formerly Google AdWords) lets you place your business at the top of Google search results for keywords your customers are actively searching. You pay only when someone clicks — and we make sure the right people are clicking.",
+    whyItMatters: "Google Ads puts you in front of people at the exact moment they're looking for what you offer. Unlike social media ads where you interrupt people who aren't looking, Google Ads captures active demand — people who are ready to buy right now.",
+    includes: [
+      "Campaign strategy and keyword research",
+      "Ad copywriting (headlines, descriptions, extensions)",
+      "Audience targeting and bid strategy setup",
+      "Conversion tracking setup (calls, form fills)",
+      "Negative keyword management",
+      "A/B testing of ad creatives",
+      "Monthly performance report",
+      "Direct WhatsApp access to your account manager",
+      "Landing page recommendations",
+      "Google Ad credit claim support (up to ₹20,000 free credit for new accounts)",
+    ],
+    benefits: [
+      { title: "Appear on Page 1 Immediately", description: "Unlike SEO which takes months, Google Ads puts you at the top of search results from day one. Perfect for new businesses or for capturing demand right now." },
+      { title: "Pay Only for Clicks", description: "You only spend money when someone actually clicks on your ad. Combined with precise targeting, your budget goes towards people most likely to become customers." },
+      { title: "Double Your Reach with Google's Free Credit", description: "New to Google Ads? Google offers ₹20,000 in free ad credit when you spend your first ₹20,000. That's effectively ₹40,000 of advertising for ₹20,000 — we'll help you claim it." },
+      { title: "Full Transparency, Always", description: "Your ad budget and our agency fee are always shown separately. You know exactly how much goes to Google and how much comes to us. No blended billing." },
+    ],
+    faqs: [
+      { question: "How much should I spend on Google Ads?", answer: "For Pune-based local businesses, ₹10,000–₹20,000/month in ad spend is a solid starting point. It depends on your industry and competition. We'll give you honest expectations on the discovery call based on your specific keywords." },
+      { question: "What's the difference between the ad budget and your agency fee?", answer: "The ad budget goes directly to Google — we never touch it. Our agency fee covers strategy, setup, management, and reporting. In our Starter plan, ₹10,000 goes to Google and ₹5,000 is our fee. Always shown separately." },
+      { question: "How long before I start seeing results?", answer: "Google Ads can show results within the first 2-4 weeks. The first month is partly about learning — which keywords, ads, and audiences perform best. Campaigns typically improve significantly from month 2 onwards." },
+      { question: "Do I need a website to run Google Ads?", answer: "Yes — people who click your ad need somewhere to land. A fast, relevant landing page dramatically improves conversion rates. We can build you one, or optimise your existing site." },
+      { question: "What if the ads aren't performing well?", answer: "We monitor and optimise continuously. If something isn't working, we test different ad copies, adjust bidding, refine targeting, and add negative keywords. Underperforming campaigns are a problem to solve, not ignore." },
+    ],
+    ctaHeadline: "Ready to appear at the top of Google?",
+    price: "₹15,000/month",
+    priceNote: "Includes ₹10,000 ad budget + ₹5,000 agency fee. Ad budget goes directly to Google.",
+  },
+  hi: {
+    metaTitle: "पुणे में Google Ads मैनेजमेंट | Digital Safalta",
+    metaDescription: "पुणे के बिज़नेस के लिए expert Google Ads मैनेजमेंट। हम आपके campaigns को सेट करते, चलाते और optimise करते हैं ताकि हर रुपया बेहतर काम करे। पारदर्शी billing — ad budget और agency fee हमेशा अलग दिखाई जाती है।",
+    category: "Google Ads",
+    heroHeadline: "पुणे में Google Ads मैनेजमेंट",
+    heroSubheading: "जब पुणे में कोई आपके product या service को Google पर खोजता है, तो आपका ad सबसे ऊपर होना चाहिए। हम आपके Google Ads campaigns को सेट करते हैं, मैनेज करते हैं, और लगातार optimise करते हैं ताकि आपको असली leads मिलें — सिर्फ clicks नहीं।",
+    whatItIs: "Google Ads (पहले Google AdWords) आपको उन keywords के लिए Google search results के सबसे ऊपर अपना बिज़नेस रखने देता है जो आपके customers सक्रिय रूप से खोज रहे हैं। आप तभी pay करते हैं जब कोई click करता है — और हम सुनिश्चित करते हैं कि सही लोग click करें।",
+    whyItMatters: "Google Ads आपको ठीक उसी पल लोगों के सामने लाता है जब वे वही खोज रहे होते हैं जो आप ऑफर करते हैं। Social media ads के विपरीत जहां आप उन लोगों को बीच में interrupt करते हैं जो देख नहीं रहे, Google Ads active demand को capture करता है — वे लोग जो अभी खरीदने के लिए तैयार हैं।",
+    includes: [
+      "Campaign रणनीति और keyword research",
+      "Ad copywriting (headlines, descriptions, extensions)",
+      "Audience targeting और bid रणनीति सेटअप",
+      "Conversion tracking सेटअप (calls, form fills)",
+      "Negative keyword मैनेजमेंट",
+      "Ad creatives का A/B testing",
+      "मासिक performance रिपोर्ट",
+      "आपके account manager से सीधा WhatsApp एक्सेस",
+      "Landing page सुझाव",
+      "Google Ad credit claim सपोर्ट (नए accounts के लिए ₹20,000 तक मुफ़्त credit)",
+    ],
+    benefits: [
+      { title: "तुरंत Page 1 पर दिखें", description: "SEO के विपरीत जिसमें महीने लगते हैं, Google Ads आपको पहले दिन से search results के सबसे ऊपर रखता है। नए बिज़नेस के लिए या अभी demand capture करने के लिए perfect।" },
+      { title: "सिर्फ Clicks के लिए Pay करें", description: "आप तभी पैसे खर्च करते हैं जब कोई वाकई आपके ad पर click करता है। सटीक targeting के साथ मिलकर, आपका बजट उन लोगों पर जाता है जो customer बनने की सबसे ज़्यादा संभावना रखते हैं।" },
+      { title: "Google के मुफ़्त Credit से अपनी reach दोगुनी करें", description: "Google Ads में नए हैं? जब आप अपने पहले ₹20,000 खर्च करते हैं तो Google ₹20,000 का मुफ़्त ad credit देता है। यानी ₹20,000 में effectively ₹40,000 की advertising — हम आपको इसे claim करने में मदद करेंगे।" },
+      { title: "हमेशा पूरी पारदर्शिता", description: "आपका ad budget और हमारी agency fee हमेशा अलग-अलग दिखाई जाती है। आपको पता रहता है कि कितना Google को जाता है और कितना हमें मिलता है। कोई blended billing नहीं।" },
+    ],
+    faqs: [
+      { question: "मुझे Google Ads पर कितना खर्च करना चाहिए?", answer: "पुणे के local बिज़नेस के लिए, ₹10,000–₹20,000/महीना ad spend एक ठोस शुरुआती बिंदु है। यह आपकी industry और competition पर निर्भर करता है। हम आपके specific keywords के आधार पर discovery call पर ईमानदार उम्मीदें देंगे।" },
+      { question: "ad budget और आपकी agency fee में क्या फ़र्क़ है?", answer: "Ad budget सीधे Google को जाता है — हम इसे कभी नहीं छूते। हमारी agency fee रणनीति, सेटअप, मैनेजमेंट, और reporting को कवर करती है। हमारे Starter प्लान में, ₹10,000 Google को जाता है और ₹5,000 हमारी fee है। हमेशा अलग दिखाई जाती है।" },
+      { question: "परिणाम दिखने में कितना समय लगेगा?", answer: "Google Ads पहले 2-4 हफ्तों में परिणाम दिखा सकता है। पहला महीना आंशिक रूप से सीखने के बारे में है — कौन से keywords, ads, और audiences सबसे अच्छा perform करते हैं। Campaigns आमतौर पर महीने 2 से काफ़ी सुधरते हैं।" },
+      { question: "क्या मुझे Google Ads चलाने के लिए वेबसाइट चाहिए?", answer: "हां — जो लोग आपके ad पर click करते हैं उन्हें कहीं land करना होता है। एक तेज़, relevant landing page conversion rates को काफ़ी बेहतर बनाता है। हम आपके लिए एक बना सकते हैं, या आपकी मौजूदा साइट को optimise कर सकते हैं।" },
+      { question: "अगर ads अच्छा perform नहीं कर रहे तो?", answer: "हम लगातार monitor और optimise करते हैं। अगर कुछ काम नहीं कर रहा, हम अलग-अलग ad copies test करते हैं, bidding adjust करते हैं, targeting को refine करते हैं, और negative keywords जोड़ते हैं। Underperforming campaigns को हल करना है, नज़रअंदाज़ नहीं करना।" },
+    ],
+    ctaHeadline: "Google के सबसे ऊपर दिखने के लिए तैयार हैं?",
+    price: "₹15,000/महीना",
+    priceNote: "₹10,000 ad budget + ₹5,000 agency fee शामिल। Ad budget सीधे Google को जाता है।",
+  },
+  mr: {
+    metaTitle: "पुण्यात Google Ads व्यवस्थापन | Digital Safalta",
+    metaDescription: "पुण्यातील व्यवसायांसाठी expert Google Ads व्यवस्थापन. आम्ही तुमचे campaigns सेट करतो, चालवतो आणि optimise करतो जेणेकरून प्रत्येक रुपया अधिक चांगले काम करेल. पारदर्शी billing — ad budget आणि agency fee नेहमी वेगळी दाखवली जाते.",
+    category: "Google Ads",
+    heroHeadline: "पुण्यात Google Ads व्यवस्थापन",
+    heroSubheading: "जेव्हा पुण्यातील कोणीतरी तुमचे product किंवा service Google वर शोधते, तेव्हा तुमची ad अगदी वर असायला हवी. आम्ही तुमची Google Ads campaigns सेट करतो, व्यवस्थापित करतो आणि सतत optimise करतो जेणेकरून तुम्हाला खरे leads मिळतील — फक्त clicks नाही.",
+    whatItIs: "Google Ads (पूर्वी Google AdWords) तुम्हाला तुमच्या customers सक्रियपणे शोधत असलेल्या keywords साठी Google search results च्या वर तुमचा व्यवसाय ठेवू देते. तुम्ही फक्त तेव्हाच pay करता जेव्हा कोणी click करते — आणि आम्ही खात्री करतो की योग्य लोक click करत आहेत.",
+    whyItMatters: "Google Ads तुम्हाला बरोबर त्याच क्षणी लोकांसमोर आणते जेव्हा ते तुम्ही जे ऑफर करता तेच शोधत असतात. Social media ads च्या विपरीत जिथे तुम्ही न पाहणाऱ्या लोकांना मध्ये अडवता, Google Ads active demand capture करते — जे लोक आत्ता खरेदी करण्यास तयार आहेत.",
+    includes: [
+      "Campaign रणनीती आणि keyword research",
+      "Ad copywriting (headlines, descriptions, extensions)",
+      "Audience targeting आणि bid रणनीती सेटअप",
+      "Conversion tracking सेटअप (calls, form fills)",
+      "Negative keyword व्यवस्थापन",
+      "Ad creatives चे A/B testing",
+      "मासिक performance अहवाल",
+      "तुमच्या account manager शी थेट WhatsApp ऍक्सेस",
+      "Landing page शिफारसी",
+      "Google Ad credit claim सपोर्ट (नवीन accounts साठी ₹20,000 पर्यंत मोफत credit)",
+    ],
+    benefits: [
+      { title: "लगेच Page 1 वर दिसा", description: "SEO च्या विपरीत ज्याला महिने लागतात, Google Ads तुम्हाला पहिल्या दिवसापासून search results च्या वर ठेवते. नवीन व्यवसायांसाठी किंवा आत्ता demand capture करण्यासाठी परफेक्ट." },
+      { title: "फक्त Clicks साठी Pay करा", description: "तुम्ही फक्त तेव्हाच पैसे खर्च करता जेव्हा कोणी खरंच तुमच्या ad वर click करते. अचूक targeting सोबत, तुमचे बजेट customer बनण्याची सर्वाधिक शक्यता असलेल्या लोकांकडे जाते." },
+      { title: "Google च्या मोफत Credit ने तुमची reach दुप्पट करा", description: "Google Ads मध्ये नवीन आहात? जेव्हा तुम्ही तुमचे पहिले ₹20,000 खर्च करता तेव्हा Google ₹20,000 चे मोफत ad credit देते. म्हणजे ₹20,000 मध्ये effectively ₹40,000 ची advertising — आम्ही ते claim करण्यात मदत करू." },
+      { title: "नेहमी संपूर्ण पारदर्शकता", description: "तुमचा ad budget आणि आमची agency fee नेहमी वेगळी दाखवली जाते. तुम्हाला नक्की कळते की किती Google ला जाते आणि किती आम्हाला मिळते. कोणतेही blended billing नाही." },
+    ],
+    faqs: [
+      { question: "मी Google Ads वर किती खर्च करावे?", answer: "पुण्यातील local व्यवसायांसाठी, ₹10,000–₹20,000/महिना ad spend हा एक ठोस सुरुवातीचा बिंदू आहे. हे तुमच्या industry आणि competition वर अवलंबून असते. आम्ही तुमच्या विशिष्ट keywords वर आधारित discovery call वर प्रामाणिक अपेक्षा देऊ." },
+      { question: "ad budget आणि तुमच्या agency fee मध्ये काय फरक आहे?", answer: "Ad budget थेट Google ला जातो — आम्ही त्याला कधीच स्पर्श करत नाही. आमची agency fee रणनीती, सेटअप, व्यवस्थापन आणि reporting कव्हर करते. आमच्या Starter प्लॅनमध्ये, ₹10,000 Google ला जातात आणि ₹5,000 आमची fee आहे. नेहमी वेगळी दाखवली जाते." },
+      { question: "निकाल दिसायला किती वेळ लागेल?", answer: "Google Ads पहिल्या 2-4 आठवड्यांत निकाल दाखवू शकते. पहिला महिना अंशतः शिकण्याबद्दल आहे — कोणते keywords, ads आणि audiences सर्वोत्तम काम करतात. Campaigns साधारणपणे महिना 2 पासून लक्षणीयरीत्या सुधारतात." },
+      { question: "मला Google Ads चालवण्यासाठी वेबसाइट हवी का?", answer: "होय — जे लोक तुमच्या ad वर click करतात त्यांना कुठेतरी land व्हायला हवे. एक जलद, relevant landing page conversion rates खूप सुधारते. आम्ही तुमच्यासाठी एक तयार करू शकतो, किंवा तुमची विद्यमान साइट optimise करू शकतो." },
+      { question: "जर ads चांगले perform करत नसतील तर?", answer: "आम्ही सतत monitor आणि optimise करतो. काही काम करत नसेल तर, आम्ही वेगवेगळ्या ad copies test करतो, bidding adjust करतो, targeting refine करतो आणि negative keywords जोडतो. Underperforming campaigns सोडवायची समस्या आहे, दुर्लक्ष करायची नाही." },
+    ],
+    ctaHeadline: "Google च्या सर्वात वर दिसण्यासाठी तयार आहात?",
+    price: "₹15,000/महिना",
+    priceNote: "₹10,000 ad budget + ₹5,000 agency fee समाविष्ट. Ad budget थेट Google ला जातो.",
+  },
+};
+
+export function GoogleAdsPage({ lang = 'en' }: { lang?: Lang }) {
+  const c = COPY[lang];
+  return <ServicePage lang={lang} {...c} />;
 }
