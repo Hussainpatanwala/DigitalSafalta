@@ -99,11 +99,11 @@ function AppShell() {
           <Route path="/blog/google-free-ad-credit" element={<GoogleFreeAdCredit />} />
           <Route path="/blog/what-is-a-website" element={<WhatIsAWebsite />} />
           <Route path="/services/website-design" element={<WebsiteDesignPage lang={activeLang} />} />
-          <Route path="/services/google-ads" element={<GoogleAdsPage />} />
-          <Route path="/services/meta-ads" element={<MetaAdsPage />} />
-          <Route path="/services/seo" element={<SEOPage />} />
-          <Route path="/services/social-media" element={<SocialMediaPage />} />
-          <Route path="/services/google-business-profile" element={<GoogleBusinessProfilePage />} />
+          <Route path="/services/google-ads" element={<GoogleAdsPage lang={activeLang} />} />
+          <Route path="/services/meta-ads" element={<MetaAdsPage lang={activeLang} />} />
+          <Route path="/services/seo" element={<SEOPage lang={activeLang} />} />
+          <Route path="/services/social-media" element={<SocialMediaPage lang={activeLang} />} />
+          <Route path="/services/google-business-profile" element={<GoogleBusinessProfilePage lang={activeLang} />} />
           <Route path="/tools/marketing-audit" element={<MarketingAuditPage />} />
         </Routes>
       </main>
