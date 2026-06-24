@@ -106,12 +106,12 @@ function AppShell() {
           <Route path="/services/google-business-profile" element={<GoogleBusinessProfilePage lang={activeLang} />} />
           <Route path="/tools/marketing-audit" element={<MarketingAuditPage />} />
           <Route path="/blog" element={<BlogIndexPage lang={activeLang} />} />
-          <Route path="/blog/what-is-digital-marketing" element={<WhatIsDigitalMarketing lang={activeLang} />} />
-          <Route path="/blog/website-cost-pune" element={<WebsiteCostPune lang={activeLang} />} />
-          <Route path="/blog/what-is-seo" element={<WhatIsSEO lang={activeLang} />} />
-          <Route path="/blog/google-ads-vs-meta-ads" element={<GoogleAdsVsMetaAds lang={activeLang} />} />
-          <Route path="/blog/google-free-ad-credit" element={<GoogleFreeAdCredit lang={activeLang} />} />
-          <Route path="/blog/what-is-a-website" element={<WhatIsAWebsite lang={activeLang} />} />
+<Route path="/blog/what-is-digital-marketing" element={<WhatIsDigitalMarketing lang={activeLang} />} />
+<Route path="/blog/website-cost-pune" element={<WebsiteCostPune lang={activeLang} />} />
+<Route path="/blog/what-is-seo" element={<WhatIsSEO lang={activeLang} />} />
+<Route path="/blog/google-ads-vs-meta-ads" element={<GoogleAdsVsMetaAds lang={activeLang} />} />
+<Route path="/blog/google-free-ad-credit" element={<GoogleFreeAdCredit lang={activeLang} />} />
+<Route path="/blog/what-is-a-website" element={<WhatIsAWebsite lang={activeLang} />} />
         </Routes>
       </main>
 
