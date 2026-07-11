@@ -142,6 +142,8 @@ This is already live and working. Claude should read this before suggesting any 
 | Date | Product Name | Slug | Category | Status |
 |------|--------------|------|----------|--------|
 | 2026-07-11 | Skullcandy Jib True 2 | skullcandy-jib-true-2 | Audio | Published |
+| 2026-07-11 | Boat Wave Call 3 Smartwatch | boat-wave-call-3-smartwatch | Wearables | Published |
+| 2026-07-11 | Ambrane 20000mAh Power Bank (Stylo N20) | ambrane-20000mah-power-bank-stylo-n20 | Power Banks | Published |
 
 ---
 
