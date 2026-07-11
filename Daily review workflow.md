@@ -112,6 +112,29 @@ https://www.amazon.in/dp/[ASIN]?tag=autosafalta-21
 
 ---
 
+## Technical Setup Reference (already built — do not recreate)
+
+This is already live and working. Claude should read this before suggesting any technical changes, so it doesn't propose rebuilding something that exists or re-diagnose already-solved issues.
+
+**Supabase tables (in the DigitalSafalta Supabase project):**
+- `product_reviews` — the published output table, publicly readable via RLS only where `status = 'published'`. Columns: `id, slug, title, meta_description, product_name, price_inr, mrp_inr, rating, review_count, pros (text[]), cons (text[]), who_for, who_not_for, verdict, affiliate_url, category, read_time, status ('draft'|'published'), created_at, published_at`.
+- `product_queue` — reserved for future n8n automation (not yet wired up). Not used by the manual workflow above.
+- Full schema lives in `schema.sql` in the repo root (or wherever it was committed).
+
+**React app (DigitalSafalta repo — Cloudflare Pages, auto-deploys from `main`):**
+- `src/lib/productReview.ts` — TypeScript type for a review row. Already correct, don't touch unless the Supabase schema changes.
+- `src/pages/blog/ProductReviewsIndexPage.tsx` — lists all published reviews. Route: `/blog/reviews`.
+- `src/pages/blog/ProductReviewPage.tsx` — renders one review by slug, fetched live from Supabase. Route: `/blog/reviews/:slug`.
+- Both routes are registered in `src/App.tsx`, imported alongside the existing static blog post routes.
+- Both pages are confirmed **live and working** on `digitalsafalta.in` as of the Skullcandy review going live.
+
+**Known gotchas already solved — don't re-diagnose these:**
+- GitHub's web editor can silently corrupt pasted code (dropped characters, e.g. a missing `<a` tag once broke the build). If a future deploy fails after a manual GitHub paste, first suspect corruption from the paste, not new logic — ask for the raw file content and diff it.
+- Editing files via GitHub's web UI one at a time (not local git) is the established workflow — Hussain doesn't have a local dev setup wired to the repo, so all changes go through GitHub's browser editor, and deploys are verified via Cloudflare Pages' deployment list.
+- Adding a new review only ever requires a SQL `insert` into `product_reviews` — no code changes, no redeploy needed. The React pages already fetch dynamically.
+
+---
+
 ## Reviewed Products Log
 
 *Update this table yourself after each published review — add a row with the date, product, and slug. When you paste this file back, Claude checks this table first and starts you on a NEW product, skipping anything listed here.*
