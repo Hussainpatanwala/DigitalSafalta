@@ -23,6 +23,8 @@ import { WhatIsSEO } from './pages/blog/what-is-seo';
 import { GoogleAdsVsMetaAds } from './pages/blog/google-ads-vs-meta-ads';
 import { GoogleFreeAdCredit } from './pages/blog/google-free-ad-credit';
 import { WhatIsAWebsite } from './pages/blog/what-is-a-website';
+import { ProductReviewsIndexPage } from './pages/blog/ProductReviewsIndexPage';
+import { ProductReviewPage } from './pages/blog/ProductReviewPage';
 import type { Lang } from './lib/constants';
 
 function ScrollToTop() {
@@ -98,6 +100,8 @@ function AppShell() {
           <Route path="/blog/google-ads-vs-meta-ads" element={<GoogleAdsVsMetaAds />} />
           <Route path="/blog/google-free-ad-credit" element={<GoogleFreeAdCredit />} />
           <Route path="/blog/what-is-a-website" element={<WhatIsAWebsite />} />
+          <Route path="/blog/reviews" element={<ProductReviewsIndexPage />} />
+          <Route path="/blog/reviews/:slug" element={<ProductReviewPage />} />
           <Route path="/services/website-design" element={<WebsiteDesignPage lang={activeLang} />} />
           <Route path="/services/google-ads" element={<GoogleAdsPage lang={activeLang} />} />
           <Route path="/services/meta-ads" element={<MetaAdsPage lang={activeLang} />} />
