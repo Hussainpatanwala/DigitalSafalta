@@ -171,7 +171,7 @@ export function ProductReviewPage() {
           {/* Affiliate CTA */}
           <div className="rounded-2xl p-8 bg-gradient-to-br from-teal-500/15 to-cyan-500/10 border border-teal-500/25 text-center mb-6">
             <h3 className="text-xl font-black text-white mb-4">Check current price on Amazon</h3>
-            
+            <a
               href={r.affiliate_url}
               target="_blank"
               rel="noopener noreferrer sponsored"
