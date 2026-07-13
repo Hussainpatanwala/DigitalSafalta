@@ -38,6 +38,37 @@ const COPY = {
     ctaHeadline: "Let's build a social media presence worth following.",
     price: "Included in Growth plan",
     priceNote: "₹35,000/month with Ads + SEO + Social Media. Or ask about standalone social media packages.",
+    postingPlansHeading: "Standalone Posting Plans",
+    postingPlans: [
+      {
+        name: "Starter Pack",
+        price: "₹1,000",
+        period: "/month",
+        features: ["5 posts total", "Basic report"],
+      },
+      {
+        name: "Standard Pack",
+        price: "₹2,000",
+        period: "/month",
+        features: ["12 posts total", "Monthly report", "Consultation"],
+        highlighted: true,
+      },
+      {
+        name: "Premium Pack",
+        price: "₹3,500",
+        period: "/month",
+        features: ["20 posts total", "Detailed analytics", "Strategy support"],
+      },
+    ],
+    dailyPlan: {
+      title: "Daily Post Plan",
+      description: "We'll create and publish 1 post per day for your business across Facebook, Instagram, and WhatsApp Updates.",
+      features: [
+        "Content tailored to your brand",
+        "Professional design + captions",
+        "Consistent posting to keep your audience engaged",
+      ],
+    },
   },
   hi: {
     metaTitle: "पुणे में सोशल मीडिया मैनेजमेंट | Digital Safalta",
@@ -75,6 +106,37 @@ const COPY = {
     ctaHeadline: "चलिए एक सोशल मीडिया उपस्थिति बनाते हैं जो follow करने लायक हो।",
     price: "Growth प्लान में शामिल",
     priceNote: "Ads + SEO + सोशल मीडिया के साथ ₹35,000/महीना। या standalone सोशल मीडिया पैकेज के बारे में पूछें।",
+    postingPlansHeading: "Standalone Posting प्लान",
+    postingPlans: [
+      {
+        name: "Starter Pack",
+        price: "₹1,000",
+        period: "/महीना",
+        features: ["कुल 5 posts", "Basic report"],
+      },
+      {
+        name: "Standard Pack",
+        price: "₹2,000",
+        period: "/महीना",
+        features: ["कुल 12 posts", "मासिक report", "Consultation"],
+        highlighted: true,
+      },
+      {
+        name: "Premium Pack",
+        price: "₹3,500",
+        period: "/महीना",
+        features: ["कुल 20 posts", "विस्तृत analytics", "रणनीति सहायता"],
+      },
+    ],
+    dailyPlan: {
+      title: "Daily Post Plan",
+      description: "हम आपके बिज़नेस के लिए Facebook, Instagram, और WhatsApp Updates पर रोज़ाना 1 post बनाएंगे और publish करेंगे।",
+      features: [
+        "आपके brand के अनुसार content",
+        "Professional design + captions",
+        "आपकी audience को engaged रखने के लिए लगातार posting",
+      ],
+    },
   },
   mr: {
     metaTitle: "पुण्यात सोशल मीडिया व्यवस्थापन | Digital Safalta",
@@ -112,6 +174,37 @@ const COPY = {
     ctaHeadline: "चला फॉलो करण्यासारखी सोशल मीडिया उपस्थिती तयार करूया.",
     price: "Growth प्लॅनमध्ये समाविष्ट",
     priceNote: "Ads + SEO + सोशल मीडिया सोबत ₹35,000/महिना. किंवा standalone सोशल मीडिया पॅकेजेसबद्दल विचारा.",
+    postingPlansHeading: "Standalone Posting प्लॅन",
+    postingPlans: [
+      {
+        name: "Starter Pack",
+        price: "₹1,000",
+        period: "/महिना",
+        features: ["एकूण 5 posts", "Basic report"],
+      },
+      {
+        name: "Standard Pack",
+        price: "₹2,000",
+        period: "/महिना",
+        features: ["एकूण 12 posts", "मासिक report", "Consultation"],
+        highlighted: true,
+      },
+      {
+        name: "Premium Pack",
+        price: "₹3,500",
+        period: "/महिना",
+        features: ["एकूण 20 posts", "सविस्तर analytics", "रणनीती सहाय्य"],
+      },
+    ],
+    dailyPlan: {
+      title: "Daily Post Plan",
+      description: "आम्ही तुमच्या व्यवसायासाठी Facebook, Instagram आणि WhatsApp Updates वर दररोज 1 post तयार करू आणि publish करू.",
+      features: [
+        "तुमच्या brand नुसार content",
+        "Professional design + captions",
+        "तुमच्या audience ला engaged ठेवण्यासाठी सातत्यपूर्ण posting",
+      ],
+    },
   },
 };
 
