@@ -9,6 +9,20 @@ interface ServiceFAQ {
   answer: string;
 }
 
+interface PostingPlan {
+  name: string;
+  price: string;
+  period: string;
+  features: string[];
+  highlighted?: boolean;
+}
+
+interface DailyPlan {
+  title: string;
+  description: string;
+  features: string[];
+}
+
 interface ServicePageProps {
   lang?: Lang;
   metaTitle: string;
@@ -24,13 +38,18 @@ interface ServicePageProps {
   ctaHeadline: string;
   price?: string;
   priceNote?: string;
+  postingPlansHeading?: string;
+  postingPlans?: PostingPlan[];
+  dailyPlan?: DailyPlan;
 }
+
 
 const STRINGS: Record<Lang, {
   allServices: string; getConsultation: string; whatsapp: string;
   whatIsIt: string; whyMatters: string; whatsIncluded: string; whatToExpect: string;
   startingFrom: string; getQuote: string; faqHeading: string;
   ctaSubtext: string; startConversation: string; whatsappCta: string;
+  perMonth: string; dailyPlanCta: string;
 }> = {
   en: {
     allServices: 'All Services', getConsultation: 'Get a Free Consultation', whatsapp: 'WhatsApp Us',
@@ -38,6 +57,7 @@ const STRINGS: Record<Lang, {
     startingFrom: 'Starting from', getQuote: 'Get a Quote', faqHeading: 'Frequently Asked Questions',
     ctaSubtext: 'Free consultation. No obligation. Honest advice — whether or not we end up working together.',
     startConversation: 'Start the Conversation', whatsappCta: 'WhatsApp Us',
+    perMonth: '/month', dailyPlanCta: 'Subscribe to the Daily Post Plan',
   },
   hi: {
     allServices: 'सभी सेवाएं', getConsultation: 'मुफ़्त परामर्श पाएं', whatsapp: 'WhatsApp करें',
@@ -45,6 +65,7 @@ const STRINGS: Record<Lang, {
     startingFrom: 'शुरुआती कीमत', getQuote: 'कोटेशन पाएं', faqHeading: 'अक्सर पूछे जाने वाले सवाल',
     ctaSubtext: 'मुफ़्त परामर्श। कोई बाध्यता नहीं। ईमानदार सलाह — चाहे हम साथ काम करें या नहीं।',
     startConversation: 'बातचीत शुरू करें', whatsappCta: 'WhatsApp करें',
+    perMonth: '/महीना', dailyPlanCta: 'Daily Post Plan Subscribe करें',
   },
   mr: {
     allServices: 'सर्व सेवा', getConsultation: 'मोफत सल्ला मिळवा', whatsapp: 'WhatsApp करा',
@@ -52,6 +73,7 @@ const STRINGS: Record<Lang, {
     startingFrom: 'सुरुवातीची किंमत', getQuote: 'कोट मिळवा', faqHeading: 'वारंवार विचारले जाणारे प्रश्न',
     ctaSubtext: 'मोफत सल्ला. कोणतीही बांधिलकी नाही. प्रामाणिक सल्ला — आम्ही एकत्र काम करू किंवा नाही.',
     startConversation: 'संभाषण सुरू करा', whatsappCta: 'WhatsApp करा',
+    perMonth: '/महिना', dailyPlanCta: 'Daily Post Plan Subscribe करा',
   },
 };
 
@@ -70,6 +92,9 @@ export function ServicePage({
   ctaHeadline,
   price,
   priceNote,
+  postingPlansHeading,
+  postingPlans,
+  dailyPlan,
 }: ServicePageProps) {
   const s = STRINGS[lang];
   const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=Hi%2C%20I%20want%20to%20know%20more%20about%20${encodeURIComponent(category)}`;
@@ -167,6 +192,65 @@ export function ServicePage({
                   {s.getQuote}
                 </Link>
               </div>
+            </div>
+          )}
+
+          {/* Posting Plans */}
+          {postingPlans && postingPlans.length > 0 && (
+            <div className="mb-12">
+              {postingPlansHeading && (
+                <h2 className="text-2xl font-black text-white mb-6">{postingPlansHeading}</h2>
+              )}
+              <div className="grid sm:grid-cols-3 gap-5">
+                {postingPlans.map((plan, i) => (
+                  <div
+                    key={i}
+                    className={`rounded-2xl p-6 flex flex-col ${
+                      plan.highlighted
+                        ? 'bg-gradient-to-b from-teal-500/20 to-cyan-500/10 border border-teal-500/40'
+                        : glass
+                    }`}
+                  >
+                    <h3 className="text-base font-black text-white mb-1">{plan.name}</h3>
+                    <div className="mb-4">
+                      <span className="text-2xl font-black text-white">{plan.price}</span>
+                      <span className="text-slate-400 text-sm ml-1">{plan.period}</span>
+                    </div>
+                    <ul className="space-y-2 flex-1">
+                      {plan.features.map((f, fi) => (
+                        <li key={fi} className="flex items-start gap-2 text-sm text-slate-300">
+                          <Check className="w-4 h-4 text-teal-400 mt-0.5 shrink-0" />
+                          {f}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Daily Post Plan */}
+          {dailyPlan && (
+            <div className="mb-12 rounded-2xl p-6 bg-gradient-to-br from-teal-500/10 to-cyan-500/5 border border-teal-500/20">
+              <h3 className="text-lg font-black text-white mb-2">{dailyPlan.title}</h3>
+              <p className="text-slate-400 text-sm leading-relaxed mb-4">{dailyPlan.description}</p>
+              <ul className="grid sm:grid-cols-2 gap-2 mb-5">
+                {dailyPlan.features.map((f, i) => (
+                  <li key={i} className="flex items-start gap-2 text-sm text-slate-300">
+                    <Check className="w-4 h-4 text-teal-400 mt-0.5 shrink-0" />
+                    {f}
+                  </li>
+                ))}
+              </ul>
+              <a
+                href={waLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold ${tealBtn}`}
+              >
+                {s.dailyPlanCta}
+              </a>
             </div>
           )}
 
