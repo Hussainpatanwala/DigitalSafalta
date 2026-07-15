@@ -47,13 +47,36 @@ export const content = {
     secondaryCtaText: "See What We Offer",
     auditCtaTitle: "Free Marketing Audit",
     auditCtaSubtitle: "Paste your URL → get a full audit in 30 seconds",
-    metrics: [
-      { value: "8+", label: "Years of Industry Experience" },
-      { value: "₹5k", label: "Agency Fee to Get Started" },
-      { value: "24hr", label: "Response Guarantee" },
-      { value: "100%", label: "Transparency Promise" },
+    growthHooksHeading: "Questions Small Business Owners Ask Us",
+    growthHooksSubheading: "Straight answers — no jargon, no guesswork.",
+    growthHooksCtaText: "See Posting Plans",
+    growthHooksCtaSubtext: "starting ₹1,000/month",
+    growthHooks: [
+      {
+        question: "I post every day but it's not turning into customers. What's going wrong?",
+        answer: "Posting keeps you visible, but visibility alone doesn't close the sale — what happens after someone notices you matters just as much: fast replies, a clear offer, an easy way to reach you. That's exactly what our posting plans are built around — consistent content paired with a plan for turning attention into enquiries.",
+      },
+      {
+        question: "People message asking the price, then go silent. How do I stop losing them?",
+        answer: "Most of the time it's not really about the price — it's about how fast you reply. Buyers usually go with whoever answers first, so a slow or missed reply loses more sales than people realize. Our plans include response guidance so you never leave a customer waiting.",
+      },
+      {
+        question: "There are 3–4 shops like mine nearby — why should someone choose mine?",
+        answer: "Being active and responsive online — with real reviews and recent posts — often matters more than being the biggest or cheapest. It's what makes a new customer feel confident walking in. Our posting plans keep your profile consistently active so you're the obvious, trustworthy choice.",
+      },
+      {
+        question: "My reels get views but I don't see new faces walking in. Why?",
+        answer: "Views show interest, not trust. What actually gets someone to visit is a recent, well-reviewed profile with a clear reason to come today. Our plans focus on content that builds that trust, not just numbers that look good.",
+      },
+      {
+        question: "How do I actually know if this is working?",
+        answer: "You'll get a plain monthly update — how many people saw your posts, which post worked best, and how many enquiries came in. No jargon, just numbers you can act on. This is built into every posting plan we run.",
+      },
+      {
+        question: "What should I fix first?",
+        answer: "A complete, active profile — Google Business Profile, Instagram, and Facebook — with recent posts and replies. It's the single biggest thing that makes people trust you enough to visit. Our posting plans start exactly here.",
+      },
     ],
-    techBadges: ["✦ Cloudflare Pages hosted", "✦ Supabase backend", "✦ Brevo email automation", "✦ Edge functions powered"],
   },
 
   // ============================================
