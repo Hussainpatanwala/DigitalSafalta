@@ -1,11 +1,13 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Search } from 'lucide-react';
+import { ArrowRight, Search, ChevronDown } from 'lucide-react';
 import { glass, glassHover, tealBtn } from '../lib/constants';
 import type { Lang } from '../lib/constants';
 import { getContent } from '../getContent';
 
 export function Hero({ lang = 'en' }: { lang?: Lang }) {
   const t = getContent(lang).hero;
+  const [openHook, setOpenHook] = useState<number | null>(0);
 
   return (
     <section className="relative pt-28 lg:pt-40 pb-20 lg:pb-28" aria-labelledby="hero-heading">
@@ -50,19 +52,47 @@ export function Hero({ lang = 'en' }: { lang?: Lang }) {
           </Link>
         </div>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5" role="list" aria-label="Key metrics">
-          {t.metrics.map((metric, idx) => (
-            <article key={idx} role="listitem" className={`relative rounded-2xl p-6 overflow-hidden ${glass} ${glassHover}`}>
-              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-teal-500/50 to-transparent" aria-hidden="true" />
-              <div className="text-3xl lg:text-4xl font-black text-white mb-1">{metric.value}</div>
-              <div className="text-slate-400 text-sm font-medium">{metric.label}</div>
-            </article>
-          ))}
-        </div>
-        <div className="mt-10 flex flex-wrap justify-center gap-x-8 gap-y-2 text-xs text-slate-600 font-medium">
-          {t.techBadges.map((badge, idx) => (
-            <span key={idx}>{badge}</span>
-          ))}
+        <div className="max-w-3xl mx-auto" aria-labelledby="growth-hooks-heading">
+          <h2 id="growth-hooks-heading" className="text-2xl lg:text-3xl font-black text-center tracking-tight mb-2">
+            {t.growthHooksHeading}
+          </h2>
+          <p className="text-slate-400 text-center mb-8 text-sm max-w-xl mx-auto">
+            {t.growthHooksSubheading}
+          </p>
+          <div className="space-y-3">
+            {t.growthHooks.map((hook, idx) => (
+              <div
+                key={idx}
+                className={`rounded-2xl border transition-all duration-300 overflow-hidden ${openHook === idx ? 'border-teal-500/30 bg-teal-500/5' : `border-white/8 ${glass} ${glassHover}`}`}
+              >
+                <button
+                  onClick={() => setOpenHook(openHook === idx ? null : idx)}
+                  className="w-full flex items-center justify-between p-5 lg:p-6 text-left focus:outline-none focus:ring-2 focus:ring-inset focus:ring-teal-500"
+                  aria-expanded={openHook === idx}
+                  aria-controls={`growth-hook-answer-${idx}`}
+                >
+                  <span className="font-bold text-white pr-4 text-sm lg:text-base leading-relaxed">{hook.question}</span>
+                  <ChevronDown className={`w-5 h-5 text-teal-400 flex-shrink-0 transition-transform duration-300 ${openHook === idx ? 'rotate-180' : ''}`} aria-hidden="true" />
+                </button>
+                <div
+                  id={`growth-hook-answer-${idx}`}
+                  className={`overflow-hidden transition-all duration-300 ${openHook === idx ? 'max-h-96' : 'max-h-0'}`}
+                  aria-hidden={openHook !== idx}
+                >
+                  <div className="px-5 lg:px-6 pb-5 lg:pb-6">
+                    <p className="text-slate-400 text-sm leading-relaxed mb-4">{hook.answer}</p>
+                    <Link
+                      to="/services/social-media"
+                      className={`flex items-center justify-center gap-2 px-5 py-3 rounded-xl text-sm font-bold ${tealBtn}`}
+                    >
+                      {t.growthHooksCtaText}
+                      <span className="font-normal opacity-85">— {t.growthHooksCtaSubtext}</span>
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
