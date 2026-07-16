@@ -82,6 +82,7 @@ function AppShell() {
         scrolled={scrolled}
         onNavClick={() => setIsMenuOpen(false)}
         lang={activeLang}
+        onLangChange={handleLangSelect}
       />
 
       <ScrollToTop />
@@ -127,4 +128,3 @@ function App() {
 }
 
 export default App;
-
