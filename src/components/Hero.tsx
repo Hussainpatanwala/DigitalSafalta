@@ -5,6 +5,18 @@ import { glass, glassHover, tealBtn } from '../lib/constants';
 import type { Lang } from '../lib/constants';
 import { getContent } from '../getContent';
 
+// ── Audit Tool Switch ────────────────────────────────────────────────
+// This one line controls whether the "Free Digital Marketing Audit" CTA
+// shows on the homepage. The tool itself keeps working either way at
+// digitalsafalta.in/tools/marketing-audit — this only hides/shows the
+// button that promotes it to visitors.
+//
+//   false = hidden from homepage (tool still reachable via direct link)
+//   true  = visible on homepage for everyone
+//
+const SHOW_AUDIT_TOOL = false;
+// ─────────────────────────────────────────────────────────────────────
+
 export function Hero({ lang = 'en' }: { lang?: Lang }) {
   const t = getContent(lang).hero;
   const [openHook, setOpenHook] = useState<number | null>(0);
@@ -36,20 +48,21 @@ export function Hero({ lang = 'en' }: { lang?: Lang }) {
             </Link>
           </div>
 
-          {/* Free Audit Tool CTA */}
-          <Link
-            to="/tools/marketing-audit"
-            className="group inline-flex items-center gap-3 px-6 py-3.5 rounded-2xl border border-teal-500/30 bg-teal-500/8 hover:bg-teal-500/15 hover:border-teal-500/50 transition-all duration-200"
-          >
-            <div className="w-7 h-7 rounded-lg bg-teal-500/20 flex items-center justify-center shrink-0">
-              <Search className="w-3.5 h-3.5 text-teal-400" />
-            </div>
-            <div className="text-left">
-              <span className="block text-sm font-bold text-white">{t.auditCtaTitle}</span>
-              <span className="block text-xs text-slate-400">{t.auditCtaSubtitle}</span>
-            </div>
-            <ArrowRight className="w-4 h-4 text-teal-400 group-hover:translate-x-1 transition-transform ml-1" />
-          </Link>
+          {SHOW_AUDIT_TOOL && (
+            <Link
+              to="/tools/marketing-audit"
+              className="group inline-flex items-center gap-3 px-6 py-3.5 rounded-2xl border border-teal-500/30 bg-teal-500/8 hover:bg-teal-500/15 hover:border-teal-500/50 transition-all duration-200"
+            >
+              <div className="w-7 h-7 rounded-lg bg-teal-500/20 flex items-center justify-center shrink-0">
+                <Search className="w-3.5 h-3.5 text-teal-400" />
+              </div>
+              <div className="text-left">
+                <span className="block text-sm font-bold text-white">{t.auditCtaTitle}</span>
+                <span className="block text-xs text-slate-400">{t.auditCtaSubtitle}</span>
+              </div>
+              <ArrowRight className="w-4 h-4 text-teal-400 group-hover:translate-x-1 transition-transform ml-1" />
+            </Link>
+          )}
         </div>
 
         <div className="max-w-3xl mx-auto" aria-labelledby="growth-hooks-heading">
