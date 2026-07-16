@@ -112,7 +112,7 @@ export function Chatbot({ lang }: { lang: Lang }) {
         document.body.removeChild(textarea);
       }
       setEmailCopied(true);
-      setTimeout(() => setEmailCopied(false), 2000);
+      setTimeout(() => setEmailCopied(false), 3500);
     } catch {
       // Clipboard access denied or unsupported — silently ignore,
       // the button still shows the email address as a fallback.
@@ -207,6 +207,11 @@ export function Chatbot({ lang }: { lang: Lang }) {
                 >
                   {emailCopied ? t.emailCopied : t.email}
                 </button>
+                {emailCopied && (
+                  <p className="text-xs text-teal-400 text-center -mt-1 px-2">
+                    {t.emailCopiedDetail}
+                  </p>
+                )}
                 <button
                   onClick={restart}
                   className="text-center text-xs text-slate-500 hover:text-slate-300 transition-colors mt-1"
