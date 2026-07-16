@@ -23,6 +23,7 @@ export function Chatbot({ lang }: { lang: Lang }) {
   const t = LANG_STRINGS[lang];
   const [open, setOpen]   = useState(false);
   const [step, setStep]   = useState<ChatStep>('start');
+  const [emailCopied, setEmailCopied] = useState(false);
   const [msgs, setMsgs]   = useState<ChatMessage[]>([
     { from: 'bot', text: t.chatGreet },
     { from: 'bot', text: t.chatSub  },
@@ -91,6 +92,31 @@ export function Chatbot({ lang }: { lang: Lang }) {
       { from: 'bot', text: t.chatSub  },
       { from: 'bot', text: t.chatStart },
     ]);
+  };
+
+  const handleCopyEmail = async () => {
+    const email = footerContact.email;
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(email);
+      } else {
+        // Fallback for older/non-secure-context browsers (e.g. some in-app WebViews)
+        const textarea = document.createElement('textarea');
+        textarea.value = email;
+        textarea.style.position = 'fixed';
+        textarea.style.opacity = '0';
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textarea);
+      }
+      setEmailCopied(true);
+      setTimeout(() => setEmailCopied(false), 2000);
+    } catch {
+      // Clipboard access denied or unsupported — silently ignore,
+      // the button still shows the email address as a fallback.
+    }
   };
 
   return (
@@ -175,12 +201,12 @@ export function Chatbot({ lang }: { lang: Lang }) {
                 >
                   {t.call}
                 </a>
-                <a
-                  href={`mailto:${footerContact.email}`}
+                <button
+                  onClick={handleCopyEmail}
                   className="block text-center px-4 py-2.5 rounded-xl text-sm font-medium border border-white/15 text-slate-300 hover:bg-white/8 transition-all duration-200"
                 >
-                  {t.email}
-                </a>
+                  {emailCopied ? t.emailCopied : t.email}
+                </button>
                 <button
                   onClick={restart}
                   className="text-center text-xs text-slate-500 hover:text-slate-300 transition-colors mt-1"
