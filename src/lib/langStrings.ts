@@ -38,6 +38,7 @@ export const LANG_STRINGS = {
     call:    'Call Us',
     email:   'Email Us',
     emailCopied: 'Copied!',
+    emailCopiedDetail: 'hello@digitalsafalta.in copied — paste it into your email app',
     restart: 'Start over',
   },
   hi: {
@@ -79,6 +80,7 @@ export const LANG_STRINGS = {
     call:    'Call करें',
     email:   'Email करें',
     emailCopied: 'कॉपी हो गया!',
+    emailCopiedDetail: 'hello@digitalsafalta.in कॉपी हो गया — इसे अपने ईमेल ऐप में पेस्ट करें',
     restart: 'फिर से शुरू करें',
   },
   mr: {
@@ -120,6 +122,7 @@ export const LANG_STRINGS = {
     call:    'Call करा',
     email:   'Email करा',
     emailCopied: 'कॉपी झाले!',
+    emailCopiedDetail: 'hello@digitalsafalta.in कॉपी झाले — ते तुमच्या ईमेल अ‍ॅपमध्ये पेस्ट करा',
     restart: 'पुन्हा सुरू करा',
   },
 };
