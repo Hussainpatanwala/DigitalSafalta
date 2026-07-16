@@ -37,6 +37,7 @@ export const LANG_STRINGS = {
     wa:      'Chat on WhatsApp',
     call:    'Call Us',
     email:   'Email Us',
+    emailCopied: 'Copied!',
     restart: 'Start over',
   },
   hi: {
@@ -77,6 +78,7 @@ export const LANG_STRINGS = {
     wa:      'WhatsApp पर Chat करें',
     call:    'Call करें',
     email:   'Email करें',
+    emailCopied: 'कॉपी हो गया!',
     restart: 'फिर से शुरू करें',
   },
   mr: {
@@ -117,6 +119,7 @@ export const LANG_STRINGS = {
     wa:      'WhatsApp वर Chat करा',
     call:    'Call करा',
     email:   'Email करा',
+    emailCopied: 'कॉपी झाले!',
     restart: 'पुन्हा सुरू करा',
   },
 };
