@@ -6,3 +6,10 @@ compatibility_date = "2026-08-08"
 binding = "DB"                          # accessed in code as env.DB — do not rename
 database_name = "digitalsafalta-db"
 database_id = "44e4006c-0987-4108-b1a5-57b2af595a26"   # you'll get this in Step 3 of the guide
+
+[observability]
+   enabled = true
+
+   [observability.logs]
+   enabled = true
+   invocation_logs = true
