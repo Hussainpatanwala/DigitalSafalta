@@ -63,7 +63,12 @@ export default {
     try {
       await sendNotificationEmail(env, { name, phone, email, company, business_type, existing_website, message });
     } catch (err) {
-      console.error('Email notification failed:', err);
+      console.error('Email notification failed:', {
+        name: err?.name,
+        message: err?.message,
+        stack: err?.stack,
+        raw: String(err),
+      });
     }
 
     return jsonResponse({ success: true });
@@ -117,7 +122,13 @@ ${data.message}
   });
 
   if (!res.ok) {
-    throw new Error(`Brevo API returned ${res.status}: ${await res.text()}`);
+    let responseText = '';
+    try {
+      responseText = await res.text();
+    } catch {
+      responseText = '(could not read response body)';
+    }
+    throw new Error(`Brevo API returned ${res.status}: ${responseText}`);
   }
 }
 
