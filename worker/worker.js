@@ -85,7 +85,7 @@ function jsonResponse(data, status = 200) {
 async function sendNotificationEmail(env, data) {
   if (!env.BREVO_API_KEY) return; // Skip silently if no key is configured yet.
 
-  const emailBody = `
+  const textBody = `
 New contact form submission on digitalsafalta.in
 
 Name: ${data.name}
@@ -99,6 +99,8 @@ Message:
 ${data.message}
 `.trim();
 
+  const htmlBody = buildHtmlEmail(data);
+
   const res = await fetch('https://api.brevo.com/v3/smtp/email', {
     method: 'POST',
     headers: {
@@ -109,13 +111,70 @@ ${data.message}
       sender: { name: 'Digital Safalta Website', email: env.NOTIFY_FROM_EMAIL },
       to: [{ email: env.NOTIFY_TO_EMAIL }],
       subject: `New enquiry from ${data.name}`,
-      textContent: emailBody,
+      textContent: textBody,
+      htmlContent: htmlBody,
     }),
   });
 
   if (!res.ok) {
     throw new Error(`Brevo API returned ${res.status}: ${await res.text()}`);
   }
+}
+
+// Escapes user-submitted text before it goes into HTML, so a name/message containing
+// characters like < or & can't break the email's layout.
+function escapeHtml(str) {
+  return String(str ?? '')
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;');
+}
+
+function buildHtmlEmail(data) {
+  const row = (label, value) => `
+    <tr>
+      <td style="padding:8px 12px;color:#64748b;font-size:13px;font-weight:600;white-space:nowrap;vertical-align:top;">${label}</td>
+      <td style="padding:8px 12px;color:#0f172a;font-size:14px;">${escapeHtml(value) || '<span style="color:#94a3b8;">—</span>'}</td>
+    </tr>`;
+
+  return `
+<!DOCTYPE html>
+<html>
+  <body style="margin:0;padding:24px;background-color:#f1f5f9;font-family:Arial, Helvetica, sans-serif;">
+    <table role="presentation" width="100%" style="max-width:560px;margin:0 auto;background:#ffffff;border-radius:12px;overflow:hidden;border:1px solid #e2e8f0;">
+      <tr>
+        <td style="background-color:#0f172a;padding:20px 24px;">
+          <span style="color:#2dd4bf;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Digital Safalta</span>
+          <h1 style="margin:6px 0 0;color:#ffffff;font-size:18px;">New Contact Form Enquiry</h1>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding:8px 8px 0;">
+          <table role="presentation" width="100%" style="border-collapse:collapse;">
+            ${row('Name', data.name)}
+            ${row('Phone', data.phone)}
+            ${row('Email', data.email)}
+            ${row('Company', data.company)}
+            ${row('Business type', data.business_type)}
+            ${row('Existing website', data.existing_website)}
+          </table>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding:16px 24px 24px;">
+          <div style="color:#64748b;font-size:13px;font-weight:600;margin-bottom:6px;">Message</div>
+          <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:14px;color:#0f172a;font-size:14px;line-height:1.5;white-space:pre-wrap;">${escapeHtml(data.message)}</div>
+        </td>
+      </tr>
+      <tr>
+        <td style="padding:14px 24px;background:#f8fafc;border-top:1px solid #e2e8f0;">
+          <span style="color:#94a3b8;font-size:12px;">Sent automatically from the contact form on digitalsafalta.in</span>
+        </td>
+      </tr>
+    </table>
+  </body>
+</html>`.trim();
 }
 
 /* ---------- SendGrid alternative (use this instead if you'd rather use SendGrid) ----------
