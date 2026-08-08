@@ -7,6 +7,15 @@ binding = "DB"                          # accessed in code as env.DB — do not 
 database_name = "digitalsafalta-db"
 database_id = "44e4006c-0987-4108-b1a5-57b2af595a26"   # you'll get this in Step 3 of the guide
 
+# Plain (non-secret) variables. Declaring them here means they survive every
+# future deploy — anything set only via the dashboard gets wiped out on the
+# next `wrangler deploy`, since Wrangler treats this file as the full source
+# of truth for variables. Never put BREVO_API_KEY here — that stays a Secret,
+# set only via the dashboard, so it isn't exposed in your GitHub repo.
+[vars]
+NOTIFY_FROM_EMAIL = "hello@digitalsafalta.in"
+NOTIFY_TO_EMAIL = "patanwalahussain@gmail.com"
+
 [observability]
    enabled = true
 
