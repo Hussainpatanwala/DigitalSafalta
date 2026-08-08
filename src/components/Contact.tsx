@@ -1,12 +1,14 @@
 import { useState, FormEvent } from 'react';
 import type { ChangeEvent } from 'react';
 import { Check, Loader2, Send } from 'lucide-react';
-import { supabase } from '../supabaseClient';
 import { glass, tealBtn, inputCls } from '../lib/constants';
 import type { FormData, FormStatus, Lang } from '../lib/constants';
 import { getContent } from '../getContent';
 
 const formInit: FormData = { name: '', phone: '', email: '', company: '', business_type: '', existing_website: '', message: '' };
+
+// Cloudflare Worker endpoint — replace with your actual *.workers.dev URL (or custom domain) after deploying.
+const CONTACT_ENDPOINT = 'https://digitalsafalta-contact.patanwalahussain.workers.dev';
 
 const STRINGS: Record<Lang, {
   eyebrow: string; nameLabel: string; namePlaceholder: string;
@@ -79,10 +81,15 @@ export function Contact({ lang = 'en' }: { lang?: Lang }) {
     e.preventDefault();
     setFormStatus('submitting');
     try {
-      const { error: dbError } = await supabase.from('contact_submissions').insert([{ ...formData, source: 'website' }]);
-      if (dbError) throw new Error(dbError.message);
-      const { error: fnError } = await supabase.functions.invoke('notify-form-submission', { body: { ...formData, source: 'website' } });
-      if (fnError) throw new Error(fnError.message);
+      const res = await fetch(CONTACT_ENDPOINT, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(formData),
+      });
+      if (!res.ok) {
+        const errBody = await res.json().catch(() => ({}));
+        throw new Error(errBody.error || `Request failed with status ${res.status}`);
+      }
       setFormStatus('success');
       setFormData(formInit);
       setTimeout(() => setFormStatus('idle'), 5000);
