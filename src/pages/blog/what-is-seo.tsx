@@ -49,6 +49,37 @@ const COPY = {
     p15_end: 'for current plans.',
     h2_bottom: 'The Bottom Line',
     p16: "SEO is the process of making your website appear higher on Google — for free, for every relevant search, indefinitely. It takes time to build, but once it works, it's one of the most cost-effective ways to grow a business. Think of it as planting a tree: slow at first, but eventually it gives shade (and customers) for years.",
+
+    // --- Expanded content (English only) ---
+    keyTakeaways: [
+      "SEO gets you into Google's free \"organic\" results — different from paid ads, which stop the moment you stop paying.",
+      'Local SEO (your Google Business Profile + reviews) matters more than regular rankings for most Pune small businesses.',
+      'Real SEO takes 3–6 months minimum — anyone promising faster results is likely using tactics that will get your site penalised.',
+      'You can do the basics yourself for free; professional help mainly speeds up competitive, high-value search terms.',
+    ],
+    h2_seovsads: 'SEO vs Google Ads: Which Should You Start With?',
+    p_seovsads1:
+      "This is the question we get asked most. The honest answer: they solve different problems, and most Pune businesses eventually need both.",
+    li_sva_speed: "<strong>Speed:</strong> Google Ads shows results within days. SEO takes months to build momentum.",
+    li_sva_cost: "<strong>Ongoing cost:</strong> Ads stop working the moment you stop paying. SEO rankings keep bringing traffic long after the work is done.",
+    li_sva_trust: "<strong>Trust:</strong> Most people click organic results over ads — organic traffic tends to convert better because it feels earned, not paid for.",
+    li_sva_control: "<strong>Control:</strong> Ads let you target exact keywords and budgets precisely. SEO results depend partly on factors outside your direct control (competitors, algorithm changes).",
+    p_seovsads2:
+      "<strong>Our honest recommendation:</strong> if you need customers this month, start with Google Ads. If you're building for the next 2–3 years, start SEO now alongside it — the earlier you start, the sooner it compounds.",
+
+    h2_faq: 'Common Questions About SEO',
+    faq_q1: 'Can I do SEO myself, or do I need to hire someone?',
+    faq_a1:
+      "You can absolutely do the basics yourself — setting up Google Business Profile, writing helpful content, making sure your site loads fast on mobile. Where professional help pays off is competitive terms and ongoing technical work, which takes real time most business owners don't have.",
+    faq_q2: 'Why did my ranking drop even though I did nothing wrong?',
+    faq_a2:
+      "Google updates its ranking system regularly — sometimes hundreds of small tweaks a year, occasionally a major update. A drop doesn't always mean you did something wrong; it can mean a competitor improved, or Google's algorithm shifted what it values. Consistent, genuine improvement over time is the only reliable defence.",
+    faq_q3: 'Does SEO work the same for every kind of business?',
+    faq_a3:
+      "No. A local service business (electrician, salon, restaurant) lives or dies by local SEO and Google Business Profile. An online-only store cares more about product page SEO and content. A B2B service business often needs fewer, higher-value keywords rather than broad traffic. The strategy should match the business.",
+    faq_q4: 'Is SEO a one-time job or ongoing work?',
+    faq_a4:
+      "Ongoing. Search results are not static — competitors publish new content, Google updates its algorithm, and your own site changes over time. Think of SEO less like a one-time purchase and more like maintaining a garden: the initial setup matters, but it needs regular attention to keep growing.",
   },
   hi: {
     title: 'SEO क्या है? पुणे के व्यवसाय मालिकों के लिए एक सरल गाइड',
@@ -150,6 +181,18 @@ interface Props {
 
 export function WhatIsSEO({ lang = 'en' }: Props) {
   const c = COPY[lang];
+  const isEnglish = lang === 'en';
+  const en = COPY.en;
+
+  const faqs = isEnglish
+    ? [
+        { question: en.faq_q1, answer: en.faq_a1 },
+        { question: en.faq_q2, answer: en.faq_a2 },
+        { question: en.faq_q3, answer: en.faq_a3 },
+        { question: en.faq_q4, answer: en.faq_a4 },
+      ]
+    : undefined;
+
   return (
     <BlogPost
       title={c.title}
@@ -157,7 +200,17 @@ export function WhatIsSEO({ lang = 'en' }: Props) {
       date={c.date}
       readTime={c.readTime}
       category={c.category}
+      faqs={faqs}
     >
+      {isEnglish && (
+        <>
+          <p><strong>Key takeaways:</strong></p>
+          <ul>
+            {en.keyTakeaways.map((item, i) => <li key={i}>{item}</li>)}
+          </ul>
+        </>
+      )}
+
       <p>{c.p1}</p>
       <p>{c.p2}</p>
 
@@ -183,6 +236,20 @@ export function WhatIsSEO({ lang = 'en' }: Props) {
       </ul>
       <p>{c.p7}</p>
 
+      {isEnglish && (
+        <>
+          <h2>{en.h2_seovsads}</h2>
+          <p>{en.p_seovsads1}</p>
+          <ul>
+            <li dangerouslySetInnerHTML={{ __html: en.li_sva_speed }} />
+            <li dangerouslySetInnerHTML={{ __html: en.li_sva_cost }} />
+            <li dangerouslySetInnerHTML={{ __html: en.li_sva_trust }} />
+            <li dangerouslySetInnerHTML={{ __html: en.li_sva_control }} />
+          </ul>
+          <p dangerouslySetInnerHTML={{ __html: en.p_seovsads2 }} />
+        </>
+      )}
+
       <h2>{c.h2_local}</h2>
       <p dangerouslySetInnerHTML={{ __html: c.p8 }} />
       <p>{c.p9}</p>
@@ -207,6 +274,20 @@ export function WhatIsSEO({ lang = 'en' }: Props) {
       <p>
         {c.p15_pre} <Link to="/pricing">{c.p15_link}</Link> {c.p15_end}
       </p>
+
+      {isEnglish && (
+        <>
+          <h2>{en.h2_faq}</h2>
+          <h3>{en.faq_q1}</h3>
+          <p>{en.faq_a1}</p>
+          <h3>{en.faq_q2}</h3>
+          <p>{en.faq_a2}</p>
+          <h3>{en.faq_q3}</h3>
+          <p>{en.faq_a3}</p>
+          <h3>{en.faq_q4}</h3>
+          <p>{en.faq_a4}</p>
+        </>
+      )}
 
       <h2>{c.h2_bottom}</h2>
       <p>{c.p16}</p>
