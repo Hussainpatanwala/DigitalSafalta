@@ -3,6 +3,7 @@ import { ArrowLeft, Check, Phone } from 'lucide-react';
 import { SEO } from './SEO';
 import { glass, tealBtn, WHATSAPP_NUMBER } from '../lib/constants';
 import type { Lang } from '../lib/constants';
+import { serviceSchema, faqSchema } from '../lib/schema';
 
 interface ServiceFAQ {
   question: string;
@@ -99,9 +100,14 @@ export function ServicePage({
   const s = STRINGS[lang];
   const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=Hi%2C%20I%20want%20to%20know%20more%20about%20${encodeURIComponent(category)}`;
 
+  const pageSchema = [
+    serviceSchema({ name: category, description: metaDescription, url: window.location.pathname }),
+    ...(faqs.length > 0 ? [faqSchema(faqs)] : []),
+  ];
+
   return (
     <>
-      <SEO title={metaTitle} description={metaDescription} lang={lang} />
+      <SEO title={metaTitle} description={metaDescription} lang={lang} schema={pageSchema} />
 
       <div className="pt-28 lg:pt-36 pb-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
