@@ -221,6 +221,18 @@ interface Props {
 
 export function GoogleAdsVsMetaAds({ lang = 'en' }: Props) {
   const c = COPY[lang];
+  const isEnglish = lang === 'en';
+  const en = COPY.en;
+
+  const faqs = isEnglish
+    ? [
+        { question: en.faq_q1, answer: en.faq_a1 },
+        { question: en.faq_q2, answer: en.faq_a2 },
+        { question: en.faq_q3, answer: en.faq_a3 },
+        { question: en.faq_q4, answer: en.faq_a4 },
+      ]
+    : undefined;
+
   return (
     <BlogPost
       title={c.title}
@@ -228,7 +240,17 @@ export function GoogleAdsVsMetaAds({ lang = 'en' }: Props) {
       date={c.date}
       readTime={c.readTime}
       category={c.category}
+      faqs={faqs}
     >
+      {isEnglish && (
+        <>
+          <p><strong>Key takeaways:</strong></p>
+          <ul>
+            {en.keyTakeaways.map((item, i) => <li key={i}>{item}</li>)}
+          </ul>
+        </>
+      )}
+
       <p>{c.p1}</p>
       <p>{c.p2}</p>
 
@@ -276,6 +298,18 @@ export function GoogleAdsVsMetaAds({ lang = 'en' }: Props) {
         {c.p11_end}
       </p>
 
+      {isEnglish && (
+        <>
+          <h2>{en.h2_realworld}</h2>
+          <p>{en.p_realworld_intro}</p>
+          <ul>
+            <li dangerouslySetInnerHTML={{ __html: en.li_rw1 }} />
+            <li dangerouslySetInnerHTML={{ __html: en.li_rw2 }} />
+            <li dangerouslySetInnerHTML={{ __html: en.li_rw3 }} />
+          </ul>
+        </>
+      )}
+
       <h2>{c.h2_verdict}</h2>
       <p>{c.p12}</p>
       <ul>
@@ -286,6 +320,17 @@ export function GoogleAdsVsMetaAds({ lang = 'en' }: Props) {
         <li dangerouslySetInnerHTML={{ __html: c.li_v5 }} />
       </ul>
       <p dangerouslySetInnerHTML={{ __html: c.p13 }} />
+
+      {isEnglish && (
+        <>
+          <h2>{en.h2_mistakes}</h2>
+          <ul>
+            <li dangerouslySetInnerHTML={{ __html: en.li_mis1 }} />
+            <li dangerouslySetInnerHTML={{ __html: en.li_mis2 }} />
+            <li dangerouslySetInnerHTML={{ __html: en.li_mis3 }} />
+          </ul>
+        </>
+      )}
 
       <h2>{c.h2_both}</h2>
       <p>{c.p14}</p>
@@ -300,6 +345,20 @@ export function GoogleAdsVsMetaAds({ lang = 'en' }: Props) {
         {c.p17_pre} <Link to="/contact">{c.p17_link}</Link>
         {c.p17_end}
       </p>
+
+      {isEnglish && (
+        <>
+          <h2>{en.h2_faq}</h2>
+          <h3>{en.faq_q1}</h3>
+          <p>{en.faq_a1}</p>
+          <h3>{en.faq_q2}</h3>
+          <p>{en.faq_a2}</p>
+          <h3>{en.faq_q3}</h3>
+          <p>{en.faq_a3}</p>
+          <h3>{en.faq_q4}</h3>
+          <p>{en.faq_a4}</p>
+        </>
+      )}
     </BlogPost>
   );
 }
