@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft, Clock, Calendar } from 'lucide-react';
 import { SEO } from './SEO';
 import { tealBtn } from '../lib/constants';
+import { articleSchema } from '../lib/schema';
 
 interface BlogPostProps {
   title: string;
@@ -15,7 +16,17 @@ interface BlogPostProps {
 export function BlogPost({ title, description, date, readTime, category, children }: BlogPostProps) {
   return (
     <>
-      <SEO title={`${title} | Digital Safalta Blog`} description={description} />
+      <SEO
+        title={`${title} | Digital Safalta Blog`}
+        description={description}
+        type="article"
+        schema={articleSchema({
+          title,
+          description,
+          url: window.location.pathname,
+          datePublished: date,
+        })}
+      />
 
       <div className="pt-28 lg:pt-36 pb-20">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
