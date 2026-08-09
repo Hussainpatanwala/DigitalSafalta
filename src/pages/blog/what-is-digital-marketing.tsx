@@ -50,6 +50,41 @@ const COPY = {
     p19: "Digital marketing is not complicated. It's just promoting your business online — using tools like your website, Google, Instagram, and WhatsApp — to reach more customers than you ever could through word of mouth alone.",
     p20: "You don't need to understand every tool deeply. You need someone honest who does — and who uses those tools specifically to grow your business, not to confuse you with jargon.",
     p21: "That's exactly what we do at Digital Safalta.",
+
+    // --- Expanded content (English only) ---
+    keyTakeaways: [
+      'Digital marketing is any activity promoting your business online — website, Google listing, social media, ads.',
+      'Over 700 million Indians are online today; if you\'re not visible online, your competitor gets the customer instead.',
+      'Start with a website + Google Business Profile (foundation), add ads for fast leads, build SEO + social for long-term growth.',
+      "It doesn't need to be expensive to start — but it needs to be consistent to actually work.",
+    ],
+    h2_mistakes: 'Common Digital Marketing Mistakes Small Businesses Make',
+    p_mistakes_intro:
+      "After working with Pune businesses, the same mistakes come up again and again. Avoiding these matters more than any single tactic.",
+    li_m1: "<strong>Doing everything at once</strong> — trying website + SEO + ads + social media + email in month one, doing all of them badly, and giving up. Start with one or two, do them properly.",
+    li_m2: "<strong>No way to track what's working</strong> — running ads or posting content without checking which leads actually convert to paying customers, so budget keeps going to what feels active rather than what actually works.",
+    li_m3: "<strong>Inconsistency</strong> — posting daily for two weeks, then nothing for a month. Google and your audience both reward consistency over bursts of activity.",
+    li_m4: "<strong>Ignoring the website while focused on social media</strong> — a business with 10,000 Instagram followers but no real website loses credibility with anyone who tries to verify them before buying.",
+
+    h2_signs: "Signs Your Business Needs Digital Marketing Now",
+    li_sign1: "Competitors show up on Google when you search your own industry + \"Pune\", but you don't",
+    li_sign2: "You rely entirely on word-of-mouth or walk-ins, with no way to reach new customers actively",
+    li_sign3: "You don't have a way to capture contact details from people who show interest but aren't ready to buy yet",
+    li_sign4: "Your business isn't on Google Maps, or your listing has outdated information",
+
+    h2_faq: 'Common Questions About Digital Marketing',
+    faq_q1: 'How long before digital marketing shows results for my business?',
+    faq_a1:
+      "Depends on the channel. Google/Meta Ads can bring enquiries within days. Google Business Profile improvements often show within 1–2 weeks. SEO and organic social media typically take 3–6 months to show meaningful, sustained results.",
+    faq_q2: 'Can I do digital marketing myself without hiring anyone?',
+    faq_a2:
+      "Yes, for the basics — a simple website, Google Business Profile, and consistent social posting are all things a business owner can do with time and patience. Paid ads and ongoing SEO tend to benefit most from professional management, since mistakes there cost real money.",
+    faq_q3: "What's the single best first step for a brand-new business with zero online presence?",
+    faq_a3:
+      "Get a real website and set up Google Business Profile — in that order. Everything else (ads, SEO, social media) points back to these two, so building on top of them first avoids wasted effort later.",
+    faq_q4: 'Is digital marketing only for businesses that sell online?',
+    faq_a4:
+      "No — it's equally important for businesses with a physical location. A restaurant, salon, clinic, or shop still benefits enormously from appearing in local Google searches and maps, even if every sale happens in person.",
   },
   hi: {
     title: 'डिजिटल मार्केटिंग क्या है? भारतीय छोटे व्यवसायों के लिए एक शुरुआती गाइड',
@@ -153,6 +188,18 @@ interface Props {
 
 export function WhatIsDigitalMarketing({ lang = 'en' }: Props) {
   const c = COPY[lang];
+  const isEnglish = lang === 'en';
+  const en = COPY.en;
+
+  const faqs = isEnglish
+    ? [
+        { question: en.faq_q1, answer: en.faq_a1 },
+        { question: en.faq_q2, answer: en.faq_a2 },
+        { question: en.faq_q3, answer: en.faq_a3 },
+        { question: en.faq_q4, answer: en.faq_a4 },
+      ]
+    : undefined;
+
   return (
     <BlogPost
       title={c.title}
@@ -160,7 +207,17 @@ export function WhatIsDigitalMarketing({ lang = 'en' }: Props) {
       date={c.date}
       readTime={c.readTime}
       category={c.category}
+      faqs={faqs}
     >
+      {isEnglish && (
+        <>
+          <p><strong>Key takeaways:</strong></p>
+          <ul>
+            {en.keyTakeaways.map((item, i) => <li key={i}>{item}</li>)}
+          </ul>
+        </>
+      )}
+
       <p dangerouslySetInnerHTML={{ __html: c.p1 }} />
       <p>{c.p2}</p>
 
@@ -188,6 +245,27 @@ export function WhatIsDigitalMarketing({ lang = 'en' }: Props) {
       <h3>{c.h3_gbp}</h3>
       <p>{c.p14}</p>
 
+      {isEnglish && (
+        <>
+          <h2>{en.h2_mistakes}</h2>
+          <p>{en.p_mistakes_intro}</p>
+          <ul>
+            <li dangerouslySetInnerHTML={{ __html: en.li_m1 }} />
+            <li dangerouslySetInnerHTML={{ __html: en.li_m2 }} />
+            <li dangerouslySetInnerHTML={{ __html: en.li_m3 }} />
+            <li dangerouslySetInnerHTML={{ __html: en.li_m4 }} />
+          </ul>
+
+          <h2>{en.h2_signs}</h2>
+          <ul>
+            <li>{en.li_sign1}</li>
+            <li>{en.li_sign2}</li>
+            <li>{en.li_sign3}</li>
+            <li>{en.li_sign4}</li>
+          </ul>
+        </>
+      )}
+
       <h2>{c.h2_start}</h2>
       <p>{c.p15}</p>
       <ul>
@@ -203,6 +281,20 @@ export function WhatIsDigitalMarketing({ lang = 'en' }: Props) {
       <p>
         {c.p18} <Link to="/pricing">{c.p18_link}</Link> {c.p18_end}
       </p>
+
+      {isEnglish && (
+        <>
+          <h2>{en.h2_faq}</h2>
+          <h3>{en.faq_q1}</h3>
+          <p>{en.faq_a1}</p>
+          <h3>{en.faq_q2}</h3>
+          <p>{en.faq_a2}</p>
+          <h3>{en.faq_q3}</h3>
+          <p>{en.faq_a3}</p>
+          <h3>{en.faq_q4}</h3>
+          <p>{en.faq_a4}</p>
+        </>
+      )}
 
       <h2>{c.h2_bottom}</h2>
       <p>{c.p19}</p>
