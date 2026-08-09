@@ -3,7 +3,7 @@ import { ArrowLeft, Check, Phone } from 'lucide-react';
 import { SEO } from './SEO';
 import { glass, tealBtn, WHATSAPP_NUMBER } from '../lib/constants';
 import type { Lang } from '../lib/constants';
-import { serviceSchema, faqSchema } from '../lib/schema';
+import { serviceSchema, faqSchema, breadcrumbSchema } from '../lib/schema';
 
 interface ServiceFAQ {
   question: string;
@@ -102,6 +102,10 @@ export function ServicePage({
 
   const pageSchema = [
     serviceSchema({ name: category, description: metaDescription, url: window.location.pathname }),
+    breadcrumbSchema([
+      { name: 'Home', url: '/' },
+      { name: category, url: window.location.pathname },
+    ]),
     ...(faqs.length > 0 ? [faqSchema(faqs)] : []),
   ];
 
