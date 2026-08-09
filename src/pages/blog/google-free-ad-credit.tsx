@@ -54,6 +54,40 @@ const COPY = {
     p17_pre: "If you have questions about whether Google Ads is right for your business, or how to claim this offer,",
     p17_link: 'talk to us',
     p17_end: "— it's a free conversation and we'll give you an honest answer.",
+
+    // --- Expanded content (English only) ---
+    keyTakeaways: [
+      'Spend ₹20,000 on Google Ads within 60 days of activating a new account, and Google adds another ₹20,000 free — ₹40,000 of reach for ₹20,000.',
+      'The credit is automatic once you hit the spend threshold — no separate application needed.',
+      'The offer only pays off if the ₹20,000 you spend to qualify is spent well — wrong keywords or weak targeting wastes both amounts.',
+      'Terms can change, so always confirm current details directly on ads.google.com when you sign up.',
+    ],
+    h2_mistakes: 'Mistakes That Waste This Offer',
+    p_mistakes_intro:
+      "We've seen the same avoidable mistakes cost businesses their qualifying ₹20,000 (and therefore the free ₹20,000 too). The most common ones:",
+    li_m1: '<strong>Targeting all of India</strong> instead of Pune (or wherever you actually serve) — this burns budget on clicks that can never become customers',
+    li_m2: '<strong>Using broad match keywords</strong> like "marketing" instead of specific ones like "digital marketing agency Pune" — broad keywords trigger for searches with zero buying intent',
+    li_m3: '<strong>Sending every click to the homepage</strong> instead of a specific service page — homepages rarely match what someone searched for, so they leave immediately',
+    li_m4: '<strong>No phone number or WhatsApp link visible</strong> on the landing page — many Pune customers prefer to call or message rather than fill a form',
+    li_m5: "<strong>Turning the campaign off after a few days</strong> because there were no instant results — Google Ads needs roughly 1–2 weeks of data before its own targeting starts improving",
+
+    h2_realistic: 'What Realistic Results Look Like',
+    p_realistic:
+      "For a Pune small business running a well-set-up Search campaign, ₹20,000–₹40,000 in spend (with the free credit included) typically generates somewhere between 300–800 clicks, depending on how competitive your industry is and your cost-per-click. Not every click becomes a customer — a good campaign might see 3–8% of clicks turn into an actual enquiry or call. The point of the free credit isn't guaranteed customers; it's a bigger sample size to find out what works before spending your own money at full price.",
+
+    h2_faq: 'Common Questions About the Google Ads Free Credit Offer',
+    faq_q1: 'Is this offer available right now?',
+    faq_a1:
+      "Google runs this type of promotion periodically and terms can change without notice. Always check ads.google.com directly when creating your account — the current offer details are shown during signup, and that's the authoritative source, not any single article (including this one).",
+    faq_q2: 'Can I get the credit if I already ran Google Ads years ago and stopped?',
+    faq_a2:
+      "Generally no — the offer is for accounts that have never run a Google Ads campaign before. If your old account already spent money on ads at any point in the past, it typically won't qualify for a new-advertiser promotion.",
+    faq_q3: 'What happens if I spend less than ₹20,000 in the 60-day window?',
+    faq_a3:
+      "You simply won't receive the free credit — there's no penalty, but you also won't get the bonus. This is exactly why pacing your spend (roughly ₹333/day) matters more than people expect.",
+    faq_q4: "Does the free ₹20,000 credit expire?",
+    faq_a4:
+      "Yes, promotional ad credits typically have an expiry window after being applied to your account (commonly around 30–60 days) — check the specific terms shown in your account when the credit lands, since unused credit can be lost if not spent in time.",
   },
   hi: {
     title: "Google का मुफ़्त ₹20,000 विज्ञापन क्रेडिट — अपने व्यवसाय के लिए इसे कैसे क्लेम करें",
@@ -165,6 +199,18 @@ interface Props {
 
 export function GoogleFreeAdCredit({ lang = 'en' }: Props) {
   const c = COPY[lang];
+  const isEnglish = lang === 'en';
+  const en = COPY.en;
+
+  const faqs = isEnglish
+    ? [
+        { question: en.faq_q1, answer: en.faq_a1 },
+        { question: en.faq_q2, answer: en.faq_a2 },
+        { question: en.faq_q3, answer: en.faq_a3 },
+        { question: en.faq_q4, answer: en.faq_a4 },
+      ]
+    : undefined;
+
   return (
     <BlogPost
       title={c.title}
@@ -172,7 +218,17 @@ export function GoogleFreeAdCredit({ lang = 'en' }: Props) {
       date={c.date}
       readTime={c.readTime}
       category={c.category}
+      faqs={faqs}
     >
+      {isEnglish && (
+        <>
+          <p><strong>Key takeaways:</strong></p>
+          <ul>
+            {en.keyTakeaways.map((item, i) => <li key={i}>{item}</li>)}
+          </ul>
+        </>
+      )}
+
       <p dangerouslySetInnerHTML={{ __html: c.p1 }} />
       <p>{c.p2}</p>
 
@@ -213,6 +269,23 @@ export function GoogleFreeAdCredit({ lang = 'en' }: Props) {
         <li dangerouslySetInnerHTML={{ __html: c.li_s5 }} />
       </ul>
 
+      {isEnglish && (
+        <>
+          <h2>{en.h2_mistakes}</h2>
+          <p>{en.p_mistakes_intro}</p>
+          <ul>
+            <li dangerouslySetInnerHTML={{ __html: en.li_m1 }} />
+            <li dangerouslySetInnerHTML={{ __html: en.li_m2 }} />
+            <li dangerouslySetInnerHTML={{ __html: en.li_m3 }} />
+            <li dangerouslySetInnerHTML={{ __html: en.li_m4 }} />
+            <li dangerouslySetInnerHTML={{ __html: en.li_m5 }} />
+          </ul>
+
+          <h2>{en.h2_realistic}</h2>
+          <p>{en.p_realistic}</p>
+        </>
+      )}
+
       <h2>{c.h2_help}</h2>
       <p>{c.p14}</p>
       <p>
@@ -226,6 +299,20 @@ export function GoogleFreeAdCredit({ lang = 'en' }: Props) {
         {c.p17_pre} <Link to="/contact">{c.p17_link}</Link>
         {c.p17_end}
       </p>
+
+      {isEnglish && (
+        <>
+          <h2>{en.h2_faq}</h2>
+          <h3>{en.faq_q1}</h3>
+          <p>{en.faq_a1}</p>
+          <h3>{en.faq_q2}</h3>
+          <p>{en.faq_a2}</p>
+          <h3>{en.faq_q3}</h3>
+          <p>{en.faq_a3}</p>
+          <h3>{en.faq_q4}</h3>
+          <p>{en.faq_a4}</p>
+        </>
+      )}
     </BlogPost>
   );
 }
