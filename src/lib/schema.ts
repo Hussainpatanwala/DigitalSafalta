@@ -77,15 +77,19 @@ export function articleSchema(opts: {
   title: string;
   description: string;
   url: string;
+  /** A display date like "June 16, 2026" — converted to ISO format automatically. */
   datePublished: string;
 }) {
+  const parsed = new Date(opts.datePublished);
+  const isoDate = !isNaN(parsed.getTime()) ? parsed.toISOString().split('T')[0] : undefined;
+
   return {
     '@context': 'https://schema.org',
     '@type': 'BlogPosting',
     headline: opts.title,
     description: opts.description,
     url: `${SITE_URL}${opts.url}`,
-    datePublished: opts.datePublished,
+    ...(isoDate ? { datePublished: isoDate } : {}),
     author: {
       '@type': 'Organization',
       name: 'Digital Safalta',
