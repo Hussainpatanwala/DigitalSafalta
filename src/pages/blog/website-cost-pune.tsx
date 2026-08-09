@@ -57,6 +57,56 @@ const COPY = {
     h2_bottom: 'Bottom Line',
     p13: "A good website for a Pune small business costs between ₹12,000 and ₹25,000 done properly. Anything below ₹8,000 should raise serious questions. Anything above ₹50,000 needs a very clear justification based on your specific functional needs.",
     p14: "The most important thing isn't the cheapest or most expensive option — it's a website that actually works, loads fast on mobile, appears on Google, and converts visitors into customers. That's what matters for your business.",
+
+    // --- Expanded content (English only) ---
+    keyTakeaways: [
+      'A real, professional website for a Pune small business costs ₹12,000–₹25,000 — anything under ₹8,000 will likely need to be redone within a year.',
+      'The three routes are freelancer (cheapest, riskiest), agency (reliable, mid-priced), and DIY builders like Wix (cheapest ongoing, most of your own time).',
+      'Domain, SSL, and basic SEO setup should always be included — if a quote treats these as "extra," that is a red flag.',
+      'Ask who owns the domain before you pay anything. This single question avoids the most common Pune website horror story.',
+    ],
+    h2_routes: 'The 3 Ways to Get a Website Built in Pune',
+    p_routes_intro:
+      "Before comparing prices, it helps to understand who you're actually paying, because the same ₹15,000 budget buys very different things depending on the route you choose.",
+    h3_freelancer: 'Route 1: A Local Freelancer',
+    p_freelancer:
+      "Pune has a large pool of freelance web developers, many working out of Wakad, Hinjewadi, and Kothrud, often reachable through referrals or platforms like Fiverr and Upwork. The advantage is price — freelancers are typically 30–50% cheaper than agencies for the same feature set. The risk is continuity: if the freelancer moves on to a full-time job or stops replying (a genuinely common pattern), you may be left with a site nobody can update.",
+    p_freelancer_tip:
+      '<strong>How to reduce the risk:</strong> ask for their GitHub/portfolio, ask how many live sites they currently maintain, and always insist you personally own the domain and hosting login — not them.',
+    h3_agency: 'Route 2: A Small Agency',
+    p_agency:
+      "An agency (like Digital Safalta, or others in Pune) costs somewhat more than a freelancer but gives you a team behind the site instead of one person. If someone leaves, the project doesn't disappear with them. You also typically get a proper process — a written scope, a fixed timeline, and post-launch support built into the price rather than negotiated after the fact.",
+    h3_diy: 'Route 3: DIY Website Builders (Wix, Squarespace, WordPress.com)',
+    p_diy:
+      "If your budget is genuinely under ₹5,000, a DIY builder is often more honest than a cheap freelancer — you know exactly what you're getting, and there's no one to disappear on you. The trade-off is time: expect 15–25 hours of your own work to get a decent result, plus ongoing subscription fees (₹500–₹1,500/month depending on the platform) that add up to more than a one-time agency fee within 2 years.",
+
+    h2_timeline: 'What Building a Website Actually Looks Like, Day by Day',
+    p_timeline_intro:
+      "One thing most quotes don't explain is the actual process. Here's a realistic breakdown for a properly-run ₹15,000 website project in Pune, from payment to going live:",
+    li_day1: '<strong>Day 1–2:</strong> Discovery call, content collection (your logo, photos, business details), domain registration',
+    li_day2: '<strong>Day 3–4:</strong> Design draft shared for your feedback — colours, layout, homepage structure',
+    li_day3: '<strong>Day 5:</strong> Remaining pages built out, contact form connected, mobile testing',
+    li_day4: '<strong>Day 6:</strong> SSL, Google Analytics, Search Console, and SEO basics set up',
+    li_day5: '<strong>Day 7:</strong> Final review with you, then it goes live',
+    p_timeline_note:
+      "If a provider can't describe something close to this process when you ask, that's usually a sign they don't have one — which means delays are likely.",
+
+    h2_faq: 'Common Questions About Website Costs in Pune',
+    faq_q1: 'Is a ₹5,000 website ever a good idea?',
+    faq_a1:
+      "Only if it's genuinely temporary — for example, a single-page holding site while you plan something bigger. For anything meant to represent your business for the next 1–2 years, ₹5,000 almost always means template limitations, no real SEO setup, and no support when something breaks.",
+    faq_q2: 'Can I negotiate website prices in Pune?',
+    faq_a2:
+      "Yes, but negotiate on scope, not on corners being cut. Instead of asking for a lower price on the same package, ask what a smaller, cheaper version would honestly include — fewer pages, for example — rather than getting the same promise for less money.",
+    faq_q3: "What's the actual difference between a ₹15,000 and a ₹80,000 website?",
+    faq_a3:
+      "At ₹15,000, you're getting a well-built template customised to your brand — genuinely fine for most small businesses. At ₹80,000, you're paying for a fully custom design built from scratch, often with a content management system so you can edit it yourself, and sometimes e-commerce or booking functionality. Most Pune small businesses don't need the ₹80,000 version to start.",
+    faq_q4: 'Do I need to pay every year for my website?',
+    faq_a4:
+      "You'll always have small recurring costs — domain renewal (₹800–₹1,500/year) and hosting (₹3,000–₹8,000/year) are unavoidable regardless of who builds your site. What you shouldn't pay every year is the full build cost again — a properly built site should last 2–3 years before it needs a real redesign.",
+    faq_q5: 'How do I know if a Pune web designer is legitimate?',
+    faq_a5:
+      'Ask to see 2–3 live websites they have built (not screenshots — the actual working sites), check if those sites still work and load fast, and ask directly who owns the domains on those projects. A legitimate provider answers all three without hesitation.',
   },
   hi: {
     title: 'पुणे में वेबसाइट बनाने में कितना खर्च आता है? (2026 के लिए ईमानदार जवाब)',
@@ -174,6 +224,19 @@ interface Props {
 
 export function WebsiteCostPune({ lang = 'en' }: Props) {
   const c = COPY[lang];
+  const isEnglish = lang === 'en';
+  const en = COPY.en; // extended (English-only) sections live here
+
+  const faqs = isEnglish
+    ? [
+        { question: en.faq_q1, answer: en.faq_a1 },
+        { question: en.faq_q2, answer: en.faq_a2 },
+        { question: en.faq_q3, answer: en.faq_a3 },
+        { question: en.faq_q4, answer: en.faq_a4 },
+        { question: en.faq_q5, answer: en.faq_a5 },
+      ]
+    : undefined;
+
   return (
     <BlogPost
       title={c.title}
@@ -181,9 +244,35 @@ export function WebsiteCostPune({ lang = 'en' }: Props) {
       date={c.date}
       readTime={c.readTime}
       category={c.category}
+      faqs={faqs}
     >
+      {isEnglish && (
+        <>
+          <p><strong>Key takeaways:</strong></p>
+          <ul>
+            {en.keyTakeaways.map((item, i) => (
+              <li key={i}>{item}</li>
+            ))}
+          </ul>
+        </>
+      )}
+
       <p>{c.p1}</p>
       <p>{c.p2}</p>
+
+      {isEnglish && (
+        <>
+          <h2>{en.h2_routes}</h2>
+          <p>{en.p_routes_intro}</p>
+          <h3>{en.h3_freelancer}</h3>
+          <p>{en.p_freelancer}</p>
+          <p dangerouslySetInnerHTML={{ __html: en.p_freelancer_tip }} />
+          <h3>{en.h3_agency}</h3>
+          <p>{en.p_agency}</p>
+          <h3>{en.h3_diy}</h3>
+          <p>{en.p_diy}</p>
+        </>
+      )}
 
       <h2>{c.h2_why}</h2>
       <p>{c.p3}</p>
@@ -199,6 +288,21 @@ export function WebsiteCostPune({ lang = 'en' }: Props) {
       <p>{c.p6}</p>
       <h3>{c.h3_enterprise}</h3>
       <p>{c.p7}</p>
+
+      {isEnglish && (
+        <>
+          <h2>{en.h2_timeline}</h2>
+          <p>{en.p_timeline_intro}</p>
+          <ul>
+            <li dangerouslySetInnerHTML={{ __html: en.li_day1 }} />
+            <li dangerouslySetInnerHTML={{ __html: en.li_day2 }} />
+            <li dangerouslySetInnerHTML={{ __html: en.li_day3 }} />
+            <li dangerouslySetInnerHTML={{ __html: en.li_day4 }} />
+            <li dangerouslySetInnerHTML={{ __html: en.li_day5 }} />
+          </ul>
+          <p>{en.p_timeline_note}</p>
+        </>
+      )}
 
       <h2>{c.h2_included}</h2>
       <p>{c.p8}</p>
@@ -239,6 +343,22 @@ export function WebsiteCostPune({ lang = 'en' }: Props) {
         <Link to="/pricing">{c.p12_link}</Link>
         {c.p12_end}
       </p>
+
+      {isEnglish && (
+        <>
+          <h2>{en.h2_faq}</h2>
+          <h3>{en.faq_q1}</h3>
+          <p>{en.faq_a1}</p>
+          <h3>{en.faq_q2}</h3>
+          <p>{en.faq_a2}</p>
+          <h3>{en.faq_q3}</h3>
+          <p>{en.faq_a3}</p>
+          <h3>{en.faq_q4}</h3>
+          <p>{en.faq_a4}</p>
+          <h3>{en.faq_q5}</h3>
+          <p>{en.faq_a5}</p>
+        </>
+      )}
 
       <h2>{c.h2_bottom}</h2>
       <p>{c.p13}</p>
