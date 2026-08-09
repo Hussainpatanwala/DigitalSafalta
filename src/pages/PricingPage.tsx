@@ -4,12 +4,19 @@ import { PlatformMetrics } from '../components/PlatformMetrics';
 import { FAQ } from '../components/FAQ';
 import type { Lang } from '../lib/constants';
 import { getContent } from '../getContent';
+import { faqSchema } from '../lib/schema';
 
 export function PricingPage({ lang = 'en' }: { lang?: Lang }) {
-  const t = getContent(lang).seo.pricing;
+  const content = getContent(lang);
+  const t = content.seo.pricing;
   return (
     <>
-      <SEO title={t.title} description={t.description} lang={lang} />
+      <SEO
+        title={t.title}
+        description={t.description}
+        lang={lang}
+        schema={faqSchema(content.faqItems)}
+      />
       <div className="pt-28 lg:pt-36">
         <Pricing lang={lang} />
         <PlatformMetrics lang={lang} />
