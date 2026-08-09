@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft, Clock, Calendar } from 'lucide-react';
 import { SEO } from './SEO';
 import { tealBtn } from '../lib/constants';
-import { articleSchema, faqSchema } from '../lib/schema';
+import { articleSchema, faqSchema, breadcrumbSchema } from '../lib/schema';
 
 interface BlogPostProps {
   title: string;
@@ -18,6 +18,11 @@ interface BlogPostProps {
 export function BlogPost({ title, description, date, readTime, category, faqs, children }: BlogPostProps) {
   const schema = [
     articleSchema({ title, description, url: window.location.pathname, datePublished: date }),
+    breadcrumbSchema([
+      { name: 'Home', url: '/' },
+      { name: 'Blog', url: '/blog' },
+      { name: title, url: window.location.pathname },
+    ]),
     ...(faqs && faqs.length > 0 ? [faqSchema(faqs)] : []),
   ];
 
