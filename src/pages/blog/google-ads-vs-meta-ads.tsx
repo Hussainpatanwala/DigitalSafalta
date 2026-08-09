@@ -62,6 +62,38 @@ const COPY = {
     p17_pre: "That's why we always start with a conversation before recommending anything. If you're not sure which platform is right for you,",
     p17_link: 'talk to us',
     p17_end: "— it's free, and we'll give you a straight answer.",
+
+    // --- Expanded content (English only) ---
+    keyTakeaways: [
+      'Google Ads captures people already searching for what you sell; Meta Ads creates demand among people who match your ideal customer.',
+      'Service businesses with urgent, searched-for needs (plumber, CA, clinic) usually do better starting with Google Ads.',
+      'Visual, lifestyle, or awareness-driven businesses (fashion, restaurants, real estate) usually do better starting with Meta Ads.',
+      'Running both together, once budget allows, typically outperforms either platform alone.',
+    ],
+    h2_realworld: 'Real Examples: Same Budget, Different Platforms',
+    p_realworld_intro:
+      "To make this concrete, here's how ₹15,000/month plays out differently depending on the business type:",
+    li_rw1: "<strong>A Kothrud dentist</strong> — Google Ads for \"dentist near me\" and \"root canal Pune\" searches brings a handful of high-intent enquiries a week. Meta Ads would mostly reach people not thinking about dental work at all.",
+    li_rw2: "<strong>A Baner home décor boutique</strong> — Meta Ads showing beautiful product photos to design-interested people in Pune builds a following and drives impulse purchases. Google Ads only helps if people already know your brand name to search for it.",
+    li_rw3: "<strong>A Wakad gym</strong> — a mix works well: Meta Ads for general awareness and January new-year motivation, Google Ads for people actively searching \"gym near me\" ready to join today.",
+    h2_mistakes: 'Common Mistakes When Choosing Between Them',
+    li_mis1: "<strong>Copying a competitor's platform choice</strong> without checking if your business actually matches their customer behaviour — what works for a restaurant won't automatically work for a CA firm.",
+    li_mis2: "<strong>Judging Meta Ads by Google Ads standards</strong> — expecting immediate high-intent clicks from an awareness platform leads to premature conclusions that \"Meta doesn't work\" when it's just doing a different job.",
+    li_mis3: "<strong>Underfunding both instead of properly funding one</strong> — splitting a small ₹5,000/month budget across two platforms usually performs worse than putting the full amount behind the one platform that actually fits your business.",
+
+    h2_faq: 'Common Questions About Google Ads vs Meta Ads',
+    faq_q1: 'Which platform is cheaper to advertise on?',
+    faq_a1:
+      "Meta Ads typically has a lower cost-per-click, but that doesn't automatically mean lower cost-per-customer. Google Ads clicks cost more but come from people with higher buying intent, so they often convert to paying customers at a better rate despite the higher click cost.",
+    faq_q2: 'Can a small business with a limited budget run both platforms?',
+    faq_a2:
+      "It's usually better to fully fund one platform properly than to split a small budget (under ₹10,000/month) across both. A focused ₹10,000/month campaign on the right platform outperforms ₹5,000 spread thin across two.",
+    faq_q3: "I tried Facebook ads before and got no results — should I try again?",
+    faq_a3:
+      "Often the issue isn't the platform but the setup — wrong audience targeting, unclear offer, or judging results too quickly. Before ruling out Meta Ads entirely, it's worth checking whether your business type actually fits Meta's strength (visual, awareness-driven) or whether Google Ads would have been the better fit from the start.",
+    faq_q4: "Do I need professional help to run these, or can I do it myself?",
+    faq_a4:
+      "Both platforms let you start campaigns yourself within an hour. Where it gets costly is ongoing optimisation — most self-managed campaigns waste 20-40% of budget on poor targeting or ad copy that doesn't convert. Professional management typically pays for itself once your monthly ad spend crosses ₹15,000-₹20,000.",
   },
   hi: {
     title: 'Google Ads बनाम Meta Ads — आपके व्यवसाय के लिए कौन बेहतर है?',
