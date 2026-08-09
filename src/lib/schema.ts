@@ -72,7 +72,19 @@ export function serviceSchema(opts: { name: string; description: string; url: st
   };
 }
 
-/** Builds BlogPosting schema for a blog post. */
+/** Builds BreadcrumbList schema. Pass the path from Home down to the current page. */
+export function breadcrumbSchema(items: { name: string; url: string }[]) {
+  return {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: items.map((item, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: item.name,
+      item: `${SITE_URL}${item.url}`,
+    })),
+  };
+}
 export function articleSchema(opts: {
   title: string;
   description: string;
