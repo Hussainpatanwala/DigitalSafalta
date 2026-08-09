@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { ArrowLeft, Clock, Calendar } from 'lucide-react';
 import { SEO } from './SEO';
 import { tealBtn } from '../lib/constants';
-import { articleSchema } from '../lib/schema';
+import { articleSchema, faqSchema } from '../lib/schema';
 
 interface BlogPostProps {
   title: string;
@@ -10,22 +10,24 @@ interface BlogPostProps {
   date: string;
   readTime: string;
   category: string;
+  /** Optional Q&A pairs shown/used for FAQPage schema — reuse this for any post with a Q&A section. */
+  faqs?: { question: string; answer: string }[];
   children: React.ReactNode;
 }
 
-export function BlogPost({ title, description, date, readTime, category, children }: BlogPostProps) {
+export function BlogPost({ title, description, date, readTime, category, faqs, children }: BlogPostProps) {
+  const schema = [
+    articleSchema({ title, description, url: window.location.pathname, datePublished: date }),
+    ...(faqs && faqs.length > 0 ? [faqSchema(faqs)] : []),
+  ];
+
   return (
     <>
       <SEO
         title={`${title} | Digital Safalta Blog`}
         description={description}
         type="article"
-        schema={articleSchema({
-          title,
-          description,
-          url: window.location.pathname,
-          datePublished: date,
-        })}
+        schema={schema}
       />
 
       <div className="pt-28 lg:pt-36 pb-20">
