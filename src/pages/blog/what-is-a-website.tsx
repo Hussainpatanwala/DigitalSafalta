@@ -48,6 +48,45 @@ const COPY = {
     h2_bottom: 'Bottom Line',
     p16: "A website is not optional for a business in 2026 — it's the minimum entry point for being taken seriously online. It's your 24/7 salesperson, your credibility signal, and the foundation that every other marketing effort builds on.",
     p17: "If you don't have one yet, or if your current website looks outdated or unprofessional, that's the first thing to fix — before ads, before SEO, before social media. Everything else works better once the foundation is solid.",
+
+    // --- Expanded content (English only) ---
+    keyTakeaways: [
+      'A website is your business\'s permanent, owned presence online — unlike Instagram or JustDial, nobody can take it away or change the rules on you.',
+      'Most small businesses need only 4–5 pages to start: Home, Services, About, Contact, and Testimonials.',
+      'A website works 24/7 — capturing enquiries from people researching your business outside your working hours.',
+      'WhatsApp Business and a website solve different problems — you need both, not one instead of the other.',
+    ],
+    h2_myths: 'Common Myths About Needing a Website',
+    h3_myth1: 'Myth: "My Instagram page is enough"',
+    p_myth1:
+      "Instagram is great for engagement, but it's a rented platform — Instagram controls what gets shown, to whom, and can change the algorithm overnight. It also isn't built for Google search the way a website is: someone typing your business name plus \"reviews\" or \"price\" into Google is far more likely to land on a proper website than an Instagram profile.",
+    h3_myth2: 'Myth: "I get enough customers through word-of-mouth"',
+    p_myth2:
+      "Word-of-mouth is powerful, but it has a ceiling — it only reaches people who already know someone who knows you. A website extends that same trust to strangers who found you searching Google, letting your reputation work for people outside your existing network too.",
+    h3_myth3: 'Myth: "Websites are only for big companies"',
+    p_myth3:
+      "This was true 15 years ago when a website cost lakhs of rupees. Today, a professional small-business website in Pune costs ₹12,000–₹25,000 one-time — genuinely affordable for a solo consultant, a home bakery, or a two-person service business.",
+
+    h2_signs: 'Signs Your Current Website (If You Have One) Needs Fixing',
+    li_sign1: "It doesn't work properly on a phone — over 80% of your visitors are on mobile",
+    li_sign2: 'It takes more than 3–4 seconds to load',
+    li_sign3: 'There\'s no way for a visitor to contact you without leaving the site',
+    li_sign4: "It hasn't been updated in over 2 years and mentions old pricing, services, or years",
+    li_sign5: "It doesn't show up when you Google your own business name",
+
+    h2_faq: 'Common Questions About Business Websites',
+    faq_q1: 'Do I really need a website if I already have a Google Business Profile?',
+    faq_a1:
+      "A Google Business Profile is excellent for local map searches, but it's limited — you can't add a detailed services page, real testimonials with context, or a proper about section. Most businesses use both together: the Google Business Profile drives the first discovery, and it links through to your website for the full picture.",
+    faq_q2: 'How long does a website take to build?',
+    faq_a2:
+      "A properly-run small business website in Pune typically takes about 7 working days from your first call to going live, assuming you can provide your logo, photos, and business details promptly.",
+    faq_q3: "I'm a very small business (just me) — do I still need a website?",
+    faq_a3:
+      "Yes, arguably more so. Solo consultants, freelancers, and single-person service providers often benefit the most, since a website is what makes a one-person operation look as credible and established as a larger competitor.",
+    faq_q4: 'Can I build my own website instead of paying someone?',
+    faq_a4:
+      "You can, using tools like Wix or WordPress.com, but budget 15–25 hours of your own time to get a decent result, plus an ongoing monthly subscription. For many business owners, that time is worth more spent running the business — which is why most opt to have it built professionally instead.",
   },
   hi: {
     title: '2026 में पुणे के आपके व्यवसाय को वेबसाइट की ज़रूरत क्यों है?',
@@ -147,6 +186,18 @@ interface Props {
 
 export function WhatIsAWebsite({ lang = 'en' }: Props) {
   const c = COPY[lang];
+  const isEnglish = lang === 'en';
+  const en = COPY.en;
+
+  const faqs = isEnglish
+    ? [
+        { question: en.faq_q1, answer: en.faq_a1 },
+        { question: en.faq_q2, answer: en.faq_a2 },
+        { question: en.faq_q3, answer: en.faq_a3 },
+        { question: en.faq_q4, answer: en.faq_a4 },
+      ]
+    : undefined;
+
   return (
     <BlogPost
       title={c.title}
@@ -154,7 +205,17 @@ export function WhatIsAWebsite({ lang = 'en' }: Props) {
       date={c.date}
       readTime={c.readTime}
       category={c.category}
+      faqs={faqs}
     >
+      {isEnglish && (
+        <>
+          <p><strong>Key takeaways:</strong></p>
+          <ul>
+            {en.keyTakeaways.map((item, i) => <li key={i}>{item}</li>)}
+          </ul>
+        </>
+      )}
+
       <p>{c.p1}</p>
       <p>{c.p2}</p>
 
@@ -185,6 +246,18 @@ export function WhatIsAWebsite({ lang = 'en' }: Props) {
       <h3>{c.h3_own}</h3>
       <p>{c.p11}</p>
 
+      {isEnglish && (
+        <>
+          <h2>{en.h2_myths}</h2>
+          <h3>{en.h3_myth1}</h3>
+          <p>{en.p_myth1}</p>
+          <h3>{en.h3_myth2}</h3>
+          <p>{en.p_myth2}</p>
+          <h3>{en.h3_myth3}</h3>
+          <p>{en.p_myth3}</p>
+        </>
+      )}
+
       <h2>{c.h2_whatsapp}</h2>
       <p>{c.p12}</p>
       <p>{c.p13}</p>
@@ -198,9 +271,36 @@ export function WhatIsAWebsite({ lang = 'en' }: Props) {
         {c.p15_pre} <Link to="/pricing">{c.p15_link}</Link> {c.p15_end}
       </p>
 
+      {isEnglish && (
+        <>
+          <h2>{en.h2_signs}</h2>
+          <ul>
+            <li>{en.li_sign1}</li>
+            <li>{en.li_sign2}</li>
+            <li>{en.li_sign3}</li>
+            <li>{en.li_sign4}</li>
+            <li>{en.li_sign5}</li>
+          </ul>
+        </>
+      )}
+
       <h2>{c.h2_bottom}</h2>
       <p>{c.p16}</p>
       <p>{c.p17}</p>
+
+      {isEnglish && (
+        <>
+          <h2>{en.h2_faq}</h2>
+          <h3>{en.faq_q1}</h3>
+          <p>{en.faq_a1}</p>
+          <h3>{en.faq_q2}</h3>
+          <p>{en.faq_a2}</p>
+          <h3>{en.faq_q3}</h3>
+          <p>{en.faq_a3}</p>
+          <h3>{en.faq_q4}</h3>
+          <p>{en.faq_a4}</p>
+        </>
+      )}
     </BlogPost>
   );
 }
