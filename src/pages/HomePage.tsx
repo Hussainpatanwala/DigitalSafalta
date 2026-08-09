@@ -7,6 +7,7 @@ import { Testimonial } from '../components/Testimonial';
 import { Pricing } from '../components/Pricing';
 import type { Lang } from '../lib/constants';
 import { getContent } from '../getContent';
+import { organizationSchema } from '../lib/schema';
 
 export function HomePage({ lang = 'en' }: { lang?: Lang }) {
   const t = getContent(lang);
@@ -17,6 +18,7 @@ export function HomePage({ lang = 'en' }: { lang?: Lang }) {
         title={t.seo.home.title}
         description={t.seo.home.description}
         lang={lang}
+        schema={organizationSchema}
       />
       <Hero lang={lang} />
       <Philosophy lang={lang} />
