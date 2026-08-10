@@ -23,6 +23,7 @@ import { WhatIsSEO } from './pages/blog/what-is-seo';
 import { GoogleAdsVsMetaAds } from './pages/blog/google-ads-vs-meta-ads';
 import { GoogleFreeAdCredit } from './pages/blog/google-free-ad-credit';
 import { WhatIsAWebsite } from './pages/blog/what-is-a-website';
+import { AgencyNearMe } from './pages/blog/agency-near-me';
 import { ProductReviewsIndexPage } from './pages/blog/ProductReviewsIndexPage';
 import { ProductReviewPage } from './pages/blog/ProductReviewPage';
 import type { Lang } from './lib/constants';
@@ -101,6 +102,7 @@ function AppShell() {
           <Route path="/blog/google-ads-vs-meta-ads" element={<GoogleAdsVsMetaAds />} />
           <Route path="/blog/google-free-ad-credit" element={<GoogleFreeAdCredit />} />
           <Route path="/blog/what-is-a-website" element={<WhatIsAWebsite />} />
+          <Route path="/blog/agency-near-me" element={<AgencyNearMe />} />
           <Route path="/blog/reviews" element={<ProductReviewsIndexPage />} />
           <Route path="/blog/reviews/:slug" element={<ProductReviewPage />} />
           <Route path="/services/website-design" element={<WebsiteDesignPage lang={activeLang} />} />
