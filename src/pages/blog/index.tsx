@@ -44,6 +44,15 @@ const COPY = {
 const posts = {
   en: [
     {
+      slug: 'agency-near-me',
+      title: 'Digital Marketing Agency Near Me — How to Choose the Right One in Pune',
+      excerpt:
+        "Searching for a digital marketing agency near you? Here's what that search actually means today, 5 questions to ask before hiring anyone, and the red flags to watch for in Pune's agency market.",
+      date: 'August 10, 2026',
+      readTime: '7 min',
+      category: 'Choosing an Agency',
+    },
+    {
       slug: 'what-is-digital-marketing',
       title: "What is Digital Marketing? A Beginner's Guide for Indian Small Businesses",
       excerpt:
