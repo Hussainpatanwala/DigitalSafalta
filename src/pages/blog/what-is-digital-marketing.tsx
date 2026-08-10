@@ -300,6 +300,14 @@ export function WhatIsDigitalMarketing({ lang = 'en' }: Props) {
       <p>{c.p19}</p>
       <p>{c.p20}</p>
       <p>{c.p21}</p>
+
+      {isEnglish && (
+        <p>
+          Ready to actually hire someone? Read{' '}
+          <Link to="/blog/agency-near-me">how to choose the right digital marketing agency near you</Link>{' '}
+          before you sign anything.
+        </p>
+      )}
     </BlogPost>
   );
 }
