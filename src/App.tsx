@@ -17,6 +17,7 @@ import { MetaAdsPage } from './pages/services/MetaAdsPage';
 import { SEOPage } from './pages/services/SEOPage';
 import { SocialMediaPage } from './pages/services/SocialMediaPage';
 import { GoogleBusinessProfilePage } from './pages/services/GoogleBusinessProfilePage';
+import { ExcelVbaAutomationPage } from './pages/services/ExcelVbaAutomationPage';
 import { MarketingAuditPage } from './pages/MarketingAuditPage';
 import { WebsiteCostPune } from './pages/blog/website-cost-pune';
 import { WhatIsSEO } from './pages/blog/what-is-seo';
@@ -111,6 +112,7 @@ function AppShell() {
           <Route path="/services/seo" element={<SEOPage lang={activeLang} />} />
           <Route path="/services/social-media" element={<SocialMediaPage lang={activeLang} />} />
           <Route path="/services/google-business-profile" element={<GoogleBusinessProfilePage lang={activeLang} />} />
+          <Route path="/services/excel-vba-automation" element={<ExcelVbaAutomationPage lang={activeLang} />} />
           <Route path="/tools/marketing-audit" element={<MarketingAuditPage />} />
         </Routes>
       </main>
