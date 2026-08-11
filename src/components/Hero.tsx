@@ -29,7 +29,7 @@ export function Hero({ lang = 'en' }: { lang?: Lang }) {
             <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse" aria-hidden="true" />
             {t.eyebrow}
           </div>
-          <h1 id="hero-heading" className="text-4xl sm:text-5xl lg:text-7xl font-black leading-[1.04] tracking-tight mb-6">
+          <h1 id="hero-heading" className="text-3xl sm:text-4xl lg:text-5xl font-black leading-[1.15] tracking-tight mb-6">
             {t.headlineLine1} <br />
             <span className="bg-gradient-to-r from-teal-400 via-cyan-300 to-teal-300 bg-clip-text text-transparent">
               {t.headlineLine2}
@@ -47,6 +47,10 @@ export function Hero({ lang = 'en' }: { lang?: Lang }) {
               {t.secondaryCtaText}
             </Link>
           </div>
+
+          <p className="text-slate-500 text-xs sm:text-sm tracking-wide mb-6" aria-hidden="false">
+            {t.trustStrip}
+          </p>
 
           {SHOW_AUDIT_TOOL && (
             <Link
