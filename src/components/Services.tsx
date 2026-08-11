@@ -1,5 +1,5 @@
 import {
-  Zap, BarChart3, Users, MousePointer, Palette, Globe, Mail, Settings, ArrowRight,
+  Zap, BarChart3, Users, MousePointer, Palette, Globe, Mail, Settings, Table, ArrowRight,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { glass } from '../lib/constants';
@@ -7,7 +7,7 @@ import type { Lang } from '../lib/constants';
 import { getContent } from '../getContent';
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
-  Zap, BarChart3, Users, MousePointer, Palette, Globe, Mail, Settings,
+  Zap, BarChart3, Users, MousePointer, Palette, Globe, Mail, Settings, Table,
 };
 
 export function Services({ lang = 'en' }: { lang?: Lang }) {
