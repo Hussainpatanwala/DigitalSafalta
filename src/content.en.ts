@@ -136,6 +136,12 @@ export const content = {
         href: "/services/social-media"
       },
       {
+        title: "Excel & VBA Automation",
+        description: "Custom Excel dashboards, macros, and workflow automation that take the repetitive spreadsheet work off your plate.",
+        icon: "Table",
+        href: "/services/excel-vba-automation"
+      },
+      {
         title: "Landing Pages & Funnels",
         description: "High-converting landing pages designed to turn your ad traffic into paying customers.",
         icon: "MousePointer"
