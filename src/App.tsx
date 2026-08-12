@@ -8,6 +8,8 @@ import { HomePage } from './pages/HomePage';
 import { ServicesPage } from './pages/ServicesPage';
 import { PricingPage } from './pages/PricingPage';
 import { AboutPage } from './pages/AboutPage';
+import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
+import { TermsOfServicePage } from './pages/TermsOfServicePage';
 import { ContactPage } from './pages/ContactPage';
 import { BlogIndexPage } from './pages/blog/index';
 import { WhatIsDigitalMarketing } from './pages/blog/what-is-digital-marketing';
@@ -95,6 +97,8 @@ function AppShell() {
           <Route path="/services" element={<ServicesPage lang={activeLang} />} />
           <Route path="/pricing" element={<PricingPage lang={activeLang} />} />
           <Route path="/about" element={<AboutPage lang={activeLang} />} />
+          <Route path="/privacy" element={<PrivacyPolicyPage />} />
+          <Route path="/terms" element={<TermsOfServicePage />} />
           <Route path="/contact" element={<ContactPage lang={activeLang} />} />
           <Route path="/blog" element={<BlogIndexPage />} />
           <Route path="/blog/what-is-digital-marketing" element={<WhatIsDigitalMarketing />} />
