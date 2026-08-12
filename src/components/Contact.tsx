@@ -1,5 +1,6 @@
 import { useState, FormEvent } from 'react';
 import type { ChangeEvent } from 'react';
+import { Link } from 'react-router-dom';
 import { Check, Loader2, Send } from 'lucide-react';
 import { glass, tealBtn, inputCls } from '../lib/constants';
 import type { FormData, FormStatus, Lang } from '../lib/constants';
@@ -163,6 +164,10 @@ export function Contact({ lang = 'en' }: { lang?: Lang }) {
                : formStatus === 'success'  ? (<><Check className="w-5 h-5" aria-hidden="true" />{s.messageSent}</>)
                : (<>{t.buttonText}<Send className="w-5 h-5" aria-hidden="true" /></>)}
             </button>
+            <p className="text-xs text-slate-500 text-center">
+              By submitting, you agree to our{' '}
+              <Link to="/privacy" className="underline hover:text-slate-300">Privacy Policy</Link>.
+            </p>
           </form>
           {formStatus === 'success' && (
             <div className="mt-4 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/25 text-emerald-300 text-sm text-center" role="status">
