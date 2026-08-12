@@ -53,8 +53,8 @@ export function Footer({ lang = 'en' }: { lang?: Lang }) {
         <div className="border-t border-white/6 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
           <p className="text-slate-600 text-xs">{t.footer.copyright}</p>
           <div className="flex gap-6">
-            <a href="#" className="text-slate-600 hover:text-slate-400 text-xs transition-colors">Privacy Policy</a>
-            <a href="#" className="text-slate-600 hover:text-slate-400 text-xs transition-colors">Terms of Service</a>
+            <Link to="/privacy" className="text-slate-600 hover:text-slate-400 text-xs transition-colors">Privacy Policy</Link>
+            <Link to="/terms" className="text-slate-600 hover:text-slate-400 text-xs transition-colors">Terms of Service</Link>
           </div>
         </div>
       </div>
