@@ -31,7 +31,7 @@ export default {
       return jsonResponse({ error: 'Invalid JSON body' }, 400);
     }
 
-    const { name, phone, email, company, business_type, existing_website, message } = body;
+    const { name, phone, email, company, business_type, existing_website, message, consent_given_at, terms_version, privacy_version } = body;
 
     // Basic required-field + format checks. Reject bad data before it ever touches the database.
     if (!name || !phone || !email || !message) {
@@ -44,14 +44,18 @@ export default {
     if (name.length > 200 || message.length > 5000) {
       return jsonResponse({ error: 'Input too long' }, 400);
     }
+    // Consent is enforced server-side too — never trust the checkbox state alone from the browser.
+    if (!consent_given_at || !terms_version || !privacy_version) {
+      return jsonResponse({ error: 'Consent to Terms of Service and Privacy Policy is required' }, 400);
+    }
 
     try {
       await env.DB.prepare(
         `INSERT INTO contact_submissions
-          (name, phone, email, company, business_type, existing_website, message, source)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?)`
+          (name, phone, email, company, business_type, existing_website, message, source, consent_given_at, terms_version, privacy_version)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
       )
-        .bind(name, phone, email, company || null, business_type || null, existing_website || null, message, 'website')
+        .bind(name, phone, email, company || null, business_type || null, existing_website || null, message, 'website', consent_given_at, terms_version, privacy_version)
         .run();
     } catch (err) {
       console.error('D1 insert failed:', err);
