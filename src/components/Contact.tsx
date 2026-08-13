@@ -72,6 +72,11 @@ export function Contact({ lang = 'en' }: { lang?: Lang }) {
   const s = STRINGS[lang];
   const [formData, setFormData]     = useState<FormData>(formInit);
   const [formStatus, setFormStatus] = useState<FormStatus>('idle');
+  const [agreed, setAgreed]         = useState(false);
+
+  // Bump these whenever the Privacy Policy or Terms text materially changes,
+  // and keep them matching the "Last updated" date on those pages.
+  const POLICY_VERSION = '2026-08-13';
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
@@ -80,12 +85,18 @@ export function Contact({ lang = 'en' }: { lang?: Lang }) {
 
   const handleFormSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (!agreed) return; // belt-and-suspenders — button is disabled too
     setFormStatus('submitting');
     try {
       const res = await fetch(CONTACT_ENDPOINT, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          ...formData,
+          consent_given_at: new Date().toISOString(),
+          terms_version: POLICY_VERSION,
+          privacy_version: POLICY_VERSION,
+        }),
       });
       if (!res.ok) {
         const errBody = await res.json().catch(() => ({}));
@@ -93,6 +104,7 @@ export function Contact({ lang = 'en' }: { lang?: Lang }) {
       }
       setFormStatus('success');
       setFormData(formInit);
+      setAgreed(false);
       setTimeout(() => setFormStatus('idle'), 5000);
     } catch (err) {
       console.error('Form submission error:', err);
@@ -151,11 +163,25 @@ export function Contact({ lang = 'en' }: { lang?: Lang }) {
               <label htmlFor="contact-message" className="block text-xs font-bold text-slate-400 tracking-widest uppercase mb-2">{s.messageLabel}</label>
               <textarea id="contact-message" name="message" value={formData.message} onChange={handleInputChange} placeholder={t.formPlaceholder.message} rows={4} required disabled={formStatus === 'submitting'} className={`${inputCls} resize-none`} />
             </div>
+            <label className="flex items-start gap-2.5 cursor-pointer select-none">
+              <input
+                type="checkbox"
+                checked={agreed}
+                onChange={(e) => setAgreed(e.target.checked)}
+                className="mt-0.5 w-4 h-4 rounded border-slate-600 bg-slate-800 text-teal-500 focus:ring-teal-500 focus:ring-offset-slate-950 cursor-pointer"
+              />
+              <span className="text-xs text-slate-400">
+                I agree to the{' '}
+                <Link to="/terms" className="underline hover:text-slate-300" onClick={(e) => e.stopPropagation()}>Terms of Service</Link>{' '}
+                and{' '}
+                <Link to="/privacy" className="underline hover:text-slate-300" onClick={(e) => e.stopPropagation()}>Privacy Policy</Link>.
+              </span>
+            </label>
             <button
               type="submit"
-              disabled={formStatus === 'submitting'}
+              disabled={formStatus === 'submitting' || !agreed}
               className={`w-full py-4 rounded-xl text-base font-bold flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 focus:ring-offset-slate-950 ${
-                formStatus === 'submitting' ? 'bg-slate-700 text-slate-400 cursor-not-allowed'
+                formStatus === 'submitting' || !agreed ? 'bg-slate-700 text-slate-400 cursor-not-allowed'
                 : formStatus === 'success'  ? 'bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 cursor-default'
                 : tealBtn
               }`}
@@ -164,10 +190,6 @@ export function Contact({ lang = 'en' }: { lang?: Lang }) {
                : formStatus === 'success'  ? (<><Check className="w-5 h-5" aria-hidden="true" />{s.messageSent}</>)
                : (<>{t.buttonText}<Send className="w-5 h-5" aria-hidden="true" /></>)}
             </button>
-            <p className="text-xs text-slate-500 text-center">
-              By submitting, you agree to our{' '}
-              <Link to="/privacy" className="underline hover:text-slate-300">Privacy Policy</Link>.
-            </p>
           </form>
           {formStatus === 'success' && (
             <div className="mt-4 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/25 text-emerald-300 text-sm text-center" role="status">
