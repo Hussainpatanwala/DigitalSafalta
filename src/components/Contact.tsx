@@ -113,7 +113,7 @@ export function Contact({ lang = 'en' }: { lang?: Lang }) {
   };
 
   return (
-    <section id="contact" className="pt-2 pb-10 lg:pt-2 lg:pb-12 relative" aria-labelledby="contact-heading">
+    <section id="contact" className="pt-2 pb-6 lg:pt-2 lg:pb-8 relative" aria-labelledby="contact-heading">
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none" aria-hidden="true">
         <div className="w-[700px] h-72 bg-teal-500/8 rounded-full blur-3xl" />
       </div>
@@ -127,10 +127,10 @@ export function Contact({ lang = 'en' }: { lang?: Lang }) {
             <h2 id="contact-heading" className="text-3xl lg:text-4xl font-black tracking-tight mb-4">{t.title}</h2>
             <p className="text-slate-400 text-base leading-relaxed max-w-lg mx-auto lg:mx-0">{t.description}</p>
           </div>
-          <div className={`rounded-3xl p-5 lg:p-6 relative overflow-hidden ${glass} shadow-2xl shadow-black/40`}>
+          <div className={`rounded-3xl p-4 lg:p-5 relative overflow-hidden ${glass} shadow-2xl shadow-black/40`}>
             <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-teal-400/30 to-transparent" aria-hidden="true" />
-            <form onSubmit={handleFormSubmit} className="space-y-2.5">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <form onSubmit={handleFormSubmit} className="space-y-2">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 <div>
                   <label htmlFor="contact-name" className="block text-xs font-bold text-slate-400 tracking-widest uppercase mb-1.5">{s.nameLabel}</label>
                   <input id="contact-name" type="text" name="name" value={formData.name} onChange={handleInputChange} placeholder={s.namePlaceholder} required disabled={formStatus === 'submitting'} className={inputCls} />
@@ -140,7 +140,7 @@ export function Contact({ lang = 'en' }: { lang?: Lang }) {
                   <input id="contact-phone" type="tel" name="phone" value={formData.phone} onChange={handleInputChange} placeholder="+91 98765 43210" required disabled={formStatus === 'submitting'} className={inputCls} />
                 </div>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 <div>
                   <label htmlFor="contact-email" className="block text-xs font-bold text-slate-400 tracking-widest uppercase mb-1.5">{s.emailLabel}</label>
                   <input id="contact-email" type="email" name="email" value={formData.email} onChange={handleInputChange} placeholder="you@example.com" required disabled={formStatus === 'submitting'} className={inputCls} />
@@ -150,7 +150,7 @@ export function Contact({ lang = 'en' }: { lang?: Lang }) {
                   <input id="contact-company" type="text" name="company" value={formData.company} onChange={handleInputChange} placeholder={s.companyPlaceholder} disabled={formStatus === 'submitting'} className={inputCls} />
                 </div>
               </div>
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 <div>
                   <label htmlFor="contact-business-type" className="block text-xs font-bold text-slate-400 tracking-widest uppercase mb-1.5">{s.businessTypeLabel}</label>
                   <select id="contact-business-type" name="business_type" value={formData.business_type} onChange={handleInputChange} disabled={formStatus === 'submitting'} className={`${inputCls} bg-slate-900`}>
@@ -187,7 +187,7 @@ export function Contact({ lang = 'en' }: { lang?: Lang }) {
               <button
                 type="submit"
                 disabled={formStatus === 'submitting' || !agreed}
-                className={`w-full py-3 rounded-xl text-base font-bold flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 focus:ring-offset-slate-950 ${
+                className={`w-full py-2.5 rounded-xl text-base font-bold flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 focus:ring-offset-slate-950 ${
                   formStatus === 'submitting' || !agreed ? 'bg-slate-700 text-slate-400 cursor-not-allowed'
                   : formStatus === 'success'  ? 'bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 cursor-default'
                   : tealBtn
