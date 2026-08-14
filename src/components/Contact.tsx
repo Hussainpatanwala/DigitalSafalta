@@ -113,7 +113,7 @@ export function Contact({ lang = 'en' }: { lang?: Lang }) {
   };
 
   return (
-    <section id="contact" className="py-16 lg:py-28 relative" aria-labelledby="contact-heading">
+    <section id="contact" className="pt-2 pb-16 lg:pt-4 lg:pb-28 relative" aria-labelledby="contact-heading">
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none" aria-hidden="true">
         <div className="w-[700px] h-72 bg-teal-500/8 rounded-full blur-3xl" />
       </div>
