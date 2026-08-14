@@ -113,95 +113,103 @@ export function Contact({ lang = 'en' }: { lang?: Lang }) {
   };
 
   return (
-    <section id="contact" className="pt-2 pb-16 lg:pt-4 lg:pb-28 relative" aria-labelledby="contact-heading">
+    <section id="contact" className="pt-2 pb-16 lg:pt-4 lg:pb-20 relative" aria-labelledby="contact-heading">
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none" aria-hidden="true">
         <div className="w-[700px] h-72 bg-teal-500/8 rounded-full blur-3xl" />
       </div>
-      <div className="relative max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-10">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 rounded-full border border-teal-500/25 bg-teal-500/8 text-teal-300 text-xs font-semibold tracking-widest uppercase">
-            <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse" aria-hidden="true" />
-            {s.eyebrow}
+      <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 lg:items-center">
+          <div className="text-center lg:text-left">
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-6 rounded-full border border-teal-500/25 bg-teal-500/8 text-teal-300 text-xs font-semibold tracking-widest uppercase">
+              <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse" aria-hidden="true" />
+              {s.eyebrow}
+            </div>
+            <h2 id="contact-heading" className="text-3xl lg:text-4xl font-black tracking-tight mb-4">{t.title}</h2>
+            <p className="text-slate-400 text-base leading-relaxed max-w-lg mx-auto lg:mx-0">{t.description}</p>
           </div>
-          <h2 id="contact-heading" className="text-3xl lg:text-4xl font-black tracking-tight mb-4">{t.title}</h2>
-          <p className="text-slate-400 text-base leading-relaxed max-w-lg mx-auto">{t.description}</p>
-        </div>
-        <div className={`rounded-3xl p-8 lg:p-10 relative overflow-hidden ${glass} shadow-2xl shadow-black/40`}>
-          <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-teal-400/30 to-transparent" aria-hidden="true" />
-          <form onSubmit={handleFormSubmit} className="space-y-4">
-            <div>
-              <label htmlFor="contact-name" className="block text-xs font-bold text-slate-400 tracking-widest uppercase mb-2">{s.nameLabel}</label>
-              <input id="contact-name" type="text" name="name" value={formData.name} onChange={handleInputChange} placeholder={s.namePlaceholder} required disabled={formStatus === 'submitting'} className={inputCls} />
-            </div>
-            <div>
-              <label htmlFor="contact-phone" className="block text-xs font-bold text-slate-400 tracking-widest uppercase mb-2">{s.phoneLabel}</label>
-              <input id="contact-phone" type="tel" name="phone" value={formData.phone} onChange={handleInputChange} placeholder="+91 98765 43210" required disabled={formStatus === 'submitting'} className={inputCls} />
-            </div>
-            <div>
-              <label htmlFor="contact-email" className="block text-xs font-bold text-slate-400 tracking-widest uppercase mb-2">{s.emailLabel}</label>
-              <input id="contact-email" type="email" name="email" value={formData.email} onChange={handleInputChange} placeholder="you@example.com" required disabled={formStatus === 'submitting'} className={inputCls} />
-            </div>
-            <div>
-              <label htmlFor="contact-company" className="block text-xs font-bold text-slate-400 tracking-widest uppercase mb-2">{s.companyLabel}</label>
-              <input id="contact-company" type="text" name="company" value={formData.company} onChange={handleInputChange} placeholder={s.companyPlaceholder} disabled={formStatus === 'submitting'} className={inputCls} />
-            </div>
-            <div>
-              <label htmlFor="contact-business-type" className="block text-xs font-bold text-slate-400 tracking-widest uppercase mb-2">{s.businessTypeLabel}</label>
-              <select id="contact-business-type" name="business_type" value={formData.business_type} onChange={handleInputChange} disabled={formStatus === 'submitting'} className={`${inputCls} bg-slate-900`}>
-                <option value="">{s.businessTypePlaceholder}</option>
-                {s.businessTypes.map((opt) => <option key={opt}>{opt}</option>)}
-              </select>
-            </div>
-            <div>
-              <label htmlFor="contact-existing-website" className="block text-xs font-bold text-slate-400 tracking-widest uppercase mb-2">{s.websiteLabel}</label>
-              <select id="contact-existing-website" name="existing_website" value={formData.existing_website} onChange={handleInputChange} disabled={formStatus === 'submitting'} className={`${inputCls} bg-slate-900`}>
-                <option value="">{s.websitePlaceholder}</option>
-                {s.websiteOptions.map((opt) => <option key={opt}>{opt}</option>)}
-              </select>
-            </div>
-            <div>
-              <label htmlFor="contact-message" className="block text-xs font-bold text-slate-400 tracking-widest uppercase mb-2">{s.messageLabel}</label>
-              <textarea id="contact-message" name="message" value={formData.message} onChange={handleInputChange} placeholder={t.formPlaceholder.message} rows={4} required disabled={formStatus === 'submitting'} className={`${inputCls} resize-none`} />
-            </div>
-            <label className="flex items-start gap-2.5 cursor-pointer select-none">
-              <input
-                type="checkbox"
-                checked={agreed}
-                onChange={(e) => setAgreed(e.target.checked)}
-                className="mt-0.5 w-4 h-4 rounded border-slate-600 bg-slate-800 text-teal-500 focus:ring-teal-500 focus:ring-offset-slate-950 cursor-pointer"
-              />
-              <span className="text-xs text-slate-400">
-                I agree to the{' '}
-                <Link to="/terms" className="underline hover:text-slate-300" onClick={(e) => e.stopPropagation()}>Terms of Service</Link>{' '}
-                and{' '}
-                <Link to="/privacy" className="underline hover:text-slate-300" onClick={(e) => e.stopPropagation()}>Privacy Policy</Link>.
-              </span>
-            </label>
-            <button
-              type="submit"
-              disabled={formStatus === 'submitting' || !agreed}
-              className={`w-full py-4 rounded-xl text-base font-bold flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 focus:ring-offset-slate-950 ${
-                formStatus === 'submitting' || !agreed ? 'bg-slate-700 text-slate-400 cursor-not-allowed'
-                : formStatus === 'success'  ? 'bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 cursor-default'
-                : tealBtn
-              }`}
-            >
-              {formStatus === 'submitting' ? (<><Loader2 className="w-5 h-5 animate-spin" aria-hidden="true" />{s.sending}</>)
-               : formStatus === 'success'  ? (<><Check className="w-5 h-5" aria-hidden="true" />{s.messageSent}</>)
-               : (<>{t.buttonText}<Send className="w-5 h-5" aria-hidden="true" /></>)}
-            </button>
-          </form>
-          {formStatus === 'success' && (
-            <div className="mt-4 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/25 text-emerald-300 text-sm text-center" role="status">
-              {s.thankYou}
-            </div>
-          )}
-          {formStatus === 'error' && (
-            <div className="mt-4 p-4 rounded-xl bg-red-500/10 border border-red-500/25 text-red-300 text-sm text-center" role="alert">
-              {s.errorMsg}
-            </div>
-          )}
-          <p className="text-center text-xs text-slate-500 mt-5">{t.responseTime}</p>
+          <div className={`rounded-3xl p-6 lg:p-8 relative overflow-hidden ${glass} shadow-2xl shadow-black/40`}>
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-teal-400/30 to-transparent" aria-hidden="true" />
+            <form onSubmit={handleFormSubmit} className="space-y-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label htmlFor="contact-name" className="block text-xs font-bold text-slate-400 tracking-widest uppercase mb-1.5">{s.nameLabel}</label>
+                  <input id="contact-name" type="text" name="name" value={formData.name} onChange={handleInputChange} placeholder={s.namePlaceholder} required disabled={formStatus === 'submitting'} className={inputCls} />
+                </div>
+                <div>
+                  <label htmlFor="contact-phone" className="block text-xs font-bold text-slate-400 tracking-widest uppercase mb-1.5">{s.phoneLabel}</label>
+                  <input id="contact-phone" type="tel" name="phone" value={formData.phone} onChange={handleInputChange} placeholder="+91 98765 43210" required disabled={formStatus === 'submitting'} className={inputCls} />
+                </div>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label htmlFor="contact-email" className="block text-xs font-bold text-slate-400 tracking-widest uppercase mb-1.5">{s.emailLabel}</label>
+                  <input id="contact-email" type="email" name="email" value={formData.email} onChange={handleInputChange} placeholder="you@example.com" required disabled={formStatus === 'submitting'} className={inputCls} />
+                </div>
+                <div>
+                  <label htmlFor="contact-company" className="block text-xs font-bold text-slate-400 tracking-widest uppercase mb-1.5">{s.companyLabel}</label>
+                  <input id="contact-company" type="text" name="company" value={formData.company} onChange={handleInputChange} placeholder={s.companyPlaceholder} disabled={formStatus === 'submitting'} className={inputCls} />
+                </div>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                <div>
+                  <label htmlFor="contact-business-type" className="block text-xs font-bold text-slate-400 tracking-widest uppercase mb-1.5">{s.businessTypeLabel}</label>
+                  <select id="contact-business-type" name="business_type" value={formData.business_type} onChange={handleInputChange} disabled={formStatus === 'submitting'} className={`${inputCls} bg-slate-900`}>
+                    <option value="">{s.businessTypePlaceholder}</option>
+                    {s.businessTypes.map((opt) => <option key={opt}>{opt}</option>)}
+                  </select>
+                </div>
+                <div>
+                  <label htmlFor="contact-existing-website" className="block text-xs font-bold text-slate-400 tracking-widest uppercase mb-1.5">{s.websiteLabel}</label>
+                  <select id="contact-existing-website" name="existing_website" value={formData.existing_website} onChange={handleInputChange} disabled={formStatus === 'submitting'} className={`${inputCls} bg-slate-900`}>
+                    <option value="">{s.websitePlaceholder}</option>
+                    {s.websiteOptions.map((opt) => <option key={opt}>{opt}</option>)}
+                  </select>
+                </div>
+              </div>
+              <div>
+                <label htmlFor="contact-message" className="block text-xs font-bold text-slate-400 tracking-widest uppercase mb-1.5">{s.messageLabel}</label>
+                <textarea id="contact-message" name="message" value={formData.message} onChange={handleInputChange} placeholder={t.formPlaceholder.message} rows={3} required disabled={formStatus === 'submitting'} className={`${inputCls} resize-none`} />
+              </div>
+              <label className="flex items-start gap-2.5 cursor-pointer select-none">
+                <input
+                  type="checkbox"
+                  checked={agreed}
+                  onChange={(e) => setAgreed(e.target.checked)}
+                  className="mt-0.5 w-4 h-4 rounded border-slate-600 bg-slate-800 text-teal-500 focus:ring-teal-500 focus:ring-offset-slate-950 cursor-pointer"
+                />
+                <span className="text-xs text-slate-400">
+                  I agree to the{' '}
+                  <Link to="/terms" className="underline hover:text-slate-300" onClick={(e) => e.stopPropagation()}>Terms of Service</Link>{' '}
+                  and{' '}
+                  <Link to="/privacy" className="underline hover:text-slate-300" onClick={(e) => e.stopPropagation()}>Privacy Policy</Link>.
+                </span>
+              </label>
+              <button
+                type="submit"
+                disabled={formStatus === 'submitting' || !agreed}
+                className={`w-full py-3.5 rounded-xl text-base font-bold flex items-center justify-center gap-2 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 focus:ring-offset-slate-950 ${
+                  formStatus === 'submitting' || !agreed ? 'bg-slate-700 text-slate-400 cursor-not-allowed'
+                  : formStatus === 'success'  ? 'bg-emerald-500/20 border border-emerald-500/40 text-emerald-300 cursor-default'
+                  : tealBtn
+                }`}
+              >
+                {formStatus === 'submitting' ? (<><Loader2 className="w-5 h-5 animate-spin" aria-hidden="true" />{s.sending}</>)
+                 : formStatus === 'success'  ? (<><Check className="w-5 h-5" aria-hidden="true" />{s.messageSent}</>)
+                 : (<>{t.buttonText}<Send className="w-5 h-5" aria-hidden="true" /></>)}
+              </button>
+            </form>
+            {formStatus === 'success' && (
+              <div className="mt-4 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/25 text-emerald-300 text-sm text-center" role="status">
+                {s.thankYou}
+              </div>
+            )}
+            {formStatus === 'error' && (
+              <div className="mt-4 p-4 rounded-xl bg-red-500/10 border border-red-500/25 text-red-300 text-sm text-center" role="alert">
+                {s.errorMsg}
+              </div>
+            )}
+            <p className="text-center text-xs text-slate-500 mt-4">{t.responseTime}</p>
+          </div>
         </div>
       </div>
     </section>
