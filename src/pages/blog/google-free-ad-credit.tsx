@@ -219,6 +219,7 @@ export function GoogleFreeAdCredit({ lang = 'en' }: Props) {
       readTime={c.readTime}
       category={c.category}
       faqs={faqs}
+      relatedSlugs={['google-ads-vs-meta-ads', 'agency-near-me']}
     >
       {isEnglish && (
         <>

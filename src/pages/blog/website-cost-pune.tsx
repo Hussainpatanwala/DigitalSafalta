@@ -245,6 +245,7 @@ export function WebsiteCostPune({ lang = 'en' }: Props) {
       readTime={c.readTime}
       category={c.category}
       faqs={faqs}
+      relatedSlugs={['what-is-a-website', 'agency-near-me']}
     >
       {isEnglish && (
         <>

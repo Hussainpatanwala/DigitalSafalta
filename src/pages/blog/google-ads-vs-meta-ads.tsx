@@ -241,6 +241,7 @@ export function GoogleAdsVsMetaAds({ lang = 'en' }: Props) {
       readTime={c.readTime}
       category={c.category}
       faqs={faqs}
+      relatedSlugs={['google-free-ad-credit', 'what-is-digital-marketing']}
     >
       {isEnglish && (
         <>

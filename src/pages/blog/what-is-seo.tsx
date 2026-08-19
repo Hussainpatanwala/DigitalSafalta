@@ -201,6 +201,7 @@ export function WhatIsSEO({ lang = 'en' }: Props) {
       readTime={c.readTime}
       category={c.category}
       faqs={faqs}
+      relatedSlugs={['what-is-digital-marketing', 'agency-near-me']}
     >
       {isEnglish && (
         <>

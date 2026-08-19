@@ -206,6 +206,7 @@ export function WhatIsAWebsite({ lang = 'en' }: Props) {
       readTime={c.readTime}
       category={c.category}
       faqs={faqs}
+      relatedSlugs={['website-cost-pune', 'what-is-seo']}
     >
       {isEnglish && (
         <>

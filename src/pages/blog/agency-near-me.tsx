@@ -108,6 +108,7 @@ export function AgencyNearMe() {
       readTime={c.readTime}
       category={c.category}
       faqs={faqs}
+      relatedSlugs={['website-cost-pune', 'what-is-digital-marketing']}
     >
       <p>{c.intro}</p>
 
