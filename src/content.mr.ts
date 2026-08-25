@@ -228,6 +228,24 @@ export const content: SiteContent = {
         highlighted: false
       },
       {
+        name: "वेब ऍप्लिकेशन",
+        price: "50,000",
+        currency: "₹",
+        period: "one-time",
+        description: "तुमच्या workflow साठी एक सानुकूल, database-backed वेब ऍप — जे static साइटला शक्य नाही",
+        features: [
+          "तुमच्या workflow नुसार सानुकूल-निर्मित — forms, records, dashboards",
+          "तुमचा डेटा व्यवस्थापित करण्यासाठी Admin panel",
+          "Database-backed — डेटा सुरक्षितपणे साठवला जातो, केवळ contact form नाही",
+          "गरज असल्यास User login व roles",
+          "Mobile responsive डिझाइन",
+          "SSL certificate (HTTPS) — कायमचे मोफत",
+          "Timeline आमच्या discovery call वर scope केली जाते",
+        ],
+        note: "Free-tier Cloudflare storage व database वर बनलेले. जर हे एक public portal असेल ज्यात user sign-up/login हवे असेल, तर आम्ही त्याऐवजी Supabase वापरतो. Email, WhatsApp, किंवा SMS notifications — जर तुमच्या app ला हवे असतील तर — actual cost वर आकारले जातील, हे price मध्ये समाविष्ट नाही.",
+        highlighted: false
+      },
+      {
         name: "स्टार्टर ऍड्स",
         price: "15,000",
         currency: "₹",
