@@ -261,6 +261,24 @@ export const content = {
         highlighted: false
       },
       {
+        name: "Web Application",
+        price: "50,000",
+        currency: "₹",
+        period: "one-time",
+        description: "A custom, database-backed web app for workflows a static site can't handle",
+        features: [
+          "Custom-built for your workflow — forms, records, dashboards",
+          "Admin panel to manage your data",
+          "Database-backed — data stored securely, not just a contact form",
+          "User login & roles if your app needs them",
+          "Mobile responsive design",
+          "SSL certificate (HTTPS) — free forever",
+          "Timeline scoped on our discovery call",
+        ],
+        note: "Built on free-tier Cloudflare storage & database. If it's a public portal needing user sign-up/login, we use Supabase instead. Email, WhatsApp, or SMS notifications — if your app needs them — are billed at actual cost to you, not included in this price.",
+        highlighted: false
+      },
+      {
         name: "Starter Ads",
         price: "15,000",
         currency: "₹",
