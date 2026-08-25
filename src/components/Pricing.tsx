@@ -16,7 +16,7 @@ export function Pricing({ lang = 'en' }: { lang?: Lang }) {
           <h2 id="pricing-heading" className="text-3xl lg:text-4xl font-black tracking-tight mb-4">{t.title}</h2>
           <p className="text-slate-400 text-base leading-relaxed">{t.description}</p>
         </div>
-        <div className="grid lg:grid-cols-3 gap-6 max-w-5xl mx-auto items-start">
+        <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-6 max-w-7xl mx-auto items-start">
           {t.plans.map((plan, idx) => (
             <article
               key={idx}
