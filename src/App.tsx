@@ -1,35 +1,40 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, lazy, Suspense } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { LanguagePicker } from './components/LanguagePicker';
-import { Chatbot } from './components/Chatbot';
 import { Navigation } from './components/Navigation';
 import { Footer } from './components/Footer';
 import { HomePage } from './pages/HomePage';
-import { ServicesPage } from './pages/ServicesPage';
-import { PricingPage } from './pages/PricingPage';
-import { AboutPage } from './pages/AboutPage';
-import { PrivacyPolicyPage } from './pages/PrivacyPolicyPage';
-import { TermsOfServicePage } from './pages/TermsOfServicePage';
-import { ContactPage } from './pages/ContactPage';
-import { BlogIndexPage } from './pages/blog/index';
-import { WhatIsDigitalMarketing } from './pages/blog/what-is-digital-marketing';
-import { WebsiteDesignPage } from './pages/services/WebsiteDesignPage';
-import { GoogleAdsPage } from './pages/services/GoogleAdsPage';
-import { MetaAdsPage } from './pages/services/MetaAdsPage';
-import { SEOPage } from './pages/services/SEOPage';
-import { SocialMediaPage } from './pages/services/SocialMediaPage';
-import { GoogleBusinessProfilePage } from './pages/services/GoogleBusinessProfilePage';
-import { ExcelVbaAutomationPage } from './pages/services/ExcelVbaAutomationPage';
-import { MarketingAuditPage } from './pages/MarketingAuditPage';
-import { WebsiteCostPune } from './pages/blog/website-cost-pune';
-import { WhatIsSEO } from './pages/blog/what-is-seo';
-import { GoogleAdsVsMetaAds } from './pages/blog/google-ads-vs-meta-ads';
-import { GoogleFreeAdCredit } from './pages/blog/google-free-ad-credit';
-import { WhatIsAWebsite } from './pages/blog/what-is-a-website';
-import { AgencyNearMe } from './pages/blog/agency-near-me';
-import { ProductReviewsIndexPage } from './pages/blog/ProductReviewsIndexPage';
-import { ProductReviewPage } from './pages/blog/ProductReviewPage';
 import type { Lang } from './lib/constants';
+
+// Everything below is route-level or below-the-fold content that isn't
+// needed for the initial paint, so it's code-split into its own chunk and
+// only downloaded when the visitor actually navigates there or the page
+// finishes loading. This keeps the main bundle small for the LCP path.
+const Chatbot = lazy(() => import('./components/Chatbot').then(m => ({ default: m.Chatbot })));
+const ServicesPage = lazy(() => import('./pages/ServicesPage').then(m => ({ default: m.ServicesPage })));
+const PricingPage = lazy(() => import('./pages/PricingPage').then(m => ({ default: m.PricingPage })));
+const AboutPage = lazy(() => import('./pages/AboutPage').then(m => ({ default: m.AboutPage })));
+const PrivacyPolicyPage = lazy(() => import('./pages/PrivacyPolicyPage').then(m => ({ default: m.PrivacyPolicyPage })));
+const TermsOfServicePage = lazy(() => import('./pages/TermsOfServicePage').then(m => ({ default: m.TermsOfServicePage })));
+const ContactPage = lazy(() => import('./pages/ContactPage').then(m => ({ default: m.ContactPage })));
+const BlogIndexPage = lazy(() => import('./pages/blog/index').then(m => ({ default: m.BlogIndexPage })));
+const WhatIsDigitalMarketing = lazy(() => import('./pages/blog/what-is-digital-marketing').then(m => ({ default: m.WhatIsDigitalMarketing })));
+const WebsiteDesignPage = lazy(() => import('./pages/services/WebsiteDesignPage').then(m => ({ default: m.WebsiteDesignPage })));
+const GoogleAdsPage = lazy(() => import('./pages/services/GoogleAdsPage').then(m => ({ default: m.GoogleAdsPage })));
+const MetaAdsPage = lazy(() => import('./pages/services/MetaAdsPage').then(m => ({ default: m.MetaAdsPage })));
+const SEOPage = lazy(() => import('./pages/services/SEOPage').then(m => ({ default: m.SEOPage })));
+const SocialMediaPage = lazy(() => import('./pages/services/SocialMediaPage').then(m => ({ default: m.SocialMediaPage })));
+const GoogleBusinessProfilePage = lazy(() => import('./pages/services/GoogleBusinessProfilePage').then(m => ({ default: m.GoogleBusinessProfilePage })));
+const ExcelVbaAutomationPage = lazy(() => import('./pages/services/ExcelVbaAutomationPage').then(m => ({ default: m.ExcelVbaAutomationPage })));
+const MarketingAuditPage = lazy(() => import('./pages/MarketingAuditPage').then(m => ({ default: m.MarketingAuditPage })));
+const WebsiteCostPune = lazy(() => import('./pages/blog/website-cost-pune').then(m => ({ default: m.WebsiteCostPune })));
+const WhatIsSEO = lazy(() => import('./pages/blog/what-is-seo').then(m => ({ default: m.WhatIsSEO })));
+const GoogleAdsVsMetaAds = lazy(() => import('./pages/blog/google-ads-vs-meta-ads').then(m => ({ default: m.GoogleAdsVsMetaAds })));
+const GoogleFreeAdCredit = lazy(() => import('./pages/blog/google-free-ad-credit').then(m => ({ default: m.GoogleFreeAdCredit })));
+const WhatIsAWebsite = lazy(() => import('./pages/blog/what-is-a-website').then(m => ({ default: m.WhatIsAWebsite })));
+const AgencyNearMe = lazy(() => import('./pages/blog/agency-near-me').then(m => ({ default: m.AgencyNearMe })));
+const ProductReviewsIndexPage = lazy(() => import('./pages/blog/ProductReviewsIndexPage').then(m => ({ default: m.ProductReviewsIndexPage })));
+const ProductReviewPage = lazy(() => import('./pages/blog/ProductReviewPage').then(m => ({ default: m.ProductReviewPage })));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -42,6 +47,23 @@ function AppShell() {
   const [scrolled, setScrolled]     = useState(false);
   const [lang, setLang]             = useState<Lang | null>(null);
   const [showPicker, setShowPicker] = useState(false);
+  const [showChatbot, setShowChatbot] = useState(false);
+
+  useEffect(() => {
+    // Delay the chatbot bundle/mount until the browser is idle (or after a
+    // short fallback timeout) so it never competes with the LCP/critical path.
+    const w = window as Window & {
+      requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number;
+      cancelIdleCallback?: (id: number) => void;
+    };
+    const idleId = w.requestIdleCallback
+      ? w.requestIdleCallback(() => setShowChatbot(true), { timeout: 4000 })
+      : window.setTimeout(() => setShowChatbot(true), 2000);
+    return () => {
+      if (w.cancelIdleCallback) w.cancelIdleCallback(idleId);
+      else window.clearTimeout(idleId);
+    };
+  }, []);
 
   useEffect(() => {
     const saved = localStorage.getItem('ds_lang') as Lang | null;
@@ -92,37 +114,43 @@ function AppShell() {
       <ScrollToTop />
 
       <main id="main-content">
-        <Routes>
-          <Route path="/" element={<HomePage lang={activeLang} />} />
-          <Route path="/services" element={<ServicesPage lang={activeLang} />} />
-          <Route path="/pricing" element={<PricingPage lang={activeLang} />} />
-          <Route path="/about" element={<AboutPage lang={activeLang} />} />
-          <Route path="/privacy" element={<PrivacyPolicyPage />} />
-          <Route path="/terms" element={<TermsOfServicePage />} />
-          <Route path="/contact" element={<ContactPage lang={activeLang} />} />
-          <Route path="/blog" element={<BlogIndexPage />} />
-          <Route path="/blog/what-is-digital-marketing" element={<WhatIsDigitalMarketing />} />
-          <Route path="/blog/website-cost-pune" element={<WebsiteCostPune />} />
-          <Route path="/blog/what-is-seo" element={<WhatIsSEO />} />
-          <Route path="/blog/google-ads-vs-meta-ads" element={<GoogleAdsVsMetaAds />} />
-          <Route path="/blog/google-free-ad-credit" element={<GoogleFreeAdCredit />} />
-          <Route path="/blog/what-is-a-website" element={<WhatIsAWebsite />} />
-          <Route path="/blog/agency-near-me" element={<AgencyNearMe />} />
-          <Route path="/blog/reviews" element={<ProductReviewsIndexPage />} />
-          <Route path="/blog/reviews/:slug" element={<ProductReviewPage />} />
-          <Route path="/services/website-design" element={<WebsiteDesignPage lang={activeLang} />} />
-          <Route path="/services/google-ads" element={<GoogleAdsPage lang={activeLang} />} />
-          <Route path="/services/meta-ads" element={<MetaAdsPage lang={activeLang} />} />
-          <Route path="/services/seo" element={<SEOPage lang={activeLang} />} />
-          <Route path="/services/social-media" element={<SocialMediaPage lang={activeLang} />} />
-          <Route path="/services/google-business-profile" element={<GoogleBusinessProfilePage lang={activeLang} />} />
-          <Route path="/services/excel-vba-automation" element={<ExcelVbaAutomationPage lang={activeLang} />} />
-          <Route path="/tools/marketing-audit" element={<MarketingAuditPage />} />
-        </Routes>
+        <Suspense fallback={<div className="min-h-[60vh]" />}>
+          <Routes>
+            <Route path="/" element={<HomePage lang={activeLang} />} />
+            <Route path="/services" element={<ServicesPage lang={activeLang} />} />
+            <Route path="/pricing" element={<PricingPage lang={activeLang} />} />
+            <Route path="/about" element={<AboutPage lang={activeLang} />} />
+            <Route path="/privacy" element={<PrivacyPolicyPage />} />
+            <Route path="/terms" element={<TermsOfServicePage />} />
+            <Route path="/contact" element={<ContactPage lang={activeLang} />} />
+            <Route path="/blog" element={<BlogIndexPage />} />
+            <Route path="/blog/what-is-digital-marketing" element={<WhatIsDigitalMarketing />} />
+            <Route path="/blog/website-cost-pune" element={<WebsiteCostPune />} />
+            <Route path="/blog/what-is-seo" element={<WhatIsSEO />} />
+            <Route path="/blog/google-ads-vs-meta-ads" element={<GoogleAdsVsMetaAds />} />
+            <Route path="/blog/google-free-ad-credit" element={<GoogleFreeAdCredit />} />
+            <Route path="/blog/what-is-a-website" element={<WhatIsAWebsite />} />
+            <Route path="/blog/agency-near-me" element={<AgencyNearMe />} />
+            <Route path="/blog/reviews" element={<ProductReviewsIndexPage />} />
+            <Route path="/blog/reviews/:slug" element={<ProductReviewPage />} />
+            <Route path="/services/website-design" element={<WebsiteDesignPage lang={activeLang} />} />
+            <Route path="/services/google-ads" element={<GoogleAdsPage lang={activeLang} />} />
+            <Route path="/services/meta-ads" element={<MetaAdsPage lang={activeLang} />} />
+            <Route path="/services/seo" element={<SEOPage lang={activeLang} />} />
+            <Route path="/services/social-media" element={<SocialMediaPage lang={activeLang} />} />
+            <Route path="/services/google-business-profile" element={<GoogleBusinessProfilePage lang={activeLang} />} />
+            <Route path="/services/excel-vba-automation" element={<ExcelVbaAutomationPage lang={activeLang} />} />
+            <Route path="/tools/marketing-audit" element={<MarketingAuditPage />} />
+          </Routes>
+        </Suspense>
       </main>
 
       <Footer lang={activeLang} />
-      <Chatbot lang={activeLang} />
+      {showChatbot && (
+        <Suspense fallback={null}>
+          <Chatbot lang={activeLang} />
+        </Suspense>
+      )}
     </div>
   );
 }
