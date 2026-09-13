@@ -39,10 +39,10 @@ const STRINGS: Record<Lang, {
     eyebrow: 'Free marketing audit · No obligation',
     firstNameLabel: 'First Name', firstNamePlaceholder: 'e.g. Priya',
     lastNameLabel: 'Last Name', lastNamePlaceholder: 'e.g. Sharma',
-    companyLabel: 'Business / Company Name', companyPlaceholder: 'No company? Use your handle or your own name',
+    companyLabel: 'Business / Company Name', companyPlaceholder: 'Or your name/handle',
     emailLabel: 'Email Address',
     phoneLabel: 'Phone Number (optional)',
-    websiteLabel: 'Website URL (optional)', websitePlaceholder: 'https://yourbusiness.com',
+    websiteLabel: 'Website URL (optional)', websitePlaceholder: 'https://yoursite.com',
     questionnaireHeading: 'Quick questions about your marketing',
     paidAdsQ: 'Do you run paid ads?',
     newslettersQ: 'Do you send email newsletters?',
@@ -62,10 +62,10 @@ const STRINGS: Record<Lang, {
     eyebrow: 'मुफ़्त मार्केटिंग ऑडिट · कोई बाध्यता नहीं',
     firstNameLabel: 'पहला नाम', firstNamePlaceholder: 'उदा. प्रिया',
     lastNameLabel: 'अंतिम नाम', lastNamePlaceholder: 'उदा. शर्मा',
-    companyLabel: 'बिज़नेस / कंपनी का नाम', companyPlaceholder: 'कोई कंपनी नहीं? अपना हैंडल या अपना नाम लिखें',
+    companyLabel: 'बिज़नेस / कंपनी का नाम', companyPlaceholder: 'या आपका नाम/हैंडल',
     emailLabel: 'ईमेल पता',
     phoneLabel: 'फ़ोन नंबर (वैकल्पिक)',
-    websiteLabel: 'वेबसाइट URL (वैकल्पिक)', websitePlaceholder: 'https://yourbusiness.com',
+    websiteLabel: 'वेबसाइट URL (वैकल्पिक)', websitePlaceholder: 'https://yoursite.com',
     questionnaireHeading: 'आपकी मार्केटिंग के बारे में कुछ सवाल',
     paidAdsQ: 'क्या आप पेड ऐड्स चलाते हैं?',
     newslettersQ: 'क्या आप ईमेल न्यूज़लेटर भेजते हैं?',
@@ -85,10 +85,10 @@ const STRINGS: Record<Lang, {
     eyebrow: 'मोफत मार्केटिंग ऑडिट · कोणतीही बांधिलकी नाही',
     firstNameLabel: 'पहिले नाव', firstNamePlaceholder: 'उदा. प्रिया',
     lastNameLabel: 'आडनाव', lastNamePlaceholder: 'उदा. शर्मा',
-    companyLabel: 'व्यवसाय / कंपनीचे नाव', companyPlaceholder: 'कंपनी नाही? तुमचे हँडल किंवा नाव लिहा',
+    companyLabel: 'व्यवसाय / कंपनीचे नाव', companyPlaceholder: 'किंवा तुमचे नाव/हँडल',
     emailLabel: 'ईमेल पत्ता',
     phoneLabel: 'फोन नंबर (ऐच्छिक)',
-    websiteLabel: 'वेबसाइट URL (ऐच्छिक)', websitePlaceholder: 'https://yourbusiness.com',
+    websiteLabel: 'वेबसाइट URL (ऐच्छिक)', websitePlaceholder: 'https://yoursite.com',
     questionnaireHeading: 'तुमच्या मार्केटिंगबद्दल काही प्रश्न',
     paidAdsQ: 'तुम्ही पेड जाहिराती चालवता का?',
     newslettersQ: 'तुम्ही ईमेल न्यूजलेटर पाठवता का?',
@@ -224,31 +224,31 @@ export function Contact({ lang = 'en' }: { lang?: Lang }) {
             <form onSubmit={handleFormSubmit} className="space-y-3">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 <div>
-                  <label htmlFor="contact-first-name" className="block text-xs font-bold text-slate-400 tracking-widest uppercase mb-1.5">{s.firstNameLabel}</label>
+                  <label htmlFor="contact-first-name" className="flex items-end min-h-[2.25rem] text-xs font-bold text-slate-400 tracking-widest uppercase mb-1.5">{s.firstNameLabel}</label>
                   <input id="contact-first-name" type="text" name="first_name" value={formData.first_name} onChange={handleInputChange} placeholder={s.firstNamePlaceholder} required disabled={submitting} className={inputCls} />
                 </div>
                 <div>
-                  <label htmlFor="contact-last-name" className="block text-xs font-bold text-slate-400 tracking-widest uppercase mb-1.5">{s.lastNameLabel}</label>
+                  <label htmlFor="contact-last-name" className="flex items-end min-h-[2.25rem] text-xs font-bold text-slate-400 tracking-widest uppercase mb-1.5">{s.lastNameLabel}</label>
                   <input id="contact-last-name" type="text" name="last_name" value={formData.last_name} onChange={handleInputChange} placeholder={s.lastNamePlaceholder} required disabled={submitting} className={inputCls} />
                 </div>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 <div>
-                  <label htmlFor="contact-email" className="block text-xs font-bold text-slate-400 tracking-widest uppercase mb-1.5">{s.emailLabel}</label>
+                  <label htmlFor="contact-email" className="flex items-end min-h-[2.25rem] text-xs font-bold text-slate-400 tracking-widest uppercase mb-1.5">{s.emailLabel}</label>
                   <input id="contact-email" type="email" name="email" value={formData.email} onChange={handleInputChange} placeholder="you@example.com" required disabled={submitting} className={inputCls} />
                 </div>
                 <div>
-                  <label htmlFor="contact-phone" className="block text-xs font-bold text-slate-400 tracking-widest uppercase mb-1.5">{s.phoneLabel}</label>
+                  <label htmlFor="contact-phone" className="flex items-end min-h-[2.25rem] text-xs font-bold text-slate-400 tracking-widest uppercase mb-1.5">{s.phoneLabel}</label>
                   <input id="contact-phone" type="tel" name="phone" value={formData.phone} onChange={handleInputChange} placeholder="+91 98765 43210" disabled={submitting} className={inputCls} />
                 </div>
               </div>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                 <div>
-                  <label htmlFor="contact-company" className="block text-xs font-bold text-slate-400 tracking-widest uppercase mb-1.5">{s.companyLabel}</label>
+                  <label htmlFor="contact-company" className="flex items-end min-h-[2.25rem] text-xs font-bold text-slate-400 tracking-widest uppercase mb-1.5">{s.companyLabel}</label>
                   <input id="contact-company" type="text" name="company_name" value={formData.company_name} onChange={handleInputChange} placeholder={s.companyPlaceholder} required disabled={submitting} className={inputCls} />
                 </div>
                 <div>
-                  <label htmlFor="contact-website" className="block text-xs font-bold text-slate-400 tracking-widest uppercase mb-1.5">{s.websiteLabel}</label>
+                  <label htmlFor="contact-website" className="flex items-end min-h-[2.25rem] text-xs font-bold text-slate-400 tracking-widest uppercase mb-1.5">{s.websiteLabel}</label>
                   <input id="contact-website" type="url" name="website_url" value={formData.website_url} onChange={handleInputChange} placeholder={s.websitePlaceholder} disabled={submitting} className={inputCls} />
                 </div>
               </div>
