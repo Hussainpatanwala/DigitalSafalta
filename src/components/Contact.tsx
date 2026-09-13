@@ -263,9 +263,9 @@ export function Contact({ lang = 'en' }: { lang?: Lang }) {
                   <div>
                     <label htmlFor="contact-channel" className="block text-xs font-bold text-slate-400 tracking-widest uppercase mb-1.5">{s.channelLabel}</label>
                     <select id="contact-channel" name="main_marketing_channel" value={formData.main_marketing_channel} onChange={handleInputChange} required disabled={submitting} className={`${inputCls} bg-slate-900`}>
-                      <option value="" disabled>{s.channelPlaceholder}</option>
+                      <option value="" disabled className="bg-slate-900 text-slate-400">{s.channelPlaceholder}</option>
                       {CHANNEL_VALUES.map((value) => (
-                        <option key={value} value={value}>{s.channelLabels[value]}</option>
+                        <option key={value} value={value} className="bg-slate-900 text-white">{s.channelLabels[value]}</option>
                       ))}
                     </select>
                   </div>
