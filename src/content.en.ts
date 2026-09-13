@@ -377,7 +377,7 @@ export const content = {
       company: "Business Name",
       message: "Tell us about your business and what you are looking to achieve..."
     },
-    buttonText: "Start the Conversation",
+    buttonText: "Get My Free Audit",
     responseTime: "We respond within 24 hours — usually much faster.",
   },
 
