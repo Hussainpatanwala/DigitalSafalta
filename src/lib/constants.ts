@@ -9,7 +9,19 @@ export const inputCls   = 'w-full px-4 py-3.5 rounded-xl bg-white/5 border borde
 export type Lang = 'en' | 'hi' | 'mr';
 
 export interface FormData {
-  name: string; phone: string; email: string; company: string;
-  business_type: string; existing_website: string; message: string;
+  first_name: string;
+  last_name: string;
+  company_name: string;
+  email: string;
+  phone: string;
+  website_url: string;
+  // Stored as 'yes' | 'no' | '' in form state (radio-driven, so native `required`
+  // validation works); converted to real booleans right before the API call.
+  runs_paid_ads: string;
+  sends_newsletters: string;
+  posts_social_regularly: string;
+  main_marketing_channel: string;
+  has_customer_database: string;
+  uses_data_for_winback: string;
 }
 export type FormStatus = 'idle' | 'submitting' | 'success' | 'error';
