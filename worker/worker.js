@@ -1,7 +1,7 @@
 /**
- * Digital Safalta — Contact Form Worker
- * Receives POSTs from the React contact form, stores them in D1,
- * and (optionally) emails a notification via Brevo or SendGrid.
+ * Digital Safalta — Free Audit Form Worker
+ * Receives POSTs from the React Free Audit form, stores them in D1,
+ * and emails a notification via Brevo.
  */
 
 // Change this to your real site origin before deploying.
@@ -12,6 +12,8 @@ const CORS_HEADERS = {
   'Access-Control-Allow-Methods': 'POST, OPTIONS',
   'Access-Control-Allow-Headers': 'Content-Type',
 };
+
+const VALID_CHANNELS = ['SEO', 'Paid Ads', 'Social Media', 'Content', 'Email', 'Other'];
 
 export default {
   async fetch(request, env) {
@@ -31,20 +33,41 @@ export default {
       return jsonResponse({ error: 'Invalid JSON body' }, 400);
     }
 
-    const { name, phone, email, company, business_type, existing_website, message, consent_given_at, terms_version, privacy_version } = body;
+    const {
+      first_name, last_name, company_name, email, phone, website_url,
+      runs_paid_ads, sends_newsletters, posts_social_regularly,
+      main_marketing_channel, has_customer_database, uses_data_for_winback,
+      consent_given_at, terms_version, privacy_version,
+    } = body;
 
-    // Basic required-field + format checks. Reject bad data before it ever touches the database.
-    if (!name || !phone || !email || !message) {
-      return jsonResponse({ error: 'name, phone, email, and message are required' }, 400);
+    // --- Required text fields ---
+    if (!first_name || !last_name || !company_name || !email) {
+      return jsonResponse({ error: 'first_name, last_name, company_name, and email are required' }, 400);
     }
     if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
       return jsonResponse({ error: 'Invalid email address' }, 400);
     }
-    // Guard against absurdly long input (basic spam/abuse protection).
-    if (name.length > 200 || message.length > 5000) {
+    // Basic length guards (spam/abuse protection).
+    if (
+      first_name.length > 100 || last_name.length > 100 ||
+      company_name.length > 200 || email.length > 200 ||
+      (phone && phone.length > 30) || (website_url && website_url.length > 300)
+    ) {
       return jsonResponse({ error: 'Input too long' }, 400);
     }
-    // Consent is enforced server-side too — never trust the checkbox state alone from the browser.
+
+    // --- Questionnaire: yes/no fields must be actual booleans ---
+    const yesNoFields = { runs_paid_ads, sends_newsletters, posts_social_regularly, has_customer_database, uses_data_for_winback };
+    for (const [key, value] of Object.entries(yesNoFields)) {
+      if (typeof value !== 'boolean') {
+        return jsonResponse({ error: `${key} must be answered (true/false)` }, 400);
+      }
+    }
+    if (!VALID_CHANNELS.includes(main_marketing_channel)) {
+      return jsonResponse({ error: 'main_marketing_channel must be one of: ' + VALID_CHANNELS.join(', ') }, 400);
+    }
+
+    // --- Consent is enforced server-side too — never trust the checkbox state alone from the browser ---
     if (!consent_given_at || !terms_version || !privacy_version) {
       return jsonResponse({ error: 'Consent to Terms of Service and Privacy Policy is required' }, 400);
     }
@@ -52,20 +75,32 @@ export default {
     try {
       await env.DB.prepare(
         `INSERT INTO contact_submissions
-          (name, phone, email, company, business_type, existing_website, message, source, consent_given_at, terms_version, privacy_version)
-         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
+          (first_name, last_name, company_name, email, phone, website_url,
+           runs_paid_ads, sends_newsletters, posts_social_regularly,
+           main_marketing_channel, has_customer_database, uses_data_for_winback,
+           consent_given_at, terms_version, privacy_version)
+         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
       )
-        .bind(name, phone, email, company || null, business_type || null, existing_website || null, message, 'website', consent_given_at, terms_version, privacy_version)
+        .bind(
+          first_name, last_name, company_name, email, phone || null, website_url || null,
+          boolToInt(runs_paid_ads), boolToInt(sends_newsletters), boolToInt(posts_social_regularly),
+          main_marketing_channel, boolToInt(has_customer_database), boolToInt(uses_data_for_winback),
+          consent_given_at, terms_version, privacy_version
+        )
         .run();
     } catch (err) {
       console.error('D1 insert failed:', err);
-      return jsonResponse({ error: 'Could not save your message. Please try again.' }, 500);
+      return jsonResponse({ error: 'Could not save your submission. Please try again.' }, 500);
     }
 
     // Email notification is optional and must never block the form from succeeding —
-    // if it fails, we still tell the visitor their message was saved.
+    // if it fails, we still tell the visitor their submission was saved.
     try {
-      await sendNotificationEmail(env, { name, phone, email, company, business_type, existing_website, message });
+      await sendNotificationEmail(env, {
+        first_name, last_name, company_name, email, phone, website_url,
+        runs_paid_ads, sends_newsletters, posts_social_regularly,
+        main_marketing_channel, has_customer_database, uses_data_for_winback,
+      });
     } catch (err) {
       console.error('Email notification failed:', {
         name: err?.name,
@@ -79,6 +114,10 @@ export default {
   },
 };
 
+function boolToInt(v) {
+  return v ? 1 : 0;
+}
+
 function jsonResponse(data, status = 200) {
   return new Response(JSON.stringify(data), {
     status,
@@ -86,29 +125,38 @@ function jsonResponse(data, status = 200) {
   });
 }
 
+function yesNo(v) {
+  return v ? 'Yes' : 'No';
+}
+
 /**
- * Sends you an email whenever a new submission comes in.
- * Uses Brevo (formerly Sendinblue) by default since that's already set up for this project.
- * A SendGrid version is included below, commented out — swap in whichever you prefer.
+ * Sends you an email whenever a new Free Audit submission comes in.
+ * Uses Brevo (already set up for this project).
  */
 async function sendNotificationEmail(env, data) {
   if (!env.BREVO_API_KEY) return; // Skip silently if no key is configured yet.
 
+  const fullName = `${data.first_name} ${data.last_name}`;
+
   const textBody = `
-New contact form submission on digitalsafalta.in
+New Free Audit request on digitalsafalta.in
 
-Name: ${data.name}
-Phone: ${data.phone}
+Name: ${fullName}
+Company / Business: ${data.company_name}
 Email: ${data.email}
-Company: ${data.company || '-'}
-Business type: ${data.business_type || '-'}
-Existing website: ${data.existing_website || '-'}
+Phone: ${data.phone || '-'}
+Website: ${data.website_url || '-'}
 
-Message:
-${data.message}
+Questionnaire:
+- Runs paid ads: ${yesNo(data.runs_paid_ads)}
+- Sends email newsletters: ${yesNo(data.sends_newsletters)}
+- Posts regularly on social media: ${yesNo(data.posts_social_regularly)}
+- Main marketing channel: ${data.main_marketing_channel}
+- Has a customer database (Excel/DB): ${yesNo(data.has_customer_database)}
+- Uses existing data for winback: ${yesNo(data.uses_data_for_winback)}
 `.trim();
 
-  const htmlBody = buildHtmlEmail(data);
+  const htmlBody = buildHtmlEmail(data, fullName);
 
   const res = await fetch('https://api.brevo.com/v3/smtp/email', {
     method: 'POST',
@@ -119,7 +167,7 @@ ${data.message}
     body: JSON.stringify({
       sender: { name: 'Digital Safalta Website', email: env.NOTIFY_FROM_EMAIL },
       to: [{ email: env.NOTIFY_TO_EMAIL }],
-      subject: `New enquiry from ${data.name}`,
+      subject: `New Free Audit request from ${fullName} (${data.company_name})`,
       textContent: textBody,
       htmlContent: htmlBody,
     }),
@@ -136,7 +184,7 @@ ${data.message}
   }
 }
 
-// Escapes user-submitted text before it goes into HTML, so a name/message containing
+// Escapes user-submitted text before it goes into HTML, so any field containing
 // characters like < or & can't break the email's layout.
 function escapeHtml(str) {
   return String(str ?? '')
@@ -146,7 +194,7 @@ function escapeHtml(str) {
     .replace(/"/g, '&quot;');
 }
 
-function buildHtmlEmail(data) {
+function buildHtmlEmail(data, fullName) {
   const row = (label, value) => `
     <tr>
       <td style="padding:8px 12px;color:#64748b;font-size:13px;font-weight:600;white-space:nowrap;vertical-align:top;">${label}</td>
@@ -161,73 +209,39 @@ function buildHtmlEmail(data) {
       <tr>
         <td style="background-color:#0f172a;padding:20px 24px;">
           <span style="color:#2dd4bf;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;">Digital Safalta</span>
-          <h1 style="margin:6px 0 0;color:#ffffff;font-size:18px;">New Contact Form Enquiry</h1>
+          <h1 style="margin:6px 0 0;color:#ffffff;font-size:18px;">New Free Audit Request</h1>
         </td>
       </tr>
       <tr>
         <td style="padding:8px 8px 0;">
           <table role="presentation" width="100%" style="border-collapse:collapse;">
-            ${row('Name', data.name)}
-            ${row('Phone', data.phone)}
+            ${row('Name', fullName)}
+            ${row('Company / Business', data.company_name)}
             ${row('Email', data.email)}
-            ${row('Company', data.company)}
-            ${row('Business type', data.business_type)}
-            ${row('Existing website', data.existing_website)}
+            ${row('Phone', data.phone)}
+            ${row('Website', data.website_url)}
           </table>
         </td>
       </tr>
       <tr>
         <td style="padding:16px 24px 24px;">
-          <div style="color:#64748b;font-size:13px;font-weight:600;margin-bottom:6px;">Message</div>
-          <div style="background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;padding:14px;color:#0f172a;font-size:14px;line-height:1.5;white-space:pre-wrap;">${escapeHtml(data.message)}</div>
+          <div style="color:#64748b;font-size:13px;font-weight:600;margin-bottom:6px;">Questionnaire</div>
+          <table role="presentation" width="100%" style="border-collapse:collapse;background:#f8fafc;border:1px solid #e2e8f0;border-radius:8px;">
+            ${row('Runs paid ads', yesNo(data.runs_paid_ads))}
+            ${row('Sends email newsletters', yesNo(data.sends_newsletters))}
+            ${row('Posts regularly on social media', yesNo(data.posts_social_regularly))}
+            ${row('Main marketing channel', data.main_marketing_channel)}
+            ${row('Has a customer database', yesNo(data.has_customer_database))}
+            ${row('Uses data for winback', yesNo(data.uses_data_for_winback))}
+          </table>
         </td>
       </tr>
       <tr>
         <td style="padding:14px 24px;background:#f8fafc;border-top:1px solid #e2e8f0;">
-          <span style="color:#94a3b8;font-size:12px;">Sent automatically from the contact form on digitalsafalta.in</span>
+          <span style="color:#94a3b8;font-size:12px;">Sent automatically from the Free Audit form on digitalsafalta.in</span>
         </td>
       </tr>
     </table>
   </body>
 </html>`.trim();
 }
-
-/* ---------- SendGrid alternative (use this instead if you'd rather use SendGrid) ----------
-
-async function sendNotificationEmail(env, data) {
-  if (!env.SENDGRID_API_KEY) return;
-
-  const emailBody = `
-New contact form submission on digitalsafalta.in
-
-Name: ${data.name}
-Phone: ${data.phone}
-Email: ${data.email}
-Company: ${data.company || '-'}
-Business type: ${data.business_type || '-'}
-Existing website: ${data.existing_website || '-'}
-
-Message:
-${data.message}
-`.trim();
-
-  const res = await fetch('https://api.sendgrid.com/v3/mail/send', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${env.SENDGRID_API_KEY}`,
-    },
-    body: JSON.stringify({
-      personalizations: [{ to: [{ email: env.NOTIFY_TO_EMAIL }] }],
-      from: { email: env.NOTIFY_FROM_EMAIL, name: 'Digital Safalta Website' },
-      subject: `New enquiry from ${data.name}`,
-      content: [{ type: 'text/plain', value: emailBody }],
-    }),
-  });
-
-  if (!res.ok) {
-    throw new Error(`SendGrid API returned ${res.status}: ${await res.text()}`);
-  }
-}
-
-------------------------------------------------------------------------------------------- */
