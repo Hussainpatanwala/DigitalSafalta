@@ -44,7 +44,7 @@ export const content = {
     headlineLine2: "SEO, Google Ads & Social Media Marketing for Small Businesses",
     subheading: "We also design fast, converting websites — all backed by a founder who replies within 24 hours, not a call center.",
     trustStrip: "Founder-led · 7-day website launches · 24-hour response time",
-    ctaText: "Start the Conversation",
+    ctaText: "Get My Free Audit",
     secondaryCtaText: "See What We Offer",
     auditCtaTitle: "Free Marketing Audit",
     auditCtaSubtitle: "Paste your URL → get a full audit in 30 seconds",

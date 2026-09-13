@@ -35,7 +35,7 @@ export const content: SiteContent = {
     headlineLine1: "तुमचा व्यवसाय डिजिटली वाढवा",
     headlineLine2: "योग्य पद्धतीने.",
     subheading: "Digital Safalta पुण्यातील लहान आणि वाढत्या व्यवसायांना ऑनलाइन उपस्थिती निर्माण करण्यासाठी, प्रभावी ad campaigns चालवण्यासाठी आणि visitors ला paying customers मध्ये बदलण्यासाठी मदत करते.",
-    ctaText: "संभाषण सुरू करा",
+    ctaText: "माझे मोफत ऑडिट मिळवा",
     secondaryCtaText: "आमच्या सेवा पहा",
     auditCtaTitle: "मोफत मार्केटिंग ऑडिट",
     auditCtaSubtitle: "तुमचा URL टाका → 30 सेकंदात संपूर्ण ऑडिट मिळवा",
