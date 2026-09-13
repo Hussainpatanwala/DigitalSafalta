@@ -369,8 +369,8 @@ export const content = {
   // CONTACT SECTION
   // ============================================
   contact: {
-    title: "Let's Talk About Your Business",
-    description: "Tell us about your business and goals. We will get back to you within 24 hours with honest advice — whether or not we end up working together.",
+    title: "Get Your Free Marketing Audit",
+    description: "Answer a few quick questions about your marketing. We'll get back to you within 24 hours with honest, no-obligation feedback — whether or not we end up working together.",
     formPlaceholder: {
       name: "Your Name",
       email: "Your Email",
