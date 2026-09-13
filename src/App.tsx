@@ -26,7 +26,6 @@ const SEOPage = lazy(() => import('./pages/services/SEOPage').then(m => ({ defau
 const SocialMediaPage = lazy(() => import('./pages/services/SocialMediaPage').then(m => ({ default: m.SocialMediaPage })));
 const GoogleBusinessProfilePage = lazy(() => import('./pages/services/GoogleBusinessProfilePage').then(m => ({ default: m.GoogleBusinessProfilePage })));
 const ExcelVbaAutomationPage = lazy(() => import('./pages/services/ExcelVbaAutomationPage').then(m => ({ default: m.ExcelVbaAutomationPage })));
-const MarketingAuditPage = lazy(() => import('./pages/MarketingAuditPage').then(m => ({ default: m.MarketingAuditPage })));
 const WebsiteCostPune = lazy(() => import('./pages/blog/website-cost-pune').then(m => ({ default: m.WebsiteCostPune })));
 const WhatIsSEO = lazy(() => import('./pages/blog/what-is-seo').then(m => ({ default: m.WhatIsSEO })));
 const GoogleAdsVsMetaAds = lazy(() => import('./pages/blog/google-ads-vs-meta-ads').then(m => ({ default: m.GoogleAdsVsMetaAds })));
@@ -140,7 +139,6 @@ function AppShell() {
             <Route path="/services/social-media" element={<SocialMediaPage lang={activeLang} />} />
             <Route path="/services/google-business-profile" element={<GoogleBusinessProfilePage lang={activeLang} />} />
             <Route path="/services/excel-vba-automation" element={<ExcelVbaAutomationPage lang={activeLang} />} />
-            <Route path="/tools/marketing-audit" element={<MarketingAuditPage />} />
           </Routes>
         </Suspense>
       </main>
