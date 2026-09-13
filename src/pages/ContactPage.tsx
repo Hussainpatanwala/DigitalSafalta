@@ -1,6 +1,7 @@
 import { SEO } from '../components/SEO';
 import { Contact } from '../components/Contact';
 import { FAQ } from '../components/FAQ';
+import { HomeAnchorLink } from '../components/HomeAnchorLink';
 import type { Lang } from '../lib/constants';
 import { getContent } from '../getContent';
 
@@ -12,6 +13,7 @@ export function ContactPage({ lang = 'en' }: { lang?: Lang }) {
       <div className="pt-28 lg:pt-36">
         <Contact lang={lang} />
         <FAQ lang={lang} />
+        <HomeAnchorLink lang={lang} />
       </div>
     </>
   );

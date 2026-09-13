@@ -2,6 +2,7 @@ import { SEO } from '../components/SEO';
 import { Philosophy } from '../components/Philosophy';
 import { Process } from '../components/Process';
 import { Testimonial } from '../components/Testimonial';
+import { HomeAnchorLink } from '../components/HomeAnchorLink';
 import type { Lang } from '../lib/constants';
 import { getContent } from '../getContent';
 
@@ -14,6 +15,7 @@ export function AboutPage({ lang = 'en' }: { lang?: Lang }) {
         <Philosophy lang={lang} />
         <Process lang={lang} />
         <Testimonial lang={lang} />
+        <HomeAnchorLink lang={lang} />
       </div>
     </>
   );

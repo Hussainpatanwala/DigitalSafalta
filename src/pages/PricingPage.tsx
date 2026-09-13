@@ -2,6 +2,7 @@ import { SEO } from '../components/SEO';
 import { Pricing } from '../components/Pricing';
 import { PlatformMetrics } from '../components/PlatformMetrics';
 import { FAQ } from '../components/FAQ';
+import { HomeAnchorLink } from '../components/HomeAnchorLink';
 import type { Lang } from '../lib/constants';
 import { getContent } from '../getContent';
 import { faqSchema } from '../lib/schema';
@@ -21,6 +22,7 @@ export function PricingPage({ lang = 'en' }: { lang?: Lang }) {
         <Pricing lang={lang} />
         <PlatformMetrics lang={lang} />
         <FAQ lang={lang} />
+        <HomeAnchorLink lang={lang} />
       </div>
     </>
   );
