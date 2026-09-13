@@ -40,9 +40,9 @@ export const content = {
   // ============================================
   hero: {
     eyebrow: "Pune · Maharashtra · Digital Marketing Agency",
-    headlineLine1: "Struggling to Get Found Online?",
-    headlineLine2: "We Fix That in 7 Days.",
-    subheading: "Website design, SEO, and Google/Meta Ads for Pune small businesses — built by a founder who replies within 24 hours, not a call center.",
+    headlineLine1: "Digital Marketing Agency in Pune",
+    headlineLine2: "Get More Leads, Calls & Customers in 7 Days",
+    subheading: "DigitalSafalta is a Digital Marketing Agency in Pune helping small businesses grow through SEO, Website Design, Google Ads and Social Media Marketing — built by a founder who replies within 24 hours, not a call center.",
     trustStrip: "Founder-led · 7-day website launches · 24-hour response time",
     ctaText: "Start the Conversation",
     secondaryCtaText: "See What We Offer",
