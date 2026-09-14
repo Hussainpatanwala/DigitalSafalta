@@ -16,6 +16,12 @@ interface SEOProps {
 const SUPPORTED_LANGS: Lang[] = ['en', 'hi', 'mr'];
 const SITE_NAME = 'Digital Safalta';
 const DEFAULT_IMAGE = '/apple-touch-icon.png';
+// Single fixed canonical origin — every canonical/OG/Twitter URL is built
+// from this, never from window.location.origin. That's what makes the
+// canonical tag actually normalize www vs non-www, http vs https, etc.
+// instead of just echoing back whatever host/protocol the visitor (or a
+// crawler) happened to hit.
+const CANONICAL_ORIGIN = 'https://digitalsafalta.in';
 
 function setMeta(attr: 'name' | 'property', key: string, content: string) {
   let el = document.querySelector(`meta[${attr}="${key}"]`);
@@ -49,9 +55,16 @@ export function SEO({ title, description, lang = 'en', image, type = 'website', 
     }
     meta.setAttribute('content', description);
 
-    // Canonical tag — tells Google the "official" URL for this page,
-    // even if it can be reached with a trailing slash, query params, etc.
-    const canonicalUrl = window.location.origin + window.location.pathname;
+    // Canonical tag — tells Google the "official" URL for this page, even
+    // if it was reached via www/non-www, http/https, or a trailing slash.
+    // Built from CANONICAL_ORIGIN (fixed) rather than window.location.origin
+    // so it always points to the one true URL instead of mirroring back
+    // whatever variant was requested.
+    const normalizedPath =
+      window.location.pathname.length > 1
+        ? window.location.pathname.replace(/\/+$/, '')
+        : window.location.pathname;
+    const canonicalUrl = CANONICAL_ORIGIN + normalizedPath;
     let canonical = document.querySelector('link[rel="canonical"]');
     if (!canonical) {
       canonical = document.createElement('link');
@@ -62,7 +75,7 @@ export function SEO({ title, description, lang = 'en', image, type = 'website', 
 
     // Open Graph tags — control how the page looks when shared on
     // WhatsApp, Facebook, LinkedIn, etc.
-    const imageUrl = window.location.origin + (image || DEFAULT_IMAGE);
+    const imageUrl = CANONICAL_ORIGIN + (image || DEFAULT_IMAGE);
     setMeta('property', 'og:title', title);
     setMeta('property', 'og:description', description);
     setMeta('property', 'og:url', canonicalUrl);
@@ -78,19 +91,19 @@ export function SEO({ title, description, lang = 'en', image, type = 'website', 
 
     // hreflang alternate links
     document.querySelectorAll('link[data-hreflang]').forEach(el => el.remove());
-    const currentPath = window.location.pathname + window.location.search;
+    const currentPath = normalizedPath + window.location.search;
     SUPPORTED_LANGS.forEach(code => {
       const link = document.createElement('link');
       link.rel = 'alternate';
       link.hreflang = code;
-      link.href = window.location.origin + currentPath;
+      link.href = CANONICAL_ORIGIN + currentPath;
       link.setAttribute('data-hreflang', 'true');
       document.head.appendChild(link);
     });
     const xDefault = document.createElement('link');
     xDefault.rel = 'alternate';
     xDefault.hreflang = 'x-default';
-    xDefault.href = window.location.origin + currentPath;
+    xDefault.href = CANONICAL_ORIGIN + currentPath;
     xDefault.setAttribute('data-hreflang', 'true');
     document.head.appendChild(xDefault);
 

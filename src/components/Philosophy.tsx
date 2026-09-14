@@ -2,13 +2,14 @@ import { glass, glassHover } from '../lib/constants';
 import type { Lang } from '../lib/constants';
 import { getContent } from '../getContent';
 
-export function Philosophy({ lang = 'en' }: { lang?: Lang }) {
+export function Philosophy({ lang = 'en', as = 'h2' }: { lang?: Lang; as?: 'h1' | 'h2' }) {
   const t = getContent(lang).philosophy;
+  const Heading = as;
 
   return (
     <section className="py-16 lg:py-24" aria-labelledby="philosophy-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 id="philosophy-heading" className="text-3xl lg:text-4xl font-black text-center mb-14 tracking-tight">{t.title}</h2>
+        <Heading id="philosophy-heading" className="text-3xl lg:text-4xl font-black text-center mb-14 tracking-tight">{t.title}</Heading>
         <div className="grid md:grid-cols-3 gap-6">
           {t.principles.map((p, idx) => (
             <article key={idx} className={`rounded-2xl p-7 relative overflow-hidden ${glass} ${glassHover}`}>

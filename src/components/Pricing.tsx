@@ -4,16 +4,17 @@ import { glass, glassHover, tealBtn } from '../lib/constants';
 import type { Lang } from '../lib/constants';
 import { getContent } from '../getContent';
 
-export function Pricing({ lang = 'en' }: { lang?: Lang }) {
+export function Pricing({ lang = 'en', as = 'h2' }: { lang?: Lang; as?: 'h1' | 'h2' }) {
   const content = getContent(lang);
   const t = content.pricing;
   const { mostPopular, getStarted } = content.ui;
+  const Heading = as;
 
   return (
     <section id="pricing" className="py-16 lg:py-24" aria-labelledby="pricing-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <h2 id="pricing-heading" className="text-3xl lg:text-4xl font-black tracking-tight mb-4">{t.title}</h2>
+          <Heading id="pricing-heading" className="text-3xl lg:text-4xl font-black tracking-tight mb-4">{t.title}</Heading>
           <p className="text-slate-400 text-base leading-relaxed">{t.description}</p>
         </div>
         <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-6 max-w-7xl mx-auto items-start">

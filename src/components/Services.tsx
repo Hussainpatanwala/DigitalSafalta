@@ -10,16 +10,17 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Zap, BarChart3, Users, MousePointer, Palette, Globe, Mail, Settings, Table,
 };
 
-export function Services({ lang = 'en' }: { lang?: Lang }) {
+export function Services({ lang = 'en', as = 'h2' }: { lang?: Lang; as?: 'h1' | 'h2' }) {
   const content = getContent(lang);
   const t = content.services;
   const learnMore = content.ui.learnMore;
+  const Heading = as;
 
   return (
     <section id="services" className="py-16 lg:py-24" aria-labelledby="services-heading">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center max-w-3xl mx-auto mb-14">
-          <h2 id="services-heading" className="text-3xl lg:text-4xl font-black tracking-tight mb-4">{t.title}</h2>
+          <Heading id="services-heading" className="text-3xl lg:text-4xl font-black tracking-tight mb-4">{t.title}</Heading>
           <p className="text-slate-400 text-base leading-relaxed">{t.description}</p>
         </div>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
