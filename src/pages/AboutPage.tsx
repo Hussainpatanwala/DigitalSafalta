@@ -12,7 +12,7 @@ export function AboutPage({ lang = 'en' }: { lang?: Lang }) {
     <>
       <SEO title={t.title} description={t.description} lang={lang} />
       <div className="pt-28 lg:pt-36">
-        <Philosophy lang={lang} />
+        <Philosophy lang={lang} as="h1" />
         <Process lang={lang} />
         <Testimonial lang={lang} />
         <HomeAnchorLink lang={lang} />

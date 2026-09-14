@@ -19,7 +19,7 @@ export function PricingPage({ lang = 'en' }: { lang?: Lang }) {
         schema={faqSchema(content.faqItems)}
       />
       <div className="pt-20 lg:pt-24">
-        <Pricing lang={lang} />
+        <Pricing lang={lang} as="h1" />
         <PlatformMetrics lang={lang} />
         <FAQ lang={lang} />
         <HomeAnchorLink lang={lang} />

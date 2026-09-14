@@ -11,7 +11,7 @@ export function ServicesPage({ lang = 'en' }: { lang?: Lang }) {
     <>
       <SEO title={t.title} description={t.description} lang={lang} />
       <div className="pt-28 lg:pt-36">
-        <Services lang={lang} />
+        <Services lang={lang} as="h1" />
         <Process lang={lang} />
         <Results lang={lang} />
       </div>
