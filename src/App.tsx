@@ -34,6 +34,8 @@ const WhatIsAWebsite = lazy(() => import('./pages/blog/what-is-a-website').then(
 const AgencyNearMe = lazy(() => import('./pages/blog/agency-near-me').then(m => ({ default: m.AgencyNearMe })));
 const ProductReviewsIndexPage = lazy(() => import('./pages/blog/ProductReviewsIndexPage').then(m => ({ default: m.ProductReviewsIndexPage })));
 const ProductReviewPage = lazy(() => import('./pages/blog/ProductReviewPage').then(m => ({ default: m.ProductReviewPage })));
+const ExpoAuditPage = lazy(() => import('./pages/ExpoAuditPage').then(m => ({ default: m.ExpoAuditPage })));
+const ExpoAdminPage = lazy(() => import('./pages/ExpoAdminPage').then(m => ({ default: m.ExpoAdminPage })));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -139,6 +141,8 @@ function AppShell() {
             <Route path="/services/social-media" element={<SocialMediaPage lang={activeLang} />} />
             <Route path="/services/google-business-profile" element={<GoogleBusinessProfilePage lang={activeLang} />} />
             <Route path="/services/excel-vba-automation" element={<ExcelVbaAutomationPage lang={activeLang} />} />
+            <Route path="/expo-audit" element={<ExpoAuditPage />} />
+            <Route path="/expo-audit/admin" element={<ExpoAdminPage />} />
           </Routes>
         </Suspense>
       </main>
