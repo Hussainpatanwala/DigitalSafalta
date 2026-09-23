@@ -1,9 +1,11 @@
 import { useState, useEffect, lazy, Suspense } from 'react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { Outlet, useLocation, useOutletContext } from 'react-router-dom';
+import type { RouteRecord } from 'vite-react-ssg';
 import { LanguagePicker } from './components/LanguagePicker';
 import { Navigation } from './components/Navigation';
 import { Footer } from './components/Footer';
 import { HomePage } from './pages/HomePage';
+import { supabase } from './supabaseClient';
 import type { Lang } from './lib/constants';
 
 // Everything below is route-level or below-the-fold content that isn't
@@ -26,6 +28,7 @@ const SEOPage = lazy(() => import('./pages/services/SEOPage').then(m => ({ defau
 const SocialMediaPage = lazy(() => import('./pages/services/SocialMediaPage').then(m => ({ default: m.SocialMediaPage })));
 const GoogleBusinessProfilePage = lazy(() => import('./pages/services/GoogleBusinessProfilePage').then(m => ({ default: m.GoogleBusinessProfilePage })));
 const ExcelVbaAutomationPage = lazy(() => import('./pages/services/ExcelVbaAutomationPage').then(m => ({ default: m.ExcelVbaAutomationPage })));
+const MarketingAuditPage = lazy(() => import('./pages/MarketingAuditPage').then(m => ({ default: m.MarketingAuditPage })));
 const WebsiteCostPune = lazy(() => import('./pages/blog/website-cost-pune').then(m => ({ default: m.WebsiteCostPune })));
 const WhatIsSEO = lazy(() => import('./pages/blog/what-is-seo').then(m => ({ default: m.WhatIsSEO })));
 const GoogleAdsVsMetaAds = lazy(() => import('./pages/blog/google-ads-vs-meta-ads').then(m => ({ default: m.GoogleAdsVsMetaAds })));
@@ -34,8 +37,6 @@ const WhatIsAWebsite = lazy(() => import('./pages/blog/what-is-a-website').then(
 const AgencyNearMe = lazy(() => import('./pages/blog/agency-near-me').then(m => ({ default: m.AgencyNearMe })));
 const ProductReviewsIndexPage = lazy(() => import('./pages/blog/ProductReviewsIndexPage').then(m => ({ default: m.ProductReviewsIndexPage })));
 const ProductReviewPage = lazy(() => import('./pages/blog/ProductReviewPage').then(m => ({ default: m.ProductReviewPage })));
-const ExpoAuditPage = lazy(() => import('./pages/ExpoAuditPage').then(m => ({ default: m.ExpoAuditPage })));
-const ExpoAdminPage = lazy(() => import('./pages/ExpoAdminPage').then(m => ({ default: m.ExpoAdminPage })));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -43,7 +44,21 @@ function ScrollToTop() {
   return null;
 }
 
-function AppShell() {
+// vite-react-ssg's routes array is defined once, outside the component
+// tree, so page components can't receive `lang` as a normal React prop the
+// way they used to when routes were plain JSX inside Layout. Instead,
+// Layout provides the current language via <Outlet context={lang} />, and
+// this wrapper reads it back out with useOutletContext() and forwards it
+// to the page as a prop — so every page component's own signature
+// (`{ lang = 'en' }: { lang?: Lang }`) stays completely unchanged.
+function withLang(Page: React.ComponentType<{ lang: Lang }>) {
+  return function LangWrappedPage() {
+    const lang = useOutletContext<Lang>();
+    return <Page lang={lang} />;
+  };
+}
+
+function Layout() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [scrolled, setScrolled]     = useState(false);
   const [lang, setLang]             = useState<Lang | null>(null);
@@ -116,34 +131,7 @@ function AppShell() {
 
       <main id="main-content">
         <Suspense fallback={<div className="min-h-[60vh]" />}>
-          <Routes>
-            <Route path="/" element={<HomePage lang={activeLang} />} />
-            <Route path="/services" element={<ServicesPage lang={activeLang} />} />
-            <Route path="/pricing" element={<PricingPage lang={activeLang} />} />
-            <Route path="/about" element={<AboutPage lang={activeLang} />} />
-            <Route path="/privacy" element={<PrivacyPolicyPage />} />
-            <Route path="/terms" element={<TermsOfServicePage />} />
-            <Route path="/contact" element={<ContactPage lang={activeLang} />} />
-            <Route path="/blog" element={<BlogIndexPage />} />
-            <Route path="/blog/what-is-digital-marketing" element={<WhatIsDigitalMarketing />} />
-            <Route path="/blog/website-cost-pune" element={<WebsiteCostPune />} />
-            <Route path="/blog/what-is-seo" element={<WhatIsSEO />} />
-            <Route path="/blog/google-ads-vs-meta-ads" element={<GoogleAdsVsMetaAds />} />
-            <Route path="/blog/google-free-ad-credit" element={<GoogleFreeAdCredit />} />
-            <Route path="/blog/what-is-a-website" element={<WhatIsAWebsite />} />
-            <Route path="/blog/agency-near-me" element={<AgencyNearMe />} />
-            <Route path="/blog/reviews" element={<ProductReviewsIndexPage />} />
-            <Route path="/blog/reviews/:slug" element={<ProductReviewPage />} />
-            <Route path="/services/website-design" element={<WebsiteDesignPage lang={activeLang} />} />
-            <Route path="/services/google-ads" element={<GoogleAdsPage lang={activeLang} />} />
-            <Route path="/services/meta-ads" element={<MetaAdsPage lang={activeLang} />} />
-            <Route path="/services/seo" element={<SEOPage lang={activeLang} />} />
-            <Route path="/services/social-media" element={<SocialMediaPage lang={activeLang} />} />
-            <Route path="/services/google-business-profile" element={<GoogleBusinessProfilePage lang={activeLang} />} />
-            <Route path="/services/excel-vba-automation" element={<ExcelVbaAutomationPage lang={activeLang} />} />
-            <Route path="/expo-audit" element={<ExpoAuditPage />} />
-            <Route path="/expo-audit/admin" element={<ExpoAdminPage />} />
-          </Routes>
+          <Outlet context={activeLang} />
         </Suspense>
       </main>
 
@@ -157,12 +145,60 @@ function AppShell() {
   );
 }
 
-function App() {
-  return (
-    <BrowserRouter>
-      <AppShell />
-    </BrowserRouter>
-  );
-}
+const routes: RouteRecord[] = [
+  {
+    path: '/',
+    Component: Layout,
+    children: [
+      { index: true, Component: withLang(HomePage) },
+      { path: 'services', Component: withLang(ServicesPage) },
+      { path: 'pricing', Component: withLang(PricingPage) },
+      { path: 'about', Component: withLang(AboutPage) },
+      { path: 'privacy', Component: PrivacyPolicyPage },
+      { path: 'terms', Component: TermsOfServicePage },
+      { path: 'contact', Component: withLang(ContactPage) },
+      { path: 'blog', Component: BlogIndexPage },
+      { path: 'blog/what-is-digital-marketing', Component: WhatIsDigitalMarketing },
+      { path: 'blog/website-cost-pune', Component: WebsiteCostPune },
+      { path: 'blog/what-is-seo', Component: WhatIsSEO },
+      { path: 'blog/google-ads-vs-meta-ads', Component: GoogleAdsVsMetaAds },
+      { path: 'blog/google-free-ad-credit', Component: GoogleFreeAdCredit },
+      { path: 'blog/what-is-a-website', Component: WhatIsAWebsite },
+      { path: 'blog/agency-near-me', Component: AgencyNearMe },
+      { path: 'blog/reviews', Component: ProductReviewsIndexPage },
+      {
+        path: 'blog/reviews/:slug',
+        Component: ProductReviewPage,
+        // Enumerates every published review slug at build time so each one
+        // gets its own real, statically-generated HTML page (instead of
+        // relying on the client to fetch from Supabase before anything is
+        // visible to a crawler). Falls back to an empty list — rather than
+        // failing the whole build — if Supabase is unreachable at build
+        // time; those pages just won't be pre-rendered that run, and will
+        // still work fine client-side same as before.
+        getStaticPaths: async () => {
+          try {
+            const { data, error } = await supabase
+              .from('product_reviews')
+              .select('slug')
+              .eq('status', 'published');
+            if (error || !data) return [];
+            return data.map((r: { slug: string }) => `blog/reviews/${r.slug}`);
+          } catch {
+            return [];
+          }
+        },
+      },
+      { path: 'services/website-design', Component: withLang(WebsiteDesignPage) },
+      { path: 'services/google-ads', Component: withLang(GoogleAdsPage) },
+      { path: 'services/meta-ads', Component: withLang(MetaAdsPage) },
+      { path: 'services/seo', Component: withLang(SEOPage) },
+      { path: 'services/social-media', Component: withLang(SocialMediaPage) },
+      { path: 'services/google-business-profile', Component: withLang(GoogleBusinessProfilePage) },
+      { path: 'services/excel-vba-automation', Component: withLang(ExcelVbaAutomationPage) },
+      { path: 'tools/marketing-audit', Component: MarketingAuditPage },
+    ],
+  },
+];
 
-export default App;
+export default routes;
