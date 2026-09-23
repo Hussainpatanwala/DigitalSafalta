@@ -58,7 +58,7 @@ const STRINGS: Record<Lang, {
     startingFrom: 'Starting from', getQuote: 'Get a Quote', faqHeading: 'Frequently Asked Questions',
     ctaSubtext: 'Free consultation. No obligation. Honest advice — whether or not we end up working together.',
     startConversation: 'Start the Conversation', whatsappCta: 'WhatsApp Us',
-    perMonth: '/month', dailyPlanCta: 'Subscribe to the Daily Post Plan',
+    perMonth: '/month', dailyPlanCta: 'Subscribe to the Daily Dedicated Plan',
   },
   hi: {
     allServices: 'सभी सेवाएं', getConsultation: 'मुफ़्त परामर्श पाएं', whatsapp: 'WhatsApp करें',
@@ -66,7 +66,7 @@ const STRINGS: Record<Lang, {
     startingFrom: 'शुरुआती कीमत', getQuote: 'कोटेशन पाएं', faqHeading: 'अक्सर पूछे जाने वाले सवाल',
     ctaSubtext: 'मुफ़्त परामर्श। कोई बाध्यता नहीं। ईमानदार सलाह — चाहे हम साथ काम करें या नहीं।',
     startConversation: 'बातचीत शुरू करें', whatsappCta: 'WhatsApp करें',
-    perMonth: '/महीना', dailyPlanCta: 'Daily Post Plan Subscribe करें',
+    perMonth: '/महीना', dailyPlanCta: 'Daily Dedicated Plan Subscribe करें',
   },
   mr: {
     allServices: 'सर्व सेवा', getConsultation: 'मोफत सल्ला मिळवा', whatsapp: 'WhatsApp करा',
@@ -74,7 +74,7 @@ const STRINGS: Record<Lang, {
     startingFrom: 'सुरुवातीची किंमत', getQuote: 'कोट मिळवा', faqHeading: 'वारंवार विचारले जाणारे प्रश्न',
     ctaSubtext: 'मोफत सल्ला. कोणतीही बांधिलकी नाही. प्रामाणिक सल्ला — आम्ही एकत्र काम करू किंवा नाही.',
     startConversation: 'संभाषण सुरू करा', whatsappCta: 'WhatsApp करा',
-    perMonth: '/महिना', dailyPlanCta: 'Daily Post Plan Subscribe करा',
+    perMonth: '/महिना', dailyPlanCta: 'Daily Dedicated Plan Subscribe करा',
   },
 };
 
