@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { ArrowLeft, ArrowRight, Clock, Calendar } from 'lucide-react';
 import { SEO } from './SEO';
 import { tealBtn } from '../lib/constants';
@@ -19,16 +19,20 @@ interface BlogPostProps {
 }
 
 export function BlogPost({ title, description, date, readTime, category, faqs, relatedSlugs, children }: BlogPostProps) {
+  // useLocation() instead of window.location — this component renders
+  // during the SSG build pass too (in Node, where window doesn't exist),
+  // so it needs a source of the current path that works in both places.
+  const { pathname } = useLocation();
   const relatedPosts = (relatedSlugs || [])
     .map((slug) => BLOG_POSTS[slug])
     .filter((post): post is NonNullable<typeof post> => Boolean(post));
 
   const schema = [
-    articleSchema({ title, description, url: window.location.pathname, datePublished: date }),
+    articleSchema({ title, description, url: pathname, datePublished: date }),
     breadcrumbSchema([
       { name: 'Home', url: '/' },
       { name: 'Blog', url: '/blog' },
-      { name: title, url: window.location.pathname },
+      { name: title, url: pathname },
     ]),
     ...(faqs && faqs.length > 0 ? [faqSchema(faqs)] : []),
   ];

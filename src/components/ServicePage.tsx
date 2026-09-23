@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { ArrowLeft, Check, Phone } from 'lucide-react';
 import { SEO } from './SEO';
 import { glass, tealBtn, WHATSAPP_NUMBER } from '../lib/constants';
@@ -99,12 +99,15 @@ export function ServicePage({
 }: ServicePageProps) {
   const s = STRINGS[lang];
   const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=Hi%2C%20I%20want%20to%20know%20more%20about%20${encodeURIComponent(category)}`;
+  // useLocation() instead of window.location — this component renders
+  // during the SSG build pass too (in Node, where window doesn't exist).
+  const { pathname } = useLocation();
 
   const pageSchema = [
-    serviceSchema({ name: category, description: metaDescription, url: window.location.pathname }),
+    serviceSchema({ name: category, description: metaDescription, url: pathname }),
     breadcrumbSchema([
       { name: 'Home', url: '/' },
-      { name: category, url: window.location.pathname },
+      { name: category, url: pathname },
     ]),
     ...(faqs.length > 0 ? [faqSchema(faqs)] : []),
   ];

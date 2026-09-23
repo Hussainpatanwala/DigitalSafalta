@@ -1,4 +1,5 @@
-import { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import { Head } from 'vite-react-ssg';
 import type { Lang } from '../lib/constants';
 
 interface SEOProps {
@@ -16,115 +17,68 @@ interface SEOProps {
 const SUPPORTED_LANGS: Lang[] = ['en', 'hi', 'mr'];
 const SITE_NAME = 'Digital Safalta';
 const DEFAULT_IMAGE = '/apple-touch-icon.png';
-// Single fixed canonical origin — every canonical/OG/Twitter URL is built
-// from this, never from window.location.origin. That's what makes the
+// Single fixed canonical origin — every canonical/OG/Twitter/hreflang URL is
+// built from this, never from window.location.origin. That's what makes the
 // canonical tag actually normalize www vs non-www, http vs https, etc.
-// instead of just echoing back whatever host/protocol the visitor (or a
-// crawler) happened to hit.
+// instead of just echoing back whatever host/protocol was requested.
 const CANONICAL_ORIGIN = 'https://digitalsafalta.in';
-
-function setMeta(attr: 'name' | 'property', key: string, content: string) {
-  let el = document.querySelector(`meta[${attr}="${key}"]`);
-  if (!el) {
-    el = document.createElement('meta');
-    el.setAttribute(attr, key);
-    document.head.appendChild(el);
-  }
-  el.setAttribute('content', content);
-}
 
 /**
  * Sets the document title, meta description, canonical URL, Open Graph and
- * Twitter Card tags, <html lang>, and hreflang alternate tags for the
- * current page. Lightweight alternative to react-helmet for a small
- * multi-page SPA.
+ * Twitter Card tags, <html lang>, hreflang alternates, and JSON-LD schema
+ * for the current page — declaratively, via vite-react-ssg's <Head>
+ * (a Helmet wrapper). This runs during both the SSG build pass (so the tags
+ * exist in the static HTML crawlers actually receive) and on the client.
  *
- * lang is passed as a prop (not context) so this component never crashes
- * if used outside a provider — safe by default.
+ * Uses react-router's useLocation() rather than window.location so it works
+ * identically during server-side/static generation, where window isn't
+ * available, and on the client.
  */
 export function SEO({ title, description, lang = 'en', image, type = 'website', schema }: SEOProps) {
-  useEffect(() => {
-    document.title = title;
-    document.documentElement.lang = lang;
+  const location = useLocation();
 
-    let meta = document.querySelector('meta[name="description"]');
-    if (!meta) {
-      meta = document.createElement('meta');
-      meta.setAttribute('name', 'description');
-      document.head.appendChild(meta);
-    }
-    meta.setAttribute('content', description);
+  const normalizedPath =
+    location.pathname.length > 1 ? location.pathname.replace(/\/+$/, '') : location.pathname;
+  const canonicalUrl = CANONICAL_ORIGIN + normalizedPath;
+  const imageUrl = CANONICAL_ORIGIN + (image || DEFAULT_IMAGE);
+  const currentFullPath = normalizedPath + location.search;
+  const schemaItems = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
 
-    // Canonical tag — tells Google the "official" URL for this page, even
-    // if it was reached via www/non-www, http/https, or a trailing slash.
-    // Built from CANONICAL_ORIGIN (fixed) rather than window.location.origin
-    // so it always points to the one true URL instead of mirroring back
-    // whatever variant was requested.
-    const normalizedPath =
-      window.location.pathname.length > 1
-        ? window.location.pathname.replace(/\/+$/, '')
-        : window.location.pathname;
-    const canonicalUrl = CANONICAL_ORIGIN + normalizedPath;
-    let canonical = document.querySelector('link[rel="canonical"]');
-    if (!canonical) {
-      canonical = document.createElement('link');
-      canonical.setAttribute('rel', 'canonical');
-      document.head.appendChild(canonical);
-    }
-    canonical.setAttribute('href', canonicalUrl);
+  return (
+    <Head>
+      <html lang={lang} />
+      <title>{title}</title>
+      <meta name="description" content={description} />
+      <link rel="canonical" href={canonicalUrl} />
 
-    // Open Graph tags — control how the page looks when shared on
-    // WhatsApp, Facebook, LinkedIn, etc.
-    const imageUrl = CANONICAL_ORIGIN + (image || DEFAULT_IMAGE);
-    setMeta('property', 'og:title', title);
-    setMeta('property', 'og:description', description);
-    setMeta('property', 'og:url', canonicalUrl);
-    setMeta('property', 'og:image', imageUrl);
-    setMeta('property', 'og:site_name', SITE_NAME);
-    setMeta('property', 'og:type', type);
+      {/* Open Graph — controls how the page looks when shared on WhatsApp,
+          Facebook, LinkedIn, etc. */}
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={description} />
+      <meta property="og:url" content={canonicalUrl} />
+      <meta property="og:image" content={imageUrl} />
+      <meta property="og:site_name" content={SITE_NAME} />
+      <meta property="og:type" content={type} />
 
-    // Twitter Card tags
-    setMeta('name', 'twitter:card', 'summary_large_image');
-    setMeta('name', 'twitter:title', title);
-    setMeta('name', 'twitter:description', description);
-    setMeta('name', 'twitter:image', imageUrl);
+      {/* Twitter Card */}
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:image" content={imageUrl} />
 
-    // hreflang alternate links
-    document.querySelectorAll('link[data-hreflang]').forEach(el => el.remove());
-    const currentPath = normalizedPath + window.location.search;
-    SUPPORTED_LANGS.forEach(code => {
-      const link = document.createElement('link');
-      link.rel = 'alternate';
-      link.hreflang = code;
-      link.href = CANONICAL_ORIGIN + currentPath;
-      link.setAttribute('data-hreflang', 'true');
-      document.head.appendChild(link);
-    });
-    const xDefault = document.createElement('link');
-    xDefault.rel = 'alternate';
-    xDefault.hreflang = 'x-default';
-    xDefault.href = CANONICAL_ORIGIN + currentPath;
-    xDefault.setAttribute('data-hreflang', 'true');
-    document.head.appendChild(xDefault);
+      {/* hreflang alternates */}
+      {SUPPORTED_LANGS.map(code => (
+        <link key={code} rel="alternate" hrefLang={code} href={CANONICAL_ORIGIN + currentFullPath} />
+      ))}
+      <link rel="alternate" hrefLang="x-default" href={CANONICAL_ORIGIN + currentFullPath} />
 
-    // Schema markup (JSON-LD) — the structured data Google uses for
-    // rich results (FAQ dropdowns, business info panels, article cards).
-    document.querySelectorAll('script[data-schema]').forEach(el => el.remove());
-    if (schema) {
-      const items = Array.isArray(schema) ? schema : [schema];
-      items.forEach(item => {
-        const script = document.createElement('script');
-        script.type = 'application/ld+json';
-        script.setAttribute('data-schema', 'true');
-        script.textContent = JSON.stringify(item);
-        document.head.appendChild(script);
-      });
-    }
-
-    return () => {
-      document.querySelectorAll('script[data-schema]').forEach(el => el.remove());
-    };
-  }, [title, description, lang, image, type, schema]);
-
-  return null;
+      {/* Schema markup (JSON-LD) — structured data Google uses for rich
+          results (FAQ dropdowns, business info panels, article cards). */}
+      {schemaItems.map((item, i) => (
+        <script key={i} type="application/ld+json">
+          {JSON.stringify(item)}
+        </script>
+      ))}
+    </Head>
+  );
 }
