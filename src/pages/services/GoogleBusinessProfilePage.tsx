@@ -38,6 +38,22 @@ const COPY = {
     ctaHeadline: "Ready to show up on Google Maps and get more local customers?",
     price: "Included in Website Package",
     priceNote: "GBP setup included with every website. Or get standalone setup — ask us for details.",
+    postingPlansHeading: "Ongoing Management Plan",
+    postingPlans: [
+      {
+        name: "Local SEO & GBP Management",
+        price: "₹5,000",
+        period: "/month",
+        features: [
+          "Targeted local SEO setup",
+          "Ongoing profile optimisation",
+          "Geo-tagged photo uploads",
+          "Custom post scheduling",
+          "Weekly review generation strategy",
+        ],
+        highlighted: true,
+      },
+    ],
   },
   hi: {
     metaTitle: "पुणे में Google Business Profile सेटअप | Digital Safalta",
@@ -75,6 +91,22 @@ const COPY = {
     ctaHeadline: "Google Maps पर दिखने और ज़्यादा local customers पाने के लिए तैयार हैं?",
     price: "वेबसाइट पैकेज में शामिल",
     priceNote: "हर वेबसाइट के साथ GBP सेटअप शामिल। या standalone सेटअप पाएं — हमसे details पूछें।",
+    postingPlansHeading: "Ongoing Management प्लान",
+    postingPlans: [
+      {
+        name: "Local SEO & GBP Management",
+        price: "₹5,000",
+        period: "/महीना",
+        features: [
+          "Targeted local SEO सेटअप",
+          "लगातार profile optimisation",
+          "Geo-tagged photo uploads",
+          "Custom post scheduling",
+          "साप्ताहिक review generation रणनीति",
+        ],
+        highlighted: true,
+      },
+    ],
   },
   mr: {
     metaTitle: "पुण्यात Google Business Profile सेटअप | Digital Safalta",
@@ -112,6 +144,22 @@ const COPY = {
     ctaHeadline: "Google Maps वर दिसण्यासाठी आणि अधिक local customers मिळवण्यासाठी तयार आहात?",
     price: "वेबसाइट पॅकेजमध्ये समाविष्ट",
     priceNote: "प्रत्येक वेबसाइटसोबत GBP सेटअप समाविष्ट. किंवा standalone सेटअप मिळवा — आम्हाला details विचारा.",
+    postingPlansHeading: "Ongoing Management प्लॅन",
+    postingPlans: [
+      {
+        name: "Local SEO & GBP Management",
+        price: "₹5,000",
+        period: "/महिना",
+        features: [
+          "Targeted local SEO सेटअप",
+          "सातत्यपूर्ण profile optimisation",
+          "Geo-tagged photo uploads",
+          "Custom post scheduling",
+          "साप्ताहिक review generation रणनीती",
+        ],
+        highlighted: true,
+      },
+    ],
   },
 };
 
