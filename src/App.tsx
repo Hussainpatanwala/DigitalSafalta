@@ -39,6 +39,8 @@ const WhatIsAWebsite = lazy(() => import('./pages/blog/what-is-a-website').then(
 const AgencyNearMe = lazy(() => import('./pages/blog/agency-near-me').then(m => ({ default: m.AgencyNearMe })));
 const ProductReviewsIndexPage = lazy(() => import('./pages/blog/ProductReviewsIndexPage').then(m => ({ default: m.ProductReviewsIndexPage })));
 const ProductReviewPage = lazy(() => import('./pages/blog/ProductReviewPage').then(m => ({ default: m.ProductReviewPage })));
+const ExpoAuditPage = lazy(() => import('./pages/ExpoAuditPage').then(m => ({ default: m.ExpoAuditPage })));
+const ExpoAdminPage = lazy(() => import('./pages/ExpoAdminPage').then(m => ({ default: m.ExpoAdminPage })));
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -201,6 +203,8 @@ const routes: RouteRecord[] = [
       { path: 'services/ai-dev-mentorship', Component: withLang(AiDevMentorshipPage) },
       { path: 'services/kids-digital-skills', Component: withLang(KidsDigitalSkillsPage) },
       { path: 'tools/marketing-audit', Component: MarketingAuditPage },
+      { path: 'expo-audit', Component: ExpoAuditPage },
+      { path: 'expo-audit/admin', Component: ExpoAdminPage },
     ],
   },
 ];
