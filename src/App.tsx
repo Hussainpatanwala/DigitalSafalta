@@ -14,6 +14,7 @@ import type { Lang } from './lib/constants';
 // finishes loading. This keeps the main bundle small for the LCP path.
 const Chatbot = lazy(() => import('./components/Chatbot').then(m => ({ default: m.Chatbot })));
 const ServicesPage = lazy(() => import('./pages/ServicesPage').then(m => ({ default: m.ServicesPage })));
+const HardwarePage = lazy(() => import('./pages/HardwarePage').then(m => ({ default: m.HardwarePage })));
 const PricingPage = lazy(() => import('./pages/PricingPage').then(m => ({ default: m.PricingPage })));
 const AboutPage = lazy(() => import('./pages/AboutPage').then(m => ({ default: m.AboutPage })));
 const PrivacyPolicyPage = lazy(() => import('./pages/PrivacyPolicyPage').then(m => ({ default: m.PrivacyPolicyPage })));
@@ -156,6 +157,7 @@ const routes: RouteRecord[] = [
     children: [
       { index: true, Component: withLang(HomePage) },
       { path: 'services', Component: withLang(ServicesPage) },
+      { path: 'hardware', Component: withLang(HardwarePage) },
       { path: 'pricing', Component: withLang(PricingPage) },
       { path: 'about', Component: withLang(AboutPage) },
       { path: 'privacy', Component: PrivacyPolicyPage },
