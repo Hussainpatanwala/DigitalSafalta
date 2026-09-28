@@ -15,6 +15,7 @@ import type { Lang } from './lib/constants';
 const Chatbot = lazy(() => import('./components/Chatbot').then(m => ({ default: m.Chatbot })));
 const ServicesPage = lazy(() => import('./pages/ServicesPage').then(m => ({ default: m.ServicesPage })));
 const HardwarePage = lazy(() => import('./pages/HardwarePage').then(m => ({ default: m.HardwarePage })));
+const TrainingPage = lazy(() => import('./pages/TrainingPage').then(m => ({ default: m.TrainingPage })));
 const PricingPage = lazy(() => import('./pages/PricingPage').then(m => ({ default: m.PricingPage })));
 const AboutPage = lazy(() => import('./pages/AboutPage').then(m => ({ default: m.AboutPage })));
 const PrivacyPolicyPage = lazy(() => import('./pages/PrivacyPolicyPage').then(m => ({ default: m.PrivacyPolicyPage })));
@@ -158,6 +159,7 @@ const routes: RouteRecord[] = [
       { index: true, Component: withLang(HomePage) },
       { path: 'services', Component: withLang(ServicesPage) },
       { path: 'hardware', Component: withLang(HardwarePage) },
+      { path: 'training', Component: withLang(TrainingPage) },
       { path: 'pricing', Component: withLang(PricingPage) },
       { path: 'about', Component: withLang(AboutPage) },
       { path: 'privacy', Component: PrivacyPolicyPage },
