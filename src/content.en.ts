@@ -27,6 +27,7 @@ export const content = {
     navContact: "Contact",
     navBlog: "Blog",
     navHardware: "Hardware",
+    navTraining: "Training",
     navCtaButton: "Start a Project",
     learnMore: "Learn More",
     mostPopular: "Most Popular",

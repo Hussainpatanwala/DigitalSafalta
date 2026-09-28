@@ -22,6 +22,7 @@ export const content: SiteContent = {
     navContact: "संपर्क करें",
     navBlog: "ब्लॉग",
     navHardware: "हार्डवेयर",
+    navTraining: "प्रशिक्षण",
     navCtaButton: "प्रोजेक्ट शुरू करें",
     learnMore: "और जानें",
     mostPopular: "सबसे लोकप्रिय",
