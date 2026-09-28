@@ -43,6 +43,7 @@ export function Navigation({
   const NAV_ITEMS = [
     { label: t.ui.navHome, to: '/' },
     { label: t.ui.navServices, to: '/services' },
+    { label: t.ui.navHardware, to: '/hardware' },
     { label: t.ui.navPricing, to: '/pricing' },
     { label: t.ui.navAbout, to: '/about' },
     { label: t.ui.navContact, to: '/contact' },
@@ -72,7 +73,7 @@ export function Navigation({
             </span>
           </Link>
 
-          <div className="hidden lg:flex items-center gap-8">
+          <div className="hidden lg:flex items-center gap-6 xl:gap-8">
             {NAV_ITEMS.map(item => (
               <NavLink key={item.to} to={item.to} className={linkClass}>
                 {item.label}
