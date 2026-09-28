@@ -44,6 +44,7 @@ export function Navigation({
     { label: t.ui.navHome, to: '/' },
     { label: t.ui.navServices, to: '/services' },
     { label: t.ui.navHardware, to: '/hardware' },
+    { label: t.ui.navTraining, to: '/training' },
     { label: t.ui.navPricing, to: '/pricing' },
     { label: t.ui.navAbout, to: '/about' },
     { label: t.ui.navContact, to: '/contact' },
