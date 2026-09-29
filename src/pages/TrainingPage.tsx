@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
-import { GraduationCap, Code2, MessageCircle } from 'lucide-react';
+import { GraduationCap, Code2, MessageCircle, Phone } from 'lucide-react';
 import { SEO } from '../components/SEO';
 import { HomeAnchorLink } from '../components/HomeAnchorLink';
-import { glass, tealBtn, WHATSAPP_NUMBER } from '../lib/constants';
+import { glass, tealBtn, PHONE_NUMBER, WHATSAPP_NUMBER } from '../lib/constants';
 import type { Lang } from '../lib/constants';
 
 const ICONS = [GraduationCap, Code2];
@@ -22,6 +22,7 @@ const COPY = {
     ctaHeading: 'Not sure which program fits?',
     ctaText: 'Tell us who the training is for and what they want to learn.',
     cta: 'Ask on WhatsApp',
+    call: 'Call us',
     wa: 'Hi Digital Safalta, I would like to know more about your training programs.',
   },
   hi: {
@@ -37,6 +38,7 @@ const COPY = {
     ctaHeading: 'पक्का नहीं कि कौन सा प्रोग्राम सही है?',
     ctaText: 'बताइए ट्रेनिंग किसके लिए है और वे क्या सीखना चाहते हैं।',
     cta: 'WhatsApp पर पूछें',
+    call: 'कॉल करें',
     wa: 'नमस्ते Digital Safalta, मुझे आपके ट्रेनिंग प्रोग्राम के बारे में जानना है।',
   },
   mr: {
@@ -52,6 +54,7 @@ const COPY = {
     ctaHeading: 'कोणता प्रोग्राम योग्य आहे याची खात्री नाही?',
     ctaText: 'ट्रेनिंग कोणासाठी आहे आणि त्यांना काय शिकायचे आहे ते सांगा.',
     cta: 'WhatsApp वर विचारा',
+    call: 'कॉल करा',
     wa: 'नमस्कार Digital Safalta, मला तुमच्या ट्रेनिंग प्रोग्रामबद्दल माहिती हवी आहे.',
   },
 } as const;
@@ -91,9 +94,14 @@ export function TrainingPage({ lang = 'en' }: { lang?: Lang }) {
           <div className={`${glass} rounded-3xl p-8 lg:p-12`}>
             <h2 className="text-2xl font-black">{t.ctaHeading}</h2>
             <p className="mt-2 text-slate-400 text-sm">{t.ctaText}</p>
-            <a href={waHref} target="_blank" rel="noopener noreferrer" className={`mt-6 inline-flex items-center gap-2 px-6 py-3 rounded-full text-sm ${tealBtn}`}>
-              <MessageCircle className="w-4 h-4" aria-hidden="true" /> {t.cta}
-            </a>
+            <div className="mt-6 flex flex-wrap gap-3">
+              <a href={waHref} target="_blank" rel="noopener noreferrer" className={`px-6 py-3 rounded-full text-sm flex items-center gap-2 ${tealBtn}`}>
+                <MessageCircle className="w-4 h-4" aria-hidden="true" /> {t.cta}
+              </a>
+              <a href={`tel:${PHONE_NUMBER}`} className="px-6 py-3 rounded-full text-sm font-bold flex items-center gap-2 border border-white/15 text-slate-200 hover:bg-white/5 transition-colors">
+                <Phone className="w-4 h-4" aria-hidden="true" /> {t.call}
+              </a>
+            </div>
           </div>
         </section>
         <HomeAnchorLink lang={lang} />
