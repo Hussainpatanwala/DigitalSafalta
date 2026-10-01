@@ -4,6 +4,9 @@ import { glass, glassHover, tealBtn } from '../lib/constants';
 import type { Lang } from '../lib/constants';
 import { getContent } from '../getContent';
 
+// The Web Application plan is the second card in every language's plan list.
+const WEB_APP_PLAN_INDEX = 1;
+
 export function Pricing({ lang = 'en', as = 'h2' }: { lang?: Lang; as?: 'h1' | 'h2' }) {
   const content = getContent(lang);
   const t = content.pricing;
@@ -53,6 +56,14 @@ export function Pricing({ lang = 'en', as = 'h2' }: { lang?: Lang; as?: 'h1' | '
                 <p className="text-xs text-slate-400 leading-relaxed bg-white/5 border border-white/10 rounded-xl px-4 py-3 mb-6">
                   {plan.note}
                 </p>
+              )}
+              {idx === WEB_APP_PLAN_INDEX && (
+                <Link
+                  to="/services/web-app-development"
+                  className="block text-center text-xs text-teal-400 hover:text-teal-300 underline underline-offset-2 mb-4"
+                >
+                  Learn more about web app development
+                </Link>
               )}
               <Link
                 to="/contact"
