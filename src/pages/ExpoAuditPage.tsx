@@ -154,7 +154,7 @@ export function ExpoAuditPage() {
 
   return (
     <>
-      <SEO title="Business Growth Audit | Digital Safalta" description="Free 10-minute business growth audit — get your score on the spot." />
+      <SEO title="Business Growth Audit | Digital Safalta" description="Free 10-minute business growth audit — get your score on the spot." noindex />
       <div className="pt-28 lg:pt-36 pb-20">
         <div className="max-w-2xl mx-auto px-4 sm:px-6 lg:px-8">
 

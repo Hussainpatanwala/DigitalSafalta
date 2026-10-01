@@ -46,7 +46,7 @@ export function ExpoAdminPage() {
 
   return (
     <>
-      <SEO title="Expo Admin | Digital Safalta" description="" />
+      <SEO title="Expo Admin | Digital Safalta" description="" noindex />
       <div className="pt-28 lg:pt-36 pb-20">
         <div className="max-w-sm mx-auto px-4 sm:px-6">
           <div className={`rounded-2xl p-6 ${glass}`}>
