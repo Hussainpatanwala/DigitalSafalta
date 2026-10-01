@@ -4,8 +4,11 @@ import type { Lang } from '../lib/constants';
 import { getContent } from '../getContent';
 import { MobileActionBar } from './MobileActionBar';
 
-const FOOTER_LINKS = ['/services', '/services', '/services', '/services'];
-const COMPANY_LINKS = ['/about', '/pricing', '/contact'];
+// One link per label in content.*.footer.servicesList (same order).
+const FOOTER_LINKS = ['/services/google-ads', '/services/seo', '/services/social-media', '/services/website-design'];
+// One link per label in content.*.footer.companyList: About, Our Process, Pricing, Contact.
+// (The Our Process section lives on the About page.)
+const COMPANY_LINKS = ['/about', '/about', '/pricing', '/contact'];
 
 export function Footer({ lang = 'en' }: { lang?: Lang }) {
   const t = getContent(lang);
@@ -32,6 +35,7 @@ export function Footer({ lang = 'en' }: { lang?: Lang }) {
               {t.footer.servicesList.map((label, idx) => (
                 <li key={idx}><Link to={FOOTER_LINKS[idx]} className="text-slate-500 hover:text-teal-400 transition-colors text-sm">{label}</Link></li>
               ))}
+              <li><Link to="/services/web-app-development" className="text-slate-500 hover:text-teal-400 transition-colors text-sm">Web App Development</Link></li>
             </ul>
           </div>
           <div>
