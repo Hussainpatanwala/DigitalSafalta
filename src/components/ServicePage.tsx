@@ -42,6 +42,12 @@ interface ServicePageProps {
   postingPlansHeading?: string;
   postingPlans?: PostingPlan[];
   dailyPlan?: DailyPlan;
+  /**
+   * Where the main call-to-action buttons go. Defaults to the contact form.
+   * Project-based services (website, web app) use 'whatsapp' because the
+   * contact form is a marketing-audit questionnaire that doesn't fit them.
+   */
+  primaryCta?: 'contact' | 'whatsapp';
 }
 
 
@@ -96,8 +102,11 @@ export function ServicePage({
   postingPlansHeading,
   postingPlans,
   dailyPlan,
+  primaryCta = 'contact',
 }: ServicePageProps) {
   const s = STRINGS[lang];
+  const useWhatsApp = primaryCta === 'whatsapp';
+  const ctaBase = `inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold ${tealBtn}`;
   const waLink = `https://wa.me/${WHATSAPP_NUMBER}?text=Hi%2C%20I%20want%20to%20know%20more%20about%20${encodeURIComponent(category)}`;
   // useLocation() instead of window.location — this component renders
   // during the SSG build pass too (in Node, where window doesn't exist).
@@ -136,17 +145,25 @@ export function ServicePage({
               {heroSubheading}
             </p>
             <div className="flex flex-wrap gap-3">
-              <Link to="/contact" className={`inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold ${tealBtn}`}>
-                {s.getConsultation}
-              </Link>
-              <a
-                href={waLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold bg-white/5 border border-white/10 text-white hover:bg-white/10 transition-all"
-              >
-                <Phone className="w-4 h-4" /> {s.whatsapp}
-              </a>
+              {useWhatsApp ? (
+                <a href={waLink} target="_blank" rel="noopener noreferrer" className={ctaBase}>
+                  <Phone className="w-4 h-4" /> {s.getConsultation}
+                </a>
+              ) : (
+                <>
+                  <Link to="/contact" className={ctaBase}>
+                    {s.getConsultation}
+                  </Link>
+                  <a
+                    href={waLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold bg-white/5 border border-white/10 text-white hover:bg-white/10 transition-all"
+                  >
+                    <Phone className="w-4 h-4" /> {s.whatsapp}
+                  </a>
+                </>
+              )}
             </div>
           </div>
 
@@ -201,9 +218,15 @@ export function ServicePage({
                   <p className="text-3xl font-black text-white">{price}</p>
                   {priceNote && <p className="text-slate-400 text-sm mt-1">{priceNote}</p>}
                 </div>
-                <Link to="/contact" className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold ${tealBtn}`}>
-                  {s.getQuote}
-                </Link>
+                {useWhatsApp ? (
+                  <a href={waLink} target="_blank" rel="noopener noreferrer" className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold ${tealBtn}`}>
+                    {s.getQuote}
+                  </a>
+                ) : (
+                  <Link to="/contact" className={`inline-flex items-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold ${tealBtn}`}>
+                    {s.getQuote}
+                  </Link>
+                )}
               </div>
             </div>
           )}
@@ -289,17 +312,25 @@ export function ServicePage({
             <h3 className="text-xl font-black text-white mb-3">{ctaHeadline}</h3>
             <p className="text-slate-400 text-sm mb-6">{s.ctaSubtext}</p>
             <div className="flex flex-wrap gap-3 justify-center">
-              <Link to="/contact" className={`inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold ${tealBtn}`}>
-                {s.startConversation}
-              </Link>
-              <a
-                href={waLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold bg-white/5 border border-white/10 text-white hover:bg-white/10 transition-all"
-              >
-                <Phone className="w-4 h-4" /> {s.whatsappCta}
-              </a>
+              {useWhatsApp ? (
+                <a href={waLink} target="_blank" rel="noopener noreferrer" className={ctaBase}>
+                  <Phone className="w-4 h-4" /> {s.startConversation}
+                </a>
+              ) : (
+                <>
+                  <Link to="/contact" className={ctaBase}>
+                    {s.startConversation}
+                  </Link>
+                  <a
+                    href={waLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold bg-white/5 border border-white/10 text-white hover:bg-white/10 transition-all"
+                  >
+                    <Phone className="w-4 h-4" /> {s.whatsappCta}
+                  </a>
+                </>
+              )}
             </div>
           </div>
 

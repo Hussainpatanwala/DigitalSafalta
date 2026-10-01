@@ -1,11 +1,22 @@
 import { Link } from 'react-router-dom';
 import { Check, Star } from 'lucide-react';
-import { glass, glassHover, tealBtn } from '../lib/constants';
+import { glass, glassHover, tealBtn, WHATSAPP_NUMBER } from '../lib/constants';
 import type { Lang } from '../lib/constants';
 import { getContent } from '../getContent';
 
 // The Web Application plan is the second card in every language's plan list.
 const WEB_APP_PLAN_INDEX = 1;
+
+// Project-based plans (by card position, same in every language) open WhatsApp
+// with a ready message instead of the marketing-audit form, which asks
+// ad/newsletter questions that don't suit someone buying a website or app.
+// The message is always in English so it reads the same in the owner's inbox.
+const WHATSAPP_PLAN_NAMES: Record<number, string> = {
+  0: 'the Website Package',
+  1: 'Web Application development',
+};
+const waLinkFor = (what: string) =>
+  `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(`Hi, I'm interested in ${what}. Can we talk?`)}`;
 
 export function Pricing({ lang = 'en', as = 'h2' }: { lang?: Lang; as?: 'h1' | 'h2' }) {
   const content = getContent(lang);
@@ -65,14 +76,21 @@ export function Pricing({ lang = 'en', as = 'h2' }: { lang?: Lang; as?: 'h1' | '
                   Learn more about web app development
                 </Link>
               )}
-              <Link
-                to="/contact"
-                className={`block w-full text-center py-3 rounded-xl text-sm font-bold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 focus:ring-offset-slate-950 ${
+              {(() => {
+                const btnClass = `block w-full text-center py-3 rounded-xl text-sm font-bold transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:ring-offset-2 focus:ring-offset-slate-950 ${
                   plan.highlighted ? tealBtn : 'border border-white/15 text-white hover:bg-white/8 hover:border-white/25'
-                }`}
-              >
-                {getStarted}
-              </Link>
+                }`;
+                const waPlan = WHATSAPP_PLAN_NAMES[idx];
+                return waPlan ? (
+                  <a href={waLinkFor(waPlan)} target="_blank" rel="noopener noreferrer" className={btnClass}>
+                    {getStarted}
+                  </a>
+                ) : (
+                  <Link to="/contact" className={btnClass}>
+                    {getStarted}
+                  </Link>
+                );
+              })()}
             </article>
           ))}
         </div>
