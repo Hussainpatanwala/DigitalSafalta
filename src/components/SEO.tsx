@@ -12,9 +12,10 @@ interface SEOProps {
   type?: 'website' | 'article';
   /** One or more JSON-LD schema objects (Organization, Service, FAQPage, etc). */
   schema?: object | object[];
+  /** Keeps the page out of Google (private tools, admin screens, campaign pages). */
+  noindex?: boolean;
 }
 
-const SUPPORTED_LANGS: Lang[] = ['en', 'hi', 'mr'];
 const SITE_NAME = 'Digital Safalta';
 const DEFAULT_IMAGE = '/apple-touch-icon.png';
 // Single fixed canonical origin — every canonical/OG/Twitter/hreflang URL is
@@ -25,7 +26,7 @@ const CANONICAL_ORIGIN = 'https://digitalsafalta.in';
 
 /**
  * Sets the document title, meta description, canonical URL, Open Graph and
- * Twitter Card tags, <html lang>, hreflang alternates, and JSON-LD schema
+ * Twitter Card tags, <html lang>, and JSON-LD schema
  * for the current page — declaratively, via vite-react-ssg's <Head>
  * (a Helmet wrapper). This runs during both the SSG build pass (so the tags
  * exist in the static HTML crawlers actually receive) and on the client.
@@ -34,14 +35,13 @@ const CANONICAL_ORIGIN = 'https://digitalsafalta.in';
  * identically during server-side/static generation, where window isn't
  * available, and on the client.
  */
-export function SEO({ title, description, lang = 'en', image, type = 'website', schema }: SEOProps) {
+export function SEO({ title, description, lang = 'en', image, type = 'website', schema, noindex = false }: SEOProps) {
   const location = useLocation();
 
   const normalizedPath =
     location.pathname.length > 1 ? location.pathname.replace(/\/+$/, '') : location.pathname;
   const canonicalUrl = CANONICAL_ORIGIN + normalizedPath;
   const imageUrl = CANONICAL_ORIGIN + (image || DEFAULT_IMAGE);
-  const currentFullPath = normalizedPath + location.search;
   const schemaItems = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
 
   return (
@@ -66,11 +66,12 @@ export function SEO({ title, description, lang = 'en', image, type = 'website', 
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={imageUrl} />
 
-      {/* hreflang alternates */}
-      {SUPPORTED_LANGS.map(code => (
-        <link key={code} rel="alternate" hrefLang={code} href={CANONICAL_ORIGIN + currentFullPath} />
-      ))}
-      <link rel="alternate" hrefLang="x-default" href={CANONICAL_ORIGIN + currentFullPath} />
+      {/* Private/utility pages: tell search engines not to list them. */}
+      {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+      {/* No hreflang tags on purpose: every language is served from the same
+          URL (the visitor picks it client-side), so there are no separate
+          per-language pages for hreflang to point to. */}
 
       {/* Schema markup (JSON-LD) — structured data Google uses for rich
           results (FAQ dropdowns, business info panels, article cards). */}
