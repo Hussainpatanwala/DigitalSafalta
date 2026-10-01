@@ -30,6 +30,7 @@ const SEOPage = lazy(() => import('./pages/services/SEOPage').then(m => ({ defau
 const SocialMediaPage = lazy(() => import('./pages/services/SocialMediaPage').then(m => ({ default: m.SocialMediaPage })));
 const GoogleBusinessProfilePage = lazy(() => import('./pages/services/GoogleBusinessProfilePage').then(m => ({ default: m.GoogleBusinessProfilePage })));
 const ExcelVbaAutomationPage = lazy(() => import('./pages/services/ExcelVbaAutomationPage').then(m => ({ default: m.ExcelVbaAutomationPage })));
+const WebAppDevelopmentPage = lazy(() => import('./pages/services/WebAppDevelopmentPage').then(m => ({ default: m.WebAppDevelopmentPage })));
 const AiDevMentorshipPage = lazy(() => import('./pages/services/AiDevMentorshipPage').then(m => ({ default: m.AiDevMentorshipPage })));
 const KidsDigitalSkillsPage = lazy(() => import('./pages/services/KidsDigitalSkillsPage').then(m => ({ default: m.KidsDigitalSkillsPage })));
 const MarketingAuditPage = lazy(() => import('./pages/MarketingAuditPage').then(m => ({ default: m.MarketingAuditPage })));
@@ -204,6 +205,7 @@ const routes: RouteRecord[] = [
       { path: 'services/social-media', Component: withLang(SocialMediaPage) },
       { path: 'services/google-business-profile', Component: withLang(GoogleBusinessProfilePage) },
       { path: 'services/excel-vba-automation', Component: withLang(ExcelVbaAutomationPage) },
+      { path: 'services/web-app-development', Component: withLang(WebAppDevelopmentPage) },
       { path: 'services/ai-dev-mentorship', Component: withLang(AiDevMentorshipPage) },
       { path: 'services/kids-digital-skills', Component: withLang(KidsDigitalSkillsPage) },
       { path: 'tools/marketing-audit', Component: MarketingAuditPage },
