@@ -86,5 +86,5 @@ const COPY = {
 
 export function WebAppDevelopmentPage({ lang = 'en' }: { lang?: Lang }) {
   // English only for now, like the Excel & VBA page; translations can follow later.
-  return <ServicePage lang={lang} {...COPY} />;
+  return <ServicePage lang={lang} {...COPY} primaryCta="whatsapp" />;
 }

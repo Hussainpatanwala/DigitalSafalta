@@ -126,5 +126,5 @@ const COPY = {
 
 export function WebsiteDesignPage({ lang = 'en' }: { lang?: Lang }) {
   const c = COPY[lang];
-  return <ServicePage lang={lang} {...c} />;
+  return <ServicePage lang={lang} {...c} primaryCta="whatsapp" />;
 }
