@@ -40,6 +40,8 @@ const GoogleAdsVsMetaAds = lazy(() => import('./pages/blog/google-ads-vs-meta-ad
 const GoogleFreeAdCredit = lazy(() => import('./pages/blog/google-free-ad-credit').then(m => ({ default: m.GoogleFreeAdCredit })));
 const WhatIsAWebsite = lazy(() => import('./pages/blog/what-is-a-website').then(m => ({ default: m.WhatIsAWebsite })));
 const AgencyNearMe = lazy(() => import('./pages/blog/agency-near-me').then(m => ({ default: m.AgencyNearMe })));
+const WebsiteVsWebApp = lazy(() => import('./pages/blog/website-vs-web-app').then(m => ({ default: m.WebsiteVsWebApp })));
+const CustomWebAppCostIndia = lazy(() => import('./pages/blog/custom-web-app-cost-india').then(m => ({ default: m.CustomWebAppCostIndia })));
 const ProductReviewsIndexPage = lazy(() => import('./pages/blog/ProductReviewsIndexPage').then(m => ({ default: m.ProductReviewsIndexPage })));
 const ProductReviewPage = lazy(() => import('./pages/blog/ProductReviewPage').then(m => ({ default: m.ProductReviewPage })));
 const ExpoAuditPage = lazy(() => import('./pages/ExpoAuditPage').then(m => ({ default: m.ExpoAuditPage })));
@@ -174,6 +176,8 @@ const routes: RouteRecord[] = [
       { path: 'blog/google-free-ad-credit', Component: GoogleFreeAdCredit },
       { path: 'blog/what-is-a-website', Component: WhatIsAWebsite },
       { path: 'blog/agency-near-me', Component: AgencyNearMe },
+      { path: 'blog/website-vs-web-app', Component: WebsiteVsWebApp },
+      { path: 'blog/custom-web-app-cost-india', Component: CustomWebAppCostIndia },
       { path: 'blog/reviews', Component: ProductReviewsIndexPage },
       {
         path: 'blog/reviews/:slug',
