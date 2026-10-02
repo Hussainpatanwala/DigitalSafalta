@@ -44,6 +44,24 @@ const COPY = {
 const posts = {
   en: [
     {
+      slug: 'website-vs-web-app',
+      title: 'Website vs Web App: Which Does Your Business Need?',
+      excerpt:
+        "Not sure whether you need a website or a web app? The plain-English difference, five quick questions to decide, and what each costs for a Pune business.",
+      date: 'October 2, 2026',
+      readTime: '6 min',
+      category: 'Web Development',
+    },
+    {
+      slug: 'custom-web-app-cost-india',
+      title: 'How Much Does a Custom Web App Cost in India? (2026 Guide)',
+      excerpt:
+        "Custom web app prices range from ₹50,000 to several lakhs. What drives the cost, what each tier includes, and the running costs nobody mentions.",
+      date: 'October 2, 2026',
+      readTime: '7 min',
+      category: 'Pricing Guide',
+    },
+    {
       slug: 'agency-near-me',
       title: 'Digital Marketing Agency Near Me — How to Choose the Right One in Pune',
       excerpt:

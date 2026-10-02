@@ -245,7 +245,7 @@ export function WebsiteCostPune({ lang = 'en' }: Props) {
       readTime={c.readTime}
       category={c.category}
       faqs={faqs}
-      relatedSlugs={['what-is-a-website', 'agency-near-me']}
+      relatedSlugs={['what-is-a-website', 'custom-web-app-cost-india', 'agency-near-me']}
     >
       {isEnglish && (
         <>
