@@ -12,6 +12,18 @@ export interface BlogPostMeta {
 }
 
 export const BLOG_POSTS: Record<string, BlogPostMeta> = {
+  'website-vs-web-app': {
+    slug: 'website-vs-web-app',
+    title: 'Website vs Web App: Which Does Your Business Need?',
+    category: 'Web Development',
+    readTime: '6 min',
+  },
+  'custom-web-app-cost-india': {
+    slug: 'custom-web-app-cost-india',
+    title: 'How Much Does a Custom Web App Cost in India? (2026 Guide)',
+    category: 'Pricing Guide',
+    readTime: '7 min',
+  },
   'agency-near-me': {
     slug: 'agency-near-me',
     title: 'Digital Marketing Agency Near Me — How to Choose the Right One in Pune',
