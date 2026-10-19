@@ -216,7 +216,7 @@ export function Contact({ lang = 'en' }: { lang?: Lang }) {
               <span className="w-1.5 h-1.5 rounded-full bg-teal-400 animate-pulse" aria-hidden="true" />
               {s.eyebrow}
             </div>
-            <h2 id="contact-heading" className="text-3xl lg:text-4xl font-black tracking-tight mb-4">{t.title}</h2>
+            <h1 id="contact-heading" className="text-3xl lg:text-4xl font-black tracking-tight mb-4">{t.title}</h1>
             <p className="text-slate-400 text-base leading-relaxed max-w-lg mx-auto lg:mx-0">{t.description}</p>
           </div>
           <div className={`rounded-3xl p-4 lg:p-5 relative overflow-hidden ${glass} shadow-2xl shadow-black/40`}>

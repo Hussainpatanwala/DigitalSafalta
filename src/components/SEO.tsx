@@ -1,6 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import { Head } from 'vite-react-ssg';
 import type { Lang } from '../lib/constants';
+import { SEO_META } from '../lib/seoMeta';
 
 interface SEOProps {
   title: string;
@@ -35,12 +36,21 @@ const CANONICAL_ORIGIN = 'https://digitalsafalta.in';
  * identically during server-side/static generation, where window isn't
  * available, and on the client.
  */
-export function SEO({ title, description, lang = 'en', image, type = 'website', schema, noindex = false }: SEOProps) {
+export function SEO({ title: titleProp, description: descriptionProp, lang = 'en', image, type = 'website', schema, noindex = false }: SEOProps) {
   const location = useLocation();
 
   const normalizedPath =
     location.pathname.length > 1 ? location.pathname.replace(/\/+$/, '') : location.pathname;
   const canonicalUrl = CANONICAL_ORIGIN + normalizedPath;
+
+  // English-only overrides from src/lib/seoMeta.ts (length-corrected wording).
+  // Skipped when the page is showing Hindi/Marathi text (Devanagari), so
+  // translated tab titles and descriptions are never replaced by English.
+  const override = SEO_META[normalizedPath];
+  const isDevanagari = /[\u0900-\u097F]/.test(titleProp + descriptionProp);
+  const useOverride = Boolean(override) && lang === 'en' && !isDevanagari;
+  const title = (useOverride && override.title) || titleProp;
+  const description = (useOverride && override.description) || descriptionProp;
   const imageUrl = CANONICAL_ORIGIN + (image || DEFAULT_IMAGE);
   const schemaItems = schema ? (Array.isArray(schema) ? schema : [schema]) : [];
 
