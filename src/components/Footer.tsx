@@ -36,6 +36,8 @@ export function Footer({ lang = 'en' }: { lang?: Lang }) {
                 <li key={idx}><Link to={FOOTER_LINKS[idx]} className="text-slate-500 hover:text-teal-400 transition-colors text-sm">{label}</Link></li>
               ))}
               <li><Link to="/services/web-app-development" className="text-slate-500 hover:text-teal-400 transition-colors text-sm">Web App Development</Link></li>
+              <li><Link to="/services/meta-ads" className="text-slate-500 hover:text-teal-400 transition-colors text-sm">Facebook &amp; Instagram Ads</Link></li>
+              <li><Link to="/services/google-business-profile" className="text-slate-500 hover:text-teal-400 transition-colors text-sm">Google Business Profile</Link></li>
             </ul>
           </div>
           <div>
