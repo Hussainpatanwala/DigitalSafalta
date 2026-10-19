@@ -16,6 +16,9 @@ const COPY = {
       'Plain-English guides written for Pune business owners who want to understand digital marketing — and use it to grow.',
     readArticle: 'Read Article',
     read: 'Read',
+    reviewsHeading: 'Product Reviews',
+    reviewsText: 'Honest, hands-on recommendations for tools and products we have actually used.',
+    reviewsCta: 'Browse Product Reviews',
   },
   hi: {
     seoTitle: 'ब्लॉग — पुणे व्यवसायों के लिए डिजिटल मार्केटिंग टिप्स | Digital Safalta',
@@ -27,6 +30,9 @@ const COPY = {
       'पुणे के व्यवसाय मालिकों के लिए सरल भाषा में गाइड जो डिजिटल मार्केटिंग को समझना और इसका उपयोग बढ़ने के लिए करना चाहते हैं।',
     readArticle: 'लेख पढ़ें',
     read: 'पढ़ें',
+    reviewsHeading: 'प्रोडक्ट रिव्यू',
+    reviewsText: 'उन टूल्स और प्रोडक्ट्स की ईमानदार सिफ़ारिशें जिन्हें हमने खुद इस्तेमाल किया है।',
+    reviewsCta: 'प्रोडक्ट रिव्यू देखें',
   },
   mr: {
     seoTitle: 'ब्लॉग — पुण्यातील व्यवसायांसाठी डिजिटल मार्केटिंग टिप्स | Digital Safalta',
@@ -38,6 +44,9 @@ const COPY = {
       'पुण्यातील व्यावसायिकांसाठी सोप्या भाषेत मार्गदर्शन जे डिजिटल मार्केटिंग समजून घेऊ इच्छितात आणि ते वाढीसाठी वापरू इच्छितात.',
     readArticle: 'लेख वाचा',
     read: 'वाचा',
+    reviewsHeading: 'प्रोडक्ट रिव्ह्यू',
+    reviewsText: 'आम्ही स्वतः वापरलेल्या टूल्स आणि प्रोडक्ट्सच्या प्रामाणिक शिफारशी.',
+    reviewsCta: 'प्रोडक्ट रिव्ह्यू पहा',
   },
 };
 
@@ -309,6 +318,17 @@ export function BlogIndexPage({ lang = 'en' }: Props) {
                 </div>
               </article>
             ))}
+          </div>
+
+          {/* Product reviews hub link */}
+          <div className={`rounded-2xl p-6 lg:p-8 mt-8 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 ${glass}`}>
+            <div>
+              <h2 className="text-lg font-black text-white mb-1">{c.reviewsHeading}</h2>
+              <p className="text-slate-400 text-sm leading-relaxed">{c.reviewsText}</p>
+            </div>
+            <Link to="/blog/reviews" className={`inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl text-sm font-bold whitespace-nowrap ${tealBtn}`}>
+              {c.reviewsCta} <ArrowRight className="w-4 h-4" />
+            </Link>
           </div>
 
         </div>
