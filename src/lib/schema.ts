@@ -64,6 +64,12 @@ export function serviceSchema(opts: { name: string; description: string; url: st
       '@type': 'ProfessionalService',
       name: 'Digital Safalta',
       url: SITE_URL,
+      address: {
+        '@type': 'PostalAddress',
+        addressLocality: 'Pune',
+        addressRegion: 'Maharashtra',
+        addressCountry: 'IN',
+      },
     },
     areaServed: {
       '@type': 'City',
