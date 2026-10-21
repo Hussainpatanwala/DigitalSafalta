@@ -79,5 +79,5 @@ const COPY = {
 
 export function ExcelVbaAutomationPage({ lang = 'en' }: { lang?: Lang }) {
   // English only for now — this is a newly added service; translations can follow later.
-  return <ServicePage lang={lang} {...COPY} />;
+  return <ServicePage lang={lang} {...COPY} primaryCta="whatsapp" />;
 }
